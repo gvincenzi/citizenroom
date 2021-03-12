@@ -2,7 +2,7 @@
 include_once '../actionInSession.php';
 ?>
 <head>
-	<meta charset="iso-8859-1">
+	<meta charset="utf8">
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
@@ -44,6 +44,7 @@ include_once '../actionInSession.php';
 		<button id='btnCustomTileView'>Roommates view</button>
 		<button id='btnScreenShareCustom'>Start sharing your screen</button>
 		<button id='btnInvitation'>Send invitation link</button>
+		<button id='btnLeave'>Leave the room</button>
 	</div>
 	<h4 id='joinMsg'></h4>
   </div>

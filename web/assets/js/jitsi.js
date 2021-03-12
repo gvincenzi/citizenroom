@@ -19,6 +19,9 @@ function BindEvent(roomNumber,nickname){
 	$("#btnInvitation").on('click', function () {
         toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber,'Invitation link');
     });
+	$("#btnLeave").on('click', function () {
+        window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
+    });
 }
 
 function StartMeeting(roomNumber,nickname){

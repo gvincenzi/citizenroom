@@ -1,0 +1,15 @@
+.what {
+	margin-right: auto; 
+	margin-left: auto; 
+	width: 60%;
+	margin-top: 60px;
+	padding : 40px;
+	background-color: white;
+	/* border-radius */
+	border-radius: 5px;
+	/* box-shadow */
+	box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+	border-collapse: collapse;
+	/*font-size:15px;*/
+	text-transform: uppercase;
+}

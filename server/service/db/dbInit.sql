@@ -27,6 +27,40 @@ CREATE TABLE IF NOT EXISTS `citizenroom_subscription` (
 --
 ALTER TABLE `citizenroom_subscription`
  ADD PRIMARY KEY (`room_id`,`nickname`);
+ 
+ 
+-- --------------------------------------------------------
+--
+-- Structure de la table `citizenroom_user`
+--
+CREATE TABLE IF NOT EXISTS `citizenroom_user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `mail` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(60),
+  `serial` VARCHAR(6),
+  `name` VARCHAR(120) NOT NULL,
+  `surname` VARCHAR(120) NOT NULL,
+  `creation_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` DATETIME NULL,
+  `enabled` INT(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Structure de la table `citizenroom_subscription`
+--
+
+CREATE TABLE IF NOT EXISTS `citizenroom_business_room` (
+  `room_id` int(10) NOT NULL,
+  `serial` VARCHAR(6) NOT NULL,
+  `password` varchar(255)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Index pour la table `citizenroom_subscription`
+--
+ALTER TABLE `citizenroom_business_room`
+ ADD PRIMARY KEY (`room_id`,`serial`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

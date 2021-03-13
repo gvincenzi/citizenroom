@@ -2,6 +2,7 @@
 include_once '../../admin/lang.php';
 include '../../admin/langs/'. prefered_language($available_languages) .'.php';
 include_once '../../admin/config.php';
+require 'UserRegister.php';
 
 session_start();
 $link = mysqli_connect($hostname, $username, $password, $dbname) or DIE('Error: '.mysqli_connect_error());
@@ -12,6 +13,15 @@ if (isset($_REQUEST['method'] )){
 		case 'join':
 			$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
 			break;
+		case 'users/add':
+			$api->usersAdd($_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link);
+			break;
+		case 'users/resetpassword':
+			$api->resetPassword($_REQUEST['mail'], $link);
+			break;
+		case 'users/update':
+			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link);
+			break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -20,7 +30,7 @@ if (isset($_REQUEST['method'] )){
 
 class API{	
     public function join($nickname,$room_id,$link){	
-		echo $nickname.$room_id;
+		$nickname = mysqli_real_escape_string($link, $nickname);
     	
     	$stmt = mysqli_stmt_init($link);
 		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ?");
@@ -48,5 +58,87 @@ class API{
         	header('Location: ../../../web/room');
         }
     }
+	
+	public function resetPassword($user_mail,$link){   	
+        $service = new UserRegister();
+        $result = $service->resetPassword(prefered_language($available_languages),$user_mail,$link);
+
+        if($result==true){
+        	header('Location: ../../../web/login?callback=PASSWORD_RESET_OK');
+        }else{
+        	header('Location: ../../../web/login?callback=PASSWORD_RESET_ERROR');
+        }
+        
+    }
+	
+	public function usersAdd($user_name,$user_surname,$user_mail,$link){   	
+    	$user_name = mysqli_real_escape_string($link, $user_name);
+    	$user_surname = mysqli_real_escape_string($link, $user_surname);
+		
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_user WHERE mail = ?");
+		$stmtCheck->bind_param('s', $user_mail);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+        if( mysqli_num_rows( $result ) == 0){
+			$stmtInsert = mysqli_stmt_init($link);
+			$stmtInsert->prepare("INSERT INTO citizenroom_user (`name`, `surname`, `mail`) VALUES (?,?,?)");
+			$stmtInsert->bind_param('sss', $user_name, $user_surname, $user_mail);
+			$stmtInsert->execute();
+			$user_id = mysqli_insert_id($link);
+			
+			mysqli_stmt_close($stmtInsert);
+			
+			$service = new UserRegister();
+			$result = $service->register(prefered_language($available_languages),$_REQUEST['mail'],$link);
+
+			if($result==true){
+				$arr = array('success' => 'true', 'message' => 'USER_ADD_OK');
+			}else{
+				$arr = array('success' => 'false', 'message' => 'USER_ADD_ERROR');
+			}
+			
+			//Reload Session
+			$stmtSelect = mysqli_stmt_init($link);
+			$stmtSelect->prepare("SELECT * FROM citizenroom_user WHERE user_id = ?");
+			$stmtSelect->bind_param('i', $user_id);
+			$stmtSelect->execute();
+			if( mysqli_num_rows( $result ) == 1){
+				while($row = $result->fetch_array(MYSQLI_BOTH)){
+					$_SESSION['user'] = (string)($row['user_id']);
+					$_SESSION['user_name'] = (string)($row['name']);
+					$_SESSION['user_surname'] = (string)($row['surname']);
+					$_SESSION['user_mail'] = (string)($row['mail']);
+					$_SESSION['user_serial'] = (string)($row['serial']);
+				}
+			}
+			
+			if($_REQUEST['path']!='' && $_REQUEST['path']!=null){
+				header('Location: ../../../web/'.$_REQUEST['path']);
+			}else{
+				header('Location: ../../../web/join');
+			}
+		}
+        
+		$arr = array('success' => 'false', 'message' => 'USER_ALREADY_EXISTS');
+        print json_encode($arr);	
+    }
+	
+	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$link){   	
+    	$user_name = mysqli_real_escape_string($link, $user_name);
+    	$user_surname = mysqli_real_escape_string($link, $user_surname);
+
+		$stmt = mysqli_stmt_init($link);
+		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ? WHERE user_id = ?");
+		$stmt->bind_param('sssi', $user_name, $user_surname, $user_mail, $user_id);
+		$stmt->execute();
+		mysqli_stmt_close($stmt);
+		
+		$_SESSION['user_name'] = $user_name;
+		$_SESSION['user_surname'] = $user_surname;
+		$_SESSION['user_mail'] = $user_mail;
+		
+		header('Location: ../../../web/dashboard?type=business');	
+	}
 }
 ?>

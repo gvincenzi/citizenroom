@@ -23,8 +23,11 @@ if($index>0) $action=$action."?".$part[$index];
 
 $_SESSION['action'] = $action;
 	
-// Check, if user hqs already joined a room, then jump to secured page
-if(!isset($_SESSION['nickname']) || !isset($_SESSION['room_id'])) {
+// Check, if user has already joined a room, then jump to secured page
+if((!isset($_SESSION['nickname']) || !isset($_SESSION['room_id'])) && $_SESSION['action'] == "room") {
 	header('Location: ../join');
+}
+if(!isset($_SESSION['user']) && $_SESSION['action'] == "dashboard?type=business") {
+	header('Location: ../login/?type=business');
 }
 ?>

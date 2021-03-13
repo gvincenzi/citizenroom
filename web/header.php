@@ -57,7 +57,7 @@
 
 </script>
 <header>
-	<?php if(isset($_SESSION['user_type'])) include 'menu_'.$_SESSION['user_type'].'.php';
+	<?php if(isset($_GET['type'])) include 'menu_'.$_GET['type'].'.php';
           else include 'menu_simple.php';?>
 </header>
 

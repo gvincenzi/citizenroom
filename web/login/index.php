@@ -1,27 +1,23 @@
 <?php
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
-
+include_once '../actionInSession.php';
 // Inialize session
 session_start();
-if(!isset($_SESSION['action'])){
-	$_SESSION['action']='room';
-}
-if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
-	header('Location: ../'.$_SESSION['action']);
-}else{
-	if(isset($_SESSION["join.error"])){
-		// If th user change the language after a bad login it must reload the right string
-		$_SESSION["join.error"] = $lang['JOIN_ERROR'];
-	}
-}
 
+if(isset($_SESSION['user'])){
+	header('Location: ../dashboard/?type=business');
+} else if(isset($_SESSION["login.error"])){
+	// If th user change the language after a bad login it must reload the right string
+	$_SESSION["login.error"] = $lang['LOGIN_ERROR'];
+}
 ?>
 <html lang="en">
 <head>
     <meta charset="utf8">
     <title><?php print $lang['PAGE_TITLE']?></title>
-    <meta name="author" content="InMediArt">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="CitizenRoom">
     <script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
@@ -30,18 +26,24 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <link href="../assets/css/form.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     
-    <script type="text/javascript">  
-		$(document).ready(function() {
+    <script type="text/javascript">   
+	    $(document).ready(function() {
 		    var callback = location.search.split('callback=')[1];
-		    /*if(callback!=null && callback!=''){
+		    if(callback!=null && callback!=''){
 			    if(callback=='PASSWORD_RESET_OK'){
 				    $(callbackMessage).addClass('alert').addClass('alert-success').text('<?php print $lang['PASSWORD_RESET_OK'] ?>');
 			    }else{
 			    	$(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['PASSWORD_RESET_ERROR'] ?>');
 			    }
-		    }*/
-	    });	
-		function validateJoinForm(){
+		    }
+	    });
+    
+		function validateLoginForm(){
+			if($(mail).val()=='' || validateEmail($(mail).val()) == false){
+				$(loginAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
+				return false;
+			}
+			
 			return true;
 		}		
     </script>   
@@ -50,10 +52,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   <body>   
   <?php include '../header.php';?> 
     <div class="container">
-      <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
+      <form onsubmit="return validateLoginForm()" class="form-signup" method="POST" action="../../server/admin/loginproc.php">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h3><?php print $lang['JOIN']?></h3>
+      	<h3><?php print $lang['LOGIN']?></h3>
       	<div id='callbackMessage'></div>
       	</div>
       	<hr>
@@ -66,22 +68,15 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
-        <input type="hidden" value="join" name="method" id="method">
         
         <div class="form-group">
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
-	        <input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+	        <input id="mail" name="mail" type="text" class="form-control" placeholder="<?php print $lang['MAIL']?>">
+	        <input id="password" name="password" type="password" class="form-control" placeholder="<?php print $lang['PASSWORD']?>">
         </div>
+        <div align="right"><a href="#" onclick="window.open('../resetpassword','_self')" style="color:darkgray"><small><?php print $lang['PASSWORD_RESET_BUTTON']?></small></a></div>
 		<br>
 		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->
-	
-	<footer>
-		<div align="center">
-        	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">CitizenRoom Logo</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
-        	Press contact : <a href="mailto:a23@altervista.org">citizenroom (at) altervista (dot) org</a> | <a href="../privacy"> Privacy (italian language)</a> | <a href="../join?type=business"> CitizenRoom for business</a>
-		</div>
-	</footer>
 </body>
 </html>

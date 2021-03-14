@@ -14,19 +14,22 @@ if (isset($_REQUEST['method'] )){
 			$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
 			break;
 		case 'users/add':
-			$api->usersAdd($_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link);
+			$api->usersAdd($_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link, $lang);
 			break;
 		case 'users/resetpassword':
 			$api->resetPassword($_REQUEST['mail'], $link);
 			break;
 		case 'users/update':
-			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link);
+			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link, $lang);
 			break;
 		case 'rooms/add':
-			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link);
+			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link, $lang);
 			break;
 		case 'rooms/delete':
-			$api->roomsDelete($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link);
+			$api->roomsDelete($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link, $lang);
+			break;
+		case 'rooms/get':
+			$api->roomsGet($_REQUEST['serial'], $link);
 			break;
 	}
 }else {
@@ -77,7 +80,7 @@ class API{
         
     }
 	
-	public function usersAdd($user_name,$user_surname,$user_mail,$link){   	
+	public function usersAdd($user_name,$user_surname,$user_mail,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
 		
@@ -99,9 +102,9 @@ class API{
 			$result = $service->register(prefered_language($available_languages),$_REQUEST['mail'],$link);
 
 			if($result==true){
-				$arr = array('success' => 'true', 'message' => 'USER_ADD_OK');
+				$arr = array('success' => 'true', 'message' => $lang['USER_ADD_OK']);
 			}else{
-				$arr = array('success' => 'false', 'message' => 'USER_ADD_ERROR');
+				$arr = array('success' => 'false', 'message' => $lang['USER_ADD_ERROR']);
 			}
 			
 			//Reload Session
@@ -126,11 +129,11 @@ class API{
 			}
 		}
         
-		$arr = array('success' => 'false', 'message' => 'USER_ALREADY_EXISTS');
+		$arr = array('success' => 'false', 'message' => $lang['USER_ALREADY_EXISTS']);
         print json_encode($arr);	
     }
 	
-	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$link){   	
+	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
 
@@ -144,11 +147,11 @@ class API{
 		$_SESSION['user_surname'] = $user_surname;
 		$_SESSION['user_mail'] = $user_mail;
 		
-		$_SESSION["profile.message"] = 'USER_UPDATE_OK';
+		$_SESSION["profile.message"] = $lang['USER_UPDATE_OK'];
 		header('Location: ../../../web/dashboard?type=business');	
 	}
 	
-	public function roomsAdd($room_id,$password,$serial,$link){   	
+	public function roomsAdd($room_id,$password,$serial,$link,$lang){   	
 		$stmtCheck = mysqli_stmt_init($link);
 		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
 		$stmtCheck->bind_param('is', $room_id, $serial);
@@ -158,24 +161,26 @@ class API{
 			$stmtInsert = mysqli_stmt_init($link);
 			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `password`) VALUES (?,?,?)");
 			$stmtInsert->bind_param('iss', $room_id, $serial, $password);
-			$stmtInsert->execute();
-			
+			$resultInsert = $stmtInsert->execute();
+
+			if($resultInsert==true){
+				$_SESSION["room.message"] = $lang['ROOM_ADD_OK'];
+			}else{
+				$_SESSION["room.error"] = $lang['ROOM_ADD_ERROR'];
+			}
+			mysqli_free_result($resultInsert);
+			mysqli_free_result($result);
 			mysqli_stmt_close($stmtCheck);
 			mysqli_stmt_close($stmtInsert);
-
-			if($result==true){
-				$_SESSION["room.message"] = 'ROOM_ADD_OK';
-			}else{
-				$_SESSION["room.error"] = 'ROOM_ADD_ERROR';
-			}
+			
 		} else {
-			$_SESSION["room.error"] = 'ROOM_ALREADY_EXISTS';
+			$_SESSION["room.error"] = $lang['ROOM_ALREADY_EXISTS'];
 		}
-
+		
         header('Location: ../../../web/dashboard?type=business');
     }
 	
-	public function roomsDelete($room_id,$password,$serial,$link){   	
+	public function roomsDelete($room_id,$password,$serial,$link,$lang){   	
 		$stmtCheck = mysqli_stmt_init($link);
 		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
 		$stmtCheck->bind_param('is', $room_id, $serial);
@@ -185,21 +190,38 @@ class API{
 			$stmtDelete = mysqli_stmt_init($link);
 			$stmtDelete->prepare("DELETE FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
 			$stmtDelete->bind_param('iss', $room_id, $serial, $password);
-			$stmtDelete->execute();
+			$resultDelete = $stmtDelete->execute();
 			
+			if($resultDelete==true){
+				$_SESSION["room.list.message"] = $lang['ROOM_DELETE_OK'];
+				$arr = array('success' => 'true', 'message' => $lang['ROOM_DELETE_OK']);
+			}else{
+				$_SESSION["room.list.error"] = $lang['ROOM_DELETE_ERROR'];
+				$arr = array('success' => 'false', 'message' => $lang['ROOM_DELETE_ERROR']);
+			}
+			mysqli_free_result($result);
+			mysqli_free_result($resultDelete);
 			mysqli_stmt_close($stmtCheck);
 			mysqli_stmt_close($stmtDelete);
-
-			if($result==true){
-				$_SESSION["room.list.message"] = 'ROOM_ADD_OK';
-			}else{
-				$_SESSION["room.list.error"] = 'ROOM_ADD_ERROR';
-			}
 		} else {
-			$_SESSION["room.list.error"] = 'ROOM_NOT_FOUND';
+			$_SESSION["room.list.error"] = $lang['ROOM_NOT_FOUND'];
+			$arr = array('success' => 'false', 'message' => $lang['ROOM_NOT_FOUND']);
 		}
      
-        header('Location: ../../../web/dashboard?type=business');	
+        print json_encode($arr);	
     }
+	
+	public function roomsGet($serial,$link){ 
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE serial = ?");
+		$stmtCheck->bind_param('s', $serial);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+		}
+		print json_encode($myArray);
+	}
 }
 ?>

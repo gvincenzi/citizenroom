@@ -56,4 +56,16 @@ $lang['NEW_ROOM']="Crea una stanza";
 $lang['ROOM_LIST']="Lista delle tue stanze";
 $lang['DELETE_ROOM']="Cancella la stanza";
 $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
+
+$lang['USER_ADD_OK']="Utente aggiunto con successo";
+$lang['USER_ADD_ERROR']="Errore durante la creazione dell\'utente";
+$lang['USER_ALREADY_EXISTS']="Utente già esistente";
+$lang['USER_UPDATE_OK']="Aggiornamento dell\'utente realizzato con successo";
+
+$lang['ROOM_ADD_OK']="Stanza creata correttamente";
+$lang['ROOM_ADD_ERROR']="Errore durante la creazione dea stanza";
+$lang['ROOM_ALREADY_EXISTS']="La stanza è già presente";
+$lang['ROOM_DELETE_OK']="Chiusura della stanza realizzata con successo";
+$lang['ROOM_DELETE_ERROR']="Errore durante la chiusura della stanza";
+$lang['ROOM_NOT_FOUND']="La stanza non è presente";
 ?>

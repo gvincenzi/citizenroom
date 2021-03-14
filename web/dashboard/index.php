@@ -18,6 +18,26 @@ session_start();
 	<script src="../assets/js/general_v1.js"></script>
 
 	<script type="text/javascript">   
+		$(function(){
+			$.ajax({
+			  type: "POST",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "rooms/get", serial: "<?php print $_SESSION['user_serial']?>" }
+			})
+			.done(function( msg ) {
+				console.info( msg );
+				var rooms = JSON.parse(msg);
+				
+					$.each(rooms, function(i, item) {
+						var $tr = $('<tr>').append(
+							$('<td>').text(item.room_id),
+							$('<td>').text(item.password),
+							$('<td>').html("<button class='btn btn-primary' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
+						).appendTo('#rooms-table tbody');
+					});
+			});
+		});
+  
 		function validateProfileForm(){
 			if($(user_name).val()=='' || $(user_surname).val()==''){
 				$(profileAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['MANDATORY_ERROR'] ?>');
@@ -43,6 +63,17 @@ session_start();
 
 		function validateDeleteRoomForm(){
 			return true;
+		}
+		
+		function deleteRoom(room_id,password,serial){
+			$.ajax({
+			  type: "POST",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "rooms/delete", room_id: room_id, password: password, serial: serial }
+			})
+			.done(function( msg ) {
+				location.reload();
+			});
 		}
     </script> 
 </head>
@@ -122,7 +153,18 @@ session_start();
 	<form onsubmit="return validateDeleteRoomForm()" class="form-list-room" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<h3><?php print $lang['ROOM_LIST']?></h3>
-		<table class="table">
+		<?php
+            if(isset($_SESSION["room.list.error"])){
+            	print '<div class="alert alert-danger">'.$_SESSION["room.list.error"].'</div>';
+				$_SESSION["room.list.error"] = null;
+            }
+			
+			if(isset($_SESSION["room.list.message"])){
+            	print '<div class="alert alert-success">'.$_SESSION["room.list.message"].'</div>';
+				$_SESSION["room.list.message"] = null;
+            }
+        ?>
+		<table id="rooms-table" class="table">
 		  <thead>
 			<tr>
 			  <th scope="col"><?php print $lang['ROOM']?></th>
@@ -131,16 +173,6 @@ session_start();
 			</tr>
 		  </thead>
 		  <tbody>
-			<tr>
-			  <td>14</td>
-			  <td>Otto</td>
-			  <td><button class="btn btn-primary" type="button"><?php print $lang['DELETE_ROOM']?></button></td>
-			</tr>
-			<tr>
-			  <td>24</td>
-			  <td>Thornton</td>
-			  <td><button class="btn btn-primary" type="button"><?php print $lang['DELETE_ROOM']?></button></td>
-			</tr>
 		  </tbody>
 		</table>
 		</div>

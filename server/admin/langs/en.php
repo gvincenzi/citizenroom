@@ -56,4 +56,16 @@ $lang['NEW_ROOM']="Create a room";
 $lang['ROOM_LIST']="Your room list";
 $lang['DELETE_ROOM']="Delete room";
 $lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
+
+$lang['USER_ADD_OK']="User correctly added";
+$lang['USER_ADD_ERROR']="Error during user add";
+$lang['USER_ALREADY_EXISTS']="User already exists";
+$lang['USER_UPDATE_OK']="User correctly updated";
+
+$lang['ROOM_ADD_OK']="Room correctly added";
+$lang['ROOM_ADD_ERROR']="Error during room add";
+$lang['ROOM_ALREADY_EXISTS']="Room already exists";
+$lang['ROOM_DELETE_OK']="Room correctly removed";
+$lang['ROOM_DELETE_ERROR']="Error during room delete";
+$lang['ROOM_NOT_FOUND']="Room does not exist";
 ?>

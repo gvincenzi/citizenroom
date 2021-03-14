@@ -32,7 +32,7 @@ session_start();
 						var $tr = $('<tr>').append(
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
-							$('<td>').html("<button class='btn btn-primary' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
+							$('<td>').html("<button class='btn btn-success' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
 						).appendTo('#rooms-table tbody');
 					});
 			});
@@ -114,7 +114,7 @@ session_start();
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword?type=business','_self')" style="color:darkgray"><small>Reset Password</small></a></div>
 		<br>
-		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
     </form>
 	
 	
@@ -146,10 +146,9 @@ session_start();
 			<input id="room_password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
         </div>
 		<br>
-		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>
-  </div>
-  <div>
+
 	<form onsubmit="return validateDeleteRoomForm()" class="form-list-room" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<h3><?php print $lang['ROOM_LIST']?></h3>

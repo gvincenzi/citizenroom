@@ -19,7 +19,7 @@ $lang['LEFT']="Quitter la salle";
 /* JOIN */
 $lang['JOIN_ERROR']="Erreur lors de la connexion à la salle";
 $lang['NICKNAME']="Nickname";
-$lang['ROOM']="Numéro de la salle";
+$lang['ROOM']="Numéro de salle";
 
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";

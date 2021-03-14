@@ -32,15 +32,6 @@ function getCookie(nameCookie){
 	return c_value;
 }
 
-function toaster(message,title){
-	$('#growl').jGrowl(message, { 
-		sticky: true, 
-		header: title,
-		beforeOpen: function(e,m,o){
-			  $(e).width( "550px" ).height("108px");
-      }});
-}
-
 //cleanArray removes all duplicated elements
 function cleanArray(array) {
   var i, j, len = array.length, out = [], obj = {};

@@ -81,7 +81,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
         </div>
 		<br>
-		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->
 	

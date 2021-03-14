@@ -69,7 +69,7 @@ session_start();
 				<input type="checkbox" id="privacy"> <?php print $lang['CONDITIONS_PRIVACY']?></input> <br>
 			</label>
 		</div>
-		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->
 </body>

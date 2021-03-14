@@ -51,7 +51,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h3><?php print $lang['JOIN']?></h3>
       	<div id='callbackMessage'></div>
       	</div>
       	<hr>
@@ -77,7 +76,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	        <input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
         </div>
 		<br>
-		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
       </form>      
     </div> <!-- /container -->
 	

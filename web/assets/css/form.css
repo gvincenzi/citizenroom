@@ -3,17 +3,18 @@
 }
 
 .profile{
-    display: flex;
+    /*display: flex;
 	padding-top: 70px;
 	padding-bottom: 15px;
-	width: 100%;
+	width: 100%;*/
+	padding-top: 70px;
 }
 
 .form-signup {
 	max-width: 500px;
 	padding: 19px 29px 29px;
 	margin: auto;
-	background-color: #fff;
+	background-color: #fcf8e3;
 	border: 1px solid #e5e5e5;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -38,8 +39,8 @@
 .form-profile {
 	width: 50%;
     padding: 19px 29px 29px;
-    margin: auto 15px auto auto;
-    background-color: #fff;
+    margin: 15px auto auto auto;
+    background-color: #fcf8e3;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -64,8 +65,8 @@
 .form-room {
 	width: 50%;
     padding: 19px 29px 29px;
-    margin: auto auto auto 15px;
-    background-color: #fff;
+    margin: 15px auto auto auto;
+    background-color: #fcf8e3;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -90,8 +91,8 @@
 .form-list-room {
     width: 60%;
     padding: 19px 29px 29px;
-    margin: auto;
-    background-color: #fff;
+    margin: 15px auto auto auto;
+    background-color: #fcf8e3;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

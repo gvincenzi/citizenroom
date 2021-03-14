@@ -18,14 +18,22 @@ function BindEvent(roomNumber,nickname,password,serial){
     });
 	$("#btnInvitation").on('click', function () {
 		if(serial != null && serial != ""){
-			toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial,'Invitation link');
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial);
 		}  else {
-			toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber,'Invitation link');
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}
     });
 	$("#btnLeave").on('click', function () {
         window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
     });
+}
+
+function copyToClipboard(text) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val(text).select();
+	document.execCommand("copy");
+	$temp.remove();
 }
 
 function StartMeeting(roomNumber,nickname,password,serial){
@@ -77,7 +85,12 @@ function StartMeeting(roomNumber,nickname,password,serial){
         }
     };
     apiObj = new JitsiMeetExternalAPI(domain, options);
-
+	// join a protected channel
+	apiObj.on('passwordRequired', function ()
+		{
+			api.executeCommand('password', password);
+		});
+		
     apiObj.addEventListeners({
 		/*participantRoleChanged: function (event) {
 			console.info(event);
@@ -85,6 +98,13 @@ function StartMeeting(roomNumber,nickname,password,serial){
 				apiObj.executeCommand('toggleLobby', true);
 			}
 		},*/
+		
+		// set new password for channel
+		participantRoleChanged: function(event) {
+			if (event.role === "moderator") {
+				apiObj.executeCommand('password', password);
+			}
+		},		
         readyToClose: function () {
             //alert('going to close');
             $('#jitsi-meet-conf-container').empty();

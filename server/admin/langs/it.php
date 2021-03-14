@@ -19,7 +19,7 @@ $lang['LEFT']="Esci dalla stanza";
 /* JOIN */
 $lang['JOIN_ERROR']="Error joining the room";
 $lang['NICKNAME']="Nickname";
-$lang['ROOM']="Numero della stanza";
+$lang['ROOM']="Numero di stanza";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";

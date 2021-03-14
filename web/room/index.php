@@ -44,7 +44,7 @@ include_once '../actionInSession.php';
 		<button id='btnChat'>Show chat</button>
 		<button id='btnCustomTileView'>Roommates view</button>
 		<button id='btnScreenShareCustom'>Start sharing your screen</button>
-		<button id='btnInvitation'>Send invitation link</button>
+		<button id='btnInvitation'>Copy in clipboard invitation link</button>
 		<button id='btnLeave'>Leave the room</button>
 	</div>
 	<h4 id='joinMsg'></h4>

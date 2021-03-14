@@ -46,7 +46,7 @@ class API{
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	
     	$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial IS NULL");
+		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = 'PUBLIC'");
 		$stmt->bind_param('is', $room_id,$nickname);
 		$stmt->execute(); 
 		$result = $stmt->get_result();

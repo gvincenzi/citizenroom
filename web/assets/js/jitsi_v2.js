@@ -1,6 +1,6 @@
 var apiObj = null;
 
-function BindEvent(roomNumber,nickname){
+function BindEvent(roomNumber,nickname,password,serial){
     $("#btnCustomMic").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -17,18 +17,27 @@ function BindEvent(roomNumber,nickname){
         apiObj.executeCommand('toggleChat');
     });
 	$("#btnInvitation").on('click', function () {
-        toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber,'Invitation link');
+		if(serial != null && serial != ""){
+			toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial,'Invitation link');
+		}  else {
+			toaster("<hr>Copy and paste this URL to <strong>invite</strong> someone in this room:<br>"+window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber,'Invitation link');
+		}
     });
 	$("#btnLeave").on('click', function () {
         window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
     });
 }
 
-function StartMeeting(roomNumber,nickname){
+function StartMeeting(roomNumber,nickname,password,serial){
     const domain = 'meet.jit.si';
-
-    var roomName = 'CitizenRoom' + roomNumber;
-    
+	
+    var roomName;
+	if(serial != null && serial != ""){
+		roomName = 'CitizenRoom' + roomNumber + "_" + serial;
+	} else {
+		roomName = 'CitizenRoom' + roomNumber;
+	}
+    console.info("roomName:"+roomName);
     const options = {
         roomName: roomName,
         width: '100%',

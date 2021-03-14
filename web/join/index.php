@@ -33,13 +33,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <script type="text/javascript">  
 		$(document).ready(function() {
 		    var callback = location.search.split('callback=')[1];
-		    /*if(callback!=null && callback!=''){
-			    if(callback=='PASSWORD_RESET_OK'){
-				    $(callbackMessage).addClass('alert').addClass('alert-success').text('<?php print $lang['PASSWORD_RESET_OK'] ?>');
-			    }else{
-			    	$(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['PASSWORD_RESET_ERROR'] ?>');
+		    if(callback!=null && callback!=''){
+			    if(callback=='ROOM_JOIN_ERROR'){
+				    $(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
 			    }
-		    }*/
+		    }
 	    });	
 		function validateJoinForm(){
 			return true;
@@ -70,6 +68,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         
         <div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
+			<?php 
+				if(isset($_GET['type']) && $_GET['type']=='business'){
+					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID'>";
+					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['PASSWORD']."'>";
+				}
+			?>
 	        <input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
         </div>
 		<br>

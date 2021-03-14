@@ -15,7 +15,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `citizenroom_subscription` (
   `room_id` int(10) NOT NULL,
-  `nickname` varchar(255) NOT NULL
+  `nickname` varchar(255) NOT NULL,
+  `serial` varchar(255) NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -26,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `citizenroom_subscription` (
 -- Index pour la table `citizenroom_subscription`
 --
 ALTER TABLE `citizenroom_subscription`
- ADD PRIMARY KEY (`room_id`,`nickname`);
+ ADD PRIMARY KEY (`room_id`,`nickname`,`serial`);
  
  
 -- --------------------------------------------------------

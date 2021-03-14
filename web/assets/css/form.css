@@ -27,7 +27,7 @@
 	margin-bottom: 10px;
 }
 
-.form-signup input[type="text"],.form-signup input[type="password"] {
+.form-signup input[type="text"],.form-signup input[type="password"],.form-signup input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;

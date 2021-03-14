@@ -11,7 +11,11 @@ $api = new API();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {		
 		case 'join':
-			$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
+			if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
+				$api->joinBusiness($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link);
+			} else {
+				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
+			}
 			break;
 		case 'users/add':
 			$api->usersAdd($_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link, $lang);
@@ -42,7 +46,7 @@ class API{
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	
     	$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ?");
+		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial IS NULL");
 		$stmt->bind_param('is', $room_id,$nickname);
 		$stmt->execute(); 
 		$result = $stmt->get_result();
@@ -61,11 +65,45 @@ class API{
 		$_SESSION['room_id'] = $room_id;
         $_SESSION['nickname'] = $nickname;
         
-        if($_REQUEST['path']!='' && $_REQUEST['path']!=null){
-        	header('Location: ../../../web/'.$_REQUEST['path']);
-        }else{
-        	header('Location: ../../../web/room');
-        }
+        header('Location: ../../../web/room');
+    }
+	
+	public function joinBusiness($nickname,$room_id,$password,$serial,$link){	
+		$nickname = mysqli_real_escape_string($link, $nickname);
+		
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
+		$stmtCheck->bind_param('iss', $room_id, $serial, $password);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+        if( mysqli_num_rows( $result ) == 0){
+			header('Location: ../../../web/join?callback=ROOM_JOIN_ERROR');
+			return;
+		} else {
+			$stmt = mysqli_stmt_init($link);
+			$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
+			$stmt->bind_param('iss',$room_id,$nickname,$serial);
+			$stmt->execute(); 
+			$result = $stmt->get_result();
+			if( mysqli_num_rows( $result ) == 0){
+				$stmtInsert = mysqli_stmt_init($link);
+				$stmtInsert->prepare("INSERT INTO citizenroom_subscription (room_id,nickname,serial) VALUES (?,?,?)");
+				$stmtInsert->bind_param('iss',$room_id,$nickname,$serial);
+				$stmtInsert->execute();
+				
+				mysqli_stmt_close($stmtInsert);
+			}
+
+			mysqli_free_result($result);
+			mysqli_stmt_close($stmt);
+					
+			$_SESSION['room_id'] = $room_id;
+			$_SESSION['nickname'] = $nickname;
+			$_SESSION['password'] = $password;
+			$_SESSION['serial'] = $serial;
+			
+			header('Location: ../../../web/room?type=business');
+		}
     }
 	
 	public function resetPassword($user_mail,$link){   	

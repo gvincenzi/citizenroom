@@ -12,8 +12,8 @@ include_once '../actionInSession.php';
     <script src="https://meet.jit.si/external_api.js"></script>
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
-	<script src="../assets/js/general.js"></script>
-	<script src="../assets/js/jitsi.js"></script>
+	<script src="../assets/js/general_v1.js"></script>
+	<script src="../assets/js/jitsi_v1.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />

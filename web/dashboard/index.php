@@ -15,7 +15,7 @@ session_start();
     
     <link href="../assets/css/form.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="../assets/js/general.js"></script>
+	<script src="../assets/js/general_v1.js"></script>
 
 	<script type="text/javascript">   
 		function validateProfileForm(){

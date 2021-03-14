@@ -22,6 +22,12 @@ if (isset($_REQUEST['method'] )){
 		case 'users/update':
 			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link);
 			break;
+		case 'rooms/add':
+			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link);
+			break;
+		case 'rooms/delete':
+			$api->roomsDelete($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link);
+			break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -138,7 +144,62 @@ class API{
 		$_SESSION['user_surname'] = $user_surname;
 		$_SESSION['user_mail'] = $user_mail;
 		
+		$_SESSION["profile.message"] = 'USER_UPDATE_OK';
 		header('Location: ../../../web/dashboard?type=business');	
 	}
+	
+	public function roomsAdd($room_id,$password,$serial,$link){   	
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
+		$stmtCheck->bind_param('is', $room_id, $serial);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+        if( mysqli_num_rows( $result ) == 0){
+			$stmtInsert = mysqli_stmt_init($link);
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `password`) VALUES (?,?,?)");
+			$stmtInsert->bind_param('iss', $room_id, $serial, $password);
+			$stmtInsert->execute();
+			
+			mysqli_stmt_close($stmtCheck);
+			mysqli_stmt_close($stmtInsert);
+
+			if($result==true){
+				$_SESSION["room.message"] = 'ROOM_ADD_OK';
+			}else{
+				$_SESSION["room.error"] = 'ROOM_ADD_ERROR';
+			}
+		} else {
+			$_SESSION["room.error"] = 'ROOM_ALREADY_EXISTS';
+		}
+
+        header('Location: ../../../web/dashboard?type=business');
+    }
+	
+	public function roomsDelete($room_id,$password,$serial,$link){   	
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
+		$stmtCheck->bind_param('is', $room_id, $serial);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+        if( mysqli_num_rows( $result ) == 1){
+			$stmtDelete = mysqli_stmt_init($link);
+			$stmtDelete->prepare("DELETE FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
+			$stmtDelete->bind_param('iss', $room_id, $serial, $password);
+			$stmtDelete->execute();
+			
+			mysqli_stmt_close($stmtCheck);
+			mysqli_stmt_close($stmtDelete);
+
+			if($result==true){
+				$_SESSION["room.list.message"] = 'ROOM_ADD_OK';
+			}else{
+				$_SESSION["room.list.error"] = 'ROOM_ADD_ERROR';
+			}
+		} else {
+			$_SESSION["room.list.error"] = 'ROOM_NOT_FOUND';
+		}
+     
+        header('Location: ../../../web/dashboard?type=business');	
+    }
 }
 ?>

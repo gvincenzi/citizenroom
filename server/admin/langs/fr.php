@@ -55,4 +55,5 @@ $lang['PROFILE']="Données du compte";
 $lang['NEW_ROOM']="Créer une salle";
 $lang['ROOM_LIST']="Liste de vos salles";
 $lang['DELETE_ROOM']="Supprimer la salle";
+$lang['ROOM_MANDATORY_ERROR']="Le numéro de la salle est obligatoire";
 ?>

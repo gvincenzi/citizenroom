@@ -33,6 +33,11 @@ session_start();
 		}	
 
 		function validateRoomForm(){
+			if($(room_id).val()=='' || $(room_id).val() == null){
+				$(roomAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['ROOM_MANDATORY_ERROR'] ?>');
+				return false;
+			}
+			
 			return true;
 		}	
 
@@ -53,8 +58,14 @@ session_start();
       	</div>
       	<hr>
       	<?php
-            if(isset($_SESSION["login.error"])){
-            	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
+			if(isset($_SESSION["profile.error"])){
+            	print '<div class="alert alert-danger">'.$_SESSION["profile.error"].'</div>';
+				$_SESSION["profile.error"] = null;
+            }
+			
+			if(isset($_SESSION["profile.message"])){
+            	print '<div class="alert alert-success">'.$_SESSION["profile.message"].'</div>';
+				$_SESSION["profile.message"] = null;
             }
         ?>
 		<div id='profileAlert'></div>
@@ -83,19 +94,25 @@ session_start();
       	</div>
       	<hr>
       	<?php
-            if(isset($_SESSION["login.error"])){
-            	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
+            if(isset($_SESSION["room.error"])){
+            	print '<div class="alert alert-danger">'.$_SESSION["room.error"].'</div>';
+				$_SESSION["room.error"] = null;
+            }
+			
+			if(isset($_SESSION["room.message"])){
+            	print '<div class="alert alert-success">'.$_SESSION["room.message"].'</div>';
+				$_SESSION["room.message"] = null;
             }
         ?>
-		<div id='loginAlert'></div>
+		<div id='roomAlert'></div>
         
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['user_serial']?>" name="serial" id="serial">
 		<input type="hidden" value="rooms/add" name="method" id="method">
         
         <div class="form-group">
-			<input id="number" name="number" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
-			<input id="password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
+			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
+			<input id="room_password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
         </div>
 		<br>
 		<button class="btn btn-primary" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>

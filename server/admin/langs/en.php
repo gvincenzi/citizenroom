@@ -55,4 +55,5 @@ $lang['PROFILE']="Profile data";
 $lang['NEW_ROOM']="Create a room";
 $lang['ROOM_LIST']="Your room list";
 $lang['DELETE_ROOM']="Delete room";
+$lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
 ?>

@@ -22,6 +22,7 @@ function BindEvent(roomNumber,nickname,password,serial){
 		}  else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}
+		alert("Invitation link copied in clipboard");
     });
 	$("#btnLeave").on('click', function () {
         window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");

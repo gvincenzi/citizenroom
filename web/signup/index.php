@@ -60,8 +60,8 @@ session_start();
         <input type="hidden" value="users/add" name="method" id="method">
         
         <div class="form-group">
+			<input id="name" name="name" type="text" class="form-control" placeholder="<?php print $lang['NAME']?>">
         	<input id="surname" name="surname" type="text" class="form-control" placeholder="<?php print $lang['SURNAME']?>">
-        	<input id="name" name="name" type="text" class="form-control" placeholder="<?php print $lang['NAME']?>">
 	        <input id="mail" name="mail" type="text" class="form-control" placeholder="<?php print $lang['MAIL']?>">
         </div>
         <div class="checkbox">

@@ -20,6 +20,7 @@ $lang['LEFT']="Esci dalla stanza";
 $lang['JOIN_ERROR']="Error joining the room";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Numero di stanza";
+$lang['ROOM_PASSWORD']="Password stanza";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
@@ -28,7 +29,7 @@ $lang['JOINING']="Stai entrando nella stanza...";
 $lang['INVITATION']="Sei stato invitato nella stanza #";
 
 /* LOGIN */
-$lang['LOGIN']="Login";
+$lang['LOGIN']="Login Amministratore";
 $lang['LOGIN_ERROR']="Username e/o password errati";
 $lang['FORM_ERROR_MAIL']="Indirizzo mail non valido";
 $lang['MAIL']="Indirizzo mail";

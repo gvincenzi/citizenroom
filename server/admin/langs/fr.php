@@ -20,6 +20,7 @@ $lang['LEFT']="Quitter la salle";
 $lang['JOIN_ERROR']="Erreur lors de la connexion à la salle";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Numéro de salle";
+$lang['ROOM_PASSWORD']="Mot de passe de salle";
 
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";
@@ -28,7 +29,7 @@ $lang['JOINING']="Vous rejoignez la salle...";
 $lang['INVITATION']="Vous avez été invité dans la salle #";
 
 /* LOGIN */
-$lang['LOGIN']="Login";
+$lang['LOGIN']="Login Administrateur";
 $lang['LOGIN_ERROR']="Nom d'utilisateur et / ou mot de passe incorrect";
 $lang['FORM_ERROR_MAIL']="L\'adresse mail n\'est pas une adresse valide";
 $lang['MAIL']="Adresse mail";

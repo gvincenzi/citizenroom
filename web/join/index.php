@@ -66,15 +66,24 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <input type="hidden" value="join" name="method" id="method">
         
         <div class="form-group">
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 			<?php 
 				if(isset($_GET['type']) && $_GET['type']=='business'){
 					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID'>";
-					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['PASSWORD']."'>";
 				}
 			?>
-	        <input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
+			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+			<?php 
+				if(isset($_GET['type']) && $_GET['type']=='business'){
+					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['ROOM_PASSWORD']."'>";
+				}
+			?>
         </div>
+		<?php 
+			if(isset($_GET['type']) && $_GET['type']=='business'){
+				echo "<div align='right'><a href='#' onclick=\"window.open('../login?type=business','_self')\" style='color:darkgray'><small>".$lang['LOGIN']."</small></a></div>";
+			}
+		?>
 		<br>
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
       </form>      

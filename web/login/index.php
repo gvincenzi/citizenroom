@@ -75,6 +75,8 @@ if(isset($_SESSION['user'])){
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword','_self')" style="color:darkgray"><small><?php print $lang['PASSWORD_RESET_BUTTON']?></small></a></div>
 		<br>
+		<div align="right"><a href="#" onclick="window.open('../signup?type=business','_self')" style="color:darkgray"><small><?php print $lang['SIGNUP']?></small></a></div>
+		<br>
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->

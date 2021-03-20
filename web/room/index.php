@@ -20,12 +20,26 @@ include_once '../actionInSession.php';
 	<meta name="viewport" content="width=device-width" />
 
 		<script>
-            $(function(){
-                const urlParams = new URLSearchParams(window.location.search);
-                $('#joinMsg').text('<?php print $lang['JOINING']?>');
-				BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
-				StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
-           });
+			$(function(){
+				$.ajax({
+				  type: "POST",
+				  url: "../../server/service/api/API.php",
+				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['user_serial']?>" }
+				})
+				.done(function( msg ) {
+					console.info( msg );
+					var check = JSON.parse(msg);
+					if(check.success == 'true'){
+						const urlParams = new URLSearchParams(window.location.search);
+						$('#joinMsg').text('<?php print $lang['JOINING']?>');
+						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
+						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
+					} else {
+						$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
+					}
+						
+				});
+			});
         </script>
 </head>
 

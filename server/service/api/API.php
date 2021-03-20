@@ -17,6 +17,9 @@ if (isset($_REQUEST['method'] )){
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
 			}
 			break;
+		case 'subscription/check':
+			$api->checkSubscription($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $link);
+			break;
 		case 'users/add':
 			$api->usersAdd($_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link, $lang);
 			break;
@@ -42,6 +45,30 @@ if (isset($_REQUEST['method'] )){
 }
 
 class API{	
+	public function checkSubscription($nickname,$room_id,$serial,$link){
+		if($serial == null || $serial==''){
+			$serial = 'PUBLIC';
+		}
+		$stmt = mysqli_stmt_init($link);
+		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
+		$stmt->bind_param('iss', $room_id,$nickname,$serial);
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		if( mysqli_num_rows( $result ) == 0){
+		
+			unset($_SESSION['room_id']);
+			unset($_SESSION['nickname']);
+			unset($_SESSION['password']);
+			unset($_SESSION['serial']);
+			
+			$arr = array('success' => 'false', 'message' => 'Subscription does not exist');
+		} else {
+			$arr = array('success' => 'true', 'message' => 'Subscription OK');
+		}
+		
+		print json_encode($arr);
+	}
+	
     public function join($nickname,$room_id,$link){	
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	

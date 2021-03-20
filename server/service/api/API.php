@@ -230,7 +230,12 @@ class API{
 			$stmtDelete->bind_param('iss', $room_id, $serial, $password);
 			$resultDelete = $stmtDelete->execute();
 			
-			if($resultDelete==true){
+			$stmtDeleteSubs = mysqli_stmt_init($link);
+			$stmtDeleteSubs->prepare("DELETE FROM citizenroom_subscription WHERE room_id = ? AND serial = ?");
+			$stmtDeleteSubs->bind_param('is', $room_id, $serial);
+			$resultDeleteSubs = $stmtDeleteSubs->execute();
+			
+			if($resultDelete==true && $resultDeleteSubs==true){
 				$_SESSION["room.list.message"] = $lang['ROOM_DELETE_OK'];
 				$arr = array('success' => 'true', 'message' => $lang['ROOM_DELETE_OK']);
 			}else{
@@ -239,8 +244,10 @@ class API{
 			}
 			mysqli_free_result($result);
 			mysqli_free_result($resultDelete);
+			mysqli_free_result($resultDeleteSubs);
 			mysqli_stmt_close($stmtCheck);
 			mysqli_stmt_close($stmtDelete);
+			mysqli_stmt_close($stmtDeleteSubs);
 		} else {
 			$_SESSION["room.list.error"] = $lang['ROOM_NOT_FOUND'];
 			$arr = array('success' => 'false', 'message' => $lang['ROOM_NOT_FOUND']);

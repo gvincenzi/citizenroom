@@ -35,7 +35,7 @@ $lang['FORM_ERROR_MAIL']="L\'adresse mail n\'est pas une adresse valide";
 $lang['MAIL']="Adresse mail";
 
 /* SIGNUP */
-$lang['SIGNUP']="Souscription";
+$lang['SIGNUP']="Créer un compte";
 $lang['SURNAME']="Nom";
 $lang['NAME']=("Prénom");
 $lang['MANDATORY_ERROR']=("Nom et Prénom sont obligatoires");
@@ -56,6 +56,7 @@ $lang['PROFILE']="Données du compte";
 $lang['NEW_ROOM']="Créer une salle";
 $lang['ROOM_LIST']="Liste de vos salles";
 $lang['DELETE_ROOM']="Supprimer la salle";
+$lang['ROOM_INVITATION']="Copier lien d\'invitation";
 $lang['ROOM_MANDATORY_ERROR']="Le numéro de la salle est obligatoire";
 
 $lang['USER_ADD_OK']="Utilisateur ajouté avec succés";

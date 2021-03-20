@@ -32,7 +32,7 @@ session_start();
 						var $tr = $('<tr>').append(
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
-							$('<td>').html("<button class='btn btn-success' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
+							$('<td>').html("<button class='btn btn-warning' type='button' onclick=\"joinRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['ROOM_INVITATION']?></button> <button class='btn btn-success' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
 						).appendTo('#rooms-table tbody');
 					});
 			});
@@ -75,6 +75,24 @@ session_start();
 				location.reload();
 			});
 		}
+		
+		function joinRoom(room_id,password,serial){
+			if(serial != null && serial != ""){
+				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&password="+password+"&serial="+serial);
+			}  else {
+				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"?room_id="+room_id);
+			}
+			alert("Invitation link copied in clipboard");
+		}
+		
+		function copyToClipboard(text) {
+			var $temp = $("<input>");
+			$("body").append($temp);
+			$temp.val(text).select();
+			document.execCommand("copy");
+			$temp.remove();
+		}
+		
     </script> 
 </head>
 
@@ -168,7 +186,7 @@ session_start();
 			<tr>
 			  <th scope="col"><?php print $lang['ROOM']?></th>
 			  <th scope="col"><?php print $lang['PASSWORD']?></th>
-			  <th scope="col">-</th>
+			  <th scope="col"></th>
 			</tr>
 		  </thead>
 		  <tbody>

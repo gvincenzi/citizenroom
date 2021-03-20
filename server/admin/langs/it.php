@@ -35,7 +35,7 @@ $lang['FORM_ERROR_MAIL']="Indirizzo mail non valido";
 $lang['MAIL']="Indirizzo mail";
 
 /* SIGNUP */
-$lang['SIGNUP']="Sottoscrizione";
+$lang['SIGNUP']="Iscriviti";
 $lang['SURNAME']="Cognome";
 $lang['NAME']="Nome";
 $lang['MANDATORY_ERROR']="Cognome e Nome sono obbligatori";
@@ -56,6 +56,7 @@ $lang['PROFILE']="Dati del profilo";
 $lang['NEW_ROOM']="Crea una stanza";
 $lang['ROOM_LIST']="Lista delle tue stanze";
 $lang['DELETE_ROOM']="Cancella la stanza";
+$lang['ROOM_INVITATION']="Copia il link d\'invito";
 $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
 
 $lang['USER_ADD_OK']="Utente aggiunto con successo";

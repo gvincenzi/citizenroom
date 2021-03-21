@@ -113,25 +113,25 @@ function StartMeeting(roomNumber,nickname,password,serial){
             $('#joinMsg').show().text('You left the conference');
         },
         audioMuteStatusChanged: function (data) {
-            if(data.muted)
-                $("#btnCustomMic").text('Turn on mic');
+            /*if(data.muted)
+                $("#btnCustomMic").css('color', 'white');
             else
-                $("#btnCustomMic").text('Turn off mic');
+                $("#btnCustomMic").css('color', 'red');*/
         },
         videoMuteStatusChanged: function (data) {
-            if(data.muted)
-                $("#btnCustomCamera").text('Turn on camera');
+            /*if(data.muted)
+                $("#btnCustomCamera").css('color', 'white');
             else
-                $("#btnCustomCamera").text('Turn off camera');
+                $("#btnCustomCamera").css('color', 'red');*/
         },
         tileViewChanged: function (data) {
             
         },
 		chatUpdated: function (data) {
-            if(data.isOpen)
+            /*if(data.isOpen)
                 $("#btnChat").text('Hide chat').css('color', 'white');
             else
-                $("#btnChat").text('Show chat').css('color', 'white');
+                $("#btnChat").text('Show chat').css('color', 'white');*/
 			
 			if(data.unreadCount > 0){
                 $("#btnChat").text('New message received').css('color', 'red');
@@ -145,10 +145,10 @@ function StartMeeting(roomNumber,nickname,password,serial){
 			
 		},
         screenSharingStatusChanged: function (data) {
-            if(data.on)
-                $("#btnScreenShareCustom").text('Stop sharing your screen');
+            /*if(data.on)
+                $("#btnScreenShareCustom").css('color', 'red');
             else
-                $("#btnScreenShareCustom").text('Start sharing your screen');
+                $("#btnScreenShareCustom").css('color', 'white');*/
         },
         participantJoined: function(data){
             //console.log('participantJoined', data);

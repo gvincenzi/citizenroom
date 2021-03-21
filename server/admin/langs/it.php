@@ -24,6 +24,13 @@ $lang['ROOM_PASSWORD']="Password stanza";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
+$lang['btnCustomMic']="Attiva/Disattiva mic";
+$lang['btnCustomCamera']="Attiva/Disattiva camera";
+$lang['btnChat']="Attiva/Disattiva chat";
+$lang['btnCustomTileView']="Vista partecipanti";
+$lang['btnScreenShareCustom']="Attiva/Disattiva condivisione schermo";
+$lang['btnInvitation']="Copia il link dell'invito";
+$lang['btnLeave']="Esci dalla stanza";
 
 /* INVITE */
 $lang['INVITATION']="Sei stato invitato nella stanza #";

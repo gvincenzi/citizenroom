@@ -24,6 +24,13 @@ $lang['ROOM_PASSWORD']="Room password";
 
 /* ROOM */
 $lang['JOINING']="You are joining the room...";
+$lang['btnCustomMic']="Turn on/off mic";
+$lang['btnCustomCamera']="Turn on/off camera";
+$lang['btnChat']="Show/hide chat";
+$lang['btnCustomTileView']="Roommates view";
+$lang['btnScreenShareCustom']="Start/Stop sharing your screen";
+$lang['btnInvitation']="Copy in clipboard invitation link";
+$lang['btnLeave']="Leave the room";
 
 /* INVITE */
 $lang['INVITATION']="You have been invited to the room #";

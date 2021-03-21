@@ -13,7 +13,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v3.js"></script>
+	<script src="../assets/js/jitsi_v4.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -54,13 +54,13 @@ include_once '../actionInSession.php';
 	<div id='toolbox' class='toolbox' style='display:none;'>
 		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
 		<?php if(isset($_SESSION['user_serial'])) echo '<h4>Partner ID #'.$_SESSION['user_serial'].'</h4>'?>
-		<button id='btnCustomMic'>Turn on mic</button>
-		<button id='btnCustomCamera'>Turn on camera</button>
-		<button id='btnChat'>Show chat</button>
-		<button id='btnCustomTileView'>Roommates view</button>
-		<button id='btnScreenShareCustom'>Start sharing your screen</button>
-		<button id='btnInvitation'>Copy in clipboard invitation link</button>
-		<button id='btnLeave'>Leave the room</button>
+		<button id='btnCustomMic'><?php print $lang['btnCustomMic']?></button>
+		<button id='btnCustomCamera'><?php print $lang['btnCustomCamera']?></button>
+		<button id='btnChat'><?php print $lang['btnChat']?></button>
+		<button id='btnCustomTileView'><?php print $lang['btnCustomTileView']?></button>
+		<button id='btnScreenShareCustom'><?php print $lang['btnScreenShareCustom']?></button>
+		<button id='btnInvitation'><?php print $lang['btnInvitation']?></button>
+		<button id='btnLeave'><?php print $lang['btnLeave']?></button>
 	</div>
 	<h4 id='joinMsg'></h4>
   </div>

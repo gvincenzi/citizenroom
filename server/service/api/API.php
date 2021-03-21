@@ -130,7 +130,7 @@ class API{
 			$_SESSION['user_serial'] = $serial;
 			
 			$room = $this->roomsGetById($serial,$room_id,$link);
-			$_SESSION['room_title'] = $room['title'];
+			$_SESSION['room_title'] = stripslashes($room['title']);
 
 			header('Location: ../../../web/room?type=business');
 		}
@@ -220,6 +220,9 @@ class API{
 	}
 	
 	public function roomsAdd($room_id,$password,$serial,$title,$link,$lang){   	
+		$title = mysqli_real_escape_string($link, $title);
+		$password = mysqli_real_escape_string($link, $password);
+		
 		$stmtCheck = mysqli_stmt_init($link);
 		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
 		$stmtCheck->bind_param('is', $room_id, $serial);

@@ -60,12 +60,13 @@ $lang['PASSWORD_RESET_BUTTON']="Reset your password";
 
 /* DASHBOARD */
 $lang['PROFILE']="Profile data";
-$lang['NEW_ROOM']="Create a room";
+$lang['NEW_ROOM']="Create/Update a room";
 $lang['ROOM_LIST']="Your room list";
 $lang['ROOM_TITLE']="Room name";
 $lang['DELETE_ROOM']="Delete room";
 $lang['ROOM_INVITATION']="Copy invitation link";
 $lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
+$lang['UPDATE_ROOM']="Update room";
 
 $lang['USER_ADD_OK']="User correctly added";
 $lang['USER_ADD_ERROR']="Error during user add";

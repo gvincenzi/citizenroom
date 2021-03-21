@@ -32,8 +32,8 @@ session_start();
 						var $tr = $('<tr>').append(
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
-							$('<td>').text(item.title),
-							$('<td>').html("<button class='btn btn-warning' type='button' onclick=\"joinRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['ROOM_INVITATION']?></button> <button class='btn btn-success' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
+							$('<td>').text(item.title.replace('\\','')),
+							$('<td>').html("<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"joinRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> <button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> <button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button>")
 						).appendTo('#rooms-table tbody');
 					});
 			});
@@ -92,6 +92,12 @@ session_start();
 			$temp.val(text).select();
 			document.execCommand("copy");
 			$temp.remove();
+		}
+		
+		function fillRoomData(id,password,title){
+			$(room_id).val(id);
+			$(room_password).val(password);
+			$(room_title).val(title);
 		}
 		
     </script> 

@@ -60,12 +60,13 @@ $lang['PASSWORD_RESET_BUTTON']="Password dimenticata";
 
 /* DASHBOARD */
 $lang['PROFILE']="Dati del profilo";
-$lang['NEW_ROOM']="Crea una stanza";
+$lang['NEW_ROOM']="Crea/Modifica una stanza";
 $lang['ROOM_LIST']="Lista delle tue stanze";
 $lang['ROOM_TITLE']="Nome della stanza";
 $lang['DELETE_ROOM']="Cancella la stanza";
 $lang['ROOM_INVITATION']="Copia il link d\'invito";
 $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
+$lang['UPDATE_ROOM']="Modifica la stanza";
 
 $lang['USER_ADD_OK']="Utente aggiunto con successo";
 $lang['USER_ADD_ERROR']="Errore durante la creazione dell\'utente";

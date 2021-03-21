@@ -32,8 +32,8 @@ include_once '../actionInSession.php';
 					if(check.success == 'true'){
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
+						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_serial']?>');
+						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_serial']?>');
 					} else {
 						$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
 					}
@@ -47,12 +47,13 @@ include_once '../actionInSession.php';
   <?php include '../header.php';?> 
 
   <div class="room">
+	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3><hr/>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>
 	</div>
 	<div id='toolbox' class='toolbox' style='display:none;'>
 		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
-		<?php if(isset($_SESSION['serial'])) echo '<h4>Partner ID #'.$_SESSION['serial'].'</h4>'?>
+		<?php if(isset($_SESSION['user_serial'])) echo '<h4>Partner ID #'.$_SESSION['user_serial'].'</h4>'?>
 		<button id='btnCustomMic'>Turn on mic</button>
 		<button id='btnCustomCamera'>Turn on camera</button>
 		<button id='btnChat'>Show chat</button>

@@ -55,6 +55,7 @@ $lang['PASSWORD_RESET_BUTTON']="Reset your password";
 $lang['PROFILE']="Profile data";
 $lang['NEW_ROOM']="Create a room";
 $lang['ROOM_LIST']="Your room list";
+$lang['ROOM_TITLE']="Room name";
 $lang['DELETE_ROOM']="Delete room";
 $lang['ROOM_INVITATION']="Copy invitation link";
 $lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
@@ -66,7 +67,6 @@ $lang['USER_UPDATE_OK']="User correctly updated";
 
 $lang['ROOM_ADD_OK']="Room correctly added";
 $lang['ROOM_ADD_ERROR']="Error during room add";
-$lang['ROOM_ALREADY_EXISTS']="Room already exists";
 $lang['ROOM_DELETE_OK']="Room correctly removed";
 $lang['ROOM_DELETE_ERROR']="Error during room delete";
 $lang['ROOM_NOT_FOUND']="Room does not exist";

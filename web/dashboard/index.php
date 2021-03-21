@@ -32,6 +32,7 @@ session_start();
 						var $tr = $('<tr>').append(
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
+							$('<td>').text(item.title),
 							$('<td>').html("<button class='btn btn-warning' type='button' onclick=\"joinRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['ROOM_INVITATION']?></button> <button class='btn btn-success' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><?php print $lang['DELETE_ROOM']?></button>")
 						).appendTo('#rooms-table tbody');
 					});
@@ -161,6 +162,7 @@ session_start();
         
         <div class="form-group">
 			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
+			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>"></input>
 			<input id="room_password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
         </div>
 		<br>
@@ -186,6 +188,7 @@ session_start();
 			<tr>
 			  <th scope="col"><?php print $lang['ROOM']?></th>
 			  <th scope="col"><?php print $lang['PASSWORD']?></th>
+			  <th scope="col"><?php print $lang['ROOM_TITLE']?></th>
 			  <th scope="col"></th>
 			</tr>
 		  </thead>

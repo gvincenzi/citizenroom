@@ -55,6 +55,7 @@ $lang['PASSWORD_RESET_BUTTON']="Réinitialisez votre mot de passe";
 $lang['PROFILE']="Données du compte";
 $lang['NEW_ROOM']="Créer une salle";
 $lang['ROOM_LIST']="Liste de vos salles";
+$lang['ROOM_TITLE']="Nom de salle";
 $lang['DELETE_ROOM']="Supprimer la salle";
 $lang['ROOM_INVITATION']="Copier lien d\'invitation";
 $lang['ROOM_MANDATORY_ERROR']="Le numéro de la salle est obligatoire";
@@ -66,7 +67,6 @@ $lang['USER_UPDATE_OK']="Mise à jour de l\'utilisateur réalisée avec succés"
 
 $lang['ROOM_ADD_OK']="Salle ajoutée avec succés";
 $lang['ROOM_ADD_ERROR']="Erreur pendant l\'ajout de la salle";
-$lang['ROOM_ALREADY_EXISTS']="Salle déjà existante";
 $lang['ROOM_DELETE_OK']="Suppression de la salle réalisée avec succés";
 $lang['ROOM_DELETE_ERROR']="Erreur pendant la suppression salle";
 $lang['ROOM_NOT_FOUND']="La salle n'existe pas";

@@ -55,6 +55,7 @@ $lang['PASSWORD_RESET_BUTTON']="Password dimenticata";
 $lang['PROFILE']="Dati del profilo";
 $lang['NEW_ROOM']="Crea una stanza";
 $lang['ROOM_LIST']="Lista delle tue stanze";
+$lang['ROOM_TITLE']="Nome della stanza";
 $lang['DELETE_ROOM']="Cancella la stanza";
 $lang['ROOM_INVITATION']="Copia il link d\'invito";
 $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
@@ -66,7 +67,6 @@ $lang['USER_UPDATE_OK']="Aggiornamento dell\'utente realizzato con successo";
 
 $lang['ROOM_ADD_OK']="Stanza creata correttamente";
 $lang['ROOM_ADD_ERROR']="Errore durante la creazione dea stanza";
-$lang['ROOM_ALREADY_EXISTS']="La stanza è già presente";
 $lang['ROOM_DELETE_OK']="Chiusura della stanza realizzata con successo";
 $lang['ROOM_DELETE_ERROR']="Errore durante la chiusura della stanza";
 $lang['ROOM_NOT_FOUND']="La stanza non è presente";

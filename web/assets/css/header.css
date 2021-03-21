@@ -86,6 +86,10 @@ footer {
     font-size: 10;
 }
 
+footer  a#biz{
+    font-size: 15;
+}
+
 a, a:hover, a:visited {
 	color: #dddddd;
 }

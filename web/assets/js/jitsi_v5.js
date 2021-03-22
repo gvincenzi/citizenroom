@@ -1,19 +1,31 @@
 var apiObj = null;
 
 function BindEvent(roomNumber,nickname,password,serial){
-    $("#btnCustomMic").on('click', function () {
+    $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
-    $("#btnCustomCamera").on('click', function () {
+	$("#btnCustomMicOff").on('click', function () {
+        apiObj.executeCommand('toggleAudio');
+    });
+    $("#btnCustomCameraOn").on('click', function () {
+        apiObj.executeCommand('toggleVideo');
+    });
+	$("#btnCustomCameraOff").on('click', function () {
         apiObj.executeCommand('toggleVideo');
     });
     $("#btnCustomTileView").on('click', function () {
         apiObj.executeCommand('toggleTileView');
     });
-    $("#btnScreenShareCustom").on('click', function () {
+    $("#btnScreenShareCustomOn").on('click', function () {
         apiObj.executeCommand('toggleShareScreen');
     });
-	$("#btnChat").on('click', function () {
+	$("#btnScreenShareCustomOff").on('click', function () {
+        apiObj.executeCommand('toggleShareScreen');
+    });
+	$("#btnChatOn").on('click', function () {
+        apiObj.executeCommand('toggleChat');
+    });
+	$("#btnChatOff").on('click', function () {
         apiObj.executeCommand('toggleChat');
     });
 	$("#btnInvitation").on('click', function () {
@@ -60,7 +72,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
             doNotStoreRoom: true,
             startVideoMuted: 0,
             startWithVideoMuted: true,
-            startWithAudioMuted: false,
+            startWithAudioMuted: true,
             enableWelcomePage: false,
             prejoinPageEnabled: false,
             disableRemoteMute: true,
@@ -113,28 +125,37 @@ function StartMeeting(roomNumber,nickname,password,serial){
             $('#joinMsg').show().text('You left the conference');
         },
         audioMuteStatusChanged: function (data) {
-            /*if(data.muted)
-                $("#btnCustomMic").css('color', 'white');
-            else
-                $("#btnCustomMic").css('color', 'red');*/
+            if(data.muted){
+                $("#btnCustomMicOn").show();
+				$("#btnCustomMicOff").hide();
+            } else {
+                $("#btnCustomMicOn").hide();
+				$("#btnCustomMicOff").show();
+			}
         },
         videoMuteStatusChanged: function (data) {
-            /*if(data.muted)
-                $("#btnCustomCamera").css('color', 'white');
-            else
-                $("#btnCustomCamera").css('color', 'red');*/
+            if(data.muted){
+				$("#btnCustomCameraOn").show();
+				$("#btnCustomCameraOff").hide();
+            } else {
+                $("#btnCustomCameraOn").hide();
+				$("#btnCustomCameraOff").show();
+			}
         },
         tileViewChanged: function (data) {
             
         },
 		chatUpdated: function (data) {
-            /*if(data.isOpen)
-                $("#btnChat").text('Hide chat').css('color', 'white');
-            else
-                $("#btnChat").text('Show chat').css('color', 'white');*/
+            if(data.isOpen){
+				$("#btnChatOn").css('color', 'white').hide();
+				$("#btnChatOff").css('color', 'white').show();
+            } else {
+                $("#btnChatOn").css('color', 'white').show();
+				$("#btnChatOff").css('color', 'white').hide();
+			}
 			
 			if(data.unreadCount > 0){
-                $("#btnChat").text('New message received').css('color', 'red');
+                $("#btnChat").css('color', 'red');
 				if(data.unreadCount == 1)
 				notifyMe('New message received');
 			}
@@ -145,10 +166,13 @@ function StartMeeting(roomNumber,nickname,password,serial){
 			
 		},
         screenSharingStatusChanged: function (data) {
-            /*if(data.on)
-                $("#btnScreenShareCustom").css('color', 'red');
-            else
-                $("#btnScreenShareCustom").css('color', 'white');*/
+            if(data.on){
+				$("#btnScreenShareCustomOn").hide();
+				$("#btnScreenShareCustomOff").show();
+            } else {
+                $("#btnScreenShareCustomOn").show();
+				$("#btnScreenShareCustomOff").hide();
+			}
         },
         participantJoined: function(data){
             //console.log('participantJoined', data);

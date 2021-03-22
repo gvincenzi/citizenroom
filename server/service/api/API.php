@@ -231,7 +231,7 @@ class API{
         if( mysqli_num_rows( $result ) == 0){
 			$stmtInsert = mysqli_stmt_init($link);
 			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `password`, `title`) VALUES (?,?,?,?)");
-			$stmtInsert->bind_param('iss', $room_id, $serial, $password, $title);
+			$stmtInsert->bind_param('isss', $room_id, $serial, $password, $title);
 			$resultInsert = $stmtInsert->execute();
 
 			if($resultInsert==true){

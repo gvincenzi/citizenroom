@@ -24,13 +24,18 @@ $lang['ROOM_PASSWORD']="Mot de passe de salle";
 
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";
-$lang['btnCustomMic']="Activer/Désactiver mic";
-$lang['btnCustomCamera']="Activer/Désactiver camera";
-$lang['btnChat']="Activer/Désactiver fenêtre de chat";
+$lang['btnCustomMicOn']="Activer mic";
+$lang['btnCustomCameraOn']="Activer camera";
+$lang['btnChatOn']="Activer fenêtre de chat";
 $lang['btnCustomTileView']="Vue participants";
-$lang['btnScreenShareCustom']="Activer/Désactiver partage écran";
+$lang['btnScreenShareCustomOn']="Activer partage écran";
 $lang['btnInvitation']="Copier le lien d'invitation";
 $lang['btnLeave']="Quitter la salle";
+
+$lang['btnCustomMicOff']="Désactiver mic";
+$lang['btnCustomCameraOff']="Désactiver camera";
+$lang['btnChatOff']="Désactiver fenêtre de chat";
+$lang['btnScreenShareCustomOff']="Désactiver partage écran";
 
 /* INVITE */
 $lang['INVITATION']="Vous avez été invité dans la salle #";

@@ -29,6 +29,7 @@ $lang['btnCustomCameraOn']="Turn on  camera";
 $lang['btnChatOn']="Show chat";
 $lang['btnCustomTileView']="Roommates view";
 $lang['btnScreenShareCustomOn']="Start sharing your screen";
+$lang['btnStreamOn']="Start live stream";
 $lang['btnInvitation']="Copy in clipboard invitation link";
 $lang['btnLeave']="Leave the room";
 
@@ -36,6 +37,7 @@ $lang['btnCustomMicOff']="Turn off mic";
 $lang['btnCustomCameraOff']="Turn off camera";
 $lang['btnChatOff']="Hide chat";
 $lang['btnScreenShareCustomOff']="Stop sharing your screen";
+$lang['btnStreamOff']="Stop live stream";
 
 /* INVITE */
 $lang['INVITATION']="You have been invited to the room #";

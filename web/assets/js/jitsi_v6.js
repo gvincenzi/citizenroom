@@ -1,6 +1,6 @@
 var apiObj = null;
 
-function BindEvent(roomNumber,nickname,password,serial){
+function BindEvent(roomNumber,nickname,password,serial,stream_key){
     $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -27,6 +27,19 @@ function BindEvent(roomNumber,nickname,password,serial){
     });
 	$("#btnChatOff").on('click', function () {
         apiObj.executeCommand('toggleChat');
+    });
+	$("#btnStreamOn").on('click', function () {
+        apiObj.executeCommand('startRecording', {
+			mode: 'stream',
+			youtubeStreamKey: stream_key
+		});
+		$("#btnStreamOn").hide();
+		$("#btnStreamOff").show();
+    });
+	$("#btnStreamOff").on('click', function () {
+        apiObj.executeCommand('stopRecording', 'stream');
+		$("#btnStreamOn").show();
+		$("#btnStreamOff").hide();
     });
 	$("#btnInvitation").on('click', function () {
 		if(serial != null && serial != ""){

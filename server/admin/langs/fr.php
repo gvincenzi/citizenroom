@@ -29,6 +29,7 @@ $lang['btnCustomCameraOn']="Activer camera";
 $lang['btnChatOn']="Activer fenêtre de chat";
 $lang['btnCustomTileView']="Vue participants";
 $lang['btnScreenShareCustomOn']="Activer partage écran";
+$lang['btnStreamOn']="Activer live stream";
 $lang['btnInvitation']="Copier le lien d'invitation";
 $lang['btnLeave']="Quitter la salle";
 
@@ -36,6 +37,7 @@ $lang['btnCustomMicOff']="Désactiver mic";
 $lang['btnCustomCameraOff']="Désactiver camera";
 $lang['btnChatOff']="Désactiver fenêtre de chat";
 $lang['btnScreenShareCustomOff']="Désactiver partage écran";
+$lang['btnStreamOff']="Désactiver live stream";
 
 /* INVITE */
 $lang['INVITATION']="Vous avez été invité dans la salle #";
@@ -74,12 +76,12 @@ $lang['ROOM_MANDATORY_ERROR']="Le numéro de la salle est obligatoire";
 $lang['UPDATE_ROOM']="Modifier la salle";
 
 $lang['USER_ADD_OK']="Utilisateur ajouté avec succés";
-$lang['USER_ADD_ERROR']="Erreur pendant l\'ajout de l\'utilisateur";
+$lang['USER_ADD_ERROR']="Erreur pendant l'ajout de l'utilisateur";
 $lang['USER_ALREADY_EXISTS']="Utilisateur déjà existant";
-$lang['USER_UPDATE_OK']="Mise à jour de l\'utilisateur réalisée avec succés";
+$lang['USER_UPDATE_OK']="Mise à jour de l'utilisateur réalisée avec succés";
 
 $lang['ROOM_ADD_OK']="Salle ajoutée avec succés";
-$lang['ROOM_ADD_ERROR']="Erreur pendant l\'ajout de la salle";
+$lang['ROOM_ADD_ERROR']="Erreur pendant l'ajout de la salle";
 $lang['ROOM_DELETE_OK']="Suppression de la salle réalisée avec succés";
 $lang['ROOM_DELETE_ERROR']="Erreur pendant la suppression salle";
 $lang['ROOM_NOT_FOUND']="La salle n'existe pas";

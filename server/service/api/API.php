@@ -27,7 +27,7 @@ if (isset($_REQUEST['method'] )){
 			$api->resetPassword($_REQUEST['mail'], $link);
 			break;
 		case 'users/update':
-			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $link, $lang);
+			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $link, $lang);
 			break;
 		case 'rooms/add':
 			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $_REQUEST['room_title'], $link, $lang);
@@ -201,19 +201,20 @@ class API{
         print json_encode($arr);	
     }
 	
-	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$link,$lang){   	
+	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
 
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ? WHERE user_id = ?");
-		$stmt->bind_param('sssi', $user_name, $user_surname, $user_mail, $user_id);
+		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ?, stream_key = ? WHERE user_id = ?");
+		$stmt->bind_param('ssssi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_id);
 		$stmt->execute();
 		mysqli_stmt_close($stmt);
 		
 		$_SESSION['user_name'] = $user_name;
 		$_SESSION['user_surname'] = $user_surname;
 		$_SESSION['user_mail'] = $user_mail;
+		$_SESSION['user_stream_key'] = $user_stream_key;
 		
 		$_SESSION["profile.message"] = $lang['USER_UPDATE_OK'];
 		header('Location: ../../../web/dashboard?type=business');	

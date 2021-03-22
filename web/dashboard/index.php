@@ -33,7 +33,12 @@ session_start();
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
 							$('<td>').text(item.title.replace('\\','')),
-							$('<td>').html("<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"joinRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> <button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> <button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button>")
+							$('<td>').html(
+							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
+							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.password+"','"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
+							)
 						).appendTo('#rooms-table tbody');
 					});
 			});
@@ -77,7 +82,7 @@ session_start();
 			});
 		}
 		
-		function joinRoom(room_id,password,serial){
+		function invitationRoom(room_id,password,serial){
 			if(serial != null && serial != ""){
 				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&password="+password+"&serial="+serial);
 			}  else {
@@ -98,6 +103,17 @@ session_start();
 			$(room_id).val(id);
 			$(room_password).val(password);
 			$(room_title).val(title);
+		}
+		
+		function joinRoom(room_id,password,serial,nickname){
+			$.ajax({
+			  type: "POST",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "join", room_id: room_id, password: password, serial: serial, nickname: nickname }
+			})
+			.done(function( msg ) {
+				window.location.href = window.location.href.replaceAll("/dashboard/", "/room/");
+			});
 		}
 		
     </script> 
@@ -133,9 +149,11 @@ session_start();
         <div class="form-group">
 			<h4>PartnerID : <strong><?php print $_SESSION['user_serial']?></strong></h4>
 			<hr>
-			<input id="user_surname" name="surname" type="text" class="form-control" value="<?php print $_SESSION['user_surname']?>"></input>
-			<input id="user_name" name="name" type="text" class="form-control" value="<?php print $_SESSION['user_name']?>"></input>
-	        <input id="user_mail" name="mail" type="text" class="form-control" value="<?php print $_SESSION['user_mail']?>"></input>
+			<input id="user_surname" name="surname" type="text" class="form-control" value="<?php print $_SESSION['user_surname']?>" placeholder="<?php print $lang['SURNAME']?>"></input>
+			<input id="user_name" name="name" type="text" class="form-control" value="<?php print $_SESSION['user_name']?>" placeholder="<?php print $lang['NAME']?>"></input>
+	        <input id="user_mail" name="mail" type="text" class="form-control" value="<?php print $_SESSION['user_mail']?>" placeholder="<?php print $lang['MAIL']?>"></input>
+			<hr>
+			<input id="user_stream_key" name="stream_key" type="text" class="form-control" value="<?php print $_SESSION['user_stream_key']?>" placeholder="YouTube Stream Key"></input>
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword?type=business','_self')" style="color:darkgray"><small>Reset Password</small></a></div>
 		<br>

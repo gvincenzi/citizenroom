@@ -29,6 +29,7 @@ $lang['btnCustomCameraOn']="Attiva camera";
 $lang['btnChatOn']="Attiva chat";
 $lang['btnCustomTileView']="Vista partecipanti";
 $lang['btnScreenShareCustomOn']="Attiva condivisione schermo";
+$lang['btnStreamOn']="Attiva live stream";
 $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
 
@@ -36,6 +37,7 @@ $lang['btnCustomMicOff']="Disattiva mic";
 $lang['btnCustomCameraOff']="Disattiva camera";
 $lang['btnChatOff']="Disattiva chat";
 $lang['btnScreenShareCustomOff']="Disattiva condivisione schermo";
+$lang['btnStreamOff']="Disattiva live stream";
 
 /* INVITE */
 $lang['INVITATION']="Sei stato invitato nella stanza #";
@@ -74,9 +76,9 @@ $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
 $lang['UPDATE_ROOM']="Modifica la stanza";
 
 $lang['USER_ADD_OK']="Utente aggiunto con successo";
-$lang['USER_ADD_ERROR']="Errore durante la creazione dell\'utente";
+$lang['USER_ADD_ERROR']="Errore durante la creazione dell'utente";
 $lang['USER_ALREADY_EXISTS']="Utente già esistente";
-$lang['USER_UPDATE_OK']="Aggiornamento dell\'utente realizzato con successo";
+$lang['USER_UPDATE_OK']="Aggiornamento dell'utente realizzato con successo";
 
 $lang['ROOM_ADD_OK']="Stanza creata correttamente";
 $lang['ROOM_ADD_ERROR']="Errore durante la creazione dea stanza";

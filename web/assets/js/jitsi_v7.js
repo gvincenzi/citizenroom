@@ -49,6 +49,10 @@ function BindEvent(roomNumber,nickname,password,serial,stream_key){
 		}
 		alert("Invitation link copied in clipboard");
     });
+	$("#btnLiveInvitation").on('click', function () {
+		copyToClipboard(window.location.href.replaceAll("/live", "/invitation")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial+"&room_type=live");
+		alert("Invitation link for Live Streaming copied in clipboard");
+	});
 	$("#btnLeave").on('click', function () {
         window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
     });

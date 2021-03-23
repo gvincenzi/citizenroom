@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `citizenroom_user` (
   `name` VARCHAR(120) NOT NULL,
   `surname` VARCHAR(120) NOT NULL,
   `stream_key` VARCHAR(255) NULL,
+  `client_id` VARCHAR(255) NULL,
   `creation_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` DATETIME NULL,
   `enabled` INT(1) NOT NULL DEFAULT '1',

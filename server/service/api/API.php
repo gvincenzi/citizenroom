@@ -27,7 +27,7 @@ if (isset($_REQUEST['method'] )){
 			$api->resetPassword($_REQUEST['mail'], $link);
 			break;
 		case 'users/update':
-			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $link, $lang);
+			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $_REQUEST['channel_id'], $link, $lang);
 			break;
 		case 'rooms/add':
 			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $_REQUEST['room_title'], $link, $lang);
@@ -37,6 +37,9 @@ if (isset($_REQUEST['method'] )){
 			break;
 		case 'rooms/get':
 			$api->roomsGet($_REQUEST['serial'], $link);
+			break;
+		case 'rooms/get/id':
+			$api->roomsGetById($_REQUEST['serial'], $_REQUEST['room_id'], $link);
 			break;
 	}
 }else {
@@ -105,7 +108,6 @@ class API{
 		$result = $stmtCheck->get_result();
         if( mysqli_num_rows( $result ) == 0){
 			header('Location: ../../../web/join?callback=ROOM_JOIN_ERROR');
-			return;
 		} else {
 			$stmt = mysqli_stmt_init($link);
 			$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
@@ -129,10 +131,16 @@ class API{
 			$_SESSION['password'] = $password;
 			$_SESSION['user_serial'] = $serial;
 			
-			$room = $this->roomsGetById($serial,$room_id,$link);
+			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 			$_SESSION['room_title'] = stripslashes($room['title']);
-
-			header('Location: ../../../web/room?type=business');
+			
+			if (!isset($_REQUEST['no_redirect'])){
+				if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
+					header('Location: ../../../web/live?type=business');
+				} else {
+					header('Location: ../../../web/room?type=business');
+				}
+			}
 		}
     }
 	
@@ -201,13 +209,13 @@ class API{
         print json_encode($arr);	
     }
 	
-	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$link,$lang){   	
+	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
 
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ?, stream_key = ? WHERE user_id = ?");
-		$stmt->bind_param('ssssi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_id);
+		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ?, stream_key = ?, channel_id = ? WHERE user_id = ?");
+		$stmt->bind_param('sssssi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_channel_id, $user_id);
 		$stmt->execute();
 		mysqli_stmt_close($stmt);
 		
@@ -215,6 +223,7 @@ class API{
 		$_SESSION['user_surname'] = $user_surname;
 		$_SESSION['user_mail'] = $user_mail;
 		$_SESSION['user_stream_key'] = $user_stream_key;
+		$_SESSION['user_channel_id'] = $user_channel_id;
 		
 		$_SESSION["profile.message"] = $lang['USER_UPDATE_OK'];
 		header('Location: ../../../web/dashboard?type=business');	
@@ -316,14 +325,18 @@ class API{
 		print json_encode($myArray);
 	}
 	
-	public function roomsGetById($serial,$room_id,$link){ 
+	public function roomsGetByIdInternal($serial,$room_id,$link){ 
 		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE serial = ? AND room_id = ?");
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
 		$stmtCheck->bind_param('si', $serial,$room_id);
 		$stmtCheck->execute();
 		$result = $stmtCheck->get_result();
 		$row = $result->fetch_assoc();
 		return $row;
+	}
+	
+	public function roomsGetById($serial,$room_id,$link){ 
+		print json_encode($this->roomsGetByIdInternal($serial,$room_id,$link));
 	}
 }
 ?>

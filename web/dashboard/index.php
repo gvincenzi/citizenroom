@@ -109,10 +109,10 @@ session_start();
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",
-			  data: { method: "join", room_id: room_id, password: password, serial: serial, nickname: nickname }
+			  data: { method: "join", room_id: room_id, password: password, serial: serial, nickname: nickname, no_redirect:'true' }
 			})
 			.done(function( msg ) {
-				window.location.href = window.location.href.replaceAll("/dashboard/", "/room/");
+				window.open(location.href.replaceAll("/dashboard/", "/room/"), '_self');
 			});
 		}
 		
@@ -153,7 +153,9 @@ session_start();
 			<input id="user_name" name="name" type="text" class="form-control" value="<?php print $_SESSION['user_name']?>" placeholder="<?php print $lang['NAME']?>"></input>
 	        <input id="user_mail" name="mail" type="text" class="form-control" value="<?php print $_SESSION['user_mail']?>" placeholder="<?php print $lang['MAIL']?>"></input>
 			<hr>
+			<h4>Youtube</h4>
 			<input id="user_stream_key" name="stream_key" type="text" class="form-control" value="<?php print $_SESSION['user_stream_key']?>" placeholder="YouTube Stream Key"></input>
+			<input id="user_channel_id" name="channel_id" type="text" class="form-control" value="<?php print $_SESSION['user_channel_id']?>" placeholder="YouTube Channel ID"></input>
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword?type=business','_self')" style="color:darkgray"><small>Reset Password</small></a></div>
 		<br>

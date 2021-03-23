@@ -47,6 +47,7 @@ $lang['LOGIN']="Administrator login";
 $lang['LOGIN_ERROR']="Wrong username and/or password";
 $lang['FORM_ERROR_MAIL']="Mail address is not valid";
 $lang['MAIL']="eMail address";
+$lang['MAIL_CHECK']="Confirm eMail address";
 
 /* SIGNUP */
 $lang['SIGNUP']="Sign Up";
@@ -75,8 +76,8 @@ $lang['ROOM_INVITATION']="Copy invitation link";
 $lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
 $lang['UPDATE_ROOM']="Update room";
 
-$lang['USER_ADD_OK']="User correctly added";
-$lang['USER_ADD_ERROR']="Error during user add";
+$lang['USER_ADD_OK']="Account created successfully. We will send your credentials by email.";
+$lang['USER_ADD_ERROR']="Error during account creation";
 $lang['USER_ALREADY_EXISTS']="User already exists";
 $lang['USER_UPDATE_OK']="User correctly updated";
 

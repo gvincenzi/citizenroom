@@ -1,7 +1,7 @@
 <?php 
 $cookieDisclaimer = ("
 <h2>Informativa Cookie</h2>
-Con il presente documento, ai sensi degli artt. 13 e 122 del D. Lgs. 196/2003 ('codice privacy'), nonché in base a quanto previsto dal Provvedimento generale del Garante privacy dell’8 maggio 2014, l’Associazione Culturale InMediArt, titolare del trattamento, fornisce agli utenti del sito <strong>citizenroom.altervista.org</strong> alcune informazioni relative ai cookie utilizzati.
+Con il presente documento, ai sensi degli artt. 13 e 122 del D. Lgs. 196/2003 ('codice privacy'), nonché in base a quanto previsto dal Provvedimento generale del Garante privacy dell’8 maggio 2014, si fornisce agli utenti del sito <strong>citizenroom.altervista.org</strong> alcune informazioni relative ai cookie utilizzati.
 <br><br>
 <h2>Cosa sono i cookie</h2>
 I cookie sono piccoli file di testo che i siti visitati dagli utenti inviano ai loro terminali, ove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva. 

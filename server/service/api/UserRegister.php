@@ -1,24 +1,18 @@
 <?php
 class UserRegister{
-	public function register($langCode, $mail, $link){
-		if ($mail=='') {
-			echo ('Please Fill Email');
-		}
-
-		$new_user_mail = $mail;
-		
+	public function register($langCode, $mail, $link){		
 		// Lets see if the email exists
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT citizenroom_user.name as user_name, citizenroom_user.surname as user_surname FROM citizenroom_user WHERE mail = ? AND password IS NULL");
-		$stmt->bind_param('s', $new_user_mail);
+		$stmt->prepare("SELECT * FROM citizenroom_user WHERE mail = ? AND password IS NULL");
+		$stmt->bind_param('s', $mail);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		if( mysqli_num_rows( $result ) == 1){
 			$name = null;
 			$surname=null;
-			while($row = mysqli_fetch_array($result, MYSQL_ASSOC)){
-				$name = $row['user_name'];
-				$surname = $row['user_surname'];
+			while($row = $result->fetch_array(MYSQLI_BOTH)){
+				$name = $row['name'];
+				$surname = $row['surname'];
 			}
 			
 			//Generate a RANDOM MD5 Hash for a password
@@ -41,11 +35,11 @@ class UserRegister{
 			
 			$stmt2 = mysqli_stmt_init($link);
 			$stmt2->prepare("UPDATE `citizenroom_user` SET `password` = ?,`serial` = ? WHERE `mail` = ?");
-			$stmt2->bind_param('sss', $newpassword, $serial, $new_user_mail);
+			$stmt2->bind_param('sss', $newpassword, $serial, $mail);
 			$stmt2->execute();
 			mysqli_stmt_close($stmt2);
 			
-			$this->sendMailUserRegister($new_user_mail, $name, $surname, $emailpassword, $langCode);
+			$this->sendMailUserRegister($mail, $name, $surname, $emailpassword, $langCode);
 			
 			return true;
 		}else{

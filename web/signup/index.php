@@ -35,9 +35,16 @@ session_start();
 
 			if($(mail).val()=='' || validateEmail($(mail).val()) == false){
 				$(signupAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
+				$(mail).css('border-color', 'red');
 				return false;
 			}
 			
+			if(!($(mail).val() == $(mailCheck).val())){
+				$(signupAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
+				$(mailCheck).css('border-color', 'red');
+				return false;
+			}
+
 			return true;
 		}		
     </script>   
@@ -52,6 +59,11 @@ session_start();
       	<h3><?php print $lang['SIGNUP']?></h3>
       	</div>
       	<hr>
+		<?php
+			if(isset($_SESSION["signup.error"])){
+            	print '<div class="alert alert-danger">'.$_SESSION["signup.error"].'</div>';
+            }
+        ?>
 		<div id='signupAlert'></div>
         
 
@@ -63,6 +75,7 @@ session_start();
 			<input id="name" name="name" type="text" class="form-control" placeholder="<?php print $lang['NAME']?>">
         	<input id="surname" name="surname" type="text" class="form-control" placeholder="<?php print $lang['SURNAME']?>">
 	        <input id="mail" name="mail" type="text" class="form-control" placeholder="<?php print $lang['MAIL']?>">
+			<input id="mailCheck" name="mailCheck" type="text" class="form-control" placeholder="<?php print $lang['MAIL_CHECK']?>">
         </div>
         <div class="checkbox">
 			<label>

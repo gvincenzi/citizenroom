@@ -179,8 +179,10 @@ class API{
 
 			if($result==true){
 				$arr = array('success' => 'true', 'message' => $lang['USER_ADD_OK']);
+				$_SESSION["signup.success"] = $lang['USER_ADD_OK'];
 			}else{
 				$arr = array('success' => 'false', 'message' => $lang['USER_ADD_ERROR']);
+				$_SESSION["signup.error"] = $lang['USER_ADD_ERROR'];
 			}
 			
 			//Reload Session
@@ -198,15 +200,12 @@ class API{
 				}
 			}
 			
-			if($_REQUEST['path']!='' && $_REQUEST['path']!=null){
-				header('Location: ../../../web/'.$_REQUEST['path']);
-			}else{
-				header('Location: ../../../web/join');
-			}
+			header('Location: ../../../web/login?type=business');
 		}
         
 		$arr = array('success' => 'false', 'message' => $lang['USER_ALREADY_EXISTS']);
-        print json_encode($arr);	
+		$_SESSION["signup.error"] = $lang['USER_ALREADY_EXISTS'];
+        header('Location: ../../../web/signup?type=business');
     }
 	
 	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$link,$lang){   	

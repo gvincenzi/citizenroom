@@ -47,6 +47,7 @@ $lang['LOGIN']="Login Administrateur";
 $lang['LOGIN_ERROR']="Nom d'utilisateur et / ou mot de passe incorrect";
 $lang['FORM_ERROR_MAIL']="L\'adresse mail n\'est pas une adresse valide";
 $lang['MAIL']="Adresse mail";
+$lang['MAIL_CHECK']="Confirmez votre adresse email";
 
 /* SIGNUP */
 $lang['SIGNUP']="Créer un compte";
@@ -75,8 +76,8 @@ $lang['ROOM_INVITATION']="Copier lien d\'invitation";
 $lang['ROOM_MANDATORY_ERROR']="Le numéro de la salle est obligatoire";
 $lang['UPDATE_ROOM']="Modifier la salle";
 
-$lang['USER_ADD_OK']="Utilisateur ajouté avec succés";
-$lang['USER_ADD_ERROR']="Erreur pendant l'ajout de l'utilisateur";
+$lang['USER_ADD_OK']="Compte créé avec succès. Nous vous enverrons vos identifiants par e-mail.";
+$lang['USER_ADD_ERROR']="Erreur lors de la création du compte";
 $lang['USER_ALREADY_EXISTS']="Utilisateur déjà existant";
 $lang['USER_UPDATE_OK']="Mise à jour de l'utilisateur réalisée avec succés";
 

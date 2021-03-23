@@ -47,6 +47,7 @@ $lang['LOGIN']="Login Amministratore";
 $lang['LOGIN_ERROR']="Username e/o password errati";
 $lang['FORM_ERROR_MAIL']="Indirizzo mail non valido";
 $lang['MAIL']="Indirizzo mail";
+$lang['MAIL_CHECK']="Conferma indirizzo mail";
 
 /* SIGNUP */
 $lang['SIGNUP']="Iscriviti";
@@ -75,8 +76,8 @@ $lang['ROOM_INVITATION']="Copia il link d\'invito";
 $lang['ROOM_MANDATORY_ERROR']="Il numero di stanza è obbligatorio";
 $lang['UPDATE_ROOM']="Modifica la stanza";
 
-$lang['USER_ADD_OK']="Utente aggiunto con successo";
-$lang['USER_ADD_ERROR']="Errore durante la creazione dell'utente";
+$lang['USER_ADD_OK']="Account creato con successo. Invieremo le tue credenziali tramite e-mail.";
+$lang['USER_ADD_ERROR']="Errore durante la creazione dell'account";
 $lang['USER_ALREADY_EXISTS']="Utente già esistente";
 $lang['USER_UPDATE_OK']="Aggiornamento dell'utente realizzato con successo";
 

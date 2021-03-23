@@ -63,6 +63,11 @@ if(isset($_SESSION['user'])){
             if(isset($_SESSION["login.error"])){
             	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
             }
+			if(isset($_SESSION["signup.success"])){
+            	print '<div class="alert alert-success">'.$_SESSION["signup.success"].'</div>';
+            } else if(isset($_SESSION["signup.error"])){
+            	print '<div class="alert alert-danger">'.$_SESSION["signup.error"].'</div>';
+            }
         ?>
 		<div id='loginAlert'></div>
         

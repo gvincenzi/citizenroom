@@ -156,7 +156,7 @@ class API{
         
     }
 	
-	public function usersAdd($user_name,$user_surname,$user_mail,$link,$lang){   	
+	public function usersAdd($user_name,$user_surname,$user_mail,$link,$lang){   
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
 		
@@ -201,11 +201,11 @@ class API{
 			}
 			
 			header('Location: ../../../web/login?type=business');
+		} else {
+			$arr = array('success' => 'false', 'message' => $lang['USER_ALREADY_EXISTS']);
+			$_SESSION["signup.error"] = $lang['USER_ALREADY_EXISTS'];
+			header('Location: ../../../web/signup?type=business');
 		}
-        
-		$arr = array('success' => 'false', 'message' => $lang['USER_ALREADY_EXISTS']);
-		$_SESSION["signup.error"] = $lang['USER_ALREADY_EXISTS'];
-        header('Location: ../../../web/signup?type=business');
     }
 	
 	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$link,$lang){   	

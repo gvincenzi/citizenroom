@@ -22,6 +22,8 @@ session_start();
     
     <script type="text/javascript">   
 		function validateForm(){
+			$(signupError).remove();
+			
 			if($( "input:checked" ).length<1){
 				$(signupAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['CONDITIONS'] ?>');
 				$(privacy).parent().css('color', 'red');
@@ -39,7 +41,7 @@ session_start();
 				return false;
 			}
 			
-			if(!($(mail).val() == $(mailCheck).val())){
+			if(($(mail).val() == $(mailCheck).val()) == false){
 				$(signupAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
 				$(mailCheck).css('border-color', 'red');
 				return false;
@@ -61,7 +63,8 @@ session_start();
       	<hr>
 		<?php
 			if(isset($_SESSION["signup.error"])){
-            	print '<div class="alert alert-danger">'.$_SESSION["signup.error"].'</div>';
+            	print '<div id="signupError" class="alert alert-danger">'.$_SESSION["signup.error"].'</div>';
+				unset($_SESSION["signup.error"]);
             }
         ?>
 		<div id='signupAlert'></div>
@@ -82,6 +85,8 @@ session_start();
 				<input type="checkbox" id="privacy"> <?php print $lang['CONDITIONS_PRIVACY']?></input> <br>
 			</label>
 		</div>
+		<div align="right"><a href="#" onclick="window.open('../login?type=business','_self')" style="color:darkgray"><small><?php print $lang['LOGIN']?></small></a></div>
+		<br>
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->

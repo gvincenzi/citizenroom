@@ -13,7 +13,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v7.js"></script>
+	<script src="../assets/js/jitsi_v8.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -64,6 +64,7 @@ include_once '../actionInSession.php';
 		<button id='btnCustomTileView'><?php print $lang['btnCustomTileView']?></button>
 		<button id='btnScreenShareCustomOn'><?php print $lang['btnScreenShareCustomOn']?></button>
 		<button id='btnScreenShareCustomOff' style="display: none;"><?php print $lang['btnScreenShareCustomOff']?></button>
+		<button id='btnMuteEveryone'><?php print $lang['btnMuteEveryone']?></button>
 		<button id='btnInvitation'><?php print $lang['btnInvitation']?></button>
 		<button id='btnLeave'><?php print $lang['btnLeave']?></button>
 		<?php if(isset($_SESSION['user_stream_key']) && $_SESSION['user_stream_key']!=''){

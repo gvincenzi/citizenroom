@@ -7,6 +7,9 @@ function BindEvent(roomNumber,nickname,password,serial,stream_key){
 	$("#btnCustomMicOff").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
+	$("#btnMuteEveryone").on('click', function () {
+        apiObj.executeCommand('muteEveryone');
+    });
     $("#btnCustomCameraOn").on('click', function () {
         apiObj.executeCommand('toggleVideo');
     });
@@ -105,7 +108,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
             SHOW_WATERMARK_FOR_GUESTS: false,
 			LANG_DETECTION: true,
             DEFAULT_REMOTE_DISPLAY_NAME: 'New User',
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen']
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera']
         },
         onload: function () {
             //alert('loaded');

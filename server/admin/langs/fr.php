@@ -26,16 +26,16 @@ $lang['ROOM_PASSWORD']="Mot de passe de salle";
 $lang['JOINING']="Vous rejoignez la salle...";
 $lang['btnCustomMicOn']="Activer mic";
 $lang['btnCustomCameraOn']="Activer camera";
-$lang['btnChatOn']="Activer fenêtre de chat";
+$lang['btnChatOn']="Activer chat";
 $lang['btnCustomTileView']="Vue participants";
 $lang['btnScreenShareCustomOn']="Activer partage écran";
 $lang['btnStreamOn']="Activer live stream";
 $lang['btnInvitation']="Copier le lien d'invitation";
 $lang['btnLeave']="Quitter la salle";
-
+$lang['btnMuteEveryone']="Désactiver mic pour tous";
 $lang['btnCustomMicOff']="Désactiver mic";
 $lang['btnCustomCameraOff']="Désactiver camera";
-$lang['btnChatOff']="Désactiver fenêtre de chat";
+$lang['btnChatOff']="Désactiver chat";
 $lang['btnScreenShareCustomOff']="Désactiver partage écran";
 $lang['btnStreamOff']="Désactiver live stream";
 

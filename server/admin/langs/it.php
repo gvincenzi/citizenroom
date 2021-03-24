@@ -32,7 +32,7 @@ $lang['btnScreenShareCustomOn']="Attiva condivisione schermo";
 $lang['btnStreamOn']="Attiva live stream";
 $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
-
+$lang['btnMuteEveryone']="Disattiva mic a tutti";
 $lang['btnCustomMicOff']="Disattiva mic";
 $lang['btnCustomCameraOff']="Disattiva camera";
 $lang['btnChatOff']="Disattiva chat";

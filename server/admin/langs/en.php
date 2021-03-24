@@ -32,7 +32,7 @@ $lang['btnScreenShareCustomOn']="Start sharing your screen";
 $lang['btnStreamOn']="Start live stream";
 $lang['btnInvitation']="Copy in clipboard invitation link";
 $lang['btnLeave']="Leave the room";
-
+$lang['btnMuteEveryone']="Mute everyone";
 $lang['btnCustomMicOff']="Turn off mic";
 $lang['btnCustomCameraOff']="Turn off camera";
 $lang['btnChatOff']="Hide chat";
@@ -57,13 +57,13 @@ $lang['MANDATORY_ERROR']="Surname and Name are mandatory";
 $lang['PASSWORD']="Password";
 $lang['PASSWORD_CONFIRM']="Confirm password";
 $lang['PASSWORD_CONFIRM_ERROR']="Passwords don't match";
-$lang['CONDITIONS']="Please check all conditions to signup A23";
+$lang['CONDITIONS']="Please check all conditions to signup";
 $lang['CONDITIONS_PRIVACY']="I have read and agreed to the <a href='../privacy' target='_blank'>General Terms and Privacy Policy <small>(italian)</small></a>";
 
 /* PASSWORD_RESET */
 $lang['PASSWORD_RESET']="Insert your mail to reset your password";
 $lang['PASSWORD_RESET_OK']="A mail has been sent to your address with a new password automatically generated";
-$lang['PASSWORD_RESET_ERROR']="Your mail does not exist in A23 database";
+$lang['PASSWORD_RESET_ERROR']="Your mail does not exist in database";
 $lang['PASSWORD_RESET_BUTTON']="Reset your password";
 
 /* DASHBOARD */

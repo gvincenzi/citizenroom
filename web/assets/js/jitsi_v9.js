@@ -52,6 +52,16 @@ function BindEvent(roomNumber,nickname,password,serial,stream_key){
 		}
 		alert("Invitation link copied in clipboard");
     });
+	$("#btnLobbyOn").on('click', function () {
+        apiObj.executeCommand('toggleLobby',true);
+		$("#btnLobbyOn").hide();
+		$("#btnLobbyOff").show();
+    });
+	$("#btnLobbyOff").on('click', function () {
+        apiObj.executeCommand('toggleLobby', false);
+		$("#btnLobbyOn").show();
+		$("#btnLobbyOff").hide();
+    });
 	$("#btnLiveInvitation").on('click', function () {
 		copyToClipboard(window.location.href.replaceAll("/live", "/invitation")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial+"&room_type=live");
 		alert("Invitation link for Live Streaming copied in clipboard");
@@ -78,7 +88,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
 	} else {
 		roomName = 'CitizenRoom' + roomNumber;
 	}
-    console.info("roomName:"+roomName);
+    // console.info("roomName:"+roomName);
     const options = {
         roomName: roomName,
         width: '100%',
@@ -95,7 +105,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
             startWithAudioMuted: true,
             enableWelcomePage: false,
             prejoinPageEnabled: false,
-            disableRemoteMute: true,
+            disableRemoteMute: false,
 			defaultLanguage: 'en',
             remoteVideoMenu: {
                 disableKick: false
@@ -107,11 +117,10 @@ function StartMeeting(roomNumber,nickname,password,serial){
             SHOW_JITSI_WATERMARK: false,
             SHOW_WATERMARK_FOR_GUESTS: false,
 			LANG_DETECTION: true,
-            DEFAULT_REMOTE_DISPLAY_NAME: 'New User',
+            DEFAULT_REMOTE_DISPLAY_NAME: 'New Participant',
             TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera']
         },
         onload: function () {
-            //alert('loaded');
             $('#joinMsg').hide();
             $('#container').show();
             $('#toolbox').show();
@@ -120,13 +129,6 @@ function StartMeeting(roomNumber,nickname,password,serial){
     apiObj = new JitsiMeetExternalAPI(domain, options);
 		
     apiObj.addEventListeners({
-		/*participantRoleChanged: function (event) {
-			console.info(event);
-			if(event.role == 'moderator') {
-				apiObj.executeCommand('toggleLobby', true);
-			}
-		},*/
-		
 		// set new password for channel
 		participantRoleChanged: function(event) {
 			if (event.role === "moderator") {
@@ -175,7 +177,8 @@ function StartMeeting(roomNumber,nickname,password,serial){
 			}
 			
 			if(data.unreadCount > 0){
-                $("#btnChat").css('color', 'red');
+                $("#btnChatOn").css('color', 'red');
+				$("#btnChatOff").css('color', 'red');
 				if(data.unreadCount == 1)
 				notifyMe('New message received');
 			}
@@ -200,10 +203,11 @@ function StartMeeting(roomNumber,nickname,password,serial){
         },
         participantLeft: function(data){
             console.log('participantLeft', data);
+			notifyMe(data.displayName+" left the room")
         }
     });
 
-    apiObj.executeCommand('subject', 'Citizen Room Conference');
+    apiObj.executeCommand('subject', 'CitizenRoom Conference');
 }
 
 	function notifyMe(text) {

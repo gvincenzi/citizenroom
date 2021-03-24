@@ -48,7 +48,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   <body>   
   <?php include '../header.php';?> 
     <div class="container">
-      <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
+      <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php" autocomplete="off">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
       	<div id='callbackMessage'></div>
@@ -68,14 +68,14 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <div class="form-group">
 			<?php 
 				if(isset($_GET['type']) && $_GET['type']=='business'){
-					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID'>";
+					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
 				}
 			?>
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
-			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
+			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
 			<?php 
 				if(isset($_GET['type']) && $_GET['type']=='business'){
-					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['ROOM_PASSWORD']."'>";
+					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['ROOM_PASSWORD']."' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
 				}
 			?>
         </div>

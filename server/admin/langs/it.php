@@ -24,22 +24,22 @@ $lang['ROOM_PASSWORD']="Password stanza";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
-$lang['btnCustomMicOn']="Attiva mic";
-$lang['btnCustomCameraOn']="Attiva camera";
-$lang['btnChatOn']="Attiva chat";
+$lang['btnCustomMicOn']="Attivare mic";
+$lang['btnCustomCameraOn']="Attivare camera";
+$lang['btnChatOn']="Attivare chat";
 $lang['btnCustomTileView']="Vista partecipanti";
-$lang['btnScreenShareCustomOn']="Attiva condivisione schermo";
-$lang['btnStreamOn']="Attiva live stream";
-$lang['btnLobbyOn']="Attiva ingresso su richiesta";
+$lang['btnScreenShareCustomOn']="Attivare condivisione schermo";
+$lang['btnStreamOn']="Attivare live stream";
+$lang['btnLobbyOn']="Attivare ingresso su richiesta";
 $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
-$lang['btnMuteEveryone']="Disattiva mic a tutti";
-$lang['btnCustomMicOff']="Disattiva mic";
-$lang['btnCustomCameraOff']="Disattiva camera";
-$lang['btnChatOff']="Disattiva chat";
-$lang['btnScreenShareCustomOff']="Disattiva condivisione schermo";
-$lang['btnStreamOff']="Disattiva live stream";
-$lang['btnLobbyOff']="Disattiva ingresso su richiesta";
+$lang['btnMuteEveryone']="Disattivare mic a tutti";
+$lang['btnCustomMicOff']="Disattivare mic";
+$lang['btnCustomCameraOff']="Disattivare camera";
+$lang['btnChatOff']="Disattivare chat";
+$lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
+$lang['btnStreamOff']="Disattivare live stream";
+$lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 
 /* INVITE */
 $lang['INVITATION']="Sei stato invitato nella stanza #";

@@ -13,7 +13,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v6.js"></script>
+	<script src="../assets/js/jitsi_v10.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -79,7 +79,7 @@ include_once '../actionInSession.php';
 	<div id='toolbox' class='toolbox' style='display:none;'>
 		<h3>CitizenRoom Live#<?php echo $_SESSION['room_id']?></h3>
 		<?php if(isset($_SESSION['user_serial'])) echo '<h4>Partner ID #'.$_SESSION['user_serial'].'</h4>'?>
-		<button id='btnInvitation'><?php print $lang['btnInvitation']?></button>
+		<button id='btnInvitation'>Live : <?php print $lang['btnInvitation']?></button>
 		<button id='btnLeave'><?php print $lang['btnLeave']?></button>
 	</div>
 	<h4 id='joinMsg'></h4>

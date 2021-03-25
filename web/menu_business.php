@@ -13,7 +13,7 @@
                     	if(isset($_SESSION['nickname']) && isset($_SESSION['room_id'])){
                     		//print_r('<li class=""><a href="../../server/admin/left.php">'.$lang['LEFT'].'</a></li>');
                     	}else{
-                    		//print_r('<li class=""><a href="../../web/join?type=business">'.$lang['JOIN'].'</a></li>');
+                    		print_r('<li class=""><a href="../../web/join?type=business">'.$lang['JOIN'].'</a></li>');
                     	}
                     ?>
 					<?php 

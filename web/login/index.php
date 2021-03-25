@@ -85,5 +85,7 @@ if(isset($_SESSION['user'])){
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
       </form>      
     </div> <!-- /container -->
+	
+	<?php include '../footer.php';?> 
 </body>
 </html>

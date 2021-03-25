@@ -15,7 +15,7 @@
 		$stmt->execute(); 
 		mysqli_stmt_close($stmt);
 		session_destroy();
-		header('Location: ../../web/join?type=business');
+		header('Location: ../../web/login?type=business');
 	} else {
 		//Prepare the SQL statement, with ? to reflect the parameters to be supplied later.
 		$stmt->prepare("DELETE FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = 'PUBLIC'");

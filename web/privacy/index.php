@@ -6,7 +6,7 @@ include prefered_language ( $available_languages ) . '.php';
 session_start();
 ?>
 <head>
-	<meta charset="iso-8859-1">
+	<meta charset="utf8">
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">

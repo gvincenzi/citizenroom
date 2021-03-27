@@ -45,7 +45,7 @@ include_once '../actionInSession.php';
 				$.ajax({
 				  type: "GET",
 				  url: "../../server/service/api/API.php",
-				  data: { method: "logout" }
+				  data: { method: "left" }
 				})
 			});
         </script>

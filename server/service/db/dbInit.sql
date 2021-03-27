@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `citizenroom_business_room` (
   `room_id` int(10) NOT NULL,
   `serial` VARCHAR(6) NOT NULL,
   `title` VARCHAR(255) NULL,
+  `logo` VARCHAR(255) NULL,
   `password` varchar(255)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

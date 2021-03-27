@@ -25,21 +25,33 @@ session_start();
 			  data: { method: "rooms/get", serial: "<?php print $_SESSION['user_serial']?>" }
 			})
 			.done(function( msg ) {
-				console.info( msg );
+				//console.info( msg );
 				var rooms = JSON.parse(msg);
 				
 					$.each(rooms, function(i, item) {
-						var $tr = $('<tr>').append(
+						var $tr = $('<tr>');
+						
+						if(item.logo!='' && item.logo!=null){
+							$tr.append(
 							$('<td>').text(item.room_id),
 							$('<td>').text(item.password),
 							$('<td>').text(item.title.replace('\\','')),
-							$('<td>').html(
+							$('<td>').html('<img src="'+item.logo+'" style="height:35px"></img>'));
+						} else {
+							$tr.append(
+							$('<td>').text(item.room_id),
+							$('<td>').text(item.password),
+							$('<td>').text(item.title.replace('\\','')),
+							$('<td>').text('---'));
+						}
+						
+						$tr.append($('<td>').html(
 							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
 							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['ROOM_CHECK']?>' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.password+"','"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
-							)
-						).appendTo('#rooms-table tbody');
+							)).appendTo('#rooms-table tbody');
 					});
 			});
 		});
@@ -116,6 +128,31 @@ session_start();
 			});
 		}
 		
+		function checkRoom(room_id,serial){		
+			$.ajax({
+			  type: "GET",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "rooms/check", room_id: room_id, serial: serial }
+			})
+			.done(function( msg ) {
+				console.info( msg );
+				var subscriptions = JSON.parse(msg);
+					
+					var count = 0;
+					var participants='';
+					$.each(subscriptions, function(i, item) {
+						count++;
+						participants = ' - '+item.nickname+' - ';
+					});
+					
+					if(participants != ''){
+						alert('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+room_id+' <?php print $lang['ROOM_CHECK_PARTICIPANTS'] ?> ('+count+') : '+participants);
+					} else {
+						alert('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+room_id+'<?php print $lang['ROOM_CHECK_ROOM_EMPTY'] ?>');
+					}
+			});
+		}	
+		
     </script> 
 </head>
 
@@ -190,6 +227,7 @@ session_start();
 			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
 			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>"></input>
 			<input id="room_password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
+			<input id="room_logo" name="room_logo" type="text" class="form-control" placeholder="Logo URL"></input>
         </div>
 		<br>
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
@@ -215,6 +253,7 @@ session_start();
 			  <th scope="col"><?php print $lang['ROOM']?></th>
 			  <th scope="col"><?php print $lang['PASSWORD']?></th>
 			  <th scope="col"><?php print $lang['ROOM_TITLE']?></th>
+			  <th scope="col">Logo</th>
 			  <th scope="col"></th>
 			</tr>
 		  </thead>

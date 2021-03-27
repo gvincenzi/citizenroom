@@ -21,6 +21,11 @@ $lang['JOIN_ERROR']="Erreur lors de la connexion à la salle";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Numéro de salle";
 $lang['ROOM_PASSWORD']="Mot de passe de salle";
+$lang['ROOM_CHECK']="Y a-t-il quelqu'un?";
+$lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
+$lang['ROOM_CHECK_ROOM']="Salle#";
+$lang['ROOM_CHECK_ROOM_EMPTY']=" est disponible";
+$lang['JOIN_MANDATORY_ERROR']="Nickname et numéro de salle sont obligatoires";
 
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";

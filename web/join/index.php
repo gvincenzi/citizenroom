@@ -35,12 +35,47 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		    var callback = location.search.split('callback=')[1];
 		    if(callback!=null && callback!=''){
 			    if(callback=='ROOM_JOIN_ERROR'){
-				    $(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
+				    $(callbackMessage).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
 			    }
 		    }
 	    });	
+		
 		function validateJoinForm(){
+			if($(nickname).val()=='' || $(room_id).val()==''){
+				$(loginAlert).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
+				return false;
+			}
 			return true;
+		}	
+
+		function checkRoom(){
+			if($(room_id).val()==''){
+				$(loginAlert).addClass('alert').removeClass('alert-warning').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
+				return false;
+			}
+			
+			$.ajax({
+			  type: "GET",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "rooms/check", room_id: $(room_id).val() }
+			})
+			.done(function( msg ) {
+				console.info( msg );
+				var subscriptions = JSON.parse(msg);
+					
+					var count = 0;
+					var participants='';
+					$.each(subscriptions, function(i, item) {
+						count++;
+						participants = item.nickname+'<br>';
+					});
+					
+					if(participants != ''){
+						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+' <?php print $lang['ROOM_CHECK_PARTICIPANTS'] ?> ('+count+') :<br>'+participants);
+					} else {
+						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+'<?php print $lang['ROOM_CHECK_ROOM_EMPTY'] ?>');
+					}
+			});
 		}		
     </script>   
   </head>
@@ -52,6 +87,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
       	<div id='callbackMessage'></div>
+		<div id='loginAlert'></div>
       	</div>
       	<hr>
       	<?php
@@ -59,8 +95,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
             	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
             }
         ?>
-		<div id='loginAlert'></div>
-        
+		
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
         <input type="hidden" value="join" name="method" id="method">
@@ -72,7 +107,15 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				}
 			?>
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
-			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
+			<div style="display:flex">
+				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
+				
+				<?php 
+				if(!isset($_GET['type']) || $_GET['type']!='business'){
+					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
+				}
+				?>
+			</div>
 			<?php 
 				if(isset($_GET['type']) && $_GET['type']=='business'){
 					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['ROOM_PASSWORD']."' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
@@ -85,7 +128,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			}
 		?>
 		<br>
+		
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
+		
       </form>      
     </div> <!-- /container -->
 	

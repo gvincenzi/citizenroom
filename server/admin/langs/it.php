@@ -21,6 +21,11 @@ $lang['JOIN_ERROR']="Error joining the room";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Numero di stanza";
 $lang['ROOM_PASSWORD']="Password stanza";
+$lang['ROOM_CHECK']="C'è qualcuno?";
+$lang['ROOM_CHECK_PARTICIPANTS']="Partecipanti ";
+$lang['ROOM_CHECK_ROOM']="Stanza#";
+$lang['ROOM_CHECK_ROOM_EMPTY']=" è vuota";
+$lang['JOIN_MANDATORY_ERROR']="Nickname e numero della stanza sono obbligatori";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";

@@ -47,6 +47,7 @@ include_once '../actionInSession.php';
   <?php include '../header.php';?> 
 
   <div class="room">
+	<?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" style = "height:100px"></img>'?>
 	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3><hr/>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>

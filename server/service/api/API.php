@@ -17,6 +17,9 @@ if (isset($_REQUEST['method'] )){
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
 			}
 			break;
+		case 'rooms/check':
+			$api->checkRoom($_GET['room_id'], $_GET['serial'], $link);
+			break;
 		case 'subscription/check':
 			$api->checkSubscription($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $link);
 			break;
@@ -30,7 +33,7 @@ if (isset($_REQUEST['method'] )){
 			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $_REQUEST['channel_id'], $link, $lang);
 			break;
 		case 'rooms/add':
-			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $_REQUEST['room_title'], $link, $lang);
+			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $_REQUEST['room_title'], $_REQUEST['room_logo'], $link, $lang);
 			break;
 		case 'rooms/delete':
 			$api->roomsDelete($_REQUEST['room_id'], $_REQUEST['password'], $_REQUEST['serial'], $link, $lang);
@@ -70,6 +73,24 @@ class API{
 		}
 		
 		print json_encode($arr);
+	}
+	
+	public function checkRoom($room_id,$serial,$link){
+		if($serial == null || $serial==''){
+			$serial = 'PUBLIC';
+		}
+		$stmt = mysqli_stmt_init($link);
+		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.serial = ?");
+		
+		$stmt->bind_param('is', $room_id,$serial);
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+		}
+		
+		print json_encode($myArray);
 	}
 	
     public function join($nickname,$room_id,$link){	
@@ -133,6 +154,7 @@ class API{
 			
 			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 			$_SESSION['room_title'] = stripslashes($room['title']);
+			$_SESSION['room_logo'] = $room['logo'];
 			
 			if (!isset($_REQUEST['no_redirect'])){
 				if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
@@ -228,7 +250,7 @@ class API{
 		header('Location: ../../../web/dashboard?type=business');	
 	}
 	
-	public function roomsAdd($room_id,$password,$serial,$title,$link,$lang){   	
+	public function roomsAdd($room_id,$password,$serial,$title,$logo,$link,$lang){   	
 		$title = mysqli_real_escape_string($link, $title);
 		$password = mysqli_real_escape_string($link, $password);
 		
@@ -239,8 +261,8 @@ class API{
 		$result = $stmtCheck->get_result();
         if( mysqli_num_rows( $result ) == 0){
 			$stmtInsert = mysqli_stmt_init($link);
-			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `password`, `title`) VALUES (?,?,?,?)");
-			$stmtInsert->bind_param('isss', $room_id, $serial, $password, $title);
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `password`, `title`, `logo`) VALUES (?,?,?,?,?)");
+			$stmtInsert->bind_param('issss', $room_id, $serial, $password, $title, $logo);
 			$resultInsert = $stmtInsert->execute();
 
 			if($resultInsert==true){
@@ -255,8 +277,8 @@ class API{
 			
 		} else {
 			$stmtUpdate = mysqli_stmt_init($link);
-			$stmtUpdate->prepare("UPDATE citizenroom_business_room SET password = ?, title = ? WHERE room_id = ? AND serial = ?");
-			$stmtUpdate->bind_param('ssis', $password, $title, $room_id, $serial);
+			$stmtUpdate->prepare("UPDATE citizenroom_business_room SET password = ?, title = ?, logo = ? WHERE room_id = ? AND serial = ?");
+			$stmtUpdate->bind_param('sssis', $password, $title, $logo, $room_id, $serial);
 			$resultUpdate = $stmtUpdate->execute();
 			
 			if($resultUpdate==true){

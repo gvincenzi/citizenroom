@@ -21,6 +21,11 @@ $lang['JOIN_ERROR']="Error joining the room";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Room number";
 $lang['ROOM_PASSWORD']="Room password";
+$lang['ROOM_CHECK']="Is there anyone?";
+$lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
+$lang['ROOM_CHECK_ROOM']="Room#";
+$lang['ROOM_CHECK_ROOM_EMPTY']=" is empty";
+$lang['JOIN_MANDATORY_ERROR']="Nickname and room number are mandatory";
 
 /* ROOM */
 $lang['JOINING']="You are joining the room...";

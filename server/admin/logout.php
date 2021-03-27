@@ -7,6 +7,6 @@ session_start();
 session_destroy();
 
 // Jump to login page
-header('Location: ../../web/join?type=business');
+header('Location: ../../web/login?type=business');
 
 ?>

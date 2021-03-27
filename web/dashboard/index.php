@@ -48,7 +48,7 @@ session_start();
 						$tr.append($('<td>').html(
 							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
 							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"','"+item.logo+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' title='<?php print $lang['ROOM_CHECK']?>' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.password+"','"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
 							)).appendTo('#rooms-table tbody');
@@ -111,10 +111,11 @@ session_start();
 			$temp.remove();
 		}
 		
-		function fillRoomData(id,password,title){
+		function fillRoomData(id,password,title,logo){
 			$(room_id).val(id);
 			$(room_password).val(password);
 			$(room_title).val(title);
+			$(room_logo).val(logo);
 		}
 		
 		function joinRoom(room_id,password,serial,nickname){

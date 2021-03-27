@@ -150,7 +150,7 @@ class API{
 			$_SESSION['room_id'] = $room_id;
 			$_SESSION['nickname'] = $nickname;
 			$_SESSION['password'] = $password;
-			$_SESSION['user_serial'] = $serial;
+			$_SESSION['serial'] = $serial;
 			
 			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 			$_SESSION['room_title'] = stripslashes($room['title']);

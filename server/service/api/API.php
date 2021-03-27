@@ -44,6 +44,9 @@ if (isset($_REQUEST['method'] )){
 		case 'rooms/get/id':
 			$api->roomsGetById($_REQUEST['serial'], $_REQUEST['room_id'], $link);
 			break;
+		case 'logout':
+			$api->logout($link);
+			break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -358,6 +361,26 @@ class API{
 	
 	public function roomsGetById($serial,$room_id,$link){ 
 		print json_encode($this->roomsGetByIdInternal($serial,$room_id,$link));
+	}
+	
+	public function logout($link){
+		$stmt = mysqli_stmt_init($link);
+		if(isset($_SESSION['user_serial']) && $_SESSION['user_serial']!=''){
+			//Prepare the SQL statement, with ? to reflect the parameters to be supplied later.
+			$stmt->prepare("DELETE FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
+			// Bind parameters (an integer and a string). 'is' tells MySQL you're passing an integer(i) and a string(s)
+			$stmt->bind_param('iss',$_SESSION['room_id'],$_SESSION['nickname'],$_SESSION['user_serial']);
+			
+		} else {
+			//Prepare the SQL statement, with ? to reflect the parameters to be supplied later.
+			$stmt->prepare("DELETE FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = 'PUBLIC'");
+			// Bind parameters (an integer and a string). 'is' tells MySQL you're passing an integer(i) and a string(s)
+			$stmt->bind_param('is',$_SESSION['room_id'],$_SESSION['nickname']);
+		}
+		
+		$stmt->execute(); 
+		mysqli_stmt_close($stmt);
+		session_destroy();
 	}
 }
 ?>

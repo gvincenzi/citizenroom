@@ -40,6 +40,14 @@ include_once '../actionInSession.php';
 						
 				});
 			});
+			
+			$(window).on("beforeunload", function() { 
+				$.ajax({
+				  type: "GET",
+				  url: "../../server/service/api/API.php",
+				  data: { method: "logout" }
+				})
+			});
         </script>
 </head>
 

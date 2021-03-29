@@ -44,8 +44,8 @@ if (isset($_REQUEST['method'] )){
 		case 'rooms/get/id':
 			$api->roomsGetById($_REQUEST['serial'], $_REQUEST['room_id'], $link);
 			break;
-		case 'logout':
-			$api->logout($link);
+		case 'left':
+			$api->left($link);
 			break;
 	}
 }else {
@@ -68,7 +68,7 @@ class API{
 			unset($_SESSION['room_id']);
 			unset($_SESSION['nickname']);
 			unset($_SESSION['password']);
-			unset($_SESSION['user_serial']);
+			unset($_SESSION['serial']);
 			
 			$arr = array('success' => 'false', 'message' => 'Subscription does not exist');
 		} else {
@@ -363,7 +363,7 @@ class API{
 		print json_encode($this->roomsGetByIdInternal($serial,$room_id,$link));
 	}
 	
-	public function logout($link){
+	public function left($link){
 		$stmt = mysqli_stmt_init($link);
 		if(isset($_SESSION['user_serial']) && $_SESSION['user_serial']!=''){
 			//Prepare the SQL statement, with ? to reflect the parameters to be supplied later.
@@ -380,7 +380,13 @@ class API{
 		
 		$stmt->execute(); 
 		mysqli_stmt_close($stmt);
-		session_destroy();
+		
+		unset($_SESSION['room_id']);
+		unset($_SESSION['nickname']);
+		unset($_SESSION['password']);
+		unset($_SESSION['serial']);
+		unset($_SESSION['room_title']);
+		unset($_SESSION['room_logo']);
 	}
 }
 ?>

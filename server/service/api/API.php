@@ -20,6 +20,12 @@ if (isset($_REQUEST['method'] )){
 		case 'rooms/check':
 			$api->checkRoom($_GET['room_id'], $_GET['serial'], $link);
 			break;
+		case 'rooms/key':
+			$api->key($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $link);
+			break;
+		case 'rooms/wait':
+			$api->wait($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['wait'], $link);
+			break;
 		case 'subscription/check':
 			$api->checkSubscription($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $link);
 			break;
@@ -54,6 +60,50 @@ if (isset($_REQUEST['method'] )){
 }
 
 class API{	
+	public function key($nickname,$room_id,$serial,$link){
+		if($serial == null || $serial==''){
+			$serial = 'PUBLIC';
+		}
+		
+		$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
+		while($room['wait']){
+			sleep(3);
+			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
+		}
+		
+		$key = md5($nickname.$room_id.$serial.$room['jitsi_password']);
+			
+		$stmtUpdate = mysqli_stmt_init($link);
+		$stmtUpdate->prepare("UPDATE citizenroom_business_room SET jitsi_password = ? WHERE room_id = ? AND serial = ?");
+		$stmtUpdate->bind_param('sis', $key, $room_id, $serial);
+		$resultUpdate = $stmtUpdate->execute();
+		
+		$arr = array('success' => $resultUpdate);
+		mysqli_free_result($resultUpdate);
+		mysqli_stmt_close($stmtUpdate);
+		
+		$this->wait($room_id,$serial,false,$link);
+		
+		print json_encode($arr);
+	}
+	
+	public function wait($room_id,$serial,$wait,$link){
+		if($serial == null || $serial==''){
+			$serial = 'PUBLIC';
+		}
+			
+		$stmtUpdate = mysqli_stmt_init($link);
+		$stmtUpdate->prepare("UPDATE citizenroom_business_room SET wait = ? WHERE room_id = ? AND serial = ?");
+		$stmtUpdate->bind_param('iis', $wait, $room_id, $serial);
+		$resultUpdate = $stmtUpdate->execute();
+		
+		$arr = array('success' => $resultUpdate);
+		mysqli_free_result($resultUpdate);
+		mysqli_stmt_close($stmtUpdate);
+		
+		print json_encode($arr);
+	}
+
 	public function checkSubscription($nickname,$room_id,$serial,$link){
 		if($serial == null || $serial==''){
 			$serial = 'PUBLIC';

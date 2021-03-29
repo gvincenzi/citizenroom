@@ -6,6 +6,7 @@ include_once '../actionInSession.php';
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
@@ -13,7 +14,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v10.js"></script>
+	<script src="../assets/js/jitsi_v11.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -27,17 +28,23 @@ include_once '../actionInSession.php';
 				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['serial']?>" }
 				})
 				.done(function( msg ) {
-					console.info( msg );
 					var check = JSON.parse(msg);
 					if(check.success == 'true'){
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
 						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['user_stream_key']?>');
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
-					} else {
-						$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
-					}
 						
+						$.ajax({
+						  type: "POST",
+						  url: "../../server/service/api/API.php",
+						  data: { method: "rooms/get/id", serial: "<?php print $_SESSION['serial']?>", room_id: "<?php print $_SESSION['room_id']?>" }
+						}).done(function( msg ) {
+							var room = JSON.parse(msg);
+							StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',room.jitsi_password,'<?php echo $_SESSION['serial']?>');
+							})
+						} else {
+							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
+						}	
 				});
 			});
 			

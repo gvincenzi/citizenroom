@@ -1,6 +1,6 @@
 var apiObj = null;
 var newPassword = null;
-function BindEvent(roomNumber,nickname,password,serial,stream_key){
+function BindEvent(roomNumber,nickname,serial,stream_key){
     $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -46,7 +46,7 @@ function BindEvent(roomNumber,nickname,password,serial,stream_key){
     });
 	$("#btnInvitation").on('click', function () {
 		if(serial != null && serial != ""){
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial);
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&serial="+serial);
 		}  else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}

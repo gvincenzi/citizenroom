@@ -75,7 +75,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <input type="hidden" value="join" name="method" id="method">
 		<input type="hidden" value="<?php print $_GET['room_type']?>" name="room_type" id="room_type">
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
-		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
 		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
         
         <div class="form-group">

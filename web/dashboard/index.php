@@ -34,23 +34,21 @@ session_start();
 						if(item.logo!='' && item.logo!=null){
 							$tr.append(
 							$('<td>').text(item.room_id),
-							$('<td>').text(item.password),
 							$('<td>').text(item.title.replace('\\','')),
 							$('<td>').html('<img src="'+item.logo+'" style="height:35px"></img>'));
 						} else {
 							$tr.append(
 							$('<td>').text(item.room_id),
-							$('<td>').text(item.password),
 							$('<td>').text(item.title.replace('\\','')),
 							$('<td>').text('---'));
 						}
 						
 						$tr.append($('<td>').html(
-							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
-							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.password+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.password+"','"+item.title+"','"+item.logo+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
+							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' title='<?php print $lang['ROOM_CHECK']?>' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.password+"','"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
+							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
 							)).appendTo('#rooms-table tbody');
 					});
 			});
@@ -83,20 +81,20 @@ session_start();
 			return true;
 		}
 		
-		function deleteRoom(room_id,password,serial){
+		function deleteRoom(room_id,serial){
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",
-			  data: { method: "rooms/delete", room_id: room_id, password: password, serial: serial }
+			  data: { method: "rooms/delete", room_id: room_id, serial: serial }
 			})
 			.done(function( msg ) {
 				location.reload();
 			});
 		}
 		
-		function invitationRoom(room_id,password,serial){
+		function invitationRoom(room_id,serial){
 			if(serial != null && serial != ""){
-				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&password="+password+"&serial="+serial);
+				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&serial="+serial);
 			}  else {
 				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"?room_id="+room_id);
 			}
@@ -111,18 +109,17 @@ session_start();
 			$temp.remove();
 		}
 		
-		function fillRoomData(id,password,title,logo){
+		function fillRoomData(id,title,logo){
 			$(room_id).val(id);
-			$(room_password).val(password);
 			$(room_title).val(title);
 			$(room_logo).val(logo);
 		}
 		
-		function joinRoom(room_id,password,serial,nickname){
+		function joinRoom(room_id,serial,nickname){
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",
-			  data: { method: "join", room_id: room_id, password: password, serial: serial, nickname: nickname, no_redirect:'true' }
+			  data: { method: "join", room_id: room_id, serial: serial, nickname: nickname, no_redirect:'true' }
 			})
 			.done(function( msg ) {
 				window.open(location.href.replaceAll("/dashboard/", "/room/"), '_self');
@@ -227,7 +224,6 @@ session_start();
         <div class="form-group">
 			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
 			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>"></input>
-			<input id="room_password" name="password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
 			<input id="room_logo" name="room_logo" type="text" class="form-control" placeholder="Logo URL"></input>
         </div>
 		<br>

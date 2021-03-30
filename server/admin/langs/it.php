@@ -101,4 +101,6 @@ $lang['ROOM_TICKET_ADD_OK']="Biglietto creato correttamente";
 $lang['ROOM_TICKET_ADD_ERROR']="Errore durante la creazione del biglietto";
 $lang['ROOM_TICKET_DELETE_OK']="Biglietto cancellato con successo";
 $lang['TICKET_JOIN_ERROR']="Non hai un biglietto valido per entrare nella stanza";
+$lang['ROOM_TICKET_VALIDATION_OK']="è entrato nella stanza";
+$lang['ROOM_TICKET_VALIDATION_FAILED']="è entrato nella stanza senza biglietto valido";
 ?>

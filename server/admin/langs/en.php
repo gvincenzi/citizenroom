@@ -101,4 +101,6 @@ $lang['ROOM_TICKET_ADD_OK']="Ticket correctly added";
 $lang['ROOM_TICKET_ADD_ERROR']="Error during ticket add";
 $lang['ROOM_TICKET_DELETE_OK']="Ticket correctly removed";
 $lang['TICKET_JOIN_ERROR']="You do not have a valid ticket to join the room";
+$lang['ROOM_TICKET_VALIDATION_OK']="joined the room";
+$lang['ROOM_TICKET_VALIDATION_FAILED']="joined the room without a valid ticket";
 ?>

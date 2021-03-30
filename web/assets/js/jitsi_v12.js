@@ -139,14 +139,15 @@ function StartMeeting(roomNumber,nickname,password,serial){
 				}).done(function( msg ) {
 							newPassword = CryptoJS.MD5(nickname+roomNumber+serial+password).toString();
 							//console.info("participantRoleChanged : " + newPassword + " < " + nickname+roomNumber+serial+password);
-							apiObj.executeCommand('password', newPassword);
 							
 							// Mining new block in BE
 							$.ajax({
 							  type: "POST",
 							  url: "../../server/service/api/API.php",
 							  data: { method: "rooms/hash", nickname: nickname, room_id: roomNumber, serial: serial, previous_hash: password }
-							})
+							}).done(function( msg ) {
+								apiObj.executeCommand('password', newPassword);
+							});
 					})
 				
 			}
@@ -217,7 +218,19 @@ function StartMeeting(roomNumber,nickname,password,serial){
         },
         participantJoined: function(data){
             //console.log('participantJoined', data);
-			notifyMe(data.displayName+" joined the room")
+			setTimeout(
+			  function() 
+			  {
+				$.ajax({
+				  type: "POST",
+				  url: "../../server/service/api/API.php",
+				  data: { method: "rooms/ticket/validate", nickname: data.displayName, room_id: roomNumber, serial: serial }
+				}).done(function( msg ) {
+					var validation = JSON.parse(msg);
+					console.info(validation);
+					notifyMe(validation.message);
+				});
+			  }, 5000);
         },
         participantLeft: function(data){
             //console.log('participantLeft', data);

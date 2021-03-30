@@ -62,6 +62,9 @@ if (isset($_REQUEST['method'] )){
 		case 'rooms/ticket/delete':
 			$api->ticketDelete($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link);
 			break;
+		case 'rooms/ticket/validate':
+			$api->ticketValidate($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link, $lang);
+			break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -565,7 +568,7 @@ class API{
 		mysqli_stmt_close($stmtCheckIsWithTicket);
 		mysqli_free_result($resultCheck);
 		mysqli_stmt_close($stmtCheck);
-		return  $withoutTicket || $hasValidTicket;
+		return $withoutTicket || $hasValidTicket;
 	}
 	
 	public function validTicket($serial,$room_id,$nickname,$link){ 	
@@ -573,6 +576,28 @@ class API{
 		$stmtUpdate->prepare("UPDATE citizenroom_business_room_ticket SET used = 1 WHERE room_id = ? AND serial = ? AND nickname = ?");
 		$stmtUpdate->bind_param('iss', $room_id, $serial, $nickname);
 		return $stmtUpdate->execute();
+	}
+	
+	public function ticketValidate($room_id,$serial,$nickname,$link,$lang){ 		
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND used = 1");
+		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtCheck->execute();
+		$resultCheck = $stmtCheck->get_result();
+		if(mysqli_num_rows( $resultCheck ) == 0){
+			$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+		} else {
+			while($row = $resultCheck->fetch_array(MYSQLI_BOTH)){
+				$hashToCheck = md5($nickname.$room_id.$serial.((string)$row['previousHash']));
+				if($hashToCheck == (string)$row['hash']){
+					$arr = array('success' => 'true', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_OK']);
+				} else {
+					$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+				}
+			}
+		}
+     
+        print json_encode($arr);
 	}
 }
 ?>

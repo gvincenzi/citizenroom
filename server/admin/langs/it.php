@@ -89,8 +89,16 @@ $lang['USER_ALREADY_EXISTS']="Utente già esistente";
 $lang['USER_UPDATE_OK']="Aggiornamento dell'utente realizzato con successo";
 
 $lang['ROOM_ADD_OK']="Stanza creata correttamente";
-$lang['ROOM_ADD_ERROR']="Errore durante la creazione dea stanza";
+$lang['ROOM_ADD_ERROR']="Errore durante la creazione della stanza";
 $lang['ROOM_DELETE_OK']="Chiusura della stanza realizzata con successo";
 $lang['ROOM_DELETE_ERROR']="Errore durante la chiusura della stanza";
 $lang['ROOM_NOT_FOUND']="La stanza non è presente";
+
+/* DASHBOARD TICKET */
+$lang['NEW_TICKET']="Emetti un biglietto";
+$lang['ROOM_TICKET_LIST']="Lista dei biglietti";
+$lang['ROOM_TICKET_ADD_OK']="Biglietto creato correttamente";
+$lang['ROOM_TICKET_ADD_ERROR']="Errore durante la creazione del biglietto";
+$lang['ROOM_TICKET_DELETE_OK']="Biglietto cancellato con successo";
+$lang['TICKET_JOIN_ERROR']="Non hai un biglietto valido per entrare nella stanza";
 ?>

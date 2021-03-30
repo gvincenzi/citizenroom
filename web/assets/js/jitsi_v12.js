@@ -145,7 +145,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
 							$.ajax({
 							  type: "POST",
 							  url: "../../server/service/api/API.php",
-							  data: { method: "rooms/key", nickname: nickname, room_id: roomNumber, serial: serial }
+							  data: { method: "rooms/hash", nickname: nickname, room_id: roomNumber, serial: serial, previous_hash: password }
 							})
 					})
 				

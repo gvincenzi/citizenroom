@@ -20,8 +20,8 @@ if (isset($_REQUEST['method'] )){
 		case 'rooms/check':
 			$api->checkRoom($_GET['room_id'], $_GET['serial'], $link);
 			break;
-		case 'rooms/key':
-			$api->key($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $link);
+		case 'rooms/hash':
+			$api->hash($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['previous_hash'], $link);
 			break;
 		case 'rooms/wait':
 			$api->wait($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['wait'], $link);
@@ -53,6 +53,15 @@ if (isset($_REQUEST['method'] )){
 		case 'left':
 			$api->left($link);
 			break;
+		case 'rooms/ticket/get':
+			$api->ticketGet($_REQUEST['serial'], $_REQUEST['room_id'], $link);
+			break;
+		case 'rooms/ticket/add':
+			$api->ticketAdd($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link);
+			break;
+		case 'rooms/ticket/delete':
+			$api->ticketDelete($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link);
+			break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -60,7 +69,7 @@ if (isset($_REQUEST['method'] )){
 }
 
 class API{	
-	public function key($nickname,$room_id,$serial,$link){
+	public function hash($nickname,$room_id,$serial,$previousHash,$link){
 		if($serial == null || $serial==''){
 			$serial = 'PUBLIC';
 		}
@@ -71,15 +80,20 @@ class API{
 			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 		}
 		
-		$key = md5($nickname.$room_id.$serial.$room['jitsi_password']);
+		$hash = md5($nickname.$room_id.$serial.$room['jitsi_password']);
 			
 		$stmtUpdate = mysqli_stmt_init($link);
 		$stmtUpdate->prepare("UPDATE citizenroom_business_room SET jitsi_password = ? WHERE room_id = ? AND serial = ?");
-		$stmtUpdate->bind_param('sis', $key, $room_id, $serial);
-		$resultUpdate = $stmtUpdate->execute();
+		$stmtUpdate->bind_param('sis', $hash, $room_id, $serial);
+		$stmtUpdate->execute();
+		
+		$stmtUpdateTicket = mysqli_stmt_init($link);
+		$stmtUpdateTicket->prepare("UPDATE citizenroom_business_room_ticket SET hash = ?, previousHash = ? WHERE room_id = ? AND serial = ? AND nickname = ?");
+		$stmtUpdateTicket->bind_param('ssiss', $hash, $previousHash, $room_id, $serial, $nickname);
+		$stmtUpdateTicket->execute();
 		
 		
-		mysqli_free_result($resultUpdate);
+		mysqli_stmt_close($stmtUpdateTicket);
 		mysqli_stmt_close($stmtUpdate);
 		
 		$this->wait($room_id,$serial,false,$link);
@@ -172,44 +186,51 @@ class API{
 	public function joinBusiness($nickname,$room_id,$serial,$link){	
 		$nickname = mysqli_real_escape_string($link, $nickname);
 		
-		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
-		$stmtCheck->bind_param('is', $room_id, $serial);
-		$stmtCheck->execute();
-		$result = $stmtCheck->get_result();
-        if( mysqli_num_rows( $result ) == 0){
-			header('Location: ../../../web/join?callback=ROOM_JOIN_ERROR');
+		if(!$this->nicknameHasValidTicket($serial,$room_id,$nickname,$link)){
+			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR');
 		} else {
-			$stmt = mysqli_stmt_init($link);
-			$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
-			$stmt->bind_param('iss',$room_id,$nickname,$serial);
-			$stmt->execute(); 
-			$result = $stmt->get_result();
+			
+			$this->validTicket($serial,$room_id,$nickname,$link);
+			
+			$stmtCheck = mysqli_stmt_init($link);
+			$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
+			$stmtCheck->bind_param('is', $room_id, $serial);
+			$stmtCheck->execute();
+			$result = $stmtCheck->get_result();
 			if( mysqli_num_rows( $result ) == 0){
-				$stmtInsert = mysqli_stmt_init($link);
-				$stmtInsert->prepare("INSERT INTO citizenroom_subscription (room_id,nickname,serial) VALUES (?,?,?)");
-				$stmtInsert->bind_param('iss',$room_id,$nickname,$serial);
-				$stmtInsert->execute();
-				
-				mysqli_stmt_close($stmtInsert);
-			}
-
-			mysqli_free_result($result);
-			mysqli_stmt_close($stmt);
+				header('Location: ../../../web/join?callback=ROOM_JOIN_ERROR');
+			} else {
+				$stmt = mysqli_stmt_init($link);
+				$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
+				$stmt->bind_param('iss',$room_id,$nickname,$serial);
+				$stmt->execute(); 
+				$result = $stmt->get_result();
+				if( mysqli_num_rows( $result ) == 0){
+					$stmtInsert = mysqli_stmt_init($link);
+					$stmtInsert->prepare("INSERT INTO citizenroom_subscription (room_id,nickname,serial) VALUES (?,?,?)");
+					$stmtInsert->bind_param('iss',$room_id,$nickname,$serial);
+					$stmtInsert->execute();
 					
-			$_SESSION['room_id'] = $room_id;
-			$_SESSION['nickname'] = $nickname;
-			$_SESSION['serial'] = $serial;
-			
-			$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
-			$_SESSION['room_title'] = stripslashes($room['title']);
-			$_SESSION['room_logo'] = $room['logo'];
-			
-			if (!isset($_REQUEST['no_redirect'])){
-				if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
-					header('Location: ../../../web/live?type=business');
-				} else {
-					header('Location: ../../../web/room?type=business');
+					mysqli_stmt_close($stmtInsert);
+				}
+
+				mysqli_free_result($result);
+				mysqli_stmt_close($stmt);
+						
+				$_SESSION['room_id'] = $room_id;
+				$_SESSION['nickname'] = $nickname;
+				$_SESSION['serial'] = $serial;
+				
+				$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
+				$_SESSION['room_title'] = stripslashes($room['title']);
+				$_SESSION['room_logo'] = $room['logo'];
+				
+				if (!isset($_REQUEST['no_redirect'])){
+					if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
+						header('Location: ../../../web/live?type=business');
+					} else {
+						header('Location: ../../../web/room?type=business');
+					}
 				}
 			}
 		}
@@ -309,7 +330,7 @@ class API{
 		$result = $stmtCheck->get_result();
         if( mysqli_num_rows( $result ) == 0){
 			$stmtInsert = mysqli_stmt_init($link);
-			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `title`, `logo`) VALUES (?,?,?,?)");
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `title`, `logo`, `jitsi_password`) VALUES (?,?,?,?, 'GENESIS')");
 			$stmtInsert->bind_param('isss', $room_id, $serial, $title, $logo);
 			$resultInsert = $stmtInsert->execute();
 
@@ -360,7 +381,12 @@ class API{
 			$stmtDeleteSubs->bind_param('is', $room_id, $serial);
 			$resultDeleteSubs = $stmtDeleteSubs->execute();
 			
-			if($resultDelete==true && $resultDeleteSubs==true){
+			$stmtDeleteTickets = mysqli_stmt_init($link);
+			$stmtDeleteTickets->prepare("DELETE FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ?");
+			$stmtDeleteTickets->bind_param('is', $room_id, $serial);
+			$resultDeleteTickets = $stmtDeleteTickets->execute();
+			
+			if($resultDelete==true && $resultDeleteSubs==true && $resultDeleteTickets==true){
 				$_SESSION["room.list.message"] = $lang['ROOM_DELETE_OK'];
 				$arr = array('success' => 'true', 'message' => $lang['ROOM_DELETE_OK']);
 			}else{
@@ -431,6 +457,107 @@ class API{
 		unset($_SESSION['serial']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+	}
+	
+	
+	public function ticketAdd($room_id,$serial,$nickname,$link,$lang){   			
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ?");
+		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+        if( mysqli_num_rows( $result ) == 0){
+			$stmtInsert = mysqli_stmt_init($link);
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room_ticket (`room_id`, `serial`, `nickname`) VALUES (?,?,?)");
+			$stmtInsert->bind_param('iss', $room_id, $serial, $nickname);
+			$resultInsert = $stmtInsert->execute();
+
+			if($resultInsert==true){
+				$_SESSION["ticket.message"] = $lang['ROOM_TICKET_ADD_OK'];
+			}else{
+				$_SESSION["ticket.error"] = $lang['ROOM_TICKET_ADD_ERROR'];
+			}
+			mysqli_free_result($resultInsert);
+			mysqli_free_result($result);
+			mysqli_stmt_close($stmtCheck);
+			mysqli_stmt_close($stmtInsert);
+			
+		}
+		
+        header('Location: ../../../web/ticket?type=business&room_id='.$room_id);
+    }
+	
+	public function ticketDelete($room_id,$serial,$nickname,$link,$lang){   			
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ?");
+		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+		$arr = array('success' => 'false');
+        if( mysqli_num_rows( $result ) == 1){
+			$stmtDelete = mysqli_stmt_init($link);
+			$stmtDelete->prepare("DELETE FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ?");
+			$stmtDelete->bind_param('iss', $room_id, $serial, $nickname);
+			$resultDelete = $stmtDelete->execute();
+			
+			if($resultDelete==true && $resultDeleteSubs==true){
+				$_SESSION["ticket.list.message"] = $lang['ROOM_DELETE_OK'];
+				$arr = array('success' => 'true', 'message' => $lang['ROOM_DELETE_OK']);
+			}else{
+				$_SESSION["ticket.list.error"] = $lang['ROOM_DELETE_ERROR'];
+				$arr = array('success' => 'false', 'message' => $lang['ROOM_DELETE_ERROR']);
+			}
+			mysqli_free_result($result);
+			mysqli_free_result($resultDelete);
+			mysqli_free_result($resultDeleteSubs);
+			mysqli_stmt_close($stmtCheck);
+			mysqli_stmt_close($stmtDelete);
+			mysqli_stmt_close($stmtDeleteSubs);
+		}
+     
+        print json_encode($arr);
+	}
+	
+	public function ticketGet($serial,$room_id,$link,$lang){   			
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? ORDER BY nickname ASC");
+		$stmtCheck->bind_param('is', $room_id, $serial);
+		$stmtCheck->execute();
+		$result = $stmtCheck->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+		}
+		print json_encode($myArray);
+	}
+	
+	public function nicknameHasValidTicket($serial,$room_id,$nickname,$link){ 
+		$stmtCheckIsWithTicket = mysqli_stmt_init($link);
+		$stmtCheckIsWithTicket->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND withTicket = 1");
+		$stmtCheckIsWithTicket->bind_param('is', $room_id, $serial);
+		$stmtCheckIsWithTicket->execute();
+		$resultCheckIsWithTicket = $stmtCheckIsWithTicket->get_result();
+		
+		$stmtCheck = mysqli_stmt_init($link);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND used = 0");
+		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtCheck->execute();
+		$resultCheck = $stmtCheck->get_result();
+		
+		$withoutTicket = mysqli_num_rows( $resultCheckIsWithTicket ) == 0;
+		$hasValidTicket = mysqli_num_rows( $resultCheck )  > 0;
+		mysqli_free_result($resultCheckIsWithTicket);
+		mysqli_stmt_close($stmtCheckIsWithTicket);
+		mysqli_free_result($resultCheck);
+		mysqli_stmt_close($stmtCheck);
+		return  $withoutTicket || $hasValidTicket;
+	}
+	
+	public function validTicket($serial,$room_id,$nickname,$link){ 	
+		$stmtUpdate = mysqli_stmt_init($link);
+		$stmtUpdate->prepare("UPDATE citizenroom_business_room_ticket SET used = 1 WHERE room_id = ? AND serial = ? AND nickname = ?");
+		$stmtUpdate->bind_param('iss', $room_id, $serial, $nickname);
+		return $stmtUpdate->execute();
 	}
 }
 ?>

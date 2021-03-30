@@ -47,7 +47,8 @@ session_start();
 							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
 							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-warning' title='<?php print $lang['ROOM_CHECK']?>' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-info' title='<?php print $lang['ROOM_TICKET_LIST']?>' type='button' onclick=\"ticketRoom("+item.room_id+")\"><span class=\"glyphicon glyphicon-th-list\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
 							)).appendTo('#rooms-table tbody');
 					});
@@ -151,6 +152,9 @@ session_start();
 			});
 		}	
 		
+		function ticketRoom(room_id){
+			window.open(location.href.replaceAll("/dashboard/?type=business", "/ticket/?type=business&room_id="+room_id), '_blank');
+		}
     </script> 
 </head>
 
@@ -248,7 +252,6 @@ session_start();
 		  <thead>
 			<tr>
 			  <th scope="col"><?php print $lang['ROOM']?></th>
-			  <th scope="col"><?php print $lang['PASSWORD']?></th>
 			  <th scope="col"><?php print $lang['ROOM_TITLE']?></th>
 			  <th scope="col">Logo</th>
 			  <th scope="col"></th>

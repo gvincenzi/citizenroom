@@ -89,8 +89,16 @@ $lang['USER_ALREADY_EXISTS']="Utilisateur déjà existant";
 $lang['USER_UPDATE_OK']="Mise à jour de l'utilisateur réalisée avec succés";
 
 $lang['ROOM_ADD_OK']="Salle ajoutée avec succés";
-$lang['ROOM_ADD_ERROR']="Erreur pendant l'ajout de la salle";
+$lang['ROOM_ADD_ERROR']="Erreur lors de l'ajout de la salle";
 $lang['ROOM_DELETE_OK']="Suppression de la salle réalisée avec succés";
 $lang['ROOM_DELETE_ERROR']="Erreur pendant la suppression salle";
 $lang['ROOM_NOT_FOUND']="La salle n'existe pas";
+
+/* DASHBOARD TICKET */
+$lang['NEW_TICKET']="Créer un ticket";
+$lang['ROOM_TICKET_LIST']="Liste des tickets";
+$lang['ROOM_TICKET_ADD_OK']="Ticket ajouté avec succés";
+$lang['ROOM_TICKET_ADD_ERROR']="Erreur lors de l'ajout du ticket";
+$lang['ROOM_TICKET_DELETE_OK']="Suppression du ticket réalisée avec succés";
+$lang['TICKET_JOIN_ERROR']="Vous ne disposez pas d'un ticket valide pour entrer dans la salle";
 ?>

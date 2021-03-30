@@ -113,3 +113,55 @@
 	padding: 7px 9px;
 	width: 100%;
 }
+
+.form-ticket {
+	width: 50%;
+    padding: 19px 29px 29px;
+    margin: 15px auto auto auto;
+    background-color: #fcf8e3;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.form-ticket .form-ticket-heading,.form-ticket .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-ticket input[type="text"],.form-ticket input[type="password"],.form-ticket input[type="number"] {
+	font-size: 13px !important;
+	height: auto;
+	margin-bottom: 10px !important;
+	padding: 7px 9px;
+	width: 100%;
+}
+
+.form-list-ticket {
+    width: 60%;
+    padding: 19px 29px 29px;
+    margin: 15px auto auto auto;
+    background-color: #fcf8e3;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.form-list-ticket .form-list-ticket-heading,.form-list-ticket .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-list-ticket input[type="text"],.form-list-ticket input[type="password"],.form-list-ticket input[type="number"] {
+	font-size: 13px !important;
+	height: auto;
+	margin-bottom: 10px !important;
+	padding: 7px 9px;
+	width: 100%;
+}

@@ -93,4 +93,12 @@ $lang['ROOM_ADD_ERROR']="Error during room add";
 $lang['ROOM_DELETE_OK']="Room correctly removed";
 $lang['ROOM_DELETE_ERROR']="Error during room delete";
 $lang['ROOM_NOT_FOUND']="Room does not exist";
+
+/* DASHBOARD TICKET */
+$lang['NEW_TICKET']="Create a ticket";
+$lang['ROOM_TICKET_LIST']="Ticket list";
+$lang['ROOM_TICKET_ADD_OK']="Ticket correctly added";
+$lang['ROOM_TICKET_ADD_ERROR']="Error during ticket add";
+$lang['ROOM_TICKET_DELETE_OK']="Ticket correctly removed";
+$lang['TICKET_JOIN_ERROR']="You do not have a valid ticket to join the room";
 ?>

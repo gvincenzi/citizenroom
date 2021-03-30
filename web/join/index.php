@@ -37,6 +37,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			    if(callback=='ROOM_JOIN_ERROR'){
 				    $(callbackMessage).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
 			    }
+				
+				if(callback=='TICKET_JOIN_ERROR'){
+				    $(callbackMessage).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['TICKET_JOIN_ERROR'] ?>');
+			    }
 		    }
 	    });	
 		
@@ -116,11 +120,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				}
 				?>
 			</div>
-			<?php 
-				if(isset($_GET['type']) && $_GET['type']=='business'){
-					echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['ROOM_PASSWORD']."' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
-				}
-			?>
         </div>
 		<?php 
 			if(isset($_GET['type']) && $_GET['type']=='business'){

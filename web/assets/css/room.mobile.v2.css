@@ -1,54 +1,117 @@
 .room {
+
 	margin-right: auto; 
+
 	margin-left: auto; 
+
 	/*width: 90%;*/
+
 	margin-top: -40px;
+
 	padding : 40px;
+
 	background-color: white;
+
 	/* border-radius */
+
 	border-radius: 5px;
+
 	/* box-shadow */
+
 	box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+
 	border-collapse: collapse;
+
 	/*font-size:15px;*/
+
 	text-transform: uppercase;
+
 	height: 100%;
+
 	text-align: center;
+
 }
 
+#jitsi-meet-conf-container{
+
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+}
+
+
+
 	.container{
+
 		position: relative;
+
 		width: auto!important;
+
 		height: 50%;
-	}
-	
-	.toolbox{
-		text-align: -webkit-center;
-		color: #000;
-	}
-	
-	.toolbox h3{
-		/*font-size:1.2em;*/
-	}
-	
-	.toolbox button#btnInvitation{
-		display:none;
+
 	}
 
-	.toolbox button { 
-	  display: block;
-	  width: 80%;
-	  /*padding: .4rem;*/
-	  border: none; 
-	  margin: 0.5rem auto;
-	  font-size: 1.2rem;
-	  /*background: rgba(255,255,255,0.23);*/
-	  color: #000;
-	  border-radius: 3px; 
-	  cursor: pointer;
-	  transition: .3s background;
+	
+
+	.toolbox{
+
+		text-align: -webkit-center;
+
+		color: #000;
+
 	}
+
+	
+
+	.toolbox h3{
+
+		/*font-size:1.2em;*/
+
+	}
+
+	
+
+	.toolbox button#btnInvitation{
+
+		display:none;
+
+	}
+
+
+
+	.toolbox button { 
+
+	  display: block;
+
+	  width: 80%;
+
+	  /*padding: .4rem;*/
+
+	  border: none; 
+
+	  margin: 0.5rem auto;
+
+	  font-size: 1.2rem;
+
+	  /*background: rgba(255,255,255,0.23);*/
+
+	  color: #000;
+
+	  border-radius: 3px; 
+
+	  cursor: pointer;
+
+	  transition: .3s background;
+
+	}
+
 	.toolbox button:hover { 
+
 	   background: rgba(0,0,0,0.5);
+
 	   color: #000;
+
 	}

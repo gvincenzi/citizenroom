@@ -118,7 +118,7 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
             SHOW_WATERMARK_FOR_GUESTS: false,
 			LANG_DETECTION: true,
             DEFAULT_REMOTE_DISPLAY_NAME: 'New Participant',
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera']
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview']
         },
         onload: function () {
             $('#joinMsg').hide();

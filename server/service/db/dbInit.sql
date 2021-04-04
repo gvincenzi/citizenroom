@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `citizenroom_business_room` (
   `logo` VARCHAR(255) NULL,
   `jitsi_password` varchar(255),
   `wait` INT NOT NULL DEFAULT '0',
-  `withTicket` INT NOT NULL DEFAULT '0'
+  `withTicket` INT NOT NULL DEFAULT '0',
+  `withPassword` INT NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --

@@ -34,7 +34,7 @@ session_start();
 						
 						if(item.used == 0){
 							$tr.append($('<td>').html(
-								"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteTicket('"+item.room_id+"','"+item.serial+"','"+item.nickname+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> "
+								"<button class='btn btn-danger' type='button' onclick=\"deleteTicket('"+item.room_id+"','"+item.serial+"','"+item.nickname+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> "
 								));
 						} else {
 							$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>"));
@@ -78,7 +78,7 @@ session_start();
    <div class="container">
   <form onsubmit="return validateTicketForm()" class="form-ticket" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: left;">
-		<h2><?php print 'CitizenRooom #'.$_GET['room_id']?></h2>
+		<h2><?php print 'CitizenRoom #'.$_GET['room_id']?></h2>
       	<h3><?php print $lang['NEW_TICKET']?></h3>
       	<div id='callbackMessage'></div>
       	</div>

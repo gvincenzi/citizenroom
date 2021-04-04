@@ -79,7 +79,7 @@ function copyToClipboard(text) {
 	$temp.remove();
 }
 
-function StartMeeting(roomNumber,nickname,password,serial){
+function StartMeeting(roomNumber,nickname,password,serial,withPassword){
     const domain = 'meet.jit.si';
 	
     var roomName;
@@ -131,7 +131,7 @@ function StartMeeting(roomNumber,nickname,password,serial){
     apiObj.addEventListeners({
 		// set new password for channel
 		participantRoleChanged: function(event) {
-			if (event.role === "moderator") {
+			if (event.role === "moderator" && withPassword === 1) {
 				$.ajax({
 				  type: "POST",
 				  url: "../../server/service/api/API.php",

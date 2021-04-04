@@ -133,6 +133,8 @@ class API{
 			unset($_SESSION['room_id']);
 			unset($_SESSION['nickname']);
 			unset($_SESSION['serial']);
+			unset($_SESSION['room_password']);
+			unset($_SESSION['withPassword']);
 			
 			$arr = array('success' => 'false', 'message' => 'Subscription does not exist');
 		} else {
@@ -219,6 +221,14 @@ class API{
 
 				mysqli_free_result($result);
 				mysqli_stmt_close($stmt);
+				
+				unset($_SESSION['room_id']);
+				unset($_SESSION['nickname']);
+				unset($_SESSION['serial']);
+				unset($_SESSION['room_title']);
+				unset($_SESSION['room_logo']);
+				unset($_SESSION['room_password']);
+				unset($_SESSION['withPassword']);
 						
 				$_SESSION['room_id'] = $room_id;
 				$_SESSION['nickname'] = $nickname;
@@ -227,6 +237,8 @@ class API{
 				$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 				$_SESSION['room_title'] = stripslashes($room['title']);
 				$_SESSION['room_logo'] = $room['logo'];
+				$_SESSION['room_password'] = $room['jitsi_password'];
+				$_SESSION['withPassword'] = $room['withPassword'];
 				
 				if (!isset($_REQUEST['no_redirect'])){
 					if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
@@ -326,6 +338,7 @@ class API{
 	public function roomsAdd($room_id,$serial,$title,$logo,$link,$lang){   	
 		$title = mysqli_real_escape_string($link, $title);
 		$withTicket = isset($_REQUEST['room_with_ticket']) ? 1 : 0;
+		$withPassword = isset($_REQUEST['room_with_password']) ? 1 : 0;
 		
 		$stmtCheck = mysqli_stmt_init($link);
 		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ?");
@@ -334,8 +347,8 @@ class API{
 		$result = $stmtCheck->get_result();
         if( mysqli_num_rows( $result ) == 0){
 			$stmtInsert = mysqli_stmt_init($link);
-			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `title`, `logo`, `jitsi_password`, `withTicket`) VALUES (?,?,?,?,'GENESIS',?)");
-			$stmtInsert->bind_param('isssi', $room_id, $serial, $title, $logo, $withTicket);
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room (`room_id`, `serial`, `title`, `logo`, `jitsi_password`, `withTicket`, `withPassword`) VALUES (?,?,?,?,'GENESIS',?,?)");
+			$stmtInsert->bind_param('isssii', $room_id, $serial, $title, $logo, $withTicket, $withPassword);
 			$resultInsert = $stmtInsert->execute();
 
 			if($resultInsert==true){
@@ -351,8 +364,8 @@ class API{
 			
 		} else {
 			$stmtUpdate = mysqli_stmt_init($link);
-			$stmtUpdate->prepare("UPDATE citizenroom_business_room SET title = ?, logo = ?, withTicket = ? WHERE room_id = ? AND serial = ?");
-			$stmtUpdate->bind_param('ssiis', $title, $logo, $withTicket, $room_id, $serial);
+			$stmtUpdate->prepare("UPDATE citizenroom_business_room SET title = ?, logo = ?, withTicket = ?, withPassword = ? WHERE room_id = ? AND serial = ?");
+			$stmtUpdate->bind_param('ssiiis', $title, $logo, $withTicket, $withPassword, $room_id, $serial);
 			$resultUpdate = $stmtUpdate->execute();
 			
 			if($resultUpdate==true){
@@ -467,6 +480,8 @@ class API{
 		unset($_SESSION['serial']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_password']);
+		unset($_SESSION['withPassword']);
 	}
 	
 	public function ticketAddInternal($room_id,$serial,$nickname,$link,$lang){
@@ -519,10 +534,10 @@ class API{
 			$resultDelete = $stmtDelete->execute();
 			
 			if($resultDelete==true && $resultDeleteSubs==true){
-				$_SESSION["ticket.list.message"] = $lang['ROOM_DELETE_OK'];
+				$_SESSION["ticket.message"] = $lang['ROOM_DELETE_OK'];
 				$arr = array('success' => 'true', 'message' => $lang['ROOM_DELETE_OK']);
 			}else{
-				$_SESSION["ticket.list.error"] = $lang['ROOM_DELETE_ERROR'];
+				$_SESSION["ticket.error"] = $lang['ROOM_DELETE_ERROR'];
 				$arr = array('success' => 'false', 'message' => $lang['ROOM_DELETE_ERROR']);
 			}
 			mysqli_free_result($result);

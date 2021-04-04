@@ -33,15 +33,8 @@ include_once '../actionInSession.php';
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
 						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['user_stream_key']?>');
+						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['room_password']?>','<?php echo $_SESSION['serial']?>',<?php echo $_SESSION['withPassword']?>);
 						
-						$.ajax({
-						  type: "POST",
-						  url: "../../server/service/api/API.php",
-						  data: { method: "rooms/get/id", serial: "<?php print $_SESSION['serial']?>", room_id: "<?php print $_SESSION['room_id']?>" }
-						}).done(function( msg ) {
-							var room = JSON.parse(msg);
-							StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',room.jitsi_password,'<?php echo $_SESSION['serial']?>');
-							})
 						} else {
 							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
 						}	

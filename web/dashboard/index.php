@@ -46,15 +46,21 @@ session_start();
 						$tr.append($('<td>').html(
 							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
 							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"',"+item.withTicket+")\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"',"+item.withTicket+","+item.withPassword+")\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
 							));
 							
+							if(item.withPassword){
+								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span></button> "));
+							} else {
+								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></button> "));
+							}
+							
 							if(item.withTicket){
 								$tr.append($('<td>').html("<button class='btn btn-info' title='<?php print $lang['ROOM_TICKET_LIST']?>' type='button' onclick=\"ticketRoom("+item.room_id+")\"><span class=\"glyphicon glyphicon-th-list\" aria-hidden=\"true\"></span></button> "));
 							} else {
-								$tr.append($('<td>').html("---"));
+								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></button> "));
 							}
 							
 							$tr.appendTo('#rooms-table tbody');
@@ -117,7 +123,7 @@ session_start();
 			$temp.remove();
 		}
 		
-		function fillRoomData(id,title,logo,with_ticket){
+		function fillRoomData(id,title,logo,with_ticket,with_password){
 			$(room_id).val(id);
 			$(room_title).val(title);
 			$(room_logo).val(logo);
@@ -126,6 +132,12 @@ session_start();
 				$(room_with_ticket).attr('checked', false);
 			} else {
 				$(room_with_ticket).attr('checked', true);
+			}
+			
+			if(with_password==0){
+				$(room_with_password).attr('checked', false);
+			} else {
+				$(room_with_password).attr('checked', true);
 			}
 		}
 		
@@ -242,6 +254,12 @@ session_start();
 			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
 			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>"></input>
 			<input id="room_logo" name="room_logo" type="text" class="form-control" placeholder="Logo URL"></input>
+			<input id="room_with_password" name="room_with_password" type="checkbox" class="form-check-input">
+			  <label class="form-check-label" for="room_with_password">
+				Password
+			  </label>
+			</input>
+			<br>
 			<input id="room_with_ticket" name="room_with_ticket" type="checkbox" class="form-check-input">
 			  <label class="form-check-label" for="room_with_ticket">
 				Ticketing
@@ -273,6 +291,7 @@ session_start();
 			  <th scope="col"><?php print $lang['ROOM_TITLE']?></th>
 			  <th scope="col">Logo</th>
 			  <th scope="col"></th>
+			  <th scope="col">Password</th>
 			  <th scope="col">Ticketing</th>
 			</tr>
 		  </thead>

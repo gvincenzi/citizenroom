@@ -75,7 +75,13 @@ class API{
 		}
 		
 		$lastTicket = $this->ticketGetLast($serial,$room_id,$link);
-		$previousHash = $lastTicket['hash'];
+		
+		if($lastTicket['hash'] != null){
+			$previousHash = $lastTicket['hash'];
+		} else {
+			$previousHash = 'GENESIS';
+		}
+		
 		$hash = md5($nickname.$room_id.$serial.$previousHash);
 		
 		$stmtUpdateTicket = mysqli_stmt_init($link);
@@ -84,6 +90,16 @@ class API{
 		$stmtUpdateTicket->execute();
 	
 		mysqli_stmt_close($stmtUpdateTicket);
+	}
+	
+	public function ticketGetLast($serial,$room_id,$link){ 
+		$stmtLast = mysqli_stmt_init($link);
+		$stmtLast->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE serial = ? AND room_id = ? AND used = 1 ORDER BY `id` DESC LIMIT 1");
+		$stmtLast->bind_param('si', $serial,$room_id);
+		$stmtLast->execute();
+		$result = $stmtLast->get_result();
+		$row = $result->fetch_assoc();
+		return $row;
 	}
 
 	public function checkSubscription($nickname,$room_id,$serial,$link){
@@ -160,9 +176,6 @@ class API{
 		if(!$this->nicknameHasValidTicket($serial,$room_id,$nickname,$link)){
 			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR');
 		} else {
-			
-			$this->validTicket($serial,$room_id,$nickname,$link);
-			
 			$stmtCheck = mysqli_stmt_init($link);
 			$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
 			$stmtCheck->bind_param('iss', $room_id, $serial, $password);
@@ -203,6 +216,8 @@ class API{
 				$room = $this->roomsGetByIdInternal($serial,$room_id,$link);
 				$_SESSION['room_title'] = stripslashes($room['title']);
 				$_SESSION['room_logo'] = $room['logo'];
+				
+				$this->validTicket($serial,$room_id,$nickname,$link);
 				
 				if (!isset($_REQUEST['no_redirect'])){
 					if (isset($_REQUEST['room_type']) && $_REQUEST['room_type'] == "live"){
@@ -428,12 +443,12 @@ class API{
 		$result = $stmtCheck->get_result();
         if( mysqli_num_rows( $result ) == 0){
 			$stmtInsert = mysqli_stmt_init($link);
-			$stmtInsert->prepare("INSERT INTO citizenroom_business_room_ticket (`room_id`, `serial`, `nickname`, `hash`) VALUES (?,?,?,'GENESIS')");
+			$stmtInsert->prepare("INSERT INTO citizenroom_business_room_ticket (`room_id`, `serial`, `nickname`) VALUES (?,?,?)");
 			$stmtInsert->bind_param('iss', $room_id, $serial, $nickname);
 			$resultInsert = $stmtInsert->execute();
 
 			if($resultInsert==true){
-				$_SESSION["ticket.message"] = $lang['ROOM_TICKET_ADD_OK'];
+				//$_SESSION["ticket.message"] = $lang['ROOM_TICKET_ADD_OK'];
 			}else{
 				$_SESSION["ticket.error"] = $lang['ROOM_TICKET_ADD_ERROR'];
 			}
@@ -442,16 +457,6 @@ class API{
 			mysqli_stmt_close($stmtCheck);
 			mysqli_stmt_close($stmtInsert);
 		}
-	}
-	
-	public function ticketGetLast($serial,$room_id,$link){ 
-		$stmtLast = mysqli_stmt_init($link);
-		$stmtLast->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE serial = ? AND room_id = ? AND hash IS NOT NULL AND hash<>'' ORDER BY `id` DESC LIMIT 1");
-		$stmtLast->bind_param('si', $serial,$room_id);
-		$stmtLast->execute();
-		$result = $stmtLast->get_result();
-		$row = $result->fetch_assoc();
-		return $row;
 	}
 	
 	public function ticketAdd($room_id,$serial,$nickname,$link,$lang){   

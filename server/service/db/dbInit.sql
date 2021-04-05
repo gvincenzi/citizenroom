@@ -16,7 +16,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `citizenroom_subscription` (
   `room_id` int(10) NOT NULL,
   `nickname` varchar(255) NOT NULL,
-  `serial` varchar(255) NOT NULL DEFAULT 'PUBLIC'
+  `serial` varchar(255) NOT NULL DEFAULT 'PUBLIC',
+  `creation_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -58,10 +59,8 @@ CREATE TABLE IF NOT EXISTS `citizenroom_business_room` (
   `serial` VARCHAR(6) NOT NULL,
   `title` VARCHAR(255) NULL,
   `logo` VARCHAR(255) NULL,
-  `jitsi_password` varchar(255),
-  `wait` INT NOT NULL DEFAULT '0',
-  `withTicket` INT NOT NULL DEFAULT '0',
-  `withPassword` INT NOT NULL DEFAULT '0'
+  `password` varchar(255),
+  `withTicket` INT NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -75,6 +74,7 @@ ALTER TABLE `citizenroom_business_room`
 -- Structure de la table `citizenroom_business_room_ticket`
 --
 CREATE TABLE IF NOT EXISTS `citizenroom_business_room_ticket` (
+  `id` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `room_id` int(10) NOT NULL,
   `serial` VARCHAR(6) NOT NULL,
   `nickname` VARCHAR(255) NULL,
@@ -82,12 +82,6 @@ CREATE TABLE IF NOT EXISTS `citizenroom_business_room_ticket` (
   `hash` VARCHAR(255) NULL,
   `previousHash` VARCHAR(255) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Index pour la table `citizenroom_business_room_ticket`
---
-ALTER TABLE `citizenroom_business_room_ticket`
- ADD PRIMARY KEY (`room_id`,`serial`,`nickname`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

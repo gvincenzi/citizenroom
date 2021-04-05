@@ -1,6 +1,6 @@
 var apiObj = null;
 var newPassword = null;
-function BindEvent(roomNumber,nickname,serial,stream_key){
+function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key){
     $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -46,7 +46,7 @@ function BindEvent(roomNumber,nickname,serial,stream_key){
     });
 	$("#btnInvitation").on('click', function () {
 		if(serial != null && serial != ""){
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&serial="+serial);
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial);
 		}  else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}
@@ -127,29 +127,19 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
         }
     };
     apiObj = new JitsiMeetExternalAPI(domain, options);
-	
+	apiObj.executeCommand('subject', 'CZR#'+roomNumber);
     apiObj.addEventListeners({
 		// set new password for channel
 		participantRoleChanged: function(event) {
-			if (event.role === "moderator" && withPassword === 1) {
+			if (event.role === "moderator") {
+				// Mining new block in BE
 				$.ajax({
 				  type: "POST",
 				  url: "../../server/service/api/API.php",
-				  data: { method: "rooms/wait", wait: true, room_id: roomNumber, serial: serial }
+				  data: { method: "rooms/hash", nickname: nickname, room_id: roomNumber, serial: serial }
 				}).done(function( msg ) {
-							newPassword = CryptoJS.MD5(nickname+roomNumber+serial+password).toString();
-							//console.info("participantRoleChanged : " + newPassword + " < " + nickname+roomNumber+serial+password);
-							
-							// Mining new block in BE
-							$.ajax({
-							  type: "POST",
-							  url: "../../server/service/api/API.php",
-							  data: { method: "rooms/hash", nickname: nickname, room_id: roomNumber, serial: serial, previous_hash: password }
-							}).done(function( msg ) {
-								apiObj.executeCommand('password', newPassword);
-							});
-					})
-				
+					apiObj.executeCommand('password', password);
+				});
 			}
 		},		
 		// join a protected channel
@@ -234,10 +224,20 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
         },
         participantLeft: function(data){
             //console.log('participantLeft', data);
+        },
+		readyToClose: function(data){
+            //console.log('readyToClose', data);
+			$.ajax({
+			  type: "POST",
+			  url: "../../server/service/api/API.php",
+			  data: { method: "left" }
+			}).done(function( msg ) {
+				var left = JSON.parse(msg);
+				console.info(left);
+				window.location.href = window.location.href.replaceAll("/web/room/", "/web/join/");
+			});
         }
     });
-
-    apiObj.executeCommand('subject', 'CitizenRoom Conference');
 }
 
 	function notifyMe(text) {

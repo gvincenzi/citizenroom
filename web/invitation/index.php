@@ -76,6 +76,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<input type="hidden" value="<?php print $_GET['type']?>" name="room_type" id="room_type">
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
 		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
+		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
         
         <div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">

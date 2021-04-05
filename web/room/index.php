@@ -32,8 +32,8 @@ include_once '../actionInSession.php';
 					if(check.success == 'true'){
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['user_stream_key']?>');
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['room_password']?>','<?php echo $_SESSION['serial']?>',<?php echo $_SESSION['withPassword']?>);
+						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_stream_key']?>');
+						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
 						
 						} else {
 							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
@@ -43,7 +43,7 @@ include_once '../actionInSession.php';
 			
 			$(window).on("beforeunload", function() { 
 				$.ajax({
-				  type: "GET",
+				  type: "POST",
 				  url: "../../server/service/api/API.php",
 				  data: { method: "left" }
 				})

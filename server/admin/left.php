@@ -7,7 +7,7 @@
 		
 	$stmt = mysqli_stmt_init($link);
 	
-	if(isset($_SESSION['user_serial']) && $_SESSION['user_serial']!=''){
+	if(isset($_SESSION['serial']) && $_SESSION['serial']!=''){
 		//Prepare the SQL statement, with ? to reflect the parameters to be supplied later.
 		$stmt->prepare("DELETE FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ? AND citizenroom_subscription.serial = ?");
 		// Bind parameters (an integer and a string). 'is' tells MySQL you're passing an integer(i) and a string(s)

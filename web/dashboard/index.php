@@ -44,17 +44,17 @@ session_start();
 						}
 						
 						$tr.append($('<td>').html(
-							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-success' title=\"<?php print $lang['ROOM_INVITATION']?>\" type='button' onclick=\"invitationRoom('"+item.room_id+"','"+item.serial+"','"+item.password+"')\"><span class=\"glyphicon glyphicon-send\" aria-hidden=\"true\"></span></button> " +
 							"<button title='<?php print $lang['DELETE_ROOM']?>' class='btn btn-danger' type='button' onclick=\"deleteRoom('"+item.room_id+"','"+item.serial+"')\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"',"+item.withTicket+","+item.withPassword+")\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
+							"<button class='btn btn-warning' title='<?php print $lang['UPDATE_ROOM']?>' type='button' onclick=\"fillRoomData("+item.room_id+",'"+item.title+"','"+item.logo+"',"+item.withTicket+",'"+item.password+"')\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span></button> " +
 							"<button class='btn btn-warning' type='button' onclick=\"checkRoom("+item.room_id+",'"+item.serial+"')\"><span class=\"glyphicon glyphicon-eye-open\" aria-hidden=\"true\"></span></button> " +
-							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.serial+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
+							"<button class='btn btn-info' title='<?php print $lang['JOIN']?>' type='button' onclick=\"joinRoom("+item.room_id+",'"+item.serial+"','"+item.password+"','<?php print $_SESSION['user_name'].' '.$_SESSION['user_surname']?>')\"><span class=\"glyphicon glyphicon-arrow-right\" aria-hidden=\"true\"></span></button> "
 							));
 							
-							if(item.withPassword){
-								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span></button> "));
+							if(item.password!='' && item.password!=null){
+								$tr.append($('<td>').html(item.password));
 							} else {
-								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></button> "));
+								$tr.append($('<td>').html("<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>"));
 							}
 							
 							if(item.withTicket){
@@ -106,9 +106,9 @@ session_start();
 			});
 		}
 		
-		function invitationRoom(room_id,serial){
+		function invitationRoom(room_id,serial,password){
 			if(serial != null && serial != ""){
-				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&serial="+serial);
+				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"&room_id="+room_id+"&password="+password+"&serial="+serial);
 			}  else {
 				copyToClipboard(window.location.href.replaceAll("/dashboard/", "/invitation/")+"?room_id="+room_id);
 			}
@@ -123,29 +123,24 @@ session_start();
 			$temp.remove();
 		}
 		
-		function fillRoomData(id,title,logo,with_ticket,with_password){
+		function fillRoomData(id,title,logo,with_ticket,password){
 			$(room_id).val(id);
 			$(room_title).val(title);
 			$(room_logo).val(logo);
+			$(room_password).val(password);
 
 			if(with_ticket==0){
 				$(room_with_ticket).attr('checked', false);
 			} else {
 				$(room_with_ticket).attr('checked', true);
 			}
-			
-			if(with_password==0){
-				$(room_with_password).attr('checked', false);
-			} else {
-				$(room_with_password).attr('checked', true);
-			}
 		}
 		
-		function joinRoom(room_id,serial,nickname){
+		function joinRoom(room_id,serial,password,nickname){
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",
-			  data: { method: "join", room_id: room_id, serial: serial, nickname: nickname, no_redirect:'true' }
+			  data: { method: "join", room_id: room_id, serial: serial, nickname: nickname, password: password, no_redirect:'true' }
 			})
 			.done(function( msg ) {
 				window.open(location.href.replaceAll("/dashboard/", "/room/"), '_self');
@@ -166,7 +161,7 @@ session_start();
 					var participants='';
 					$.each(subscriptions, function(i, item) {
 						count++;
-						participants = ' - '+item.nickname+' - ';
+						participants += ' - '+item.nickname+' - ';
 					});
 					
 					if(participants != ''){
@@ -253,12 +248,8 @@ session_start();
         <div class="form-group">
 			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>"></input>
 			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>"></input>
+			<input id="room_password" name="room_password" type="text" class="form-control" placeholder="<?php print $lang['PASSWORD']?>"></input>
 			<input id="room_logo" name="room_logo" type="text" class="form-control" placeholder="Logo URL"></input>
-			<input id="room_with_password" name="room_with_password" type="checkbox" class="form-check-input">
-			  <label class="form-check-label" for="room_with_password">
-				Password
-			  </label>
-			</input>
 			<br>
 			<input id="room_with_ticket" name="room_with_ticket" type="checkbox" class="form-check-input">
 			  <label class="form-check-label" for="room_with_ticket">

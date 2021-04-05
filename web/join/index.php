@@ -71,7 +71,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					var participants='';
 					$.each(subscriptions, function(i, item) {
 						count++;
-						participants = item.nickname+'<br>';
+						participants += item.nickname+'<br>';
 					});
 					
 					if(participants != ''){
@@ -113,13 +113,17 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
 			<div style="display:flex">
 				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
-				
 				<?php 
 				if(!isset($_GET['type']) || $_GET['type']!='business'){
 					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
 				}
 				?>
 			</div>
+			<?php
+			if(isset($_GET['type']) && $_GET['type']=='business'){
+				echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['PASSWORD']."' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
+			}
+			?>
         </div>
 		<?php 
 			if(isset($_GET['type']) && $_GET['type']=='business'){

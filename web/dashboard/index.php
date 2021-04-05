@@ -282,7 +282,7 @@ session_start();
 			  <th scope="col"><?php print $lang['ROOM_TITLE']?></th>
 			  <th scope="col">Logo</th>
 			  <th scope="col"></th>
-			  <th scope="col">Password</th>
+			  <th scope="col"><?php print $lang['PASSWORD']?></th>
 			  <th scope="col">Ticketing</th>
 			</tr>
 		  </thead>

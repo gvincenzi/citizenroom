@@ -12,7 +12,7 @@ if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {		
 		case 'join':
 			if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
-				$api->joinBusiness($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['password'], $link);
+				$api->joinBusiness($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['password'], $_REQUEST['room_type'], $link);
 			} else {
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
 			}
@@ -170,11 +170,11 @@ class API{
         header('Location: ../../../web/room');
     }
 	
-	public function joinBusiness($nickname,$room_id,$serial,$password,$link){	
+	public function joinBusiness($nickname,$room_id,$serial,$password,$room_type,$link){	
 		$nickname = mysqli_real_escape_string($link, $nickname);
 		
-		if(!$this->nicknameHasValidTicket($serial,$room_id,$nickname,$link)){
-			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR');
+		if(!$this->nicknameHasValidTicket($serial,$room_id,$nickname,$link) && $room_type != 'live'){
+			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR&debug='.$room_type);
 		} else {
 			$stmtCheck = mysqli_stmt_init($link);
 			$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
@@ -523,8 +523,8 @@ class API{
 		$resultCheckIsWithTicket = $stmtCheckIsWithTicket->get_result();
 		
 		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND used = 0");
-		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND (used = 0 OR (used = 1 AND UUID = ?))");
+		$stmtCheck->bind_param('isss', $room_id, $serial, $nickname, $this->getUUID());
 		$stmtCheck->execute();
 		$resultCheck = $stmtCheck->get_result();
 		
@@ -539,8 +539,8 @@ class API{
 	
 	public function validTicket($serial,$room_id,$nickname,$link){ 	
 		$stmtUpdate = mysqli_stmt_init($link);
-		$stmtUpdate->prepare("UPDATE citizenroom_business_room_ticket SET used = 1 WHERE room_id = ? AND serial = ? AND nickname = ?");
-		$stmtUpdate->bind_param('iss', $room_id, $serial, $nickname);
+		$stmtUpdate->prepare("UPDATE citizenroom_business_room_ticket SET used = 1, UUID = ? WHERE room_id = ? AND serial = ? AND nickname = ?");
+		$stmtUpdate->bind_param('siss', $this->getUUID(), $room_id, $serial, $nickname);
 		return $stmtUpdate->execute();
 	}
 	
@@ -589,6 +589,24 @@ class API{
 		unset($_SESSION['room_logo']);
 		
 		print json_encode($arr);
+	}
+	
+	public function getUUID(){
+		if (!empty($_SERVER['HTTP_CLIENT_IP']))   
+		  {
+			$ip_address = $_SERVER['HTTP_CLIENT_IP'];
+		  }
+		//whether ip is from proxy
+		elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
+		  {
+			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		  }
+		//whether ip is from remote address
+		else
+		  {
+			$ip_address = $_SERVER['REMOTE_ADDR'];
+		  }
+		return $ip_address;
 	}
 }
 ?>

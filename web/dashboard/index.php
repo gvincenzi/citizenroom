@@ -128,11 +128,12 @@ session_start();
 			$(room_title).val(title);
 			$(room_logo).val(logo);
 			$(room_password).val(password);
-
 			if(with_ticket==0){
 				$(room_with_ticket).attr('checked', false);
+				$(room_with_ticket).prop('checked', false);
 			} else {
 				$(room_with_ticket).attr('checked', true);
+				$(room_with_ticket).prop('checked', true);
 			}
 		}
 		

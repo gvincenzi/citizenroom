@@ -22,9 +22,9 @@ include_once '../actionInSession.php';
 		<script>
 			$(function(){
 				$.ajax({
-				  type: "GET",
+				  type: "POST",
 				  url: "../../server/service/api/API.php",
-				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['user_serial']?>" }
+				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['serial']?>" }
 				})
 				.done(function( msg ) {
 					console.info( msg );
@@ -35,7 +35,7 @@ include_once '../actionInSession.php';
 						$.ajax({
 						  type: "GET",
 						  url: "../../server/service/api/API.php",
-						  data: { method: "rooms/get/id", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['user_serial']?>" }
+						  data: { method: "rooms/get/id", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['serial']?>" }
 						})
 						.done(function( msg ) {
 							var room = JSON.parse(msg);
@@ -64,6 +64,14 @@ include_once '../actionInSession.php';
 				$('#joinMsg').hide();
 				$('#container').show();
 				$('#toolbox').show();
+			}
+			
+			function copyToClipboard(text) {
+				var $temp = $("<input>");
+				$("body").append($temp);
+				$temp.val(text).select();
+				document.execCommand("copy");
+				$temp.remove();
 			}
         </script>
 </head>

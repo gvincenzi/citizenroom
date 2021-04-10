@@ -98,9 +98,9 @@ $lang['ROOM_NOT_FOUND']="La salle n'existe pas";
 $lang['NEW_TICKET']="Créer un ticket";
 $lang['ROOM_TICKET_LIST']="Liste des tickets";
 $lang['ROOM_TICKET_ADD_OK']="Ticket ajouté avec succés";
-$lang['ROOM_TICKET_ADD_ERROR']="Erreur lors de l'ajout du ticket";
+$lang['ROOM_TICKET_ADD_ERROR']="Erreur lors de l\'ajout du ticket";
 $lang['ROOM_TICKET_DELETE_OK']="Suppression du ticket réalisée avec succés";
-$lang['TICKET_JOIN_ERROR']="Vous ne disposez pas d'un ticket valide pour entrer dans la salle";
+$lang['TICKET_JOIN_ERROR']="Vous ne disposez pas d\'un ticket valide pour entrer dans la salle";
 $lang['ROOM_TICKET_VALIDATION_OK']="a rejoigné la salle";
 $lang['ROOM_TICKET_VALIDATION_FAILED']="a rejoigné la salle sans billet valide";
 ?>

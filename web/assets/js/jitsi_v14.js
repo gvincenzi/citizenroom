@@ -27,9 +27,13 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key){
     });
 	$("#btnChatOn").on('click', function () {
         apiObj.executeCommand('toggleChat');
+		$("#btnChatOn").css('color', 'white').hide();
+		$("#btnChatOff").css('color', 'white').show();
     });
 	$("#btnChatOff").on('click', function () {
         apiObj.executeCommand('toggleChat');
+		$("#btnChatOn").css('color', 'white').show();
+		$("#btnChatOff").css('color', 'white').hide();
     });
 	$("#btnStreamOn").on('click', function () {
         apiObj.executeCommand('startRecording', {
@@ -63,7 +67,7 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key){
 		$("#btnLobbyOff").hide();
     });
 	$("#btnLiveInvitation").on('click', function () {
-		copyToClipboard(window.location.href.replaceAll("/room", "/invitation")+"&room_id="+roomNumber+"&password="+password+"&serial="+serial+"&room_type=live");
+		copyToClipboard(window.location.href.replaceAll("/room", "/invitation")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_type=live");
 		alert("Invitation link for Live Streaming copied in clipboard");
 	});
 	$("#btnLeave").on('click', function () {
@@ -118,7 +122,7 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
             SHOW_WATERMARK_FOR_GUESTS: false,
 			LANG_DETECTION: true,
             DEFAULT_REMOTE_DISPLAY_NAME: 'New Participant',
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview']
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur']
         },
         onload: function () {
             $('#joinMsg').hide();
@@ -177,21 +181,12 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
             
         },
 		chatUpdated: function (data) {
-            if(data.isOpen){
-				$("#btnChatOn").css('color', 'white').hide();
-				$("#btnChatOff").css('color', 'white').show();
-            } else {
-                $("#btnChatOn").css('color', 'white').show();
-				$("#btnChatOff").css('color', 'white').hide();
-			}
-			
 			if(data.unreadCount > 0){
                 $("#btnChatOn").css('color', 'red');
 				$("#btnChatOff").css('color', 'red');
 				if(data.unreadCount == 1)
 				notifyMe('New message received');
 			}
-			
 				
         },
 		incomingMessage: function (data) {

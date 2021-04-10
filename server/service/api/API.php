@@ -174,7 +174,7 @@ class API{
 		$nickname = mysqli_real_escape_string($link, $nickname);
 		
 		if(!$this->nicknameHasValidTicket($serial,$room_id,$nickname,$link) && $room_type != 'live'){
-			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR&debug='.$room_type);
+			header('Location: ../../../web/join?type=business&callback=TICKET_JOIN_ERROR');
 		} else {
 			$stmtCheck = mysqli_stmt_init($link);
 			$stmtCheck->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND password = ?");
@@ -544,21 +544,35 @@ class API{
 		return $stmtUpdate->execute();
 	}
 	
-	public function ticketValidate($room_id,$serial,$nickname,$link,$lang){ 		
-		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND used = 1");
-		$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
-		$stmtCheck->execute();
-		$resultCheck = $stmtCheck->get_result();
-		if(mysqli_num_rows( $resultCheck ) == 0){
-			$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+	public function ticketValidate($room_id,$serial,$nickname,$link,$lang){
+		$stmtCheckIsWithTicket = mysqli_stmt_init($link);
+		$stmtCheckIsWithTicket->prepare("SELECT * FROM citizenroom_business_room WHERE room_id = ? AND serial = ? AND withTicket = 1");
+		$stmtCheckIsWithTicket->bind_param('is', $room_id, $serial);
+		$stmtCheckIsWithTicket->execute();
+		$resultCheckIsWithTicket = $stmtCheckIsWithTicket->get_result();
+		$roomWithTicket = mysqli_num_rows( $resultCheckIsWithTicket );
+		
+		mysqli_free_result($resultCheckIsWithTicket);
+		mysqli_stmt_close($stmtCheckIsWithTicket);
+		
+		if($roomWithTicket == 0){
+			$arr = array('success' => 'true', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_OK']);
 		} else {
-			while($row = $resultCheck->fetch_array(MYSQLI_BOTH)){
-				$hashToCheck = md5($nickname.$room_id.$serial.((string)$row['previousHash']));
-				if($hashToCheck == (string)$row['hash']){
-					$arr = array('success' => 'true', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_OK']);
-				} else {
-					$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+			$stmtCheck = mysqli_stmt_init($link);
+			$stmtCheck->prepare("SELECT * FROM citizenroom_business_room_ticket WHERE room_id = ? AND serial = ? AND nickname = ? AND used = 1");
+			$stmtCheck->bind_param('iss', $room_id, $serial, $nickname);
+			$stmtCheck->execute();
+			$resultCheck = $stmtCheck->get_result();
+			if(mysqli_num_rows( $resultCheck ) == 0){
+				$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+			} else {
+				while($row = $resultCheck->fetch_array(MYSQLI_BOTH)){
+					$hashToCheck = md5($nickname.$room_id.$serial.((string)$row['previousHash']));
+					if($hashToCheck == (string)$row['hash']){
+						$arr = array('success' => 'true', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_OK']);
+					} else {
+						$arr = array('success' => 'false', 'message' => $nickname.' '.$lang['ROOM_TICKET_VALIDATION_FAILED']);
+					}
 				}
 			}
 		}

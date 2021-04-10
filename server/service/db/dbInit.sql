@@ -75,7 +75,7 @@ ALTER TABLE `citizenroom_business_room`
 --
 CREATE TABLE IF NOT EXISTS `citizenroom_business_room_ticket` (
   `id` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `room_id` int(10) NOT NULL,
+  `room_id` BIGINT NOT NULL,
   `serial` VARCHAR(6) NOT NULL,
   `nickname` VARCHAR(255) NULL,
   `used` INT NOT NULL DEFAULT '0',

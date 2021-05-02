@@ -20,7 +20,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 <html lang="en">
 <head>
     <meta charset="utf8">
-    <title><?php print $lang['PAGE_TITLE']?></title>
+	<title><?php print $lang['PAGE_TITLE']?></title>
+	<meta property="og:title" content="<?php print $lang['PAGE_TITLE']?>" />
+	<meta property="og:description" content="<?php print $lang['INVITATION'].$_GET['room_id']?>" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="InMediArt">
     <script src="https://code.jquery.com/jquery-3.2.1.js"

@@ -54,7 +54,7 @@ if (isset($_REQUEST['method'] )){
 			$api->ticketGet($_REQUEST['serial'], $_REQUEST['room_id'], $link, $lang);
 			break;
 		case 'rooms/ticket/add':
-			$api->ticketAdd($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link);
+			$api->ticketAdd($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link, $lang);
 			break;
 		case 'rooms/ticket/delete':
 			$api->ticketDelete($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link);

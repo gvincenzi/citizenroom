@@ -13,9 +13,9 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v10.js"></script>
-	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css" />
-	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css" />
+	<script src="../assets/js/jitsi_v14.js"></script>
+	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
+	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
 	<meta name="viewport" content="width=device-width" />
 
@@ -39,7 +39,7 @@ include_once '../actionInSession.php';
 						})
 						.done(function( msg ) {
 							var room = JSON.parse(msg);
-							BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_serial']?>');
+							BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>');
 							JoinYoutubeLive(room.channel_id);
 						});
 					} else {
@@ -80,6 +80,7 @@ include_once '../actionInSession.php';
   <?php include '../header.php';?> 
 
   <div class="room">
+    <?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" style = "max-height:100px"></img>'?>
 	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3><hr/>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='youtube-live-container' style='height:100%'></div>

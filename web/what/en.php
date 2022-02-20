@@ -1,28 +1,31 @@
 <?php 
 $cookieDisclaimer = ("
-<h2>Che cos'è e perché CitizenRoom?</h2>
-Nel 1945 negli Stati Uniti nacque la <strong>Citizens' Band, la banda cittadina</strong>.<br>
-CB era uno dei vari servizi radio regolamentati dalla Federal Communications Commission (FCC) per consentire ai cittadini di utilizzare una banda di frequenze radio per la <strong>comunicazione personale</strong> (ad esempio i modellini radiocomandati, le chiacchiere fra parenti ed amici, le piccole imprese) <strong><a href='https://it.wikipedia.org/wiki/Banda_cittadina'> >> fonte Wikipedia</a></strong>.
+<h2>Why CitizenRoom?</h2>
+The <strong>Citizens’Band</strong> was born for collective private use and saw the day in 1945 in the USA. CB was one of the several radio services regulated by the federal communications commission (FCC) with the goal to allow citizens to use a band of radio frequencies for <strong>personal communication</strong> (e.g. radio-controlled models, chats within family and friends, undersized businesses) <strong><a href='https://en.wikipedia.org/wiki/Citizens_band_radio'> >> source Wikipedia</a></strong>.
 <br><br>
-CitizenRoom nasce con l'idea di riutilizzare lo stesso schema e proporre l'utilizzo di una parte del web in modo libero da qualsiasi rapporto con un intermediario pubblico o privato(a pagamento o gratuito ma in cambio di informazioni personali), sviluppando un servizio di comunicazione audio e video da dedicare alla comunicazione personale tra i cittadini.<br><br>
-CitizenRoom è una piattaforma per la creazione di stanze in cui poter poter organizzare delle riunioni (audio e video) con un numero teoricamente illimitato di partecipanti: il prototipo che è attualmente a vostra disposizione permette di invitare fino a <strong>30 persone</strong> per un corretto funzionamento.<br><br>
-CitizenRoom è <strong>gratuito, open source e non necessita né della creazione di un conto</strong>, né dell'installazione di applicaziioni (desktop o mobile): potete creare delle stanze liberamente e senza limiti e, utilizzando un tasto che vi genera un link di invito, potrete far partecipare chiunque senza obbligarlo a crearsi un conto o installare un software sul suo dispositivo.<br>
-Abbiamo sentito l'esigenza di creare e testare una piattaforma che puntasse piuttosto sulla <strong>semplicità</strong> che sulla personalizzazione del servizio.<br><br>
-<h2>Gestione dei dati</h2>
-CitizenRoom non salva <strong>nessun dato degli utenti, dei dispositivi, della conversazione</strong>. Questo non significa che CitizenRoom sia un'applicazione in cui poter godere di un totale anonimato, al contrario: CitizenRoom è una piattaforma <strong>libera ma non cifrata</strong>, quindi in ogni momento, in caso di scambio di informazioni scorretto e/o illegale, <strong>ogni conversazione potrà essere monitorata da un'autorità competente</strong>.<br>
-CitizenRoom vuole essere un mezzo semplice e immediato, ma non uno strumento di offuscamento della propria identità per fini illeciti e contrari alla legge dello Stato in cui la piattaforma è situata e da cui gli utenti si connettono.<br><br>
-<h2>CitizenRoom Business</h2>
-Stiamo testando anche una versione (<strong>sempre gratuita</strong>) che abbiamo definito <strong>Business</strong> nella quale potrete crearvi un conto (inserendo solo una mail valida): con la creazione di questo conto potrete creare delle stanze proprie al vostro gruppo di lavoro, alla vostra associazione, alla vostra famiglia.<br>
-Esempio: se create una stanza numero 35, questa 35 sarà solo vostra e non condividerà i partecipanti con la stanza 35 della versione di CitizenRoom normale.<br><br>
-Nella versione Business avrete la possibilità di personalizzare le stanze con un titolo ed un logo e di utilizzare 3 livelli di accesso alle vostre stanze:<br>
+
+Citizenroom is born with the idea to disrupt the way we use part of the web today, proposing an open-source service, free from any engagement with a public or private intermediary, applying the same CB model. This means that, as opposed to what happens today within the web (whatever you’re using paying or free interfaces), none of your personal information is given or stolen. This results in developing a service of audio and video communication to be dedicated to personal interactions between citizens.<br><br>
+
+Citizenroom is a platform where you can create virtual rooms in which you have the possibility to set-up meetings (audio and video) with a theoretical unlimited number of participants: however, it is strongly recommended to limit the use of the today available prototype to a maximum of <strong>30 people simultaneously</strong> to make it work properly.<br><br>
+
+Citizenroom is completely <strong>free, open source and you can use it without any personal account creation</strong> or applications download (desktop or mobile): you can easily create an unlimited number of rooms and, just in a click, you can generate an invitation link ready to be shared with anyone you want to invite in the room. On the other side, the people you invite to join will have access to the room just clicking on your link and they won’t be forced to create an account or install any software on their device.<br>
+We strongly felt the need to create and test a platform that focused rather on <strong>simplicity</strong> than on the personalization of the service.<br><br>
+
+<h2>DATA MANAGEMENT</h2>
+<strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>
+
+<h2>CITIZENROOM BUSINESS</h2>
+We are also testing a version (<strong>free as well</strong>) that we decided to identify as <strong>Business</strong> in which you can create a personal account (by entering a valid email only): in this version, having an account allows you to create personal rooms to be used for different purposes: for your work group, your association, your family.<br>
+To make an example: while creating a room indicated by the number 35, this room 35 will only belong to your account and it won’t share the participants with the room indicated by the same number (35) in the basic Citizenroom version. In other words, within a personal account, you can create unique personal rooms to be used in an unlimited way.<br><br>
+In the business version you will have the possibility to customize the rooms with a title and a logo and to establish 3 different levels of access to your rooms:<br>
 <ul>
-<li>Con richiesta di ingresso</li>
-<li>Con password di accesso</li> 
-<li>Con ticket (lista predefinita di nickname invitati)</li>
+<li>Activating the lobby option</li>
+<li>Setting up an access password</li> 
+<li>With a ticketing system (pre-establishing a list of identified nicknames to be invited)</li>
 </ul>
-<h2>Un prototipo Open Source</h2>
-CitizenRoom è un prototipo di piattaforma per conferenze web, basato sull'API pubblica di <a href='https://meet.jit.si/'>Jitsi Meet</a>, scritto in PHP/Javascript e completamente Open Source.<br>
-Il codice del prototipo potete leggerlo e eventualmente proporre di modificarlo su GitHub nel <a href='https://github.com/gvincenzi/citizenroom'>repository dedicato</a>.
+<h2>AN OPEN SOURCE PROTOTYPE</h2>
+Citizenroom is a prototype web conference platform, based on jitsi meet public api, written in php/javascript and completely open source.<br>
+You can read the prototype code and, if you believe it is necessary, propose to modify it on Github in the <a href='https://github.com/gvincenzi/citizenroom'>dedicated repository</a>.
 <br><br>
 
 ");

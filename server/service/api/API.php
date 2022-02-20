@@ -3,6 +3,7 @@ include_once '../../admin/lang.php';
 include '../../admin/langs/'. prefered_language($available_languages) .'.php';
 include_once '../../admin/config.php';
 require 'UserRegister.php';
+require 'Alert.php';
 
 session_start();
 $link = mysqli_connect($hostname, $username, $password, $dbname) or DIE('Error: '.mysqli_connect_error());
@@ -217,6 +218,11 @@ class API{
 				$_SESSION['room_title'] = stripslashes($room['title']);
 				$_SESSION['room_logo'] = $room['logo'];
 				
+				if(!isset($_SESSION['user'])){
+					$alertService = new Alert();
+					$alertService->sendMail(prefered_language($available_languages), $room['mail'], $room['title'], $nickname);
+				}
+				
 				$this->validTicket($serial,$room_id,$nickname,$link);
 				
 				if (!isset($_REQUEST['no_redirect'])){
@@ -423,7 +429,7 @@ class API{
 	
 	public function roomsGetByIdInternal($serial,$room_id,$link){ 
 		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT * FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
+		$stmtCheck->prepare("SELECT citizenroom_business_room.*,owner.mail as mail FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
 		$stmtCheck->bind_param('si', $serial,$room_id);
 		$stmtCheck->execute();
 		$result = $stmtCheck->get_result();

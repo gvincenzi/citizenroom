@@ -67,9 +67,9 @@
   	<author>Photo by <a href="" id="authorLink"></a></author>
   </flickr>
   
-  <!-- jitsi>
+  <jitsi>
   	<a href="https://meet.jit.si/" target="_blank"><img id="jitsiLogo" src="../assets/img/jitsi.svg"/><br></a>
 	Based on Jitsi Meet
-  </jitsi -->
+  </jitsi>
 
 <div id="growl" class="jGrowl bottom-left"></div>

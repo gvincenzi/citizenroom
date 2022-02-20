@@ -1,6 +1,6 @@
 var apiObj = null;
 var newPassword = null;
-function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key){
+function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle){
     $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -50,7 +50,7 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key){
     });
 	$("#btnInvitation").on('click', function () {
 		if(serial != null && serial != ""){
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial);
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_title="+roomTitle);
 		}  else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}
@@ -83,14 +83,16 @@ function copyToClipboard(text) {
 	$temp.remove();
 }
 
-function StartMeeting(roomNumber,nickname,password,serial,withPassword){
+function StartMeeting(roomNumber,nickname,password,serial,roomTitle){
     const domain = 'meet.jit.si';
-	
+	if(roomTitle == null || roomTitle == ""){
+		roomTitle = 'CitizenRoom';
+	}
     var roomName;
 	if(serial != null && serial != ""){
-		roomName = 'CitizenRoom' + roomNumber + "_" + serial;
+		roomName = roomTitle + "_" + roomNumber + "_" + serial;
 	} else {
-		roomName = 'CitizenRoom' + roomNumber;
+		roomName = roomTitle + "_" + roomNumber;
 	}
     // console.info("roomName:"+roomName);
     const options = {
@@ -131,7 +133,7 @@ function StartMeeting(roomNumber,nickname,password,serial,withPassword){
         }
     };
     apiObj = new JitsiMeetExternalAPI(domain, options);
-	apiObj.executeCommand('subject', 'CZR#'+roomNumber);
+	apiObj.executeCommand('subject', roomTitle + "_" + roomNumber);
     apiObj.addEventListeners({
 		// set new password for channel
 		participantRoleChanged: function(event) {

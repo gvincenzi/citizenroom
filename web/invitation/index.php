@@ -8,7 +8,12 @@ if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
-	header('Location: ../'.$_SESSION['action']);
+	unset($_SESSION['room_id']);
+	unset($_SESSION['nickname']);
+	unset($_SESSION['password']);
+	unset($_SESSION['serial']);
+	unset($_SESSION['room_title']);
+	unset($_SESSION['room_logo']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -22,10 +27,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <meta charset="utf8">
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta property="og:title" content="<?php print $lang['PAGE_TITLE']?>" />
-	<meta property="og:description" content="<?php print $lang['INVITATION'].$_GET['room_id']?>" />
+	<meta property="og:description" content="<?php print $lang['INVITATION'].$_GET['room_id'].' '.$_GET['room_title']?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="InMediArt">
     <script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -37,7 +41,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     
     <script type="text/javascript">  
 		$(document).ready(function() {
-		    var callback = location.search.split('callback=')[1];
+			var callback = location.search.split('callback=')[1];
 		    /*if(callback!=null && callback!=''){
 			    if(callback=='PASSWORD_RESET_OK'){
 				    $(callbackMessage).addClass('alert').addClass('alert-success').text('<?php print $lang['PASSWORD_RESET_OK'] ?>');
@@ -63,7 +67,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h3><?php print $lang['INVITATION'].$_GET['room_id']?></h3>
+      	<h3><?php print $lang['INVITATION'].$_GET['room_id'].'<br>'.$_GET['room_title']?></h3>
       	<div id='callbackMessage'></div>
       	</div>
       	<hr>
@@ -87,6 +91,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         </div>
 		<br>
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['CONFIRM']?></button>
+		
+		<hr>
+		<p class="jitsiApp" style="text-align-last: center;">
+		<a href="https://apps.apple.com/us/app/jitsi-meet/id1165103905" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/app-store-badge.png" /></a>
+		<a href="https://play.google.com/store/apps/details?id=org.jitsi.meet&hl=en&gl=US" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/google-play-badge.png" /></a>
+		</p>
       </form>      
     </div> <!-- /container -->
 </body>

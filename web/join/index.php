@@ -8,7 +8,12 @@ if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
-	header('Location: ../'.$_SESSION['action']);
+	unset($_SESSION['room_id']);
+	unset($_SESSION['nickname']);
+	unset($_SESSION['password']);
+	unset($_SESSION['serial']);
+	unset($_SESSION['room_title']);
+	unset($_SESSION['room_logo']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -110,9 +115,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
 				}
 			?>
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
+	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 			<div style="display:flex">
-				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>" readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>
+				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
 				<?php 
 				if(!isset($_GET['type']) || $_GET['type']!='business'){
 					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
@@ -133,7 +138,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<br>
 		
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
-		
+		<hr>
+		<p class="jitsiApp" style="text-align-last: center;">
+		<a href="https://apps.apple.com/us/app/jitsi-meet/id1165103905" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/app-store-badge.png" /></a>
+		<a href="https://play.google.com/store/apps/details?id=org.jitsi.meet&hl=en&gl=US" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/google-play-badge.png" /></a>
+		</p>
       </form>      
     </div> <!-- /container -->
 	

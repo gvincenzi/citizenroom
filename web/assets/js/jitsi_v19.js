@@ -1,6 +1,16 @@
 var apiObj = null;
 var newPassword = null;
 function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle){
+	$("#btnRaiseHandOn").on('click', function () {
+        apiObj.executeCommand('toggleRaiseHand');
+		$("#btnRaiseHandOn").hide();
+		$("#btnRaiseHandOff").show();
+    });
+	$("#btnRaiseHandOff").on('click', function () {
+        apiObj.executeCommand('toggleRaiseHand');
+		$("#btnRaiseHandOn").show();
+		$("#btnRaiseHandOff").hide();
+    });
     $("#btnCustomMicOn").on('click', function () {
         apiObj.executeCommand('toggleAudio');
     });
@@ -124,7 +134,7 @@ function StartMeeting(roomNumber,nickname,password,serial,roomTitle){
             SHOW_WATERMARK_FOR_GUESTS: false,
 			LANG_DETECTION: true,
             DEFAULT_REMOTE_DISPLAY_NAME: 'New Participant',
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur']
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
         },
         onload: function () {
             $('#joinMsg').hide();
@@ -233,6 +243,9 @@ function StartMeeting(roomNumber,nickname,password,serial,roomTitle){
 				console.info(left);
 				window.location.href = window.location.href.replaceAll("/web/room/", "/web/join/");
 			});
+        },
+		raiseHandUpdated: function(data){
+            //console.log('raiseHandUpdated', data);
         }
     });
 }

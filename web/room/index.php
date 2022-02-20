@@ -14,7 +14,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v18.js"></script>
+	<script src="../assets/js/jitsi_v19.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -64,6 +64,8 @@ include_once '../actionInSession.php';
 		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
 		<?php if(isset($_SESSION['serial'])) echo '<h4>Partner ID #'.$_SESSION['serial'].'</h4>'?>
 		<hr>
+		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
+		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>
 		<button id='btnCustomMicOff' style="display: none;"><?php print $lang['btnCustomMicOff']?></button>
 		<button id='btnCustomCameraOn'><?php print $lang['btnCustomCameraOn']?></button>

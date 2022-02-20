@@ -31,20 +31,22 @@ $lang['JOIN_MANDATORY_ERROR']="Nickname e numero della stanza sono obbligatori";
 $lang['JOINING']="Stai entrando nella stanza...";
 $lang['btnCustomMicOn']="Attivare mic";
 $lang['btnCustomCameraOn']="Attivare camera";
-$lang['btnChatOn']="Attivare chat";
+$lang['btnChatOn']="Attivare/Disattivare chat";
 $lang['btnCustomTileView']="Vista partecipanti";
 $lang['btnScreenShareCustomOn']="Attivare condivisione schermo";
 $lang['btnStreamOn']="Attivare live stream";
 $lang['btnLobbyOn']="Attivare ingresso su richiesta";
+$lang['btnRaiseHandOn']="Alzare/Bassare la mano";
 $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
 $lang['btnMuteEveryone']="Disattivare mic a tutti";
 $lang['btnCustomMicOff']="Disattivare mic";
 $lang['btnCustomCameraOff']="Disattivare camera";
-$lang['btnChatOff']="Disattivare chat";
+$lang['btnChatOff']="Attivare/Disattivare chat";
 $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
 $lang['btnStreamOff']="Disattivare live stream";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
+$lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 
 /* INVITE */
 $lang['INVITATION']="Sei stato invitato nella stanza #";

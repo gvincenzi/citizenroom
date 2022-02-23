@@ -37,7 +37,7 @@ if (isset($_REQUEST['method'] )){
 			$api->resetPassword($_REQUEST['mail'], $link);
 			break;
 		case 'users/update':
-			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $_REQUEST['channel_id'], $link, $lang);
+			$api->usersUpdate($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['mail'], $_REQUEST['stream_key'], $_REQUEST['channel_id'], $_REQUEST['room_telegram_notif'], $link, $lang);
 			break;
 		case 'rooms/add':
 			$api->roomsAdd($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['room_title'], $_REQUEST['room_logo'], $_REQUEST['room_password'], $link, $lang);
@@ -300,13 +300,15 @@ class API{
 		}
     }
 	
-	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$link,$lang){   	
+	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$user_room_telegram_notif,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
+		
+		$withMailNotif = isset($_REQUEST['user_room_mail_notif']) ? 1 : 0;
 
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ?, stream_key = ?, channel_id = ? WHERE user_id = ?");
-		$stmt->bind_param('sssssi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_channel_id, $user_id);
+		$stmt->prepare("UPDATE citizenroom_user SET name = ?, surname = ?, mail = ?, stream_key = ?, channel_id =?, room_mail_notif=?, room_telegram_notif=?  WHERE user_id = ?");
+		$stmt->bind_param('sssssisi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_channel_id, $withMailNotif, $user_room_telegram_notif, $user_id);
 		$stmt->execute();
 		mysqli_stmt_close($stmt);
 		
@@ -315,9 +317,11 @@ class API{
 		$_SESSION['user_mail'] = $user_mail;
 		$_SESSION['user_stream_key'] = $user_stream_key;
 		$_SESSION['user_channel_id'] = $user_channel_id;
+		$_SESSION['user_room_mail_notif'] = $withMailNotif;
+		$_SESSION['user_room_telegram_notif'] = $user_room_telegram_notif;
 		
 		$_SESSION["profile.message"] = $lang['USER_UPDATE_OK'];
-		header('Location: ../../../web/dashboard?type=business');	
+		header('Location: ../../../web/dashboard?type=business&log='.$user_room_mail_notif.$user_room_telegram_notif);	
 	}
 	
 	public function roomsAdd($room_id,$serial,$title,$logo,$password,$link,$lang){   	

@@ -96,6 +96,10 @@ $lang['ROOM_DELETE_OK']="Chiusura della stanza realizzata con successo";
 $lang['ROOM_DELETE_ERROR']="Errore durante la chiusura della stanza";
 $lang['ROOM_NOT_FOUND']="La stanza non è presente";
 
+$lang['ROOM_NOTIF']="Notifiche delle stanze";
+$lang['ROOM_NOTIF_MAIL']="Notifiche via e-mail";
+$lang['ROOM_NOTIF_TELEGRAM']="Notifiche via Telegram (inserire il codice ricevuto da CitizenRoomBot per attivarle)";
+
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Emetti un biglietto";
 $lang['ROOM_TICKET_LIST']="Lista dei biglietti";

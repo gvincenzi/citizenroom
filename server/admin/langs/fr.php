@@ -96,6 +96,10 @@ $lang['ROOM_DELETE_OK']="Suppression de la salle réalisée avec succés";
 $lang['ROOM_DELETE_ERROR']="Erreur pendant la suppression salle";
 $lang['ROOM_NOT_FOUND']="La salle n'existe pas";
 
+$lang['ROOM_NOTIF']="Notification de salle";
+$lang['ROOM_NOTIF_MAIL']="Notification via e-mail";
+$lang['ROOM_NOTIF_TELEGRAM']="Notification via Telegram (insérer le code reçu par CitizenRoomBot pour activer)";
+
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Créer un ticket";
 $lang['ROOM_TICKET_LIST']="Liste des tickets";

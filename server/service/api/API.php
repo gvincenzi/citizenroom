@@ -218,7 +218,7 @@ class API{
 				$_SESSION['room_title'] = stripslashes($room['title']);
 				$_SESSION['room_logo'] = $room['logo'];
 				
-				if(!isset($_SESSION['user'])){
+				if(!isset($_SESSION['user']) && $room['mail_notif'] == true){
 					$alertService = new Alert();
 					$alertService->sendMail(prefered_language($available_languages), $room['mail'], $room['title'], $nickname);
 				}
@@ -433,7 +433,7 @@ class API{
 	
 	public function roomsGetByIdInternal($serial,$room_id,$link){ 
 		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT citizenroom_business_room.*,owner.mail as mail FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
+		$stmtCheck->prepare("SELECT citizenroom_business_room.*,owner.mail as mail,owner.room_mail_notif as mail_notif FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
 		$stmtCheck->bind_param('si', $serial,$room_id);
 		$stmtCheck->execute();
 		$result = $stmtCheck->get_result();

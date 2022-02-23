@@ -98,7 +98,6 @@ $lang['ROOM_NOT_FOUND']="Room does not exist";
 
 $lang['ROOM_NOTIF']="Room notifications";
 $lang['ROOM_NOTIF_MAIL']="e-mail notifications";
-$lang['ROOM_NOTIF_TELEGRAM']="Telegram notifications (insert code received by CitizenRoomBot to activate)";
 
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Create a ticket";

@@ -221,9 +221,6 @@ session_start();
 			<h4><?php print $lang['ROOM_NOTIF']?></h4>
 			<input id="user_room_mail_notif" name="user_room_mail_notif" type="checkbox" class="form-check-input" <?php if($_SESSION['user_room_mail_notif'])print "checked" ?>></input>
 			<label class="form-check-label" for="user_room_mail_notif"><?php print $lang['ROOM_NOTIF_MAIL']?></label>
-			<br><br>
-			<label class="form-check-label" for="user_room_telegram_notif"><?php print $lang['ROOM_NOTIF_TELEGRAM']?></label>
-			<input id="user_room_telegram_notif" name="room_telegram_notif" type="text" class="form-control" value="<?php print $_SESSION['user_room_telegram_notif']?>"></input>
 			<hr>
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword?type=business','_self')" style="color:darkgray"><small>Reset Password</small></a></div>

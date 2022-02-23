@@ -98,7 +98,6 @@ $lang['ROOM_NOT_FOUND']="La stanza non è presente";
 
 $lang['ROOM_NOTIF']="Notifiche delle stanze";
 $lang['ROOM_NOTIF_MAIL']="Notifiche via e-mail";
-$lang['ROOM_NOTIF_TELEGRAM']="Notifiche via Telegram (inserire il codice ricevuto da CitizenRoomBot per attivarle)";
 
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Emetti un biglietto";

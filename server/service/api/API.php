@@ -12,7 +12,9 @@ $api = new API();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {		
 		case 'join':
-			if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
+			if(isset($_REQUEST['room_country']) && $_REQUEST['room_country']!=''){
+				$api->joinCountry($_REQUEST['room_country'], $_REQUEST['nickname'], $_REQUEST['room_id'], $link);
+			} else if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
 				$api->joinBusiness($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['password'], $_REQUEST['room_type'], $link);
 			} else {
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
@@ -62,6 +64,9 @@ if (isset($_REQUEST['method'] )){
 			break;
 		case 'rooms/ticket/validate':
 			$api->ticketValidate($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link, $lang);
+			break;
+		case 'country':
+			$api->country($link, $lang);
 			break;
 	}
 }else {
@@ -171,6 +176,25 @@ class API{
         header('Location: ../../../web/room');
     }
 	
+	public function joinCountry($country,$nickname,$room_id,$link){
+		unset($_SESSION['room_title']);
+		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_country']);
+		unset($_SESSION['room_place']);
+		unset($_SESSION['room_wikipedia']);
+		unset($_SESSION['room_website']);
+		
+		$place = $this->getCountryPlaceInfo($country,$room_id,$link);
+		$_SESSION['room_title'] = stripslashes($place['comune']);
+		$_SESSION['room_logo'] = $place['stemma'];
+		$_SESSION['room_country'] = $_REQUEST['room_country'];
+		$_SESSION['room_place'] = $place['den_prov'].' ('.$place['sigla'].'), '.$place['den_reg'];
+		$_SESSION['room_wikipedia'] = $place['wikipedia'];
+		$_SESSION['room_website'] = $place['sito_web'];
+		
+		$this->join($nickname,$room_id,$link);
+	}
+	
 	public function joinBusiness($nickname,$room_id,$serial,$password,$room_type,$link){	
 		$nickname = mysqli_real_escape_string($link, $nickname);
 		
@@ -208,6 +232,10 @@ class API{
 				unset($_SESSION['serial']);
 				unset($_SESSION['room_title']);
 				unset($_SESSION['room_logo']);
+				unset($_SESSION['room_country']);
+				unset($_SESSION['room_place']);
+				unset($_SESSION['room_wikipedia']);
+				unset($_SESSION['room_website']);
 						
 				$_SESSION['room_id'] = $room_id;
 				$_SESSION['nickname'] = $nickname;
@@ -610,6 +638,10 @@ class API{
 		unset($_SESSION['serial']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_country']);
+		unset($_SESSION['room_place']);
+		unset($_SESSION['room_wikipedia']);
+		unset($_SESSION['room_website']);
 		
 		print json_encode($arr);
 	}
@@ -630,6 +662,37 @@ class API{
 			$ip_address = $_SERVER['REMOTE_ADDR'];
 		  }
 		return $ip_address;
+	}
+	
+	public function country($link){
+		$stmt = mysqli_stmt_init($link);
+		if(isset($_REQUEST['pro_com_t'])){
+			$stmt->prepare("SELECT * FROM citizenroom_country_italy WHERE pro_com_t = ?");
+			$stmt->bind_param('s', $_REQUEST['pro_com_t']);
+		} else {
+			$stmt->prepare("SELECT comune,pro_com_t FROM citizenroom_country_italy order by comune");
+		}
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$row["comune"] = utf8_encode( $row["comune"]);
+            $myArray[] = $row;
+		}
+		
+		$tojson = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+		print $tojson;
+	}
+	
+	public function getCountryPlaceInfo($country,$room_id,$link){ 
+		$stmt = mysqli_stmt_init($link);
+		$stmt->prepare("SELECT * FROM citizenroom_country_italy WHERE pro_com_t = ?");
+		$stmt->bind_param('s', $room_id);
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$row["comune"] = utf8_encode( $row["comune"]);
+		return $row;
 	}
 }
 ?>

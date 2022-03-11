@@ -1,6 +1,6 @@
 var apiObj = null;
 var newPassword = null;
-function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle){
+function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle,room_country){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -59,9 +59,11 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle)
 		$("#btnStreamOff").hide();
     });
 	$("#btnInvitation").on('click', function () {
-		if(serial != null && serial != ""){
+		if(room_country != null && room_country != ""){
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle);
+		} else if(serial != null && serial != ""){
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_title="+roomTitle);
-		}  else {
+		} else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}
 		alert("Invitation link copied in clipboard");
@@ -106,7 +108,7 @@ function StartMeeting(roomNumber,nickname,password,serial,roomTitle){
 	}
     // console.info("roomName:"+roomName);
     const options = {
-        roomName: roomName,
+        roomName: roomName.replace("'", "_"),
         width: '100%',
         height: '100%',
         parentNode: document.querySelector('#jitsi-meet-conf-container'),

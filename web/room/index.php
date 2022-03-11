@@ -14,7 +14,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v19.js"></script>
+	<script src="../assets/js/jitsi_v20.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
@@ -32,9 +32,17 @@ include_once '../actionInSession.php';
 					if(check.success == 'true'){
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_stream_key']?>',"<?php echo $_SESSION['room_title']?>");
+						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_stream_key']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_country']?>");
 						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>',"<?php echo $_SESSION['room_title']?>");
 						
+						$("#btnWikipedia").on('click', function () {
+							window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank'); 
+						});
+						
+						$("#btnWebsite").on('click', function () {
+							window.open("<?php echo $_SESSION['room_website']?>", '_blank'); 
+						});
+	
 						} else {
 							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
 						}	
@@ -56,7 +64,8 @@ include_once '../actionInSession.php';
 
   <div class="room">
 	<?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" style = "max-height:100px"></img>'?>
-	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3><hr/>'?>
+	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3>'?>
+	<?php if(isset($_SESSION['room_place'])) echo '<h4>'.$_SESSION['room_place'].'</h4><hr/>'; else if(isset($_SESSION['room_title'])) echo '<hr/>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>
 	</div>
@@ -87,6 +96,14 @@ include_once '../actionInSession.php';
 					echo "<button id='btnStreamOff' style=\"display: none;\">".$lang['btnStreamOff']."</button>";
 					echo "<button id='btnLiveInvitation'>Live : ".$lang['btnInvitation']."</button>";
 				}
+			}
+		?>
+		
+		<?php if(isset($_SESSION['room_country'])){
+				echo "<br>";
+				echo "<h3>Informazioni sul comune</h3><hr>";
+				if(isset($_SESSION['room_wikipedia'])) echo '<button id="btnWikipedia">Wikipedia</button>';
+				if(isset($_SESSION['room_website'])) echo '<button  id="btnWebsite">Website</button>';
 			}
 		?>
 	</div>

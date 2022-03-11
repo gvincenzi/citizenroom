@@ -14,6 +14,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['serial']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
+	unset($_SESSION['room_country']);
+	unset($_SESSION['room_place']);
+	unset($_SESSION['room_wikipedia']);
+	unset($_SESSION['room_website']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -85,6 +89,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
 		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
 		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
+		<input type="hidden" value="<?php print $_GET['room_country']?>" name="room_country" id="room_country">
         
         <div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">

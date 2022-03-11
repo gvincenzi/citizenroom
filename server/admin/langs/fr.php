@@ -11,6 +11,8 @@ $lang['PAGE_TITLE'] = ("CitizenRoom - Un espace libre où l'on se sent chez soi"
 $lang['CONFIRM'] = "Valider";
 $lang['WAIT'] = "Attendez...";
 $lang['SELECT_LANGUAGE']="Changer de langue";
+$lang['CIVIC_HALL']="Salle Municipale";
+$lang['CIVIC_HALL_COUNTRY_SELECT']="Choisir le pays";
 
 /* MENU */
 $lang['JOIN']="Rejoindre une salle";

@@ -1,7 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
-		
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js"></script>
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.2.12/jquery.jgrowl.min.js"></script>
 <script type="text/javascript" src="../assets/js/jquery.blockUI.js"></script>

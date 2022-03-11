@@ -18,6 +18,13 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+        <style type="text/css">
+            #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+                height:400px;
+            }
+        </style>
+		<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
 	<meta name="viewport" content="width=device-width" />
 
 		<script>
@@ -46,6 +53,8 @@ include_once '../actionInSession.php';
 						} else {
 							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
 						}	
+						
+						initMap("<?php echo $_SESSION['room_country']?>");
 				});
 			});
 			
@@ -56,6 +65,33 @@ include_once '../actionInSession.php';
 				  data: { method: "left" }
 				})
 			});
+			
+			// Fonction d'initialisation de la carte
+            function initMap(room_country) {
+				if(room_country!=null && room_country!=''){
+					$.ajax({
+					  type: "GET",
+					  url: "../../server/service/api/API.php",
+					  data: { method: "country", pro_com_t:"<?php echo $_SESSION['room_id']?>"}
+					})
+					.done(function( msg ) {
+						//console.info( msg );
+						var comuni = JSON.parse(msg);
+							$.each(comuni, function(i, item) {
+								var nome = item.comune;
+								var room_id = item.pro_com_t;
+								//console.info(nome + ' ' + room_id);
+								var room_map = L.map('map').setView([item.lat, item.long], 11);
+								L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+									minZoom: 1,
+									maxZoom: 20
+								}).addTo(room_map);
+								
+								var marker = L.marker([item.lat, item.long]).addTo(room_map);
+							});
+					});
+				} else $("#map").hide();
+            }
         </script>
 </head>
 
@@ -101,7 +137,7 @@ include_once '../actionInSession.php';
 		
 		<?php if(isset($_SESSION['room_country'])){
 				echo "<br>";
-				echo "<h3>Informazioni sul comune</h3><hr>";
+				echo "<h3>".$lang['CIVIC_HALL_INFO']."</h3><hr>";
 				if(isset($_SESSION['room_wikipedia'])) echo '<button id="btnWikipedia">Wikipedia</button>';
 				if(isset($_SESSION['room_website'])) echo '<button  id="btnWebsite">Website</button>';
 			}
@@ -109,5 +145,6 @@ include_once '../actionInSession.php';
 	</div>
 	<h4 id='joinMsg'></h4>
   </div>
+  <div class='room' id="map"/>
 </body>
 </html>

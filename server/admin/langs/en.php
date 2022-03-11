@@ -17,6 +17,7 @@ $lang['CIVIC_HALL_COUNTRY_SELECT']="Select the country";
 /* MENU */
 $lang['JOIN']="Join a room";
 $lang['LEFT']="Left the room";
+$lang['CIVIC_HALL_INFO']="The municipality";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Error joining the room";

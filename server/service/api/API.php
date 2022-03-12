@@ -183,6 +183,7 @@ class API{
 		unset($_SESSION['room_place']);
 		unset($_SESSION['room_wikipedia']);
 		unset($_SESSION['room_website']);
+		unset($_SESSION['room_mail']);
 		
 		$place = $this->getCountryPlaceInfo($country,$room_id,$link);
 		$_SESSION['room_title'] = stripslashes($place['comune']);
@@ -191,6 +192,7 @@ class API{
 		$_SESSION['room_place'] = $place['den_prov'].' ('.$place['sigla'].'), '.$place['den_reg'];
 		$_SESSION['room_wikipedia'] = $place['wikipedia'];
 		$_SESSION['room_website'] = $place['sito_web'];
+		$_SESSION['room_mail'] = $place['mail'];
 		
 		$this->join($nickname,$room_id,$link);
 	}
@@ -236,6 +238,7 @@ class API{
 				unset($_SESSION['room_place']);
 				unset($_SESSION['room_wikipedia']);
 				unset($_SESSION['room_website']);
+				unset($_SESSION['room_mail']);
 						
 				$_SESSION['room_id'] = $room_id;
 				$_SESSION['nickname'] = $nickname;
@@ -642,6 +645,7 @@ class API{
 		unset($_SESSION['room_place']);
 		unset($_SESSION['room_wikipedia']);
 		unset($_SESSION['room_website']);
+		unset($_SESSION['room_mail']);
 		
 		print json_encode($arr);
 	}

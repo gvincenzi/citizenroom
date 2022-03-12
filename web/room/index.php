@@ -138,9 +138,9 @@ include_once '../actionInSession.php';
 		<?php if(isset($_SESSION['room_country'])){
 				echo "<br>";
 				echo "<h3>".$lang['CIVIC_HALL_INFO']."</h3><hr>";
-				if(isset($_SESSION['room_mail'])) echo '<h5>'.$lang['MAIL'].': <strong>'.$_SESSION['room_mail'].'</strong></h5>';
-				if(isset($_SESSION['room_wikipedia'])) echo '<button id="btnWikipedia">Wikipedia</button>';
-				if(isset($_SESSION['room_website'])) echo '<button id="btnWebsite">Website</button>';
+				if(isset($_SESSION['room_mail']) && $_SESSION['room_mail']!='') echo '<h5>'.$lang['MAIL'].': <strong>'.$_SESSION['room_mail'].'</strong></h5>';
+				if(isset($_SESSION['room_wikipedia']) && $_SESSION['room_wikipedia']!='') echo '<button id="btnWikipedia">Wikipedia</button>';
+				if(isset($_SESSION['room_website']) && $_SESSION['room_website']!='') echo '<button id="btnWebsite">Website</button>';
 			}
 		?>
 	</div>

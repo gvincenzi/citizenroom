@@ -72,22 +72,19 @@ include_once '../actionInSession.php';
 					$.ajax({
 					  type: "GET",
 					  url: "../../server/service/api/API.php",
-					  data: { method: "country", pro_com_t:"<?php echo $_SESSION['room_id']?>"}
+					  data: { method: "country", room_country:room_country, room_id:"<?php echo $_SESSION['room_id']?>"}
 					})
 					.done(function( msg ) {
-						//console.info( msg );
-						var comuni = JSON.parse(msg);
-							$.each(comuni, function(i, item) {
-								var nome = item.comune;
-								var room_id = item.pro_com_t;
-								//console.info(nome + ' ' + room_id);
-								var room_map = L.map('map').setView([item.lat, item.long], 11);
+						console.info( msg );
+						var items = JSON.parse(msg);
+							$.each(items, function(i, item) {
+								var room_map = L.map('map').setView([item.latitude, item.longitude], 11);
 								L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 									minZoom: 1,
 									maxZoom: 20
 								}).addTo(room_map);
 								
-								var marker = L.marker([item.lat, item.long]).addTo(room_map);
+								var marker = L.marker([item.latitude, item.longitude]).addTo(room_map);
 							});
 					});
 				} else $("#map").hide();

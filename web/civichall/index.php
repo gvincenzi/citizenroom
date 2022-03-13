@@ -56,7 +56,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <script type="text/javascript">  
 		$(document).ready(function() {
 			$('select').selectpicker();	
-		    countryInit();
+			$("#room_country").on("changed.bs.select", 
+				function(e, clickedIndex, newValue, oldValue) {
+					//console.log(this.value, clickedIndex, newValue, oldValue);
+					countryInit($('#room_country').val());
+				});
+		    countryInit($('#room_country').val());
 	    });		
 		function validateJoinForm(){
 			if($(nickname).val()=='' || $('.selectpicker').val()==''){
@@ -66,20 +71,19 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			return true;
 		}
 		
-		function countryInit(){	
+		function countryInit(room_country){	
+			$("#room_id").empty();
 			$.ajax({
 			  type: "GET",
 			  url: "../../server/service/api/API.php",
-			  data: { method: "country"}
+			  data: { method: "country", room_country: room_country}
 			})
 			.done(function( msg ) {
 				//console.info( msg );
-				var comuni = JSON.parse(msg);
-					$.each(comuni, function(i, item) {
-						var nome = item.comune;
-						var room_id = item.pro_com_t;
-						//console.info(nome + ' ' + room_id);
-						$('#room_id').append('<option value="'+room_id+'" data-tokens="'+nome+'">'+nome+'</option>');
+				var municipalities = JSON.parse(msg);
+					$.each(municipalities, function(i, item) {
+						//console.info(name + ' ' + room_id);
+						$('#room_id').append('<option value="'+item.room_id+'" data-tokens="'+item.name+'">'+item.name+'</option>');
 					});
 					
 					//Two times to have a complete refresh
@@ -101,6 +105,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<label class="form-check-label" for="room_country"><?php print $lang['CIVIC_HALL_COUNTRY_SELECT']?></label>
 		<select data-width="100%" id="room_country" name="room_country" class="selectpicker">
 			<option value="italy" selected>Italia</option>
+			<!--option value="france">France</option-->
 		</select>
       	<div id='callbackMessage'></div>
 		<div id='loginAlert'></div>
@@ -128,8 +133,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<a href="https://play.google.com/store/apps/details?id=org.jitsi.meet&hl=en&gl=US" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/google-play-badge.png" /></a>
 		</p>
       </form>      
-    </div> <!-- /container -->
-	
-	<?php include '../footer.php';?> 
+    </div> <!-- /container --> 
 </body>
 </html>

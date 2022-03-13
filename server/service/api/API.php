@@ -66,7 +66,7 @@ if (isset($_REQUEST['method'] )){
 			$api->ticketValidate($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link, $lang);
 			break;
 		case 'country':
-			$api->country($link, $lang);
+			$api->country($_REQUEST['room_country'], $link, $lang);
 			break;
 	}
 }else {
@@ -186,13 +186,13 @@ class API{
 		unset($_SESSION['room_mail']);
 		
 		$place = $this->getCountryPlaceInfo($country,$room_id,$link);
-		$_SESSION['room_title'] = stripslashes($place['comune']);
-		$_SESSION['room_logo'] = $place['stemma'];
+		$_SESSION['room_title'] = stripslashes($place['name']);
+		$_SESSION['room_logo'] = $place['logo'];
 		$_SESSION['room_country'] = $_REQUEST['room_country'];
-		$_SESSION['room_place'] = $place['den_prov'].' ('.$place['sigla'].'), '.$place['den_reg'];
+		$_SESSION['room_place'] = $place['dept'].' ('.$place['shortcode'].'), '.$place['region'];
 		$_SESSION['room_wikipedia'] = $place['wikipedia'];
-		$_SESSION['room_website'] = $place['sito_web'];
-		$_SESSION['room_mail'] = $place['mail'];
+		$_SESSION['room_website'] = $place['website'];
+		$_SESSION['room_mail'] = $place['email'];
 		
 		$this->join($nickname,$room_id,$link);
 	}
@@ -668,19 +668,33 @@ class API{
 		return $ip_address;
 	}
 	
-	public function country($link){
+	public function country($room_country, $link){
 		$stmt = mysqli_stmt_init($link);
-		if(isset($_REQUEST['pro_com_t'])){
-			$stmt->prepare("SELECT * FROM citizenroom_country_italy WHERE pro_com_t = ?");
-			$stmt->bind_param('s', $_REQUEST['pro_com_t']);
-		} else {
-			$stmt->prepare("SELECT comune,pro_com_t FROM citizenroom_country_italy order by comune");
+		
+		switch($room_country){
+			case "italy":
+				if(isset($_REQUEST['room_id'])){
+					$stmt->prepare("SELECT comune as name, pro_com_t as room_id, lat as latitude, citizenroom_country_italy.long as longitude FROM citizenroom_country_italy WHERE pro_com_t = ?");
+					$stmt->bind_param('s', $_REQUEST['room_id']);
+				} else {
+					$stmt->prepare("SELECT comune as name, pro_com_t as room_id FROM citizenroom_country_italy order by comune"); 
+				}
+				break;
+			case "france":
+				if(isset($_REQUEST['room_id'])){
+					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id, latitude as latitude, longitude as longitude FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''");
+					$stmt->bind_param('s', $_REQUEST['room_id']);
+				} else {
+					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id FROM citizenroom_country_france WHERE ligne_5 = '' order by nom_commune_complet"); break;
+				}
+				break;
 		}
+		
 		$stmt->execute(); 
 		$result = $stmt->get_result();
 		$myArray = array();
 		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-			$row["comune"] = utf8_encode( $row["comune"]);
+			$row["name"] = utf8_encode( $row["name"] );
             $myArray[] = $row;
 		}
 		
@@ -690,12 +704,19 @@ class API{
 	
 	public function getCountryPlaceInfo($country,$room_id,$link){ 
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_country_italy WHERE pro_com_t = ?");
+		
+		switch($country){
+			case "italy":$stmt->prepare("SELECT comune as name, stemma as logo, den_prov as dept, sigla as shortcode, den_reg as region, wikipedia as wikipedia, sito_web as website, mail as email FROM citizenroom_country_italy WHERE pro_com_t = ?"); break;
+			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_region as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''"); break;
+		}
+		
 		$stmt->bind_param('s', $room_id);
 		$stmt->execute(); 
 		$result = $stmt->get_result();
 		$row = $result->fetch_assoc();
-		$row["comune"] = utf8_encode( $row["comune"]);
+		$row["name"] = utf8_encode( $row["name"] );
+		$row["dept"] = utf8_encode( $row["dept"] );
+		$row["region"] = utf8_encode( $row["region"] );
 		return $row;
 	}
 }

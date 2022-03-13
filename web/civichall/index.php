@@ -73,6 +73,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
 		function countryInit(room_country){	
 			$("#room_id").empty();
+			$("#room_id").selectpicker("refresh");
 			$.ajax({
 			  type: "GET",
 			  url: "../../server/service/api/API.php",

@@ -677,7 +677,7 @@ class API{
 					$stmt->prepare("SELECT comune as name, pro_com_t as room_id, lat as latitude, citizenroom_country_italy.long as longitude FROM citizenroom_country_italy WHERE pro_com_t = ?");
 					$stmt->bind_param('s', $_REQUEST['room_id']);
 				} else {
-					$stmt->prepare("SELECT comune as name, pro_com_t as room_id FROM citizenroom_country_italy order by comune"); 
+					$stmt->prepare("SELECT comune as name, pro_com_t as room_id, sigla as shortcode FROM citizenroom_country_italy order by comune"); 
 				}
 				break;
 			case "france":
@@ -685,7 +685,7 @@ class API{
 					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id, latitude as latitude, longitude as longitude FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''");
 					$stmt->bind_param('s', $_REQUEST['room_id']);
 				} else {
-					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id FROM citizenroom_country_france WHERE ligne_5 = '' order by nom_commune_complet"); break;
+					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id, code_departement as shortcode FROM citizenroom_country_france WHERE ligne_5 = '' order by nom_commune_complet"); break;
 				}
 				break;
 		}
@@ -707,7 +707,7 @@ class API{
 		
 		switch($country){
 			case "italy":$stmt->prepare("SELECT comune as name, stemma as logo, den_prov as dept, sigla as shortcode, den_reg as region, wikipedia as wikipedia, sito_web as website, mail as email FROM citizenroom_country_italy WHERE pro_com_t = ?"); break;
-			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_region as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''"); break;
+			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_departement as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''"); break;
 		}
 		
 		$stmt->bind_param('s', $room_id);
@@ -717,6 +717,7 @@ class API{
 		$row["name"] = utf8_encode( $row["name"] );
 		$row["dept"] = utf8_encode( $row["dept"] );
 		$row["region"] = utf8_encode( $row["region"] );
+		$row["wikipedia"] = utf8_encode( $row["wikipedia"] );
 		return $row;
 	}
 }

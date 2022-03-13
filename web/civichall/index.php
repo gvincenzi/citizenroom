@@ -83,7 +83,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				var municipalities = JSON.parse(msg);
 					$.each(municipalities, function(i, item) {
 						//console.info(name + ' ' + room_id);
-						$('#room_id').append('<option value="'+item.room_id+'" data-tokens="'+item.name+'">'+item.name+'</option>');
+						$('#room_id').append('<option value="'+item.room_id+'" data-tokens="'+item.name+'">'+item.name+' ('+item.shortcode+')</option>');
 					});
 					
 					//Two times to have a complete refresh
@@ -105,7 +105,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<label class="form-check-label" for="room_country"><?php print $lang['CIVIC_HALL_COUNTRY_SELECT']?></label>
 		<select data-width="100%" id="room_country" name="room_country" class="selectpicker">
 			<option value="italy" selected>Italia</option>
-			<!--option value="france">France</option-->
+			<option value="france">France</option>
 		</select>
       	<div id='callbackMessage'></div>
 		<div id='loginAlert'></div>

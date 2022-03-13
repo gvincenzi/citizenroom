@@ -695,6 +695,7 @@ class API{
 		$myArray = array();
 		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
 			$row["name"] = utf8_encode( $row["name"] );
+			$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
             $myArray[] = $row;
 		}
 		
@@ -707,7 +708,9 @@ class API{
 		
 		switch($country){
 			case "italy":$stmt->prepare("SELECT comune as name, stemma as logo, den_prov as dept, sigla as shortcode, den_reg as region, wikipedia as wikipedia, sito_web as website, mail as email FROM citizenroom_country_italy WHERE pro_com_t = ?"); break;
-			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_departement as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''"); break;
+			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_departement as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia, citizenroom_country_france_blason.url as logo FROM citizenroom_country_france LEFT JOIN citizenroom_country_france_blason on upper(citizenroom_country_france_blason.url) like concat('%',nom_commune_complet,'%') WHERE code_commune_INSEE = ? and ligne_5 = '' limit 1"); break;
+			
+			
 		}
 		
 		$stmt->bind_param('s', $room_id);
@@ -716,6 +719,7 @@ class API{
 		$row = $result->fetch_assoc();
 		$row["name"] = utf8_encode( $row["name"] );
 		$row["dept"] = utf8_encode( $row["dept"] );
+		$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
 		$row["region"] = utf8_encode( $row["region"] );
 		$row["wikipedia"] = utf8_encode( $row["wikipedia"] );
 		return $row;

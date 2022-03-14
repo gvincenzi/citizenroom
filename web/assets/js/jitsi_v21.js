@@ -60,9 +60,9 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle,
     });
 	$("#btnInvitation").on('click', function () {
 		if(room_country != null && room_country != ""){
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle);
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle));
 		} else if(serial != null && serial != ""){
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_title="+roomTitle);
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_title="+roomTitle));
 		} else {
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
 		}

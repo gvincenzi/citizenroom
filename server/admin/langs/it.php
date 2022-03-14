@@ -26,7 +26,7 @@ $lang['ROOM']="Numero di stanza";
 $lang['ROOM_PASSWORD']="Password stanza";
 $lang['ROOM_CHECK']="C'è qualcuno?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Partecipanti ";
-$lang['ROOM_CHECK_ROOM']="Stanza#";
+$lang['ROOM_CHECK_ROOM']="Stanza ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" è vuota";
 $lang['JOIN_MANDATORY_ERROR']="Nickname e numero della stanza sono obbligatori";
 
@@ -52,7 +52,7 @@ $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 
 /* INVITE */
-$lang['INVITATION']="Sei stato invitato nella stanza #";
+$lang['INVITATION']="Stai per entrare nella ";
 
 /* LOGIN */
 $lang['LOGIN']="Login Amministratore";

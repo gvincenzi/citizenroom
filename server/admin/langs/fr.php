@@ -26,7 +26,7 @@ $lang['ROOM']="Numéro de salle";
 $lang['ROOM_PASSWORD']="Mot de passe de salle";
 $lang['ROOM_CHECK']="Y a-t-il quelqu'un?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
-$lang['ROOM_CHECK_ROOM']="Salle#";
+$lang['ROOM_CHECK_ROOM']="Salle ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" est disponible";
 $lang['JOIN_MANDATORY_ERROR']="Nickname et numéro de salle sont obligatoires";
 
@@ -52,7 +52,7 @@ $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
 
 /* INVITE */
-$lang['INVITATION']="Vous avez été invité dans la salle #";
+$lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
 
 /* LOGIN */
 $lang['LOGIN']="Login Administrateur";

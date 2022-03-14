@@ -72,7 +72,14 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h3><?php print $lang['INVITATION'].$_GET['room_id'].'<br>'.$_GET['room_title']?></h3>
+      	<h3>
+		<?php 
+		if(isset($_GET['room_country']))
+		print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		else if(isset($_GET['type']) && $_GET['type']=='business') print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		else print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		?>
+		</h3>
       	<div id='callbackMessage'></div>
       	</div>
       	<hr>

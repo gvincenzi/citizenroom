@@ -12,7 +12,9 @@ $api = new API();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {		
 		case 'join':
-			if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
+			if(isset($_REQUEST['room_country']) && $_REQUEST['room_country']!=''){
+				$api->joinCountry($_REQUEST['room_country'], $_REQUEST['nickname'], $_REQUEST['room_id'], $link);
+			} else if(isset($_REQUEST['serial']) && $_REQUEST['serial']!=''){
 				$api->joinBusiness($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['password'], $_REQUEST['room_type'], $link);
 			} else {
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
@@ -62,6 +64,9 @@ if (isset($_REQUEST['method'] )){
 			break;
 		case 'rooms/ticket/validate':
 			$api->ticketValidate($_REQUEST['room_id'], $_REQUEST['serial'], $_REQUEST['nickname'], $link, $lang);
+			break;
+		case 'country':
+			$api->country($_REQUEST['room_country'], $link, $lang);
 			break;
 	}
 }else {
@@ -171,6 +176,27 @@ class API{
         header('Location: ../../../web/room');
     }
 	
+	public function joinCountry($country,$nickname,$room_id,$link){
+		unset($_SESSION['room_title']);
+		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_country']);
+		unset($_SESSION['room_place']);
+		unset($_SESSION['room_wikipedia']);
+		unset($_SESSION['room_website']);
+		unset($_SESSION['room_mail']);
+		
+		$place = $this->getCountryPlaceInfo($country,$room_id,$link);
+		$_SESSION['room_title'] = stripslashes($place['name']);
+		$_SESSION['room_logo'] = $place['logo'];
+		$_SESSION['room_country'] = $_REQUEST['room_country'];
+		$_SESSION['room_place'] = $place['dept'].' ('.$place['shortcode'].'), '.$place['region'];
+		$_SESSION['room_wikipedia'] = $place['wikipedia'];
+		$_SESSION['room_website'] = $place['website'];
+		$_SESSION['room_mail'] = $place['email'];
+		
+		$this->join($nickname,$room_id,$link);
+	}
+	
 	public function joinBusiness($nickname,$room_id,$serial,$password,$room_type,$link){	
 		$nickname = mysqli_real_escape_string($link, $nickname);
 		
@@ -208,6 +234,11 @@ class API{
 				unset($_SESSION['serial']);
 				unset($_SESSION['room_title']);
 				unset($_SESSION['room_logo']);
+				unset($_SESSION['room_country']);
+				unset($_SESSION['room_place']);
+				unset($_SESSION['room_wikipedia']);
+				unset($_SESSION['room_website']);
+				unset($_SESSION['room_mail']);
 						
 				$_SESSION['room_id'] = $room_id;
 				$_SESSION['nickname'] = $nickname;
@@ -218,7 +249,7 @@ class API{
 				$_SESSION['room_title'] = stripslashes($room['title']);
 				$_SESSION['room_logo'] = $room['logo'];
 				
-				if(!isset($_SESSION['user'])){
+				if(!isset($_SESSION['user']) && $room['mail_notif'] == true){
 					$alertService = new Alert();
 					$alertService->sendMail(prefered_language($available_languages), $room['mail'], $room['title'], $nickname);
 				}
@@ -303,10 +334,12 @@ class API{
 	public function usersUpdate($user_id, $user_name,$user_surname,$user_mail,$user_stream_key,$user_channel_id,$link,$lang){   	
     	$user_name = mysqli_real_escape_string($link, $user_name);
     	$user_surname = mysqli_real_escape_string($link, $user_surname);
+		
+		$withMailNotif = isset($_REQUEST['user_room_mail_notif']) ? 1 : 0;
 
 		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("UPDATE citizenroom_user SET name = ?,surname = ?, mail = ?, stream_key = ?, channel_id = ? WHERE user_id = ?");
-		$stmt->bind_param('sssssi', $user_name, $user_surname, $user_mail, $user_stream_key, $user_channel_id, $user_id);
+		$stmt->prepare("UPDATE citizenroom_user SET name = ?, surname = ?, mail = ?, stream_key = ?, channel_id =?, room_mail_notif=? WHERE user_id = ?");
+		$stmt->bind_param('sssssii', $user_name, $user_surname, $user_mail, $user_stream_key, $user_channel_id, $withMailNotif, $user_id);
 		$stmt->execute();
 		mysqli_stmt_close($stmt);
 		
@@ -315,6 +348,7 @@ class API{
 		$_SESSION['user_mail'] = $user_mail;
 		$_SESSION['user_stream_key'] = $user_stream_key;
 		$_SESSION['user_channel_id'] = $user_channel_id;
+		$_SESSION['user_room_mail_notif'] = $withMailNotif;
 		
 		$_SESSION["profile.message"] = $lang['USER_UPDATE_OK'];
 		header('Location: ../../../web/dashboard?type=business');	
@@ -429,7 +463,7 @@ class API{
 	
 	public function roomsGetByIdInternal($serial,$room_id,$link){ 
 		$stmtCheck = mysqli_stmt_init($link);
-		$stmtCheck->prepare("SELECT citizenroom_business_room.*,owner.mail as mail FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
+		$stmtCheck->prepare("SELECT citizenroom_business_room.*,owner.mail as mail,owner.room_mail_notif as mail_notif FROM citizenroom_business_room INNER JOIN citizenroom_user as owner ON owner.serial = citizenroom_business_room.serial WHERE citizenroom_business_room.serial = ? AND citizenroom_business_room.room_id = ?");
 		$stmtCheck->bind_param('si', $serial,$room_id);
 		$stmtCheck->execute();
 		$result = $stmtCheck->get_result();
@@ -607,6 +641,11 @@ class API{
 		unset($_SESSION['serial']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_country']);
+		unset($_SESSION['room_place']);
+		unset($_SESSION['room_wikipedia']);
+		unset($_SESSION['room_website']);
+		unset($_SESSION['room_mail']);
 		
 		print json_encode($arr);
 	}
@@ -627,6 +666,63 @@ class API{
 			$ip_address = $_SERVER['REMOTE_ADDR'];
 		  }
 		return $ip_address;
+	}
+	
+	public function country($room_country, $link){
+		$stmt = mysqli_stmt_init($link);
+		
+		switch($room_country){
+			case "italy":
+				if(isset($_REQUEST['room_id'])){
+					$stmt->prepare("SELECT comune as name, pro_com_t as room_id, lat as latitude, citizenroom_country_italy.long as longitude FROM citizenroom_country_italy WHERE pro_com_t = ?");
+					$stmt->bind_param('s', $_REQUEST['room_id']);
+				} else {
+					$stmt->prepare("SELECT comune as name, pro_com_t as room_id, sigla as shortcode FROM citizenroom_country_italy order by comune"); 
+				}
+				break;
+			case "france":
+				if(isset($_REQUEST['room_id'])){
+					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id, latitude as latitude, longitude as longitude FROM citizenroom_country_france WHERE code_commune_INSEE = ? and ligne_5 = ''");
+					$stmt->bind_param('s', $_REQUEST['room_id']);
+				} else {
+					$stmt->prepare("SELECT nom_commune_complet as name,code_commune_INSEE as room_id, code_departement as shortcode FROM citizenroom_country_france WHERE ligne_5 = '' order by nom_commune_complet"); break;
+				}
+				break;
+		}
+		
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$row["name"] = utf8_encode( $row["name"] );
+			$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
+            $myArray[] = $row;
+		}
+		
+		$tojson = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+		print $tojson;
+	}
+	
+	public function getCountryPlaceInfo($country,$room_id,$link){ 
+		$stmt = mysqli_stmt_init($link);
+		
+		switch($country){
+			case "italy":$stmt->prepare("SELECT comune as name, stemma as logo, den_prov as dept, sigla as shortcode, den_reg as region, wikipedia as wikipedia, sito_web as website, mail as email FROM citizenroom_country_italy WHERE pro_com_t = ?"); break;
+			case "france":$stmt->prepare("SELECT nom_commune_complet as name, nom_departement as dept, code_departement as shortcode, nom_region as region, CONCAT('https://fr.wikipedia.org/wiki/', nom_commune_complet) as wikipedia, citizenroom_country_france_blason.url as logo FROM citizenroom_country_france LEFT JOIN citizenroom_country_france_blason on upper(citizenroom_country_france_blason.url) like concat('%',nom_commune_complet,'%') WHERE code_commune_INSEE = ? and ligne_5 = '' limit 1"); break;
+			
+			
+		}
+		
+		$stmt->bind_param('s', $room_id);
+		$stmt->execute(); 
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$row["name"] = utf8_encode( $row["name"] );
+		$row["dept"] = utf8_encode( $row["dept"] );
+		$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
+		$row["region"] = utf8_encode( $row["region"] );
+		$row["wikipedia"] = utf8_encode( $row["wikipedia"] );
+		return $row;
 	}
 }
 ?>

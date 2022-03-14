@@ -26,6 +26,16 @@ Dans cette version Business, vous aurez la possibilité de personnaliser les sal
 <li>Avec un système de billetterie (via une liste de Nicknames à inviter et identifiés au préalable).</li>
 </ul>
 
+<h2>Salles municipales</h2>
+À partir du 15 mars 2022, nous avons mis en ligne la section dédiée aux <strong>Salles municipales</strong> : dans cette section vous aurez la possibilité d'entrer et d'utiliser une CitizenRoom dédiée à une <strong>municipalité</strong>.<br>
+L'idée est de donner à chaque municipalité (pour l'instant uniquement en Italie et en France) une CitizenRoom à laquelle <strong>l'administration et tous les citoyens peuvent accéder librement</strong>, sans avoir besoin de créer un compte, de partager des informations personnelles ou installer un logiciel en particulier : un outil supplémentaire simple et gratuit pour renforcer la <strong>participation</strong> et la <strong>citoyenneté numérique</strong>.<br><br>
+La section a été rendue possible grâce aux données collectées et mises à disposition par :<br>
+<ul>
+<li>Dépôt <a href='https://github.com/opendatasicilia/comuni-italiani'>Municipalités italiennes d'OpenDataSicilia</a></li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> de la Plateforme Ouverte de Données Publiques (data.gouv.fr)</li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a> de la Plateforme Ouverte de Données Publiques (data.gouv.fr)</li>
+</ul>
+
 <h2>UN PROTOTYPE OPEN SOURCE</h2>
 Citizenroom est un prototype de plateforme de conférence web, basé sur l'api public <a href='https://meet.jit.si/'>Jitsi Meet</a>, écrit en PHP/Javascript et complètement open source. Vous pouvez lire le code du prototype et, si vous le souhaitez, proposer de le modifier sur Github dans le <a href='https://github.com/gvincenzi/citizenroom'>repository dédié</a>.
 <br><br>

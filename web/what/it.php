@@ -20,6 +20,15 @@ Nella versione Business avrete la possibilità di personalizzare le stanze con u
 <li>Con password di accesso</li> 
 <li>Con ticket (lista predefinita di nickname invitati)</li>
 </ul>
+<h2>Sale municipali</h2>
+A partire dal 15 marzo 2022 abbiamo messo on line la sezione dedicata alle <strong>Sale municipali</strong>: attraverso questa sezione si avrà la possibilità di entrare e utilizzare una CitizenRoom dedicata ad una <strong>municipalità</strong>.<br>
+L'idea è quella di donare ad ogni comune (per adesso solo d'Italia e Francia) una CitizenRoom alla quale <strong>l'amministrazione e tutti i cittadini possono accedere liberamente</strong>, senza la necessità di creare un account, di condividere informazioni personali o di installare software particolari: uno strumento semplice e gratuito in più per la costruzione di una <strong>partecipazione</strong> e di una <strong>cittadinanza digitale</strong>.<br><br>
+La sezione è stata resa possibile grazie ai dati raccolti e messi a disposizione da:<br>
+<ul>
+<li>Repository <a href='https://github.com/opendatasicilia/comuni-italiani'>Comuni Italiani di OpenDataSicilia</a></li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> della Piattaforma aperta dei dati pubblici francesi (data.gouv.fr)</li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a> della Piattaforma aperta dei dati pubblici francesi (data.gouv.fr)</li>
+</ul>
 <h2>Un prototipo Open Source</h2>
 CitizenRoom è un prototipo di piattaforma per conferenze web, basato sull'API pubblica di <a href='https://meet.jit.si/'>Jitsi Meet</a>, scritto in PHP/Javascript e completamente Open Source.<br>
 Il codice del prototipo potete leggerlo e eventualmente proporre di modificarlo su GitHub nel <a href='https://github.com/gvincenzi/citizenroom'>repository dedicato</a>.

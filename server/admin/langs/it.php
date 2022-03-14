@@ -11,10 +11,13 @@ $lang['PAGE_TITLE'] = utf8_encode("CitizenRoom - Uno spazio libero dove sentirsi
 $lang['CONFIRM'] = "Conferma";
 $lang['WAIT'] = "Attendere prego...";
 $lang['SELECT_LANGUAGE']="Cambia la lingua";
+$lang['CIVIC_HALL']="Sala Civica";
+$lang['CIVIC_HALL_COUNTRY_SELECT']="Selezione il paese";
 
 /* MENU */
 $lang['JOIN']="Entra in una stanza";
 $lang['LEFT']="Esci dalla stanza";
+$lang['CIVIC_HALL_INFO']="Il comune";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Error joining the room";
@@ -23,7 +26,7 @@ $lang['ROOM']="Numero di stanza";
 $lang['ROOM_PASSWORD']="Password stanza";
 $lang['ROOM_CHECK']="C'è qualcuno?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Partecipanti ";
-$lang['ROOM_CHECK_ROOM']="Stanza#";
+$lang['ROOM_CHECK_ROOM']="Stanza ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" è vuota";
 $lang['JOIN_MANDATORY_ERROR']="Nickname e numero della stanza sono obbligatori";
 
@@ -49,7 +52,7 @@ $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 
 /* INVITE */
-$lang['INVITATION']="Sei stato invitato nella stanza #";
+$lang['INVITATION']="Stai per entrare nella ";
 
 /* LOGIN */
 $lang['LOGIN']="Login Amministratore";
@@ -95,6 +98,9 @@ $lang['ROOM_ADD_ERROR']="Errore durante la creazione della stanza";
 $lang['ROOM_DELETE_OK']="Chiusura della stanza realizzata con successo";
 $lang['ROOM_DELETE_ERROR']="Errore durante la chiusura della stanza";
 $lang['ROOM_NOT_FOUND']="La stanza non è presente";
+
+$lang['ROOM_NOTIF']="Notifiche delle stanze";
+$lang['ROOM_NOTIF_MAIL']="Notifiche via e-mail";
 
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Emetti un biglietto";

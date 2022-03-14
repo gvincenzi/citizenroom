@@ -14,6 +14,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['serial']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
+	unset($_SESSION['room_country']);
+	unset($_SESSION['room_place']);
+	unset($_SESSION['room_wikipedia']);
+	unset($_SESSION['room_website']);
+	unset($_SESSION['room_mail']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -67,7 +72,14 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h3><?php print $lang['INVITATION'].$_GET['room_id'].'<br>'.$_GET['room_title']?></h3>
+      	<h3>
+		<?php 
+		if(isset($_GET['room_country']))
+		print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		else if(isset($_GET['type']) && $_GET['type']=='business') print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		else print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		?>
+		</h3>
       	<div id='callbackMessage'></div>
       	</div>
       	<hr>
@@ -85,6 +97,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
 		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
 		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
+		<input type="hidden" value="<?php print $_GET['room_country']?>" name="room_country" id="room_country">
         
         <div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">

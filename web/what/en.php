@@ -23,6 +23,17 @@ In the business version you will have the possibility to customize the rooms wit
 <li>Setting up an access password</li> 
 <li>With a ticketing system (pre-establishing a list of identified nicknames to be invited)</li>
 </ul>
+
+<h2>Civic halls</h2>
+Starting from March 15, 2022 we have put on line the section dedicated to <strong>Civic halls</strong>: through this section you will have the opportunity to enter and use a CitizenRoom dedicated to a <strong>municipality</strong>.<br>
+The idea is to donate to each municipality (for now only in Italy and France) a CitizenRoom to which <strong>the administration and all citizens can freely access</strong>, without the need to create an account, to share personal information or to install a software: an additional simple and free tool for building a <strong>participation</strong> and a <strong>digital citizenship</strong>.<br><br>
+The section was made possible thanks to the data collected and made available by:<br>
+<ul>
+<li>Repository of <a href='https://github.com/opendatasicilia/comuni-italiani'>Italian Municipalities of OpenDataSicilia</a></li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> of the French Public Data Open Platform (data.gouv.fr)</li>
+<li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a>of the French Public Data Open Platform (data.gouv.fr)</li>
+</ul>
+
 <h2>AN OPEN SOURCE PROTOTYPE</h2>
 Citizenroom is a prototype web conference platform, based on jitsi meet public api, written in php/javascript and completely open source.<br>
 You can read the prototype code and, if you believe it is necessary, propose to modify it on Github in the <a href='https://github.com/gvincenzi/citizenroom'>dedicated repository</a>.

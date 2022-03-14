@@ -23,6 +23,7 @@ if( mysqli_num_rows( $result ) == 1){
         $_SESSION['user_serial'] = (string)($row['serial']);
 		$_SESSION['user_stream_key'] = (string)($row['stream_key']);
 		$_SESSION['user_channel_id'] = (string)($row['channel_id']);
+		$_SESSION['user_room_mail_notif'] = (string)($row['room_mail_notif']);
 	}
 
 	$stmtLastLogin = mysqli_stmt_init($link);

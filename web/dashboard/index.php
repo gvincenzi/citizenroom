@@ -183,7 +183,7 @@ session_start();
   <?php include '../header.php';?> 
   
   <div class="profile">
-	<form onsubmit="return validateProfileForm()" class="form-profile" method="POST" action="../../server/service/api/API.php">
+	<form onsubmit="return validateProfileForm()" class="form-profile form-check" method="POST" action="../../server/service/api/API.php">
       	<div style="text-align: left;">
       	<h3><?php print $lang['PROFILE']?></h3>
       	<div id='callbackMessage'></div>
@@ -216,6 +216,12 @@ session_start();
 			<h4>Youtube</h4>
 			<input id="user_stream_key" name="stream_key" type="text" class="form-control" value="<?php print $_SESSION['user_stream_key']?>" placeholder="YouTube Stream Key"></input>
 			<input id="user_channel_id" name="channel_id" type="text" class="form-control" value="<?php print $_SESSION['user_channel_id']?>" placeholder="YouTube Channel ID"></input>
+			
+			<hr>
+			<h4><?php print $lang['ROOM_NOTIF']?></h4>
+			<input id="user_room_mail_notif" name="user_room_mail_notif" type="checkbox" class="form-check-input" <?php if($_SESSION['user_room_mail_notif'])print "checked" ?>></input>
+			<label class="form-check-label" for="user_room_mail_notif"><?php print $lang['ROOM_NOTIF_MAIL']?></label>
+			<hr>
         </div>
         <div align="right"><a href="#" onclick="window.open('../resetpassword?type=business','_self')" style="color:darkgray"><small>Reset Password</small></a></div>
 		<br>

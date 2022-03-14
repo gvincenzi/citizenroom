@@ -11,10 +11,13 @@ $lang['PAGE_TITLE'] = ("CitizenRoom - Un espace libre où l'on se sent chez soi"
 $lang['CONFIRM'] = "Valider";
 $lang['WAIT'] = "Attendez...";
 $lang['SELECT_LANGUAGE']="Changer de langue";
+$lang['CIVIC_HALL']="Salle Municipale";
+$lang['CIVIC_HALL_COUNTRY_SELECT']="Choisir le pays";
 
 /* MENU */
 $lang['JOIN']="Rejoindre une salle";
 $lang['LEFT']="Quitter la salle";
+$lang['CIVIC_HALL_INFO']="La commune";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Erreur lors de la connexion à la salle";
@@ -23,7 +26,7 @@ $lang['ROOM']="Numéro de salle";
 $lang['ROOM_PASSWORD']="Mot de passe de salle";
 $lang['ROOM_CHECK']="Y a-t-il quelqu'un?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
-$lang['ROOM_CHECK_ROOM']="Salle#";
+$lang['ROOM_CHECK_ROOM']="Salle ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" est disponible";
 $lang['JOIN_MANDATORY_ERROR']="Nickname et numéro de salle sont obligatoires";
 
@@ -49,7 +52,7 @@ $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
 
 /* INVITE */
-$lang['INVITATION']="Vous avez été invité dans la salle #";
+$lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
 
 /* LOGIN */
 $lang['LOGIN']="Login Administrateur";
@@ -95,6 +98,9 @@ $lang['ROOM_ADD_ERROR']="Erreur lors de l'ajout de la salle";
 $lang['ROOM_DELETE_OK']="Suppression de la salle réalisée avec succés";
 $lang['ROOM_DELETE_ERROR']="Erreur pendant la suppression salle";
 $lang['ROOM_NOT_FOUND']="La salle n'existe pas";
+
+$lang['ROOM_NOTIF']="Notification de salle";
+$lang['ROOM_NOTIF_MAIL']="Notification via e-mail";
 
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Créer un ticket";

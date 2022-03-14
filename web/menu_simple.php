@@ -9,6 +9,7 @@
 		<ul>
 			<nav classname="site-nav">
 				<ul>
+					<li class=""><a href="../civichall?type=civichall"><?php print $lang['CIVIC_HALL']?></a></li>
                     <li class=""><a href="#" onclick="changeLanguage('en')">English</a></li>
 					<li class=""><a href="#" onclick="changeLanguage('it')">Italiano</a></li>
                     <li class=""><a href="#" onclick="changeLanguage('fr')"><?php print ("Français")?></a></li>

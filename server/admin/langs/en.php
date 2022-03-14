@@ -11,10 +11,13 @@ $lang['PAGE_TITLE'] = "CitizenRoom - A free space where you can feel at home";
 $lang['CONFIRM'] = "Confirm";
 $lang['WAIT'] = "Waiting...";
 $lang['SELECT_LANGUAGE']="Change language";
+$lang['CIVIC_HALL']="Civic Hall";
+$lang['CIVIC_HALL_COUNTRY_SELECT']="Select the country";
 
 /* MENU */
 $lang['JOIN']="Join a room";
 $lang['LEFT']="Left the room";
+$lang['CIVIC_HALL_INFO']="The municipality";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Error joining the room";
@@ -23,7 +26,7 @@ $lang['ROOM']="Room number";
 $lang['ROOM_PASSWORD']="Room password";
 $lang['ROOM_CHECK']="Is there anyone?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
-$lang['ROOM_CHECK_ROOM']="Room#";
+$lang['ROOM_CHECK_ROOM']="Room ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" is empty";
 $lang['JOIN_MANDATORY_ERROR']="Nickname and room number are mandatory";
 
@@ -49,7 +52,7 @@ $lang['btnLobbyOff']="Turn off Lobby mode";
 $lang['btnRaiseHandOff']="Raise/Lower your hand";
 
 /* INVITE */
-$lang['INVITATION']="You have been invited to the room #";
+$lang['INVITATION']="You are entering the ";
 
 /* LOGIN */
 $lang['LOGIN']="Administrator login";
@@ -95,6 +98,9 @@ $lang['ROOM_ADD_ERROR']="Error during room add";
 $lang['ROOM_DELETE_OK']="Room correctly removed";
 $lang['ROOM_DELETE_ERROR']="Error during room delete";
 $lang['ROOM_NOT_FOUND']="Room does not exist";
+
+$lang['ROOM_NOTIF']="Room notifications";
+$lang['ROOM_NOTIF_MAIL']="e-mail notifications";
 
 /* DASHBOARD TICKET */
 $lang['NEW_TICKET']="Create a ticket";

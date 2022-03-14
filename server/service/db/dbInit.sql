@@ -44,11 +44,12 @@ CREATE TABLE IF NOT EXISTS `citizenroom_user` (
   `surname` VARCHAR(120) NOT NULL,
   `stream_key` VARCHAR(255) NULL,
   `channel_id` VARCHAR(255) NULL,
+  `room_mail_notif` INT(1) NOT NULL DEFAULT '0',
   `creation_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` DATETIME NULL,
   `enabled` INT(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Structure de la table `citizenroom_subscription`

@@ -50,6 +50,7 @@ $lang['btnScreenShareCustomOff']="Stop sharing your screen";
 $lang['btnStreamOff']="Stop live stream";
 $lang['btnLobbyOff']="Turn off Lobby mode";
 $lang['btnRaiseHandOff']="Raise/Lower your hand";
+$lang['btnWhiteboard']="Open shared whiteboard";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";

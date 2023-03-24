@@ -34,6 +34,10 @@ The section was made possible thanks to the data collected and made available by
 <li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a>of the French Public Data Open Platform (data.gouv.fr)</li>
 </ul>
 
+<h2>Collaborative whiteboard</h2>
+Each room gives access to a collaborative whiteboard, shared with all users of the room.
+This functionality is possible thanks to the Open Source project<a href='https://wbo.ophir.dev/'>WBO</a> by <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
+
 <h2>AN OPEN SOURCE PROTOTYPE</h2>
 Citizenroom is a prototype web conference platform, based on jitsi meet public api, written in php/javascript and completely open source.<br>
 You can read the prototype code and, if you believe it is necessary, propose to modify it on Github in the <a href='https://github.com/gvincenzi/citizenroom'>dedicated repository</a>.

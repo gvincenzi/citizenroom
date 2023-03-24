@@ -115,3 +115,8 @@ jitsi{
 jitsi img{
   opacity: 0.5;
 }
+
+flickr img{
+  opacity: 0.5;
+  width: 70px;
+}

@@ -36,6 +36,10 @@ La section a été rendue possible grâce aux données collectées et mises à d
 <li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a> de la Plateforme Ouverte de Données Publiques (data.gouv.fr)</li>
 </ul>
 
+<h2>Tableau blanc collaboratif</h2>
+Chaque salle donne accès à un tableau blanc collaboratif, partagé avec tous les utilisateurs de la salle.
+Cette fonctionnalité est rendue possible grâce au projet Open Source<a href='https://wbo.ophir.dev/'>WBO</a> du développeur <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
+
 <h2>UN PROTOTYPE OPEN SOURCE</h2>
 Citizenroom est un prototype de plateforme de conférence web, basé sur l'api public <a href='https://meet.jit.si/'>Jitsi Meet</a>, écrit en PHP/Javascript et complètement open source. Vous pouvez lire le code du prototype et, si vous le souhaitez, proposer de le modifier sur Github dans le <a href='https://github.com/gvincenzi/citizenroom'>repository dédié</a>.
 <br><br>

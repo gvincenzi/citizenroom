@@ -50,6 +50,7 @@ $lang['btnScreenShareCustomOff']="Désactiver partage écran";
 $lang['btnStreamOff']="Désactiver live stream";
 $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
+$lang['btnWhiteboard']="Accéder au tableau partagé";
 
 /* INVITE */
 $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";

@@ -78,13 +78,21 @@ function BindEvent(roomNumber,nickname,serial,roomPassword,stream_key,roomTitle,
 		$("#btnLobbyOn").show();
 		$("#btnLobbyOff").hide();
     });
+
+	$("#btnWhiteboard").on('click', function () {
+		if(roomTitle != null && roomTitle != "" && serial != null && serial != ""){
+			window.open("https://wbo.ophir.dev/boards/"+roomTitle+"_"+roomNumber+"_"+serial, '_blank');
+		} else {
+			window.open("https://wbo.ophir.dev/boards/CitizenRoom_"+roomNumber);
+		}
+	});
 	$("#btnLiveInvitation").on('click', function () {
 		copyToClipboard(window.location.href.replaceAll("/room", "/invitation")+"&room_id="+roomNumber+"&password="+roomPassword+"&serial="+serial+"&room_type=live");
 		alert("Invitation link for Live Streaming copied in clipboard");
 	});
 	$("#btnLeave").on('click', function () {
-        window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
-    });
+        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
+    	});
 }
 
 function copyToClipboard(text) {

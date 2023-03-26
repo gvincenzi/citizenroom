@@ -29,6 +29,9 @@ La sezione è stata resa possibile grazie ai dati raccolti e messi a disposizion
 <li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> della Piattaforma aperta dei dati pubblici francesi (data.gouv.fr)</li>
 <li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a> della Piattaforma aperta dei dati pubblici francesi (data.gouv.fr)</li>
 </ul>
+<h2>Lavagna collaborativa</h2>
+Ogni stanza da accesso ad una lavagn collaborativa, condivisa con tutti gli utenti della stanza.
+Questa funzionalità è resa possibile grazie al progetto Open Source <a href='https://wbo.ophir.dev/'>WBO</a> dello sviluppatore <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
 <h2>Un prototipo Open Source</h2>
 CitizenRoom è un prototipo di piattaforma per conferenze web, basato sull'API pubblica di <a href='https://meet.jit.si/'>Jitsi Meet</a>, scritto in PHP/Javascript e completamente Open Source.<br>
 Il codice del prototipo potete leggerlo e eventualmente proporre di modificarlo su GitHub nel <a href='https://github.com/gvincenzi/citizenroom'>repository dedicato</a>.

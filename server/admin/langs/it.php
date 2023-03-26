@@ -50,6 +50,7 @@ $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
 $lang['btnStreamOff']="Disattivare live stream";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
+$lang['btnWhiteboard']="Accedi alla lavagna condivisa";
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";

@@ -27,7 +27,4 @@ $_SESSION['action'] = $action;
 if((!isset($_SESSION['nickname']) || !isset($_SESSION['room_id'])) && $_SESSION['action'] == "room") {
 	header('Location: ../join');
 }
-if(!isset($_SESSION['user']) && $_SESSION['action'] == "dashboard?type=business") {
-	header('Location: ../login/?type=business');
-}
 ?>

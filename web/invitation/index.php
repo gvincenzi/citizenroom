@@ -10,8 +10,6 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
-	unset($_SESSION['password']);
-	unset($_SESSION['serial']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -42,25 +40,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/header.v2.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {
 			var callback = location.search.split('callback=')[1];
-		    /*if(callback!=null && callback!=''){
-			    if(callback=='PASSWORD_RESET_OK'){
-				    $(callbackMessage).addClass('alert').addClass('alert-success').text('<?php print $lang['PASSWORD_RESET_OK'] ?>');
-			    }else{
-			    	$(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['PASSWORD_RESET_ERROR'] ?>');
-			    }
-		    }*/
-	    });	
+	    });
 		function validateJoinForm(){
-			/*if($(mail).val()=='' || validateEmail($(mail).val()) == false){
-				$(joinAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
-				return false;
-			}*/
-			
 			return true;
 		}		
     </script>   
@@ -76,7 +62,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<?php 
 		if(isset($_GET['room_country']))
 		print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		else if(isset($_GET['type']) && $_GET['type']=='business') print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_title'].'</strong>';
 		else print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
 		?>
 		</h3>
@@ -95,8 +80,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <input type="hidden" value="join" name="method" id="method">
 		<input type="hidden" value="<?php print $_GET['room_type']?>" name="room_type" id="room_type">
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
-		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
-		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
 		<input type="hidden" value="<?php print $_GET['room_country']?>" name="room_country" id="room_country">
         
         <div class="form-group">

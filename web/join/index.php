@@ -10,8 +10,6 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
-	unset($_SESSION['password']);
-	unset($_SESSION['serial']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -38,7 +36,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/header.v2.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {
@@ -115,31 +113,16 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <input type="hidden" value="join" name="method" id="method">
         
         <div class="form-group">
-			<?php 
-				if(isset($_GET['type']) && $_GET['type']=='business'){
-					echo "<input id='serial' name='serial' type='text' class='form-control' placeholder='Partner ID' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
-				}
-			?>
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 			<div style="display:flex">
 				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
 				<?php 
-				if(!isset($_GET['type']) || $_GET['type']!='business'){
+				if(!isset($_GET['type'])){
 					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
 				}
 				?>
 			</div>
-			<?php
-			if(isset($_GET['type']) && $_GET['type']=='business'){
-				echo "<input id='password' name='password' type='password' class='form-control' placeholder='".$lang['PASSWORD']."' readonly onClick='this.readOnly=false' onFocus='this.readOnly=false'>";
-			}
-			?>
         </div>
-		<?php 
-			if(isset($_GET['type']) && $_GET['type']=='business'){
-				echo "<div align='right'><a href='#' onclick=\"window.open('../login?type=business','_self')\" style='color:darkgray'><small>".$lang['LOGIN']."</small></a></div>";
-			}
-		?>
 		<br>
 		
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>

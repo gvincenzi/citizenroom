@@ -14,16 +14,6 @@ We strongly felt the need to create and test a platform that focused rather on <
 <h2>DATA MANAGEMENT</h2>
 <strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>
 
-<h2>CITIZENROOM BUSINESS</h2>
-We are also testing a version (<strong>free as well</strong>) that we decided to identify as <strong>Business</strong> in which you can create a personal account (by entering a valid email only): in this version, having an account allows you to create personal rooms to be used for different purposes: for your work group, your association, your family.<br>
-To make an example: while creating a room indicated by the number 35, this room 35 will only belong to your account and it won’t share the participants with the room indicated by the same number (35) in the basic Citizenroom version. In other words, within a personal account, you can create unique personal rooms to be used in an unlimited way.<br><br>
-In the business version you will have the possibility to customize the rooms with a title and a logo and to establish 3 different levels of access to your rooms:<br>
-<ul>
-<li>Activating the lobby option</li>
-<li>Setting up an access password</li> 
-<li>With a ticketing system (pre-establishing a list of identified nicknames to be invited)</li>
-</ul>
-
 <h2>Civic halls</h2>
 Starting from March 15, 2022 we have put on line the section dedicated to <strong>Civic halls</strong>: through this section you will have the opportunity to enter and use a CitizenRoom dedicated to a <strong>municipality</strong>.<br>
 The idea is to donate to each municipality (for now only in Italy and France) a CitizenRoom to which <strong>the administration and all citizens can freely access</strong>, without the need to create an account, to share personal information or to install a software: an additional simple and free tool for building a <strong>participation</strong> and a <strong>digital citizenship</strong>.<br><br>

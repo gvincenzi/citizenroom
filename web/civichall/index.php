@@ -10,8 +10,6 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
-	unset($_SESSION['password']);
-	unset($_SESSION['serial']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -51,7 +49,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 		
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/header.v2.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {

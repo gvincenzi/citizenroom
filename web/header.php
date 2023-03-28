@@ -19,7 +19,6 @@
 			'https://www.flickr.com/photos/nikiforovpizza/44574560331/'];
 
             var authors = [
-			'Perzonseo Webbyra',
 			'Mykyta Nikiforov'];
 			
             var author_links = [

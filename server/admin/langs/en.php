@@ -23,12 +23,12 @@ $lang['CIVIC_HALL_INFO']="The municipality";
 $lang['JOIN_ERROR']="Error joining the room";
 $lang['NICKNAME']="Nickname";
 $lang['ROOM']="Room number";
-$lang['ROOM_PASSWORD']="Room password";
 $lang['ROOM_CHECK']="Is there anyone?";
 $lang['ROOM_CHECK_PARTICIPANTS']="Participants ";
 $lang['ROOM_CHECK_ROOM']="Room ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" is empty";
 $lang['JOIN_MANDATORY_ERROR']="Nickname and room number are mandatory";
+$lang['ROOM_MAIL']="eMail address";
 
 /* ROOM */
 $lang['JOINING']="You are joining the room...";
@@ -54,62 +54,4 @@ $lang['btnWhiteboard']="Open shared whiteboard";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";
-
-/* LOGIN */
-$lang['LOGIN']="Administrator login";
-$lang['LOGIN_ERROR']="Wrong username and/or password";
-$lang['FORM_ERROR_MAIL']="Mail address is not valid";
-$lang['MAIL']="eMail address";
-$lang['MAIL_CHECK']="Confirm eMail address";
-
-/* SIGNUP */
-$lang['SIGNUP']="Sign Up";
-$lang['SURNAME']="Last name";
-$lang['NAME']="First name";
-$lang['MANDATORY_ERROR']="Surname and Name are mandatory";
-$lang['PASSWORD']="Password";
-$lang['PASSWORD_CONFIRM']="Confirm password";
-$lang['PASSWORD_CONFIRM_ERROR']="Passwords don't match";
-$lang['CONDITIONS']="Please check all conditions to signup";
-$lang['CONDITIONS_PRIVACY']="I have read and agreed to the <a href='../privacy' target='_blank'>General Terms and Privacy Policy <small>(italian)</small></a>";
-
-/* PASSWORD_RESET */
-$lang['PASSWORD_RESET']="Insert your mail to reset your password";
-$lang['PASSWORD_RESET_OK']="A mail has been sent to your address with a new password automatically generated";
-$lang['PASSWORD_RESET_ERROR']="Your mail does not exist in database";
-$lang['PASSWORD_RESET_BUTTON']="Reset your password";
-
-/* DASHBOARD */
-$lang['PROFILE']="Profile data";
-$lang['NEW_ROOM']="Create/Update a room";
-$lang['ROOM_LIST']="Your room list";
-$lang['ROOM_TITLE']="Room name";
-$lang['DELETE_ROOM']="Delete room";
-$lang['ROOM_INVITATION']="Copy invitation link";
-$lang['ROOM_MANDATORY_ERROR']="Room number is mandatory";
-$lang['UPDATE_ROOM']="Update room";
-
-$lang['USER_ADD_OK']="Account created successfully. We will send your credentials by email.";
-$lang['USER_ADD_ERROR']="Error during account creation";
-$lang['USER_ALREADY_EXISTS']="User already exists";
-$lang['USER_UPDATE_OK']="User correctly updated";
-
-$lang['ROOM_ADD_OK']="Room correctly added";
-$lang['ROOM_ADD_ERROR']="Error during room add";
-$lang['ROOM_DELETE_OK']="Room correctly removed";
-$lang['ROOM_DELETE_ERROR']="Error during room delete";
-$lang['ROOM_NOT_FOUND']="Room does not exist";
-
-$lang['ROOM_NOTIF']="Room notifications";
-$lang['ROOM_NOTIF_MAIL']="e-mail notifications";
-
-/* DASHBOARD TICKET */
-$lang['NEW_TICKET']="Create a ticket";
-$lang['ROOM_TICKET_LIST']="Ticket list";
-$lang['ROOM_TICKET_ADD_OK']="Ticket correctly added";
-$lang['ROOM_TICKET_ADD_ERROR']="Error during ticket add";
-$lang['ROOM_TICKET_DELETE_OK']="Ticket correctly removed";
-$lang['TICKET_JOIN_ERROR']="You do not have a valid ticket to join the room";
-$lang['ROOM_TICKET_VALIDATION_OK']="joined the room";
-$lang['ROOM_TICKET_VALIDATION_FAILED']="joined the room without a valid ticket";
 ?>

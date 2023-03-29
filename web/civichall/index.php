@@ -10,6 +10,7 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
+	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -119,6 +120,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
         <input type="hidden" value="join" name="method" id="method">
+        <input type="hidden" value="civic_hall" name="room_type" id="room_type">
         
         <div class="form-group">
 		<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">

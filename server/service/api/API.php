@@ -10,10 +10,10 @@ $api = new API();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {		
 		case 'join':
-			if(isset($_REQUEST['room_country']) && $_REQUEST['room_country']!=''){
-				$api->joinCountry($_REQUEST['room_country'], $_REQUEST['nickname'], $_REQUEST['room_id'], $link);
-			} else {
-				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
+			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='civic_hall'){
+				$api->joinCountry($_REQUEST['room_country'], $_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
+			} else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='public'){
+				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
 			}
 			break;
 		case 'left':
@@ -54,7 +54,7 @@ class API{
 		print json_encode($arr);
 	}
 
-    public function join($nickname,$room_id,$link){	
+    public function join($nickname,$room_id,$room_type,$link){
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	
     	$stmt = mysqli_stmt_init($link);
@@ -76,11 +76,12 @@ class API{
         		
 		$_SESSION['room_id'] = $room_id;
         $_SESSION['nickname'] = $nickname;
+        $_SESSION['room_type'] = $room_type;
         
         header('Location: ../../../web/room');
     }
 	
-	public function joinCountry($country,$nickname,$room_id,$link){
+	public function joinCountry($country,$nickname,$room_id,$room_type,$link){
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_country']);
@@ -98,7 +99,7 @@ class API{
 		$_SESSION['room_website'] = $place['website'];
 		$_SESSION['room_mail'] = $place['email'];
 		
-		$this->join($nickname,$room_id,$link);
+		$this->join($nickname,$room_id,$room_type,$link);
 	}
 	
 
@@ -115,6 +116,7 @@ class API{
 			
 		unset($_SESSION['room_id']);
 		unset($_SESSION['nickname']);
+		unset($_SESSION['room_type']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_country']);

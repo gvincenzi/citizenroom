@@ -10,6 +10,7 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
+	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -60,9 +61,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       	<img width="350px" src="../assets/img/logo_black.png"/>
       	<h3>
 		<?php 
-		if(isset($_GET['room_country']))
-		print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		else print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		if(isset($_GET['room_type']) && $_GET['room_type'] == 'civic_hall'){
+		    print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
+		    print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		}
 		?>
 		</h3>
       	<div id='callbackMessage'></div>

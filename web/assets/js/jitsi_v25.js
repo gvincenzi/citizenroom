@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,room_country){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -58,10 +58,10 @@ function BindEvent(roomNumber,nickname,roomTitle,room_country){
 		$("#btnStreamOff").hide();
     });
 	$("#btnInvitation").on('click', function () {
-		if(room_country != null && room_country != ""){
-			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle));
-		} else {
-			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber);
+		if(roomType != null && roomType == "civic_hall"){
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle+"&room_type="+roomType));
+		} else if(roomType != null && roomType == "public"){
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType);
 		}
 		alert("Invitation link copied in clipboard");
     });

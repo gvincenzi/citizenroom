@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -60,6 +60,8 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country){
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "civic_hall"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle+"&room_type="+roomType));
+		} else if(roomType != null && roomType == "custom"){
+			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_title="+roomTitle+"&room_logo="+roomLogo+"&room_type="+roomType);
 		} else if(roomType != null && roomType == "public"){
 			copyToClipboard(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType);
 		}

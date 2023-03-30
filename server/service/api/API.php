@@ -12,7 +12,9 @@ if (isset($_REQUEST['method'] )){
 		case 'join':
 			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='civic_hall'){
 				$api->joinCountry($_REQUEST['room_country'], $_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
-			} else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='public'){
+			} else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='custom'){
+              	$api->joinCustom($_REQUEST['room_title'], $_REQUEST['room_logo'], $_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
+            } else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='public'){
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
 			}
 			break;
@@ -102,7 +104,20 @@ class API{
 		$this->join($nickname,$room_id,$room_type,$link);
 	}
 	
+    public function joinCustom($room_title,$room_logo,$nickname,$room_id,$room_type,$link){
+		unset($_SESSION['room_title']);
+		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_country']);
+		unset($_SESSION['room_place']);
+		unset($_SESSION['room_wikipedia']);
+		unset($_SESSION['room_website']);
+		unset($_SESSION['room_mail']);
 
+		$_SESSION['room_title'] = stripslashes($room_title);
+		$_SESSION['room_logo'] = $room_logo;
+
+		$this->join($nickname,$room_id,$room_type,$link);
+	}
 
 	public function leftRoom($link){
 		$arr = array('success' => 'false');

@@ -29,6 +29,8 @@ $lang['ROOM_CHECK_ROOM']="Room ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" is empty";
 $lang['JOIN_MANDATORY_ERROR']="Nickname and room number are mandatory";
 $lang['ROOM_MAIL']="eMail address";
+$lang['ROOM_TITLE']="Room name";
+$lang['ROOM_LOGO']="URL Logo";
 
 /* ROOM */
 $lang['JOINING']="You are joining the room...";
@@ -54,4 +56,8 @@ $lang['btnWhiteboard']="Open shared whiteboard";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";
+
+/* CUSTOM ROOM */
+$lang['CUSTOM_ROOM']="Custom Room";
+$lang['CUSTOM_ROOM_DESCRIPTION']="Customize a room with a title and/or a logo.<br>Use the invitation link in your personal site, in a chat group, or in your social network page.";
 ?>

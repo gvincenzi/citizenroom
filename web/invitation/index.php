@@ -63,7 +63,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		<?php 
 		if(isset($_GET['room_type']) && $_GET['room_type'] == 'civic_hall'){
 		    print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
+		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
+            print $lang['INVITATION'].$lang['CUSTOM_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+        } else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
 		    print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
 		}
 		?>
@@ -81,6 +83,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
         <input type="hidden" value="join" name="method" id="method">
+        <input type="hidden" value="<?php print $_GET['room_title']?>" name="room_title" id="room_title">
+        <input type="hidden" value="<?php print $_GET['room_logo']?>" name="room_logo" id="room_logo">
 		<input type="hidden" value="<?php print $_GET['room_type']?>" name="room_type" id="room_type">
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
 		<input type="hidden" value="<?php print $_GET['room_country']?>" name="room_country" id="room_country">

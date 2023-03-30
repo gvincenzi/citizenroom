@@ -29,6 +29,8 @@ $lang['ROOM_CHECK_ROOM']="Stanza ";
 $lang['ROOM_CHECK_ROOM_EMPTY']=" è vuota";
 $lang['JOIN_MANDATORY_ERROR']="Nickname e numero della stanza sono obbligatori";
 $lang['ROOM_MAIL']="Indirizzo mail";
+$lang['ROOM_TITLE']="Nome della stanza";
+$lang['ROOM_LOGO']="URL Logo";
 
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
@@ -54,4 +56,8 @@ $lang['btnWhiteboard']="Accedi alla lavagna condivisa";
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";
+
+/* CUSTOM ROOM */
+$lang['CUSTOM_ROOM']="Stanza Personalizzata";
+$lang['CUSTOM_ROOM_DESCRIPTION']="Personalizza una stanza con un titolo e/o un logo.<br>Usa il link di invito nel tuo sito personale, in un gruppo di chat o sui tuoi social network";
 ?>

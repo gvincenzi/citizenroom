@@ -56,6 +56,21 @@ class API{
 		print json_encode($arr);
 	}
 
+    public function checkRoom($room_id,$link){
+		$stmt = mysqli_stmt_init($link);
+		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ?");
+
+		$stmt->bind_param('i', $room_id,);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$myArray = array();
+		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $myArray[] = $row;
+		}
+
+		print json_encode($myArray);
+	}
+
     public function join($nickname,$room_id,$room_type,$link){
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	

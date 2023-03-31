@@ -14,9 +14,9 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v22.js"></script>
+	<script src="../assets/js/jitsi_v26.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
-	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v2.css" />
+	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
         <style type="text/css">
@@ -32,15 +32,15 @@ include_once '../actionInSession.php';
 				$.ajax({
 				  type: "POST",
 				  url: "../../server/service/api/API.php",
-				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>", serial: "<?php print $_SESSION['serial']?>" }
+				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>"}
 				})
 				.done(function( msg ) {
 					var check = JSON.parse(msg);
 					if(check.success == 'true'){
 						const urlParams = new URLSearchParams(window.location.search);
 						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['serial']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['user_stream_key']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_country']?>");
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['password']?>','<?php echo $_SESSION['serial']?>',"<?php echo $_SESSION['room_title']?>");
+						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
+						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>");
 						
 						$("#btnWikipedia").on('click', function () {
 							window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank'); 
@@ -104,7 +104,6 @@ include_once '../actionInSession.php';
 	</div>
 	<div id='toolbox' class='toolbox' style='display:none;'>
 		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
-		<?php if(isset($_SESSION['serial'])) echo '<h4>Partner ID #'.$_SESSION['serial'].'</h4>'?>
 		<hr>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
@@ -120,23 +119,13 @@ include_once '../actionInSession.php';
 		<button id='btnMuteEveryone'><?php print $lang['btnMuteEveryone']?></button>
 		<button id='btnWhiteboard'><?php print $lang['btnWhiteboard']?></button>
 		<button id='btnInvitation'><?php print $lang['btnInvitation']?></button>
+		<button id='btnLobbyOn'><?php print $lang['btnLobbyOn']?></button>
+		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave'><?php print $lang['btnLeave']?></button>
-		<?php if(isset($_SESSION['user'])){
-				echo "<hr>";
-				echo "<button id='btnLobbyOn'>".$lang['btnLobbyOn']."</button>";
-				echo "<button id='btnLobbyOff' style=\"display: none;\">".$lang['btnLobbyOff']."</button>";
-				if(isset($_SESSION['user']) && $_SESSION['user_stream_key']!=''){
-					echo "<button id='btnStreamOn'>".$lang['btnStreamOn']."</button>";
-					echo "<button id='btnStreamOff' style=\"display: none;\">".$lang['btnStreamOff']."</button>";
-					echo "<button id='btnLiveInvitation'>Live : ".$lang['btnInvitation']."</button>";
-				}
-			}
-		?>
-		
 		<?php if(isset($_SESSION['room_country'])){
 				echo "<br>";
 				echo "<h3>".$lang['CIVIC_HALL_INFO']."</h3><hr>";
-				if(isset($_SESSION['room_mail']) && $_SESSION['room_mail']!='') echo '<h5>'.$lang['MAIL'].': <strong>'.$_SESSION['room_mail'].'</strong></h5>';
+				if(isset($_SESSION['room_mail']) && $_SESSION['room_mail']!='') echo '<h5>'.$lang['ROOM_MAIL'].': <strong>'.$_SESSION['room_mail'].'</strong></h5>';
 				if(isset($_SESSION['room_wikipedia']) && $_SESSION['room_wikipedia']!='') echo '<button id="btnWikipedia">Wikipedia</button>';
 				if(isset($_SESSION['room_website']) && $_SESSION['room_website']!='') echo '<button id="btnWebsite">Website</button>';
 			}

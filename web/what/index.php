@@ -15,7 +15,7 @@ session_start();
 	<meta property="og:url" content="https://citizenroom.altervista.org/web/what/">
 	<meta property="og:type" content="website">
 	<meta name="description" property="og:description" content="Cos'è e perché CitizenRoom - What and why CitizenRoom (italian language) - Qu'est-ce que et pourquoi CitizenRoom (en italien)">
-	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.png">
+	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image">
@@ -23,7 +23,7 @@ session_start();
 	<meta property="twitter:url" content="https://citizenroom.altervista.org/web/what/">
 	<meta name="twitter:title" content="CitizenRoom - A free space where you can feel at home">
 	<meta name="twitter:description" content="Informations about CitizenRoom (italian language)">
-	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon.png">
+	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js"

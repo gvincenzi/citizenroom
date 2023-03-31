@@ -16,16 +16,6 @@ Nous avons fortement senti le besoin de créer et de tester une plate-forme axé
 <h2>GESTION DES DONNÉES</h2>
 Citizenroom <strong>ne stocke aucune donnée liée aux utilisateurs, aux appareils ni aux échanges de communication</strong>. Cela ne signifie pas que Citizenroom soit une plateforme qui garantit un complet anonymat et, malgré le fait que la plateforme soit gratuite, elle est complètement <strong>décryptée</strong>. À tout moment, en cas d’échange d’informations incorrectes et/ou illégales, <strong>toutes conversations peuvent être monitorées par les autorités compétentes</strong>. Citizenroom vise à être un outil de communication simple et immédiat, mais pas un moyen pour dissimuler votre identité à des fins illicites ou contre la loi du pays où la plateforme est située ou d’où les gens sont connectés.<br><br>
 
-<h2>CitizenRoom Business</h2>
-En ce moment, nous testons également une version (<strong>gratuite aussi</strong>) que nous avons décidé d’identifier comme <strong>Business</strong> dans laquelle vous pouvez créer un compte personnel (en indiquant une adresse e-mail valide uniquement) : dans cette version, avoir un compte vous permet de créer des salles personnelles à utiliser à différentes occasions : pour votre groupe de travail, votre association, votre famille.<br>
-A titre d’exemple : lors de la création d’une salle indiquée par le numéro 35, cette salle 35 n’appartiendra qu’à votre compte et elle ne sera pas partagée avec les participants utilisant la salle indiquée par le même numéro (35) dans la version Citizenroom de base. En d’autres termes, lorsque vous avez un compte personnel, vous pouvez créer des salles personnelles et uniques à utiliser de façon illimitée.<br><br>
-Dans cette version Business, vous aurez la possibilité de personnaliser les salles avec un titre et un logo et d’établir 3 différents niveaux d’accès à celles-ci :
-<ul>
-<li>Activation de l’option salle d’attente,</li>
-<li>Configuration d’un mot de passe d’accès,</li>
-<li>Avec un système de billetterie (via une liste de Nicknames à inviter et identifiés au préalable).</li>
-</ul>
-
 <h2>Salles municipales</h2>
 À partir du 15 mars 2022, nous avons mis en ligne la section dédiée aux <strong>Salles municipales</strong> : dans cette section vous aurez la possibilité d'entrer et d'utiliser une CitizenRoom dédiée à une <strong>municipalité</strong>.<br>
 L'idée est de donner à chaque municipalité (pour l'instant uniquement en Italie et en France) une CitizenRoom à laquelle <strong>l'administration et tous les citoyens peuvent accéder librement</strong>, sans avoir besoin de créer un compte, de partager des informations personnelles ou installer un logiciel en particulier : un outil supplémentaire simple et gratuit pour renforcer la <strong>participation</strong> et la <strong>citoyenneté numérique</strong>.<br><br>

@@ -19,7 +19,6 @@
 			'https://www.flickr.com/photos/nikiforovpizza/44574560331/'];
 
             var authors = [
-			'Perzonseo Webbyra',
 			'Mykyta Nikiforov'];
 			
             var author_links = [
@@ -50,7 +49,7 @@
 
 </script>
 <header>
-	<?php if(isset($_GET['type'])) include 'menu_'.$_GET['type'].'.php';
+	<?php if(isset($_GET['room_type'])) include 'menu_'.$_GET['room_type'].'.php';
           else include 'menu_simple.php';?>
 </header>
 

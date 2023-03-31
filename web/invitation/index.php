@@ -10,8 +10,7 @@ if(!isset($_SESSION['action'])){
 if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
-	unset($_SESSION['password']);
-	unset($_SESSION['serial']);
+	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_country']);
@@ -34,7 +33,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	<meta property="og:title" content="<?php print $lang['PAGE_TITLE']?>" />
 	<meta property="og:description" content="<?php print $lang['INVITATION'].$_GET['room_id'].' '.$_GET['room_title']?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.png" />
+	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg" />
     <meta name="author" content="InMediArt">
     <script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -42,25 +41,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/header.v2.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {
 			var callback = location.search.split('callback=')[1];
-		    /*if(callback!=null && callback!=''){
-			    if(callback=='PASSWORD_RESET_OK'){
-				    $(callbackMessage).addClass('alert').addClass('alert-success').text('<?php print $lang['PASSWORD_RESET_OK'] ?>');
-			    }else{
-			    	$(callbackMessage).addClass('alert').addClass('alert-danger').text('<?php print $lang['PASSWORD_RESET_ERROR'] ?>');
-			    }
-		    }*/
-	    });	
+	    });
 		function validateJoinForm(){
-			/*if($(mail).val()=='' || validateEmail($(mail).val()) == false){
-				$(joinAlert).addClass('alert').addClass('alert-danger').text('<?php print $lang['FORM_ERROR_MAIL'] ?>');
-				return false;
-			}*/
-			
 			return true;
 		}		
     </script>   
@@ -74,10 +61,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       	<img width="350px" src="../assets/img/logo_black.png"/>
       	<h3>
 		<?php 
-		if(isset($_GET['room_country']))
-		print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		else if(isset($_GET['type']) && $_GET['type']=='business') print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		else print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		if(isset($_GET['room_type']) && $_GET['room_type'] == 'civic_hall'){
+		    print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
+		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
+            print $lang['INVITATION'].$lang['CUSTOM_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+        } else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
+		    print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+		}
 		?>
 		</h3>
       	<div id='callbackMessage'></div>
@@ -93,10 +83,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
         <input type="hidden" value="join" name="method" id="method">
+        <input type="hidden" value="<?php print $_GET['room_title']?>" name="room_title" id="room_title">
+        <input type="hidden" value="<?php print $_GET['room_logo']?>" name="room_logo" id="room_logo">
 		<input type="hidden" value="<?php print $_GET['room_type']?>" name="room_type" id="room_type">
 		<input type="hidden" value="<?php print $_GET['room_id']?>" name="room_id" id="room_id">
-		<input type="hidden" value="<?php print $_GET['serial']?>" name="serial" id="serial">
-		<input type="hidden" value="<?php print $_GET['password']?>" name="password" id="password">
 		<input type="hidden" value="<?php print $_GET['room_country']?>" name="room_country" id="room_country">
         
         <div class="form-group">

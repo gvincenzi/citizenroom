@@ -28,7 +28,7 @@
 	margin-bottom: 10px;
 }
 
-.form-signup input[type="text"],.form-signup input[type="password"],.form-signup input[type="number"] {
+.form-signup input[type="text"],.form-signup input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;
@@ -54,7 +54,7 @@
 	margin-bottom: 10px;
 }
 
-.form-profile input[type="text"],.form-profile input[type="password"] {
+.form-profile input[type="text"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;
@@ -80,7 +80,7 @@
 	margin-bottom: 10px;
 }
 
-.form-room input[type="text"],.form-room input[type="password"],.form-room input[type="number"] {
+.form-room input[type="text"],.form-room input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;
@@ -106,7 +106,7 @@
 	margin-bottom: 10px;
 }
 
-.form-list-room input[type="text"],.form-list-room input[type="password"],.form-list-room input[type="number"] {
+.form-list-room input[type="text"],.form-list-room input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;
@@ -132,7 +132,7 @@
 	margin-bottom: 10px;
 }
 
-.form-ticket input[type="text"],.form-ticket input[type="password"],.form-ticket input[type="number"] {
+.form-ticket input[type="text"],.form-ticket input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;
@@ -158,7 +158,7 @@
 	margin-bottom: 10px;
 }
 
-.form-list-ticket input[type="text"],.form-list-ticket input[type="password"],.form-list-ticket input[type="number"] {
+.form-list-ticket input[type="text"],.form-list-ticket input[type="number"] {
 	font-size: 13px !important;
 	height: auto;
 	margin-bottom: 10px !important;

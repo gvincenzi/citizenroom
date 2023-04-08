@@ -45,10 +45,8 @@
             $('#full-screen-background-image').attr("src", images[index]);
             $('#full-screen-background-image').css("filter","blur(8px)");
             $('#full-screen-background-image').css("-webkit-filter","blur(8px)");
-
-             $('#full-screen-background-image').attr("src", images[index]);
-             $('#imageLink').prop("href", image_links[index]);
-             $('#authorLink').prop("href", author_links[index]).text(authors[index]);
+            $('#imageLink').prop("href", image_links[index]);
+            $('#authorLink').prop("href", author_links[index]).text(authors[index]);
 
             $('.form-signup').css("background-color","#FFFFFF");
             $('.form-signup').css("opacity","0.8");
@@ -81,7 +79,5 @@
 <div class="themed_room_details">
   <h1 id="description"><?php echo $_SESSION['room_theme_description'];?></h1>
   <p id="info"><?php echo $_SESSION['room_theme_info'];?></p>
-  <!-- img class="themed_room_image" src='http://www.scenecontemporanee.it/wp-content/uploads/2017/03/ff336f2665fe8bd02bf108a99b6df90e_XL.jpg'/ -->
-  <!-- img class="themed_room_image" src='https://media.licdn.com/dms/image/D4E03AQFRGLPw0JHzsA/profile-displayphoto-shrink_800_800/0/1674161337453?e=2147483647&v=beta&t=whCwshcDuz7cDKbZQJyqSP-TMk2n1cL3i26ZgNNFCnI'/ -->
   <img id="image" src=<?php if(isset($_SESSION['room_theme_image'])) echo "'".$_SESSION['room_theme_image']."'"; else echo "'../assets/img/icon.jpg'"?> class="themed_room_image"/>
 </div>

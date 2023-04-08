@@ -7,7 +7,7 @@ session_start();
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }
-if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
+
 	unset($_SESSION['room_id']);
 	unset($_SESSION['nickname']);
 	unset($_SESSION['room_type']);
@@ -18,12 +18,15 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_wikipedia']);
 	unset($_SESSION['room_website']);
 	unset($_SESSION['room_mail']);
-}else{
-	if(isset($_SESSION["join.error"])){
-		// If th user change the language after a bad login it must reload the right string
-		$_SESSION["join.error"] = $lang['JOIN_ERROR'];
-	}
-}
+
+    unset($_SESSION['room_theme_title']);
+    unset($_SESSION['room_theme_description']);
+    unset($_SESSION['room_theme_info']);
+    unset($_SESSION['room_theme_image']);
+    unset($_SESSION['room_theme_bg_image']);
+    unset($_SESSION['room_theme_bg_image_link']);
+    unset($_SESSION['room_theme_bg_image_author']);
+    unset($_SESSION['room_theme_bg_image_author_link']);
 
 ?>
 <html lang="en">

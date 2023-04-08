@@ -33,7 +33,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		$_SESSION["join.error"] = $lang['JOIN_ERROR'];
 	}
 }
-
 ?>
 <html lang="en">
 <head>
@@ -52,10 +51,36 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <link href="../assets/css/form.css" rel="stylesheet">
     <link href="../assets/css/header.v3.css" rel="stylesheet">
     
-    <script type="text/javascript">  
+    <script type="text/javascript">
 		$(document).ready(function() {
 			var callback = location.search.split('callback=')[1];
+            if(<?php print "'".$_GET['room_type']."'"?> == 'themed'){
+                    $.ajax({
+                       type: "GET",
+                       url: "../../server/service/api/API.php",
+                       data: { method: 'themeDetails', room_id: <?php echo "'".$_GET['room_id']."'"?> }
+                    })
+                    .done(function( msg ) {
+                        var theme = JSON.parse(msg);
+                        //console.info(theme);
+                        $('#title').html(theme.title);
+                        $('#description').html(theme.description);
+                        $('#info').html(theme.info);
+                        $('#image').attr("src",theme.image);
+
+                        $('#full-screen-background-image').attr("src", theme.bg_image);
+                        $('#full-screen-background-image').css("filter","blur(8px)");
+                        $('#full-screen-background-image').css("-webkit-filter","blur(8px)");
+                        $('#imageLink').prop("href", theme.bg_image_link);
+                        $('#authorLink').prop("href", theme.bg_image_author_link).text(theme.bg_image_author);
+
+                        $('.form-signup').css("background-color","#FFFFFF");
+                        $('.form-signup').css("opacity","0.8");
+                    });
+            }
+
 	    });
+
 		function validateJoinForm(){
 			return true;
 		}		
@@ -75,7 +100,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
             print $lang['INVITATION'].$lang['CUSTOM_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
         } else if(isset($_GET['room_type']) && $_GET['room_type'] == 'themed'){
-            print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+            print $lang['INVITATION'].$lang['THEMED_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong>';
         } else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
 		    print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
 		}

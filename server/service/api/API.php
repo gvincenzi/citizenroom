@@ -35,6 +35,9 @@ if (isset($_REQUEST['method'] )){
 		case 'theme':
         	$api->theme($link, $lang);
         	break;
+        case 'themeDetails':
+            $api->themeDetails($_REQUEST['room_id'], true, $link);
+            break;
 	}
 }else {
 	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
@@ -157,16 +160,7 @@ class API{
     	unset($_SESSION['room_theme_bg_image_author']);
     	unset($_SESSION['room_theme_bg_image_author_link']);
 
-    	$theme = $this->themeDetails($room_id,$link);
-        $_SESSION['room_theme_title'] = stripslashes($theme['title']);
-        $_SESSION['room_theme_description'] = stripslashes($theme['description']);
-        $_SESSION['room_theme_info'] = stripslashes($theme['info']);
-        $_SESSION['room_theme_image'] = stripslashes($theme['image']);
-
-    	$_SESSION['room_theme_bg_image'] = stripslashes($theme['bg_image']);
-    	$_SESSION['room_theme_bg_image_link'] = stripslashes($theme['bg_image_link']);
-    	$_SESSION['room_theme_bg_image_author'] = stripslashes($theme['bg_image_author']);
-    	$_SESSION['room_theme_bg_image_author_link'] = stripslashes($theme['bg_image_author_link']);
+    	$theme = $this->themeDetails($room_id,false,$link);
 
         $this->join($nickname,$room_id,$room_type,$link);
     }
@@ -277,7 +271,7 @@ class API{
    		print $tojson;
    	}
 
-   	public function themeDetails($room_id,$link){
+   	public function themeDetails($room_id,$json,$link){
        	$stmt = mysqli_stmt_init($link);
        	$stmt->prepare("SELECT * FROM citizenroom_theme WHERE room_id=?");
        	$stmt->execute();
@@ -289,7 +283,23 @@ class API{
         $row["title"] = utf8_encode( $row["title"] );
         $row["description"] = utf8_encode( $row["description"] );
         $row["info"] = utf8_encode( $row["info"] );
-        return $row;
+
+        $_SESSION['room_theme_title'] = stripslashes($row['title']);
+        $_SESSION['room_theme_description'] = stripslashes($row['description']);
+        $_SESSION['room_theme_info'] = stripslashes($row['info']);
+        $_SESSION['room_theme_image'] = stripslashes($row['image']);
+
+        $_SESSION['room_theme_bg_image'] = stripslashes($row['bg_image']);
+        $_SESSION['room_theme_bg_image_link'] = stripslashes($row['bg_image_link']);
+        $_SESSION['room_theme_bg_image_author'] = stripslashes($row['bg_image_author']);
+        $_SESSION['room_theme_bg_image_author_link'] = stripslashes($row['bg_image_author_link']);
+
+        if($json == true){
+            $tojson = json_encode($row,JSON_UNESCAPED_UNICODE);
+           	print $tojson;
+        } else {
+            return $row;
+        }
     }
 }
 ?>

@@ -17,6 +17,15 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_place']);
 	unset($_SESSION['room_wikipedia']);
 	unset($_SESSION['room_website']);
+
+   	unset($_SESSION['room_theme_title']);
+   	unset($_SESSION['room_theme_description']);
+   	unset($_SESSION['room_theme_info']);
+   	unset($_SESSION['room_theme_image']);
+    unset($_SESSION['room_theme_bg_image']);
+    unset($_SESSION['room_theme_bg_image_link']);
+    unset($_SESSION['room_theme_bg_image_author']);
+    unset($_SESSION['room_theme_bg_image_author_link']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -50,7 +59,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 		
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v2.css" rel="stylesheet">
+    <link href="../assets/css/header.v3.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {

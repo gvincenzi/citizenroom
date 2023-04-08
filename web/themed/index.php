@@ -34,8 +34,21 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
-		
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <link href="../assets/css/form.css" rel="stylesheet">
     <link href="../assets/css/header.v3.css" rel="stylesheet">
     
@@ -47,6 +60,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				    $(callbackMessage).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
 			    }
 		    }
+
+		    $('select').selectpicker();
+            themeInit();
 	    });	
 		
 		function validateJoinForm(){
@@ -57,35 +73,26 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			return true;
 		}	
 
-		function checkRoom(){
-			if($(room_id).val()==''){
-				$(loginAlert).addClass('alert').removeClass('alert-warning').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
-				return false;
-			}
-			
-			$.ajax({
-			  type: "GET",
-			  url: "../../server/service/api/API.php",
-			  data: { method: "rooms/check", room_id: $(room_id).val() }
-			})
-			.done(function( msg ) {
-				console.info( msg );
-				var subscriptions = JSON.parse(msg);
-					
-					var count = 0;
-					var participants='';
-					$.each(subscriptions, function(i, item) {
-						count++;
-						participants += item.nickname+'<br>';
-					});
-					
-					if(participants != ''){
-						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+' <?php print $lang['ROOM_CHECK_PARTICIPANTS'] ?> ('+count+') :<br>'+participants);
-					} else {
-						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+'<?php print $lang['ROOM_CHECK_ROOM_EMPTY'] ?>');
-					}
-			});
-		}		
+		function themeInit(){
+        	$("#room_id").selectpicker("refresh");
+        	$.ajax({
+        	    type: "GET",
+                url: "../../server/service/api/API.php",
+        	    data: { method: "theme"}
+        	})
+        	.done(function( msg ) {
+        	    //console.info( msg );
+        		var themes = JSON.parse(msg);
+        		$.each(themes, function(i, item) {
+        			console.info(item.description);
+        			$('#room_id').append('<option value="'+item.room_id+'" data-tokens="'+item.title+'">'+item.title+'</option>');
+
+        			//Two times to have a complete refresh
+                    $('.selectpicker').selectpicker("refresh");
+                    $('.selectpicker').selectpicker("refresh");
+        		});
+        	});
+        }
     </script>   
   </head>
 
@@ -95,6 +102,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php" autocomplete="off">
       	<div style="text-align: center;">
       	<img width="350px" src="../assets/img/logo_black.png"/>
+      	<h4><?php print $lang['THEMED_ROOM_DESCRIPTION']?></h4>
       	<div id='callbackMessage'></div>
 		<div id='loginAlert'></div>
       	</div>
@@ -108,17 +116,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <!-- HIDDEN PARAMETERS -->
         <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
         <input type="hidden" value="join" name="method" id="method">
-        <input type="hidden" value="public" name="room_type" id="room_type">
+        <input type="hidden" value="themed" name="room_type" id="room_type">
         
         <div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 			<div style="display:flex">
-				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
-				<?php 
-				if(!isset($_GET['room_type'])){
-					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
-				}
-				?>
+				<select data-width="100%" id="room_id" name="room_id" type="number" class="selectpicker" data-live-search="true" data-none-selected-text="<?php print $lang['WAIT']?>">
+				</select>
 			</div>
         </div>
 		<br>
@@ -131,7 +135,5 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		</p>
       </form>      
     </div> <!-- /container -->
-	
-	<?php include '../footer.php';?> 
 </body>
 </html>

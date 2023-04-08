@@ -60,4 +60,9 @@ $lang['INVITATION']="Stai per entrare nella ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Stanza Personalizzata";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personalizza una stanza con un titolo e/o un logo.<br>Usa il link di invito nel tuo sito personale, in un gruppo di chat o sui tuoi social network";
+
+/* THEMED ROOM */
+$lang['THEMED_ROOM']="Stanza a tema";
+$lang['THEMED_ROOM_DESCRIPTION']="Scegli una delle stanze a tema messe a disposizione e realizzate da amici della CitizenRoom per la nostra comunità.";
+
 ?>

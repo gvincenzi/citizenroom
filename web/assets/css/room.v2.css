@@ -2,7 +2,7 @@
 	margin-right: auto; 
 	margin-left: auto; 
 	width: 60%;
-	margin-top: 60px;
+	/*margin-top: 60px;*/
 	padding : 40px;
 	background-color: white;
 	/* border-radius */
@@ -23,7 +23,7 @@
 .toolbox{
 	position: absolute;
     left: 2%;
-    top: 30%;
+    top: 15%;
 	color: #fff;
 }
 

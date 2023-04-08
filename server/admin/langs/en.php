@@ -60,4 +60,9 @@ $lang['INVITATION']="You are entering the ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Custom Room";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Customize a room with a title and/or a logo.<br>Use the invitation link in your personal site, in a chat group, or in your social network page.";
+
+/* THEMED ROOM */
+$lang['THEMED_ROOM']="Themed rooms";
+$lang['THEMED_ROOM_DESCRIPTION']="Choose one of the themed rooms made available and created by CitizenRoom friends for our community.";
+
 ?>

@@ -1,16 +1,15 @@
 <div id="primary-navigation">
- <?php 
- if(isset($_SESSION['nickname']) && isset($_SESSION['room_id'])){
-	print_r('<img class="logo" src="../assets/img/logo.png" alt="citizenroom" style="width:50%; max-width:535px" onclick="location.href=\'../room\'" />');
- } else {
-    print_r('<img class="logo" src="../assets/img/logo.png" alt="citizenroom" style="width:50%; max-width:535px" onclick="location.href=\'../join\'" />');
- } ?>
+    <div class="logo" id="title">
+        CitizenRoom
+    </div>
+
 	<nav>
 		<ul>
 			<nav classname="site-nav">
 				<ul>
 					<li class=""><a href="../join"><?php print $lang['JOIN']?></a></li>
 					<li class=""><a href="../custom?room_type=custom"><?php print $lang['CUSTOM_ROOM']?></a></li>
+                    <li class=""><a href="../themed?room_type=themed"><?php print $lang['THEMED_ROOM']?></a></li>
                     <li class=""><a href="#" onclick="changeLanguage('en')">English</a></li>
 					<li class=""><a href="#" onclick="changeLanguage('it')">Italiano</a></li>
                     <li class=""><a href="#" onclick="changeLanguage('fr')"><?php print ("Français")?></a></li>

@@ -148,13 +148,6 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
     apiObj = new JitsiMeetExternalAPI(domain, options);
 	apiObj.executeCommand('subject', roomTitle + "_" + roomNumber);
     apiObj.addEventListeners({
-        readyToClose: function () {
-            //alert('going to close');
-            $('#jitsi-meet-conf-container').empty();
-            $('#toolbox').hide();
-            $('#container').hide();
-            $('#joinMsg').show().text('You left the conference');
-        },
         audioMuteStatusChanged: function (data) {
             if(data.muted){
                 $("#btnCustomMicOn").show();
@@ -206,6 +199,11 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         },
 		readyToClose: function(data){
             //console.log('readyToClose', data);
+			$('#jitsi-meet-conf-container').empty();
+			$('#toolbox').hide();
+			$('#container').hide();
+			$('#joinMsg').show().text('You left the conference');
+
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",

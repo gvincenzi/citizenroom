@@ -14,10 +14,10 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v27.js"></script>
+	<script src="../assets/js/jitsi_v28.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css" />
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v3.css" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
         <style type="text/css">
             #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
@@ -29,33 +29,20 @@ include_once '../actionInSession.php';
 
 		<script>
 			$(function(){
-				$.ajax({
-				  type: "POST",
-				  url: "../../server/service/api/API.php",
-				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>"}
-				})
-				.done(function( msg ) {
-					var check = JSON.parse(msg);
-					if(check.success == 'true'){
-						const urlParams = new URLSearchParams(window.location.search);
-						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>");
-						
-						$("#btnWikipedia").on('click', function () {
-							window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank'); 
-						});
-						
-						$("#btnWebsite").on('click', function () {
-							window.open("<?php echo $_SESSION['room_website']?>", '_blank'); 
-						});
-	
-						} else {
-							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
-						}	
-						
-						initMap("<?php echo $_SESSION['room_country']?>");
-				});
+                    const urlParams = new URLSearchParams(window.location.search);
+					$('#joinMsg').text('<?php print $lang['JOINING']?>');
+					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
+					StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
+
+					$("#btnWikipedia").on('click', function () {
+						window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank');
+					});
+
+					$("#btnWebsite").on('click', function () {
+						window.open("<?php echo $_SESSION['room_website']?>", '_blank');
+					});
+
+					initMap("<?php echo $_SESSION['room_country']?>");
 			});
 			
 			$(window).on("beforeunload", function() { 

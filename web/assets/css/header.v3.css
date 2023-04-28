@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -73,7 +75,8 @@ img {
 
 .logo {
 	opacity: 0.7;
-    cursor: pointer;
+	font-family: 'Bangers', cursive;
+	font-size: 600%;
 }
 
 footer {

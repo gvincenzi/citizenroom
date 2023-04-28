@@ -18,6 +18,7 @@ $lang['CIVIC_HALL_COUNTRY_SELECT']="Selezione il paese";
 $lang['JOIN']="Entra in una stanza";
 $lang['LEFT']="Esci dalla stanza";
 $lang['CIVIC_HALL_INFO']="Il comune";
+$lang['ABOUT']="Chi siamo";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Error joining the room";
@@ -60,4 +61,9 @@ $lang['INVITATION']="Stai per entrare nella ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Stanza Personalizzata";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personalizza una stanza con un titolo e/o un logo.<br>Usa il link di invito nel tuo sito personale, in un gruppo di chat o sui tuoi social network";
+
+/* THEMED ROOM */
+$lang['THEMED_ROOM']="Stanza a tema";
+$lang['THEMED_ROOM_DESCRIPTION']="Scegli una delle stanze a tema messe a disposizione e realizzate da amici della CitizenRoom per la nostra comunità.";
+
 ?>

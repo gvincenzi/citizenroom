@@ -60,8 +60,10 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "civic_hall"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_country="+room_country+"&room_title="+roomTitle+"&room_type="+roomType));
-		} else if(roomType != null && roomType == "custom"){
-			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_title="+roomTitle+"&room_logo="+roomLogo+"&room_type="+roomType));
+		} else if(roomType != null && roomType == "custom") {
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
+		} else if(roomType != null && roomType == "themed"){
+				copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		} else if(roomType != null && roomType == "public"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		}
@@ -80,9 +82,9 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 
 	$("#btnWhiteboard").on('click', function () {
 		if(roomTitle != null && roomTitle != ""){
-			window.open("https://wbo.ophir.dev/boards/"+roomTitle+"_"+roomNumber, '_blank');
+			window.open("https://wbo.ophir.dev/boards/"+roomTitle+"_"+roomNumber+"_"+roomType, '_blank');
 		} else {
-			window.open("https://wbo.ophir.dev/boards/CitizenRoom_"+roomNumber);
+			window.open("https://wbo.ophir.dev/boards/CitizenRoom_"+roomNumber+"_"+roomType);
 		}
 	});
 	$("#btnLeave").on('click', function () {
@@ -98,12 +100,12 @@ function copyToClipboard(text) {
 	$temp.remove();
 }
 
-function StartMeeting(roomNumber,nickname,roomTitle){
+function StartMeeting(roomNumber,nickname,roomTitle,roomType){
     const domain = 'meet.jit.si';
 	if(roomTitle == null || roomTitle == ""){
 		roomTitle = 'CitizenRoom';
 	}
-    var roomName = roomTitle + "_" + roomNumber;
+    var roomName = roomTitle + "_" + roomNumber + "_" + roomType;
 
     // console.info("roomName:"+roomName);
     const options = {
@@ -146,13 +148,6 @@ function StartMeeting(roomNumber,nickname,roomTitle){
     apiObj = new JitsiMeetExternalAPI(domain, options);
 	apiObj.executeCommand('subject', roomTitle + "_" + roomNumber);
     apiObj.addEventListeners({
-        readyToClose: function () {
-            //alert('going to close');
-            $('#jitsi-meet-conf-container').empty();
-            $('#toolbox').hide();
-            $('#container').hide();
-            $('#joinMsg').show().text('You left the conference');
-        },
         audioMuteStatusChanged: function (data) {
             if(data.muted){
                 $("#btnCustomMicOn").show();
@@ -204,6 +199,11 @@ function StartMeeting(roomNumber,nickname,roomTitle){
         },
 		readyToClose: function(data){
             //console.log('readyToClose', data);
+			$('#jitsi-meet-conf-container').empty();
+			$('#toolbox').hide();
+			$('#container').hide();
+			$('#joinMsg').show().text('You left the conference');
+
 			$.ajax({
 			  type: "POST",
 			  url: "../../server/service/api/API.php",

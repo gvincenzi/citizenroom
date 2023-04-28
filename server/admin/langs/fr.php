@@ -18,6 +18,7 @@ $lang['CIVIC_HALL_COUNTRY_SELECT']="Choisir le pays";
 $lang['JOIN']="Rejoindre une salle";
 $lang['LEFT']="Quitter la salle";
 $lang['CIVIC_HALL_INFO']="La commune";
+$lang['ABOUT']="Qui sommes-nous";
 
 /* JOIN */
 $lang['JOIN_ERROR']="Erreur lors de la connexion à la salle";

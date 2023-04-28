@@ -17,7 +17,7 @@ include_once '../actionInSession.php';
 	<script src="../assets/js/jitsi_v28.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v2.css" />
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v3.css" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
         <style type="text/css">
             #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */

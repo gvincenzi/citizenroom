@@ -160,8 +160,8 @@ class API{
 		$result = $stmt->get_result();
 		$myArray = array();
 		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-			$row["name"] = utf8_encode( $row["name"] );
-			$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
+			$row["name"] = ( $row["name"] );
+			$row["shortcode"] = ( sprintf("%02s", $row["shortcode"]) );
             $myArray[] = $row;
 		}
 		
@@ -183,11 +183,11 @@ class API{
 		$stmt->execute(); 
 		$result = $stmt->get_result();
 		$row = $result->fetch_assoc();
-		$row["name"] = utf8_encode( $row["name"] );
-		$row["dept"] = utf8_encode( $row["dept"] );
-		$row["shortcode"] = utf8_encode( sprintf("%02s", $row["shortcode"]) );
-		$row["region"] = utf8_encode( $row["region"] );
-		$row["wikipedia"] = utf8_encode( $row["wikipedia"] );
+		$row["name"] = ( $row["name"] );
+		$row["dept"] = ( $row["dept"] );
+		$row["shortcode"] = ( sprintf("%02s", $row["shortcode"]) );
+		$row["region"] = ( $row["region"] );
+		$row["wikipedia"] = ( $row["wikipedia"] );
 		return $row;
 	}
 
@@ -198,9 +198,9 @@ class API{
     	$result = $stmt->get_result();
     	$myArray = array();
     	while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-    		$row["title"] = utf8_encode( $row["title"] );
-    		$row["description"] = utf8_encode( $row["description"] );
-    		$row["info"] = utf8_encode( $row["info"] );
+    		$row["title"] = ( $row["title"] );
+    		$row["description"] = ( $row["description"] );
+    		$row["info"] = ( $row["info"] );
             $myArray[] = $row;
     	}
    		$tojson = json_encode($myArray,JSON_UNESCAPED_UNICODE);
@@ -216,9 +216,9 @@ class API{
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
-        $row["title"] = utf8_encode( $row["title"] );
-        $row["description"] = utf8_encode( $row["description"] );
-        $row["info"] = utf8_encode( $row["info"] );
+        $row["title"] = ( $row["title"] );
+        $row["description"] = ( $row["description"] );
+        $row["info"] = ( $row["info"] );
 
         $_SESSION['room_theme_title'] = stripslashes($row['title']);
         $_SESSION['room_theme_description'] = stripslashes($row['description']);

@@ -29,33 +29,20 @@ include_once '../actionInSession.php';
 
 		<script>
 			$(function(){
-				$.ajax({
-				  type: "POST",
-				  url: "../../server/service/api/API.php",
-				  data: { method: "subscription/check", nickname: "<?php print $_SESSION['nickname']?>", room_id: "<?php print $_SESSION['room_id']?>"}
-				})
-				.done(function( msg ) {
-					var check = JSON.parse(msg);
-					if(check.success == 'true'){
-						const urlParams = new URLSearchParams(window.location.search);
-						$('#joinMsg').text('<?php print $lang['JOINING']?>');
-						BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
-						StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
-						
-						$("#btnWikipedia").on('click', function () {
-							window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank'); 
-						});
-						
-						$("#btnWebsite").on('click', function () {
-							window.open("<?php echo $_SESSION['room_website']?>", '_blank'); 
-						});
-	
-						} else {
-							$('#joinMsg').html("Error joining the room. <a href='../join'>Click here</a> to rejoin correctly.");
-						}	
-						
-						initMap("<?php echo $_SESSION['room_country']?>");
-				});
+                    const urlParams = new URLSearchParams(window.location.search);
+					$('#joinMsg').text('<?php print $lang['JOINING']?>');
+					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
+					StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
+
+					$("#btnWikipedia").on('click', function () {
+						window.open("<?php echo $_SESSION['room_wikipedia']?>", '_blank');
+					});
+
+					$("#btnWebsite").on('click', function () {
+						window.open("<?php echo $_SESSION['room_website']?>", '_blank');
+					});
+
+					initMap("<?php echo $_SESSION['room_country']?>");
 			});
 			
 			$(window).on("beforeunload", function() { 

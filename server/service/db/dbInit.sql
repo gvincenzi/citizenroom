@@ -9,16 +9,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Structure de la table `citizenroom_subscription`
---
-
-CREATE TABLE IF NOT EXISTS `citizenroom_subscription` (
-  `room_id` int(10) NOT NULL,
-  `nickname` varchar(255) NOT NULL,
-  `creation_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 CREATE TABLE IF NOT EXISTS `citizenroom_theme` (
   `room_id` int(10) NOT NULL,
   `title` varchar(50) NOT NULL,

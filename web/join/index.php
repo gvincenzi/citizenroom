@@ -56,37 +56,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			}
 			return true;
 		}	
-
-		function checkRoom(){
-			if($(room_id).val()==''){
-				$(loginAlert).addClass('alert').removeClass('alert-warning').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
-				return false;
-			}
-			
-			$.ajax({
-			  type: "GET",
-			  url: "../../server/service/api/API.php",
-			  data: { method: "rooms/check", room_id: $(room_id).val() }
-			})
-			.done(function( msg ) {
-				console.info( msg );
-				var subscriptions = JSON.parse(msg);
-					
-					var count = 0;
-					var participants='';
-					$.each(subscriptions, function(i, item) {
-						count++;
-						participants += item.nickname+'<br>';
-					});
-					
-					if(participants != ''){
-						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+' <?php print $lang['ROOM_CHECK_PARTICIPANTS'] ?> ('+count+') :<br>'+participants);
-					} else {
-						$('#loginAlert').removeClass('alert-danger').addClass('alert-warning').html('<?php print $lang['ROOM_CHECK_ROOM'] ?>'+$(room_id).val()+'<?php print $lang['ROOM_CHECK_ROOM_EMPTY'] ?>');
-					}
-			});
-		}		
-    </script>   
+    </script>
   </head>
 
   <body>   
@@ -114,11 +84,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 			<div style="display:flex">
 				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
-				<?php 
-				if(!isset($_GET['room_type'])){
-					echo '<button class="btn btn-warning" type="button" onclick="checkRoom()" style="margin-left: 5px; height: 35px; border-radius: 45px;" title="'.$lang['ROOM_CHECK'].'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>';
-				}
-				?>
 			</div>
         </div>
 		<br>

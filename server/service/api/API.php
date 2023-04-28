@@ -23,12 +23,6 @@ if (isset($_REQUEST['method'] )){
 		case 'left':
 			$api->leftRoom($link);
 			break;
-		case 'rooms/check':
-			$api->checkRoom($_GET['room_id'], $link);
-			break;
-		case 'subscription/check':
-			$api->checkSubscription($_REQUEST['nickname'], $_REQUEST['room_id'], $link);
-			break;
 		case 'country':
 			$api->country($_REQUEST['room_country'], $link, $lang);
 			break;
@@ -45,60 +39,9 @@ if (isset($_REQUEST['method'] )){
 }
 
 class API{
-	public function checkSubscription($nickname,$room_id,$link){
-		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ?");
-		$stmt->bind_param('is', $room_id,$nickname);
-		$stmt->execute(); 
-		$result = $stmt->get_result();
-		if( mysqli_num_rows( $result ) == 0){
-		
-			unset($_SESSION['room_id']);
-			unset($_SESSION['nickname']);
-
-			$arr = array('success' => 'false', 'message' => 'Subscription does not exist');
-		} else {
-			$arr = array('success' => 'true', 'message' => 'Subscription OK');
-		}
-		
-		print json_encode($arr);
-	}
-
-    public function checkRoom($room_id,$link){
-		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ?");
-
-		$stmt->bind_param('i', $room_id,);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$myArray = array();
-		while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            $myArray[] = $row;
-		}
-
-		print json_encode($myArray);
-	}
-
     public function join($nickname,$room_id,$room_type,$link){
 		$nickname = mysqli_real_escape_string($link, $nickname);
     	
-    	$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("SELECT * FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ?");
-		$stmt->bind_param('is', $room_id,$nickname);
-		$stmt->execute(); 
-		$result = $stmt->get_result();
-		if( mysqli_num_rows( $result ) == 0){
-			$stmtInsert = mysqli_stmt_init($link);
-			$stmtInsert->prepare("INSERT INTO citizenroom_subscription (room_id,nickname) VALUES (?,?)");
-			$stmtInsert->bind_param('is', $room_id,$nickname);
-			$stmtInsert->execute();
-			
-			mysqli_stmt_close($stmtInsert);
-		}
-
-		mysqli_free_result($result);
-		mysqli_stmt_close($stmt);
-        		
 		$_SESSION['room_id'] = $room_id;
         $_SESSION['nickname'] = $nickname;
         $_SESSION['room_type'] = $room_type;
@@ -166,15 +109,8 @@ class API{
     }
 
 	public function leftRoom($link){
-		$arr = array('success' => 'false');
-		$stmt = mysqli_stmt_init($link);
-		$stmt->prepare("DELETE FROM citizenroom_subscription WHERE citizenroom_subscription.room_id = ? AND citizenroom_subscription.nickname = ?");
-		$stmt->bind_param('is',$_SESSION['room_id'],$_SESSION['nickname']);
+		$arr = array('success' => 'true');
 
-		$resultUpdate = $stmt->execute();
-		$arr = array('success' => $resultUpdate);
-		mysqli_stmt_close($stmt);
-			
 		unset($_SESSION['room_id']);
 		unset($_SESSION['nickname']);
 		unset($_SESSION['room_type']);

@@ -101,7 +101,7 @@ function copyToClipboard(text) {
 }
 
 function StartMeeting(roomNumber,nickname,roomTitle,roomType){
-    const domain = 'meet.jit.si';
+    const domain = 'citizenroom.ddns.net';
 	if(roomTitle == null || roomTitle == ""){
 		roomTitle = 'CitizenRoom';
 	}
@@ -120,8 +120,8 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         configOverwrite:{
             doNotStoreRoom: true,
             startVideoMuted: 0,
-            startWithVideoMuted: true,
-            startWithAudioMuted: true,
+            startWithVideoMuted: false,
+            startWithAudioMuted: false,
             enableWelcomePage: false,
             prejoinPageEnabled: false,
             disableRemoteMute: false,

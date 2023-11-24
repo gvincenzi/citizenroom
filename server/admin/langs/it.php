@@ -11,13 +11,10 @@ $lang['PAGE_TITLE'] = utf8_encode("CitizenRoom - Uno spazio libero dove sentirsi
 $lang['CONFIRM'] = "Conferma";
 $lang['WAIT'] = "Attendere prego...";
 $lang['SELECT_LANGUAGE']="Cambia la lingua";
-$lang['CIVIC_HALL']="Sala Civica";
-$lang['CIVIC_HALL_COUNTRY_SELECT']="Selezione il paese";
 
 /* MENU */
 $lang['JOIN']="Entra in una stanza";
 $lang['LEFT']="Esci dalla stanza";
-$lang['CIVIC_HALL_INFO']="Il comune";
 $lang['ABOUT']="Chi siamo";
 
 /* JOIN */

@@ -14,6 +14,13 @@ We strongly felt the need to create and test a platform that focused rather on <
 <h2>DATA MANAGEMENT</h2>
 <strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>
 
+<h2>Self hosted Jitsi Meet</h2>
+The Citizenroom uses a Jitsi Meet Server self hosted <a href='https://citizenroom.ddns.net'>here</a> :<br>
+<ul>
+<li>TLS Certificate has been delivered by <a href='https://letsencrypt.org/'>Let's Encrypt</a>, signed by InMediArt Association.
+<li>DNS has been managed via <a href='https://www.noip.com/'>NO-IP</a> with the ResponsabItaly Association account.
+</ul><br><br>
+
 <h2>Collaborative whiteboard</h2>
 Each room gives access to a collaborative whiteboard, shared with all users of the room.
 This functionality is possible thanks to the Open Source project<a href='https://wbo.ophir.dev/'>WBO</a> by <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>

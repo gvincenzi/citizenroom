@@ -16,15 +16,12 @@ Nous avons fortement senti le besoin de créer et de tester une plate-forme axé
 <h2>GESTION DES DONNÉES</h2>
 Citizenroom <strong>ne stocke aucune donnée liée aux utilisateurs, aux appareils ni aux échanges de communication</strong>. Cela ne signifie pas que Citizenroom soit une plateforme qui garantit un complet anonymat et, malgré le fait que la plateforme soit gratuite, elle est complètement <strong>décryptée</strong>. À tout moment, en cas d’échange d’informations incorrectes et/ou illégales, <strong>toutes conversations peuvent être monitorées par les autorités compétentes</strong>. Citizenroom vise à être un outil de communication simple et immédiat, mais pas un moyen pour dissimuler votre identité à des fins illicites ou contre la loi du pays où la plateforme est située ou d’où les gens sont connectés.<br><br>
 
-<h2>Salles municipales</h2>
-À partir du 15 mars 2022, nous avons mis en ligne la section dédiée aux <strong>Salles municipales</strong> : dans cette section vous aurez la possibilité d'entrer et d'utiliser une CitizenRoom dédiée à une <strong>municipalité</strong>.<br>
-L'idée est de donner à chaque municipalité (pour l'instant uniquement en Italie et en France) une CitizenRoom à laquelle <strong>l'administration et tous les citoyens peuvent accéder librement</strong>, sans avoir besoin de créer un compte, de partager des informations personnelles ou installer un logiciel en particulier : un outil supplémentaire simple et gratuit pour renforcer la <strong>participation</strong> et la <strong>citoyenneté numérique</strong>.<br><br>
-La section a été rendue possible grâce aux données collectées et mises à disposition par :<br>
+<h2>Self hosted Jitsi Meet</h2>
+Citizenroom utilise un serveur Jitsi Meet auto-hébergé <a href='https://citizenroom.ddns.net'>ici</a> :<br>
 <ul>
-<li>Dépôt <a href='https://github.com/opendatasicilia/comuni-italiani'>Municipalités italiennes d'OpenDataSicilia</a></li>
-<li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> de la Plateforme Ouverte de Données Publiques (data.gouv.fr)</li>
-<li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a> de la Plateforme Ouverte de Données Publiques (data.gouv.fr)</li>
-</ul>
+<li>Le certificat TLS a été délivré par <a href='https://letsencrypt.org/'>Let's Encrypt</a>, signé par l'association InMediArt.
+<li>Le DNS a été géré via <a href='https://www.noip.com/'>NO-IP</a> avec le compte de l'association ResponsabItaly.
+</ul><br><br>
 
 <h2>Tableau blanc collaboratif</h2>
 Chaque salle donne accès à un tableau blanc collaboratif, partagé avec tous les utilisateurs de la salle.

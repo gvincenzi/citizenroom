@@ -15,15 +15,10 @@ We strongly felt the need to create and test a platform that focused rather on <
 ## Data management
 <strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>
 
-## Civic halls
-Starting from March 15, 2022 we have put on line the section dedicated to <strong>Civic halls</strong>: through this section you will have the opportunity to enter and use a CitizenRoom dedicated to a <strong>municipality</strong>.<br>
-The idea is to donate to each municipality (for now only in Italy and France) a CitizenRoom to which <strong>the administration and all citizens can freely access</strong>, without the need to create an account, to share personal information or to install a software: an additional simple and free tool for building a <strong>participation</strong> and a <strong>digital citizenship</strong>.<br><br>
-The section was made possible thanks to the data collected and made available by:<br>
-<ul>
-<li>Repository of <a href='https://github.com/opendatasicilia/comuni-italiani'>Italian Municipalities of OpenDataSicilia</a></li>
-<li><a href='https://www.data.gouv.fr/fr/datasets/geologos/'>GeoLogos</a> of the French Public Data Open Platform (data.gouv.fr)</li>
-<li><a href='https://www.data.gouv.fr/fr/datasets/communes-de-france-base-des-codes-postaux/'>Communes de France</a>of the French Public Data Open Platform (data.gouv.fr)</li>
-</ul><br>
+## Self hosted Jitsi Meet
+The Citizenroom uses a Jitsi Meet Server self hosted <a href='https://citizenroom.ddns.net'>here</a> : 
+- TLS Certificate has been delivered by <a href='https://letsencrypt.org/'>Let's Encrypt</a>, signed by InMediArt Association.
+- DNS has been managed via <a href='https://www.noip.com/'>NO-IP</a> with the ResponsabItaly Association account.
 
 ## Collaborative whiteboard
 Each room gives access to a collaborative whiteboard, shared with all users of the room.

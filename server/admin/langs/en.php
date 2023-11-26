@@ -11,13 +11,10 @@ $lang['PAGE_TITLE'] = "CitizenRoom - A free space where you can feel at home";
 $lang['CONFIRM'] = "Confirm";
 $lang['WAIT'] = "Waiting...";
 $lang['SELECT_LANGUAGE']="Change language";
-$lang['CIVIC_HALL']="Civic Hall";
-$lang['CIVIC_HALL_COUNTRY_SELECT']="Select the country";
 
 /* MENU */
 $lang['JOIN']="Join a room";
 $lang['LEFT']="Left the room";
-$lang['CIVIC_HALL_INFO']="The municipality";
 $lang['ABOUT']="About us";
 
 /* JOIN */

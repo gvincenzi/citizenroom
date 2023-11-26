@@ -13,11 +13,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
-	unset($_SESSION['room_country']);
-	unset($_SESSION['room_place']);
-	unset($_SESSION['room_wikipedia']);
-	unset($_SESSION['room_website']);
-	unset($_SESSION['room_mail']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -37,7 +32,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v3.css" rel="stylesheet">
+    <link href="../assets/css/header.v4.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {

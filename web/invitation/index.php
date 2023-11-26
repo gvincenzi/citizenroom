@@ -49,7 +49,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v3.css" rel="stylesheet">
+    <link href="../assets/css/header.v4.css" rel="stylesheet">
     
     <script type="text/javascript">
 		$(document).ready(function() {
@@ -95,9 +95,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       	<img width="350px" src="../assets/img/logo_black.png"/>
       	<h3>
 		<?php 
-		if(isset($_GET['room_type']) && $_GET['room_type'] == 'civic_hall'){
-		    print $lang['INVITATION'].$lang['CIVIC_HALL'].'<br><strong>'.$_GET['room_title'].'</strong>';
-		} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
+		if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
             print $lang['INVITATION'].$lang['CUSTOM_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
         } else if(isset($_GET['room_type']) && $_GET['room_type'] == 'themed'){
             print $lang['INVITATION'].$lang['THEMED_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong>';

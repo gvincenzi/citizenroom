@@ -10,7 +10,7 @@ include_once '../actionInSession.php';
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
-    <script src="https://meet.jit.si/external_api.js"></script>
+    <script src="https://citizenroom.ddns.net/libs/external_api.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>

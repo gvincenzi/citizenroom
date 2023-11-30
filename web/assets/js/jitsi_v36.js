@@ -45,9 +45,7 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 		$("#btnChatOff").css('color', 'white').hide();
 	});
 	$("#btnPasswordOff").on('click', function () {
-		if (event.role === "moderator") {
-			apiObj.executeCommand('password','');
-		}
+		apiObj.executeCommand('password','');
 		$("#btnPasswordOff").css('color', 'white').hide();
 	});
 	$("#btnInvitation").on('click', function () {
@@ -184,8 +182,13 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 		raiseHandUpdated: function(data){
 		},
 		participantRoleChanged: function(data){
-			if(roomType=="themed" && data.role === "moderator"){
+			if(data.role == "moderator"){
+				$("#btnLobbyOn").show();
+			}
+			if(roomType=="themed" && data.role == "moderator"){
 				$("#btnPasswordOff").css('color', 'white').show();
+			} else if(roomType=="themed" && data.role == "none"){
+				apiObj.executeCommand('toggleAudio');
 			}
         }
     });

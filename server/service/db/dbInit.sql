@@ -11,6 +11,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `citizenroom_theme` (
   `room_id` int(10) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` varchar(50) NOT NULL,
   `info` varchar(50) NOT NULL,

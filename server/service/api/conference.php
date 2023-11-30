@@ -28,7 +28,8 @@ class ReservationAPI{
                 http_response_code(401);
                 print $tojson;
             } else {
-                $arr = array('id' => $name_str_arr[1], 'mail_owner' => 'citizenroom@altervista.org', 'name' => $data->name,'start_time' => $data->start_time, 'duration' => 900000,'password' => 'test', 'lobby' => 'true');
+                $row = $result->fetch_assoc();
+                $arr = array('id' => $name_str_arr[1], 'mail_owner' => 'citizenroom@altervista.org', 'name' => $data->name,'start_time' => $data->start_time, 'duration' => 900000,'password' => $row['room_id'].'_'.$row['password']);
                 $tojson = json_encode($arr,JSON_UNESCAPED_UNICODE);
                 http_response_code(201);
                 print $tojson;

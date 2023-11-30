@@ -37,7 +37,6 @@ $lang['btnCustomCameraOn']="Turn on camera";
 $lang['btnChatOn']="Show/Hide chat";
 $lang['btnCustomTileView']="Roommates view";
 $lang['btnScreenShareCustomOn']="Start sharing your screen";
-$lang['btnStreamOn']="Start live stream";
 $lang['btnLobbyOn']="Turn on Lobby mode";
 $lang['btnRaiseHandOn']="Raise/Lower your hand";
 $lang['btnInvitation']="Copy in clipboard invitation link";
@@ -47,10 +46,10 @@ $lang['btnCustomMicOff']="Turn off mic";
 $lang['btnCustomCameraOff']="Turn off camera";
 $lang['btnChatOff']="Show/Hide chat";
 $lang['btnScreenShareCustomOff']="Stop sharing your screen";
-$lang['btnStreamOff']="Stop live stream";
 $lang['btnLobbyOff']="Turn off Lobby mode";
 $lang['btnRaiseHandOff']="Raise/Lower your hand";
 $lang['btnWhiteboard']="Open shared whiteboard";
+$lang['btnPasswordOff']="Open entry to the room";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";

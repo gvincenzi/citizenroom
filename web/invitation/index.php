@@ -62,7 +62,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
                     })
                     .done(function( msg ) {
                         var theme = JSON.parse(msg);
-                        //console.info(theme);
                         $('#title').html(theme.title);
                         $('#description').html(theme.description);
                         $('#info').html(theme.info);

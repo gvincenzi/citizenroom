@@ -43,20 +43,13 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
         apiObj.executeCommand('toggleChat');
 		$("#btnChatOn").css('color', 'white').show();
 		$("#btnChatOff").css('color', 'white').hide();
-    });
-	$("#btnStreamOn").on('click', function () {
-        apiObj.executeCommand('startRecording', {
-			mode: 'stream',
-			youtubeStreamKey: stream_key
-		});
-		$("#btnStreamOn").hide();
-		$("#btnStreamOff").show();
-    });
-	$("#btnStreamOff").on('click', function () {
-        apiObj.executeCommand('stopRecording', 'stream');
-		$("#btnStreamOn").show();
-		$("#btnStreamOff").hide();
-    });
+	});
+	$("#btnPasswordOff").on('click', function () {
+		if (event.role === "moderator") {
+			apiObj.executeCommand('password','');
+		}
+		$("#btnPasswordOff").css('color', 'white').hide();
+	});
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "custom") {
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
@@ -77,7 +70,6 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 		$("#btnLobbyOn").show();
 		$("#btnLobbyOff").hide();
     });
-
 	$("#btnWhiteboard").on('click', function () {
 		if(roomTitle != null && roomTitle != ""){
 			window.open("https://wbo.ophir.dev/boards/"+roomTitle+"_"+roomNumber+"_"+roomType, '_blank');
@@ -105,7 +97,6 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 	}
     var roomName = roomTitle + "_" + roomNumber + "_" + roomType;
 
-    // console.info("roomName:"+roomName);
     const options = {
         roomName: roomName.replace("'", "_"),
         width: '100%',
@@ -115,26 +106,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         userInfo: {
             displayName: nickname
         },
-        configOverwrite:{
-            doNotStoreRoom: true,
-            startVideoMuted: 0,
-            startWithVideoMuted: false,
-            startWithAudioMuted: false,
-            enableWelcomePage: false,
-            prejoinPageEnabled: false,
-            disableRemoteMute: false,
-			defaultLanguage: 'en',
-            remoteVideoMenu: {
-                disableKick: false
-            },
-        },
         interfaceConfigOverwrite: {
-			defaultLanguage: 'en',
-            filmStripOnly: false,
-            SHOW_JITSI_WATERMARK: false,
-            SHOW_WATERMARK_FOR_GUESTS: false,
-			LANG_DETECTION: true,
-            DEFAULT_REMOTE_DISPLAY_NAME: 'New Participant',
             TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
         },
         onload: function () {
@@ -190,13 +162,11 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         },
         participantJoined: function(data){
 			notifyMe(data.displayName + ' joined the room');
-            //console.log('participantJoined', data);
+			// TODO ALL MODERATORS ? apiObj.executeCommand('grantModerator', data.id);
         },
         participantLeft: function(data){
-            //console.log('participantLeft', data);
         },
 		readyToClose: function(data){
-            //console.log('readyToClose', data);
 			$('#jitsi-meet-conf-container').empty();
 			$('#toolbox').hide();
 			$('#container').hide();
@@ -208,12 +178,15 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 			  data: { method: "left" }
 			}).done(function( msg ) {
 				var left = JSON.parse(msg);
-				console.info(left);
 				window.location.href = window.location.href.replaceAll("/web/room/", "/web/join/");
 			});
         },
 		raiseHandUpdated: function(data){
-            //console.log('raiseHandUpdated', data);
+		},
+		participantRoleChanged: function(data){
+			if(roomType=="themed" && data.role === "moderator"){
+				$("#btnPasswordOff").css('color', 'white').show();
+			}
         }
     });
 }

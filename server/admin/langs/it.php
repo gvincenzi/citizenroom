@@ -37,7 +37,6 @@ $lang['btnCustomCameraOn']="Attivare camera";
 $lang['btnChatOn']="Attivare/Disattivare chat";
 $lang['btnCustomTileView']="Vista partecipanti";
 $lang['btnScreenShareCustomOn']="Attivare condivisione schermo";
-$lang['btnStreamOn']="Attivare live stream";
 $lang['btnLobbyOn']="Attivare ingresso su richiesta";
 $lang['btnRaiseHandOn']="Alzare/Bassare la mano";
 $lang['btnInvitation']="Copia il link dell'invito";
@@ -47,10 +46,10 @@ $lang['btnCustomMicOff']="Disattivare mic";
 $lang['btnCustomCameraOff']="Disattivare camera";
 $lang['btnChatOff']="Attivare/Disattivare chat";
 $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
-$lang['btnStreamOff']="Disattivare live stream";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 $lang['btnWhiteboard']="Accedi alla lavagna condivisa";
+$lang['btnPasswordOff']="Apri l'accesso alla stanza";
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";

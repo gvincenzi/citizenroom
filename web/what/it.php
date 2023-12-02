@@ -7,7 +7,7 @@ CB era uno dei vari servizi radio regolamentati dalla Federal Communications Com
 
 CitizenRoom nasce con l'idea di riutilizzare lo stesso schema e proporre l'utilizzo di una parte del web in modo libero da qualsiasi rapporto con un intermediario pubblico o privato(a pagamento o gratuito ma in cambio di informazioni personali), sviluppando un servizio di comunicazione audio e video da dedicare alla comunicazione personale tra i cittadini.<br><br>
 
-CitizenRoom è una piattaforma per la creazione di stanze in cui poter poter organizzare delle riunioni (audio e video) con un numero teoricamente illimitato di partecipanti: il prototipo che è attualmente a vostra disposizione permette di invitare fino a <strong>30 persone</strong> per un corretto funzionamento.<br><br>
+CitizenRoom è una piattaforma per la creazione di stanze in cui poter poter organizzare delle riunioni (audio e video) con un numero teoricamente illimitato di partecipanti: il prototipo che è attualmente a vostra disposizione permette di invitare fino a <strong>20 persone</strong> per un corretto funzionamento.<br><br>
 
 CitizenRoom è <strong>gratuito, open source e non necessita né della creazione di un conto</strong>, né dell'installazione di applicaziioni (desktop o mobile): potete creare delle stanze liberamente e senza limiti e, utilizzando un tasto che vi genera un link di invito, potrete far partecipare chiunque senza obbligarlo a crearsi un conto o installare un software sul suo dispositivo.<br>
 

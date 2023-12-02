@@ -1,0 +1,2 @@
+RewriteEngine On    # Turn on the rewriting engine
+RewriteRule ^conference([a-zA-Z_-]*)$ conference.php?name=$1 [NC,L]

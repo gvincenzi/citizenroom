@@ -84,10 +84,8 @@ if(!isset($_SESSION['action'])){
         	    data: { method: "theme"}
         	})
         	.done(function( msg ) {
-        	    //console.info( msg );
         		var themes = JSON.parse(msg);
         		$.each(themes, function(i, item) {
-        			console.info(item.description);
         			$('#room_id').append('<option value="'+item.room_id+'" data-tokens="'+item.title+'">'+item.title+'</option>');
 
         			//Two times to have a complete refresh

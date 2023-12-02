@@ -14,10 +14,10 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v33.js"></script>
+	<script src="../assets/js/jitsi_v36.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v3.css" />
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v4.css" />
 	<meta name="viewport" content="width=device-width" />
 
 		<script>
@@ -64,9 +64,10 @@ include_once '../actionInSession.php';
 		<button id='btnMuteEveryone'><?php print $lang['btnMuteEveryone']?></button>
 		<button id='btnWhiteboard'><?php print $lang['btnWhiteboard']?></button>
 		<button id='btnInvitation'><?php print $lang['btnInvitation']?></button>
-		<button id='btnLobbyOn'><?php print $lang['btnLobbyOn']?></button>
+		<button id='btnLobbyOn' style="display: none;"><?php print $lang['btnLobbyOn']?></button>
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
-		<button id='btnLeave'><?php print $lang['btnLeave']?></button>
+		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
+		<button id='btnPasswordOff' style="display: none;"><?php print $lang['btnPasswordOff']?></button>
 	</div>
 	<h4 id='joinMsg'></h4>
   </div>

@@ -50,6 +50,7 @@ $lang['btnLobbyOff']="Turn off Lobby mode";
 $lang['btnRaiseHandOff']="Raise/Lower your hand";
 $lang['btnWhiteboard']="Open shared whiteboard";
 $lang['btnPasswordOff']="Open entry to the room";
+$lang['btnInvitationMusician']="Copy in clipboard invitation link as musician";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";

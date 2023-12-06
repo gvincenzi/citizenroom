@@ -50,6 +50,7 @@ $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 $lang['btnWhiteboard']="Accedi alla lavagna condivisa";
 $lang['btnPasswordOff']="Apri l'accesso alla stanza";
+$lang['btnInvitationMusician']="Copy in clipboard invitation link as musician";
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";

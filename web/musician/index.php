@@ -75,14 +75,14 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
         <input type="hidden" value="join" name="method" id="method">
         <input type="hidden" value="musician" name="room_type" id="room_type">
         
-        <div class="form-group">
+		<div class="form-group">
 	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
-			<div style="display:flex">
-				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
-			</div>
+			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+			<hr>
+			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>">
+			<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
         </div>
 		<br>
-		
 		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 		<hr>
 		<p class="jitsiApp" style="text-align-last: center;">

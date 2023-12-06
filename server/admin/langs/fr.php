@@ -50,6 +50,7 @@ $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
 $lang['btnWhiteboard']="Accéder au tableau partagé";
 $lang['btnPasswordOff']="Ouvre l'acces à la salle";
+$lang['btnInvitationMusician']="Copy in clipboard invitation link as musician";
 
 /* INVITE */
 $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";

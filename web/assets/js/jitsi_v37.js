@@ -51,10 +51,18 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "custom") {
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
+		} else if(roomType != null && roomType == "musician"){
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=custom"));
 		} else if(roomType != null && roomType == "themed"){
-				copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
-		} else if(roomType != null && (roomType == "public" || roomType == "musician")){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
+		} else if(roomType != null && (roomType == "public")){
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
+		}
+		alert("Invitation link copied in clipboard");
+	});
+	$("#btnInvitationMusician").on('click', function () {
+		if(roomType != null && roomType == "musician") {
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
 		}
 		alert("Invitation link copied in clipboard");
     });
@@ -93,7 +101,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 	if(roomTitle == null || roomTitle == ""){
 		roomTitle = 'CitizenRoom';
 	}
-    var roomName = roomTitle + "_" + roomNumber + "_" + roomType;
+    var roomName = roomTitle + "_" + roomNumber + "_custom";
 	var options = {};
 	if(roomType == 'musician'){
 		options = {
@@ -218,6 +226,8 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 				$("#btnPasswordOff").css('color', 'white').show();
 			} else if(roomType=="themed" && data.role == "none"){
 				apiObj.executeCommand('toggleAudio');
+			} else if(roomType=="musician" && data.role == "moderator"){
+				$("#btnInvitationMusician").show();
 			}
         }
     });

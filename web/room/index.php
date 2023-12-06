@@ -17,7 +17,7 @@ include_once '../actionInSession.php';
 	<script src="../assets/js/jitsi_v37.js"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v4.css" />
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v5.css" />
 	<meta name="viewport" content="width=device-width" />
 
 		<script>
@@ -67,6 +67,7 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOn' style="display: none;"><?php print $lang['btnLobbyOn']?></button>
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
+		<button id='btnInvitationMusician' style="display: none;"><?php print $lang['btnInvitationMusician']?></button>
 		<button id='btnPasswordOff' style="display: none;"><?php print $lang['btnPasswordOff']?></button>
 	</div>
 	<h4 id='joinMsg'></h4>

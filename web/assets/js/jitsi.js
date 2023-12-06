@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();

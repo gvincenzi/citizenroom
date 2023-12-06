@@ -13,11 +13,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
-	unset($_SESSION['room_country']);
-	unset($_SESSION['room_place']);
-	unset($_SESSION['room_wikipedia']);
-	unset($_SESSION['room_website']);
-	unset($_SESSION['room_mail']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string

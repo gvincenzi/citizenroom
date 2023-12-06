@@ -11,7 +11,6 @@ $lang['PAGE_TITLE'] = utf8_encode("CitizenRoom - Uno spazio libero dove sentirsi
 $lang['CONFIRM'] = "Conferma";
 $lang['WAIT'] = "Attendere prego...";
 $lang['SELECT_LANGUAGE']="Cambia la lingua";
-$lang['VERSION']="6.0.0";
 
 /* MENU */
 $lang['JOIN']="Entra in una stanza";

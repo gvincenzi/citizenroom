@@ -11,7 +11,6 @@ $lang['PAGE_TITLE'] = "CitizenRoom - A free space where you can feel at home";
 $lang['CONFIRM'] = "Confirm";
 $lang['WAIT'] = "Waiting...";
 $lang['SELECT_LANGUAGE']="Change language";
-$lang['VERSION']="6.0.0";
 
 /* MENU */
 $lang['JOIN']="Join a room";

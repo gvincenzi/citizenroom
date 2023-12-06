@@ -89,7 +89,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 	}
     var roomName = roomTitle + "_" + roomNumber + "_" + roomType;
 
-    const options = {
+    var options = {
         roomName: roomName.replace("'", "_"),
         width: '100%',
         height: '100%',
@@ -106,7 +106,25 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
             $('#container').show();
             $('#toolbox').show();
         }
-    };
+	};
+	
+	if(nickname.toUpperCase().endsWith('@HD')){
+		console.log("Audio HD");
+		options = Object.assign(
+			options, 
+			{
+				configOverwrite: {
+					enableOpusRed: true,
+					audioQuality: {
+						stereo: true,
+						opusMaxAverageBitrate: 510000 , // Value to fit the 6000 to 510000 range.
+						enableOpusDtx: false
+					}
+				}
+			});
+	}
+
+	console.log(options);
     apiObj = new JitsiMeetExternalAPI(domain, options);
 	apiObj.executeCommand('subject', roomTitle + "_" + roomNumber);
     apiObj.addEventListeners({

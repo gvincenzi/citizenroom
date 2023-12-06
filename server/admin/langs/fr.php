@@ -11,6 +11,7 @@ $lang['PAGE_TITLE'] = ("CitizenRoom - Un espace libre où l'on se sent chez soi"
 $lang['CONFIRM'] = "Valider";
 $lang['WAIT'] = "Attendez...";
 $lang['SELECT_LANGUAGE']="Changer de langue";
+$lang['VERSION']="6.0.0";
 
 /* MENU */
 $lang['JOIN']="Rejoindre une salle";
@@ -49,7 +50,6 @@ $lang['btnScreenShareCustomOff']="Désactiver partage écran";
 $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
 $lang['btnWhiteboard']="Accéder au tableau partagé";
-$lang['btnPasswordOff']="Ouvre l'acces à la salle";
 
 /* INVITE */
 $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
@@ -57,9 +57,5 @@ $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Salle personnalisé";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personnalisez une salle avec un titre et/ou un logo.<br>Utilisez le lien d'invitation sur votre site personnel, dans un groupe de discussion ou sur vos réseaux sociaux.";
-
-/* THEMED ROOM */
-$lang['THEMED_ROOM']="Salle à thème";
-$lang['THEMED_ROOM_DESCRIPTION']="Choisissez l'une des salles thématiques mises à disposition et créées par les amis de CitizenRoom pour notre communauté.";
 
 ?>

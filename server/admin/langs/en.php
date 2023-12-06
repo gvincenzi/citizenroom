@@ -11,6 +11,7 @@ $lang['PAGE_TITLE'] = "CitizenRoom - A free space where you can feel at home";
 $lang['CONFIRM'] = "Confirm";
 $lang['WAIT'] = "Waiting...";
 $lang['SELECT_LANGUAGE']="Change language";
+$lang['VERSION']="6.0.0";
 
 /* MENU */
 $lang['JOIN']="Join a room";
@@ -49,7 +50,6 @@ $lang['btnScreenShareCustomOff']="Stop sharing your screen";
 $lang['btnLobbyOff']="Turn off Lobby mode";
 $lang['btnRaiseHandOff']="Raise/Lower your hand";
 $lang['btnWhiteboard']="Open shared whiteboard";
-$lang['btnPasswordOff']="Open entry to the room";
 
 /* INVITE */
 $lang['INVITATION']="You are entering the ";
@@ -57,9 +57,5 @@ $lang['INVITATION']="You are entering the ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Custom Room";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Customize a room with a title and/or a logo.<br>Use the invitation link in your personal site, in a chat group, or in your social network page.";
-
-/* THEMED ROOM */
-$lang['THEMED_ROOM']="Themed rooms";
-$lang['THEMED_ROOM_DESCRIPTION']="Choose one of the themed rooms made available and created by CitizenRoom friends for our community.";
 
 ?>

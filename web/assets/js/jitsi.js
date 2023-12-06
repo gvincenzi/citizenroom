@@ -44,15 +44,9 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 		$("#btnChatOn").css('color', 'white').show();
 		$("#btnChatOff").css('color', 'white').hide();
 	});
-	$("#btnPasswordOff").on('click', function () {
-		apiObj.executeCommand('password','');
-		$("#btnPasswordOff").css('color', 'white').hide();
-	});
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "custom") {
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
-		} else if(roomType != null && roomType == "themed"){
-				copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		} else if(roomType != null && roomType == "public"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		}
@@ -184,11 +178,6 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 		participantRoleChanged: function(data){
 			if(data.role == "moderator"){
 				$("#btnLobbyOn").show();
-			}
-			if(roomType=="themed" && data.role == "moderator"){
-				$("#btnPasswordOff").css('color', 'white').show();
-			} else if(roomType=="themed" && data.role == "none"){
-				apiObj.executeCommand('toggleAudio');
 			}
         }
     });

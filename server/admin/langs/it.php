@@ -11,6 +11,7 @@ $lang['PAGE_TITLE'] = utf8_encode("CitizenRoom - Uno spazio libero dove sentirsi
 $lang['CONFIRM'] = "Conferma";
 $lang['WAIT'] = "Attendere prego...";
 $lang['SELECT_LANGUAGE']="Cambia la lingua";
+$lang['VERSION']="6.0.0";
 
 /* MENU */
 $lang['JOIN']="Entra in una stanza";
@@ -49,7 +50,6 @@ $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 $lang['btnWhiteboard']="Accedi alla lavagna condivisa";
-$lang['btnPasswordOff']="Apri l'accesso alla stanza";
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";
@@ -57,9 +57,5 @@ $lang['INVITATION']="Stai per entrare nella ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Stanza Personalizzata";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personalizza una stanza con un titolo e/o un logo.<br>Usa il link di invito nel tuo sito personale, in un gruppo di chat o sui tuoi social network";
-
-/* THEMED ROOM */
-$lang['THEMED_ROOM']="Stanza a tema";
-$lang['THEMED_ROOM_DESCRIPTION']="Scegli una delle stanze a tema messe a disposizione e realizzate da amici della CitizenRoom per la nostra comunità.";
 
 ?>

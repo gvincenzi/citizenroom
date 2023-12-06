@@ -14,17 +14,17 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
 	<script src="../assets/js/general_v1.js"></script>
-	<script src="../assets/js/jitsi_v36.js"></script>
+	<script src="../assets/js/jitsi.js?v=<?php print time()?>"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v4.css" />
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v5.css" />
 	<meta name="viewport" content="width=device-width" />
 
 		<script>
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
 					$('#joinMsg').text('<?php print $lang['JOINING']?>');
-					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_country']?>","<?php echo $_SESSION['room_logo']?>");
+					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_logo']?>");
 					StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
 			});
 			
@@ -67,7 +67,6 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOn' style="display: none;"><?php print $lang['btnLobbyOn']?></button>
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
-		<button id='btnPasswordOff' style="display: none;"><?php print $lang['btnPasswordOff']?></button>
 	</div>
 	<h4 id='joinMsg'></h4>
   </div>

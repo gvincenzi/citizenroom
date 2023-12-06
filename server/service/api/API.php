@@ -13,8 +13,8 @@ if (isset($_REQUEST['method'] )){
 			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='custom'){
               	$api->joinCustom($_REQUEST['room_title'], $_REQUEST['room_logo'], $_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
             } else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='themed'){
-             	$api->joinTheme($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
-             } else if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='public'){
+				 $api->joinTheme($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
+             } else if(isset($_REQUEST['room_type']) && ($_REQUEST['room_type']=='public' || $_REQUEST['room_type']=='musician')){
 				$api->join($_REQUEST['nickname'], $_REQUEST['room_id'], $_REQUEST['room_type'], $link);
 			}
 			break;

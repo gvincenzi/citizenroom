@@ -53,7 +53,7 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,room_country,roomLogo)
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
 		} else if(roomType != null && roomType == "themed"){
 				copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
-		} else if(roomType != null && roomType == "public"){
+		} else if(roomType != null && (roomType == "public" || roomType == "musician")){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		}
 		alert("Invitation link copied in clipboard");
@@ -94,25 +94,54 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 		roomTitle = 'CitizenRoom';
 	}
     var roomName = roomTitle + "_" + roomNumber + "_" + roomType;
-
-    const options = {
-        roomName: roomName.replace("'", "_"),
-        width: '100%',
-        height: '100%',
-        parentNode: document.querySelector('#jitsi-meet-conf-container'),
-        DEFAULT_REMOTE_DISPLAY_NAME: 'New User',
-        userInfo: {
-            displayName: nickname
-        },
-        interfaceConfigOverwrite: {
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
-        },
-        onload: function () {
-            $('#joinMsg').hide();
-            $('#container').show();
-            $('#toolbox').show();
-        }
-    };
+	var options = {};
+	if(roomType == 'musician'){
+		options = {
+			roomName: roomName.replace("'", "_"),
+			width: '100%',
+			height: '100%',
+			parentNode: document.querySelector('#jitsi-meet-conf-container'),
+			DEFAULT_REMOTE_DISPLAY_NAME: 'New User',
+			userInfo: {
+				displayName: nickname
+			},
+			interfaceConfigOverwrite: {
+				TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
+			},
+			configOverwrite: {
+				enableOpusRed: true,
+				audioQuality: {
+					 stereo: true,
+					 opusMaxAverageBitrate: 510000 , // Value to fit the 6000 to 510000 range.
+					 enableOpusDtx: false
+				}
+			},
+			onload: function () {
+				$('#joinMsg').hide();
+				$('#container').show();
+				$('#toolbox').show();
+			}
+		};	
+	} else {
+		options = {
+			roomName: roomName.replace("'", "_"),
+			width: '100%',
+			height: '100%',
+			parentNode: document.querySelector('#jitsi-meet-conf-container'),
+			DEFAULT_REMOTE_DISPLAY_NAME: 'New User',
+			userInfo: {
+				displayName: nickname
+			},
+			interfaceConfigOverwrite: {
+				TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
+			},
+			onload: function () {
+				$('#joinMsg').hide();
+				$('#container').show();
+				$('#toolbox').show();
+			}
+		};
+	}
     apiObj = new JitsiMeetExternalAPI(domain, options);
 	apiObj.executeCommand('subject', roomTitle + "_" + roomNumber);
     apiObj.addEventListeners({

@@ -62,4 +62,8 @@ $lang['CUSTOM_ROOM_DESCRIPTION']="Personnalisez une salle avec un titre et/ou un
 $lang['THEMED_ROOM']="Salle à thème";
 $lang['THEMED_ROOM_DESCRIPTION']="Choisissez l'une des salles thématiques mises à disposition et créées par les amis de CitizenRoom pour notre communauté.";
 
+/* MUSICIAN ROOM */
+$lang['MUSICIAN_ROOM']="Musicians room";
+$lang['MUSICIAN_ROOM_DESCRIPTION']="Enter in a room using Audio HD Quality (fixed bitrate 510kbit/s with <a href='https://opus-codec.org/'>Opus Interactive Audio Codec</a>).";
+
 ?>

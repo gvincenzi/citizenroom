@@ -117,7 +117,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 					enableOpusRed: true,
 					audioQuality: {
 						stereo: true,
-						opusMaxAverageBitrate: 510000 , // Value to fit the 6000 to 510000 range.
+						opusMaxAverageBitrate: 160000 , // Value to fit the 6000 to 510000 range.
 						enableOpusDtx: false
 					}
 				}

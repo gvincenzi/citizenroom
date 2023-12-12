@@ -1,4 +1,5 @@
 <?php
+include '../bootstrap.php';
 include_once '../actionInSession.php';
 ?>
 <head>
@@ -6,14 +7,8 @@ include_once '../actionInSession.php';
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
     <script src="https://citizenroom.ddns.net/libs/external_api.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
-	<script src="../assets/js/general_v1.js"></script>
+	<script src="../assets/js/general.js?v=<?php print time()?>"></script>
 	<script src="../assets/js/jitsi.js?v=<?php print time()?>"></script>
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />

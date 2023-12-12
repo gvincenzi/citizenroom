@@ -1,4 +1,5 @@
 <?php
+include '../bootstrap.php';
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/' . prefered_language ( $available_languages ) . '.php';
 include prefered_language ( $available_languages ) . '.php';
@@ -25,11 +26,6 @@ session_start();
 	<meta name="twitter:description" content="Informations about CitizenRoom (italian language)">
 	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
 
-
-	<script src="https://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
-    
     <link href="../assets/css/what.css" rel="stylesheet">
 
 </head>

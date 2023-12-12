@@ -7,5 +7,6 @@
 <script src="../assets/js/general.js?v=<?php print time()?>"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-<link href="../assets/css/header.v4.css" rel="stylesheet">
-<link href="../assets/css/subtitle.css" rel="stylesheet">
+<link href="../assets/css/form.css?v=<?php print time()?>" rel="stylesheet">
+<link href="../assets/css/header.css?v=<?php print time()?>" rel="stylesheet">
+<link href="../assets/css/subtitle.css?v=<?php print time()?>" rel="stylesheet">

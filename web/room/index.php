@@ -8,13 +8,10 @@ include_once '../actionInSession.php';
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
     <script src="https://citizenroom.ddns.net/libs/external_api.min.js"></script>
-	<script src="../assets/js/general.js?v=<?php print time()?>"></script>
 	<script src="../assets/js/jitsi.js?v=<?php print time()?>"></script>
-	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
-	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v5.css" />
-	<meta name="viewport" content="width=device-width" />
-
+	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
@@ -43,8 +40,7 @@ include_once '../actionInSession.php';
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>
 	</div>
 	<div id='toolbox' class='toolbox' style='display:none;'>
-		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
-		<hr>
+		<h6>CitizenRoom #<?php echo $_SESSION['room_id']?></h6>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>
@@ -63,7 +59,7 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
 	</div>
-	<h4 id='joinMsg'></h4>
+	<h6 id='joinMsg' style="color: #fff"></h6>
   </div>
 </body>
 </html>

@@ -25,12 +25,6 @@ body {
 	left: 0;
 }
 
-header {
-	height: 192px;
-	padding-top: 30px;
-	text-align: left;
-}
-
 #primary-navigation {
 	/*font-size: 0.5em;*/
 	text-transform: uppercase;
@@ -94,30 +88,17 @@ footer  a#biz{
     font-size: 15;
 }
 
-a, a:hover, a:visited {
+/*a, a:hover, a:visited {
 	color: #dddddd;
-}
+}*/
 
 flickr{
-  top : 5px;
-  right : 5px;
-  position : absolute;
-  font-size: 0.6em;
-  color : #dddddd;
-  text-align: right;
-}
-
-jitsi{
-  top : 5px;
+  top : 30px;
   left : 5px;
   position : absolute;
   font-size: 0.6em;
   color : #dddddd;
-  text-align: right;
-}
-
-jitsi img{
-  opacity: 0.5;
+  text-align: left;
 }
 
 flickr img{

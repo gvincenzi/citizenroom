@@ -54,39 +54,19 @@ function validateEmail(inputText) {
 
 function randomBackground() {
 	var images = [
-		'https://live.staticflickr.com/65535/44574560331_0101fffd98_h.jpg',
 		'https://live.staticflickr.com/7897/46684372945_bdd3f29337_o_d.jpg',
-		'https://live.staticflickr.com/3160/2916921362_b6f3fc219d_o_d.jpg',
-		'https://live.staticflickr.com/4840/30849318147_2c71bed2d7_o_d.jpg',
-		'https://live.staticflickr.com/1928/31917962768_9424013e2a_o_d.jpg',
-		'https://live.staticflickr.com/3941/15529536722_9aa1d93351_o_d.jpg'
 	];
 
 	var image_links = [
-		'https://www.flickr.com/photos/nikiforovpizza/44574560331/',
 		'https://www.flickr.com/photos/147592390@N06/46684372945',
-		'https://www.flickr.com/photos/jenik/2916921362/',
-		'https://www.flickr.com/photos/byrawpixel/30849318147',
-		'https://www.flickr.com/photos/byrawpixel/31917962768',
-		'https://www.flickr.com/photos/fordschool/15529536722'
 	];
 
 	var authors = [
-		'Mykyta Nikiforov',
 		'John Beans',
-		'Alvaro',
-		'Rawpixel Ltd',
-		'Rawpixel Ltd',
-		'Gerald R. Ford School'
 	];
 
 	var author_links = [
-		'https://www.flickr.com/photos/nikiforovpizza/',
 		'https://www.flickr.com/photos/147592390@N06/',
-		'https://www.flickr.com/photos/jenik/',
-		'https://www.flickr.com/photos/byrawpixel/',
-		'https://www.flickr.com/photos/byrawpixel/',
-		'https://www.flickr.com/photos/fordschool/'
 	];
 
 	var index = Math.floor(Math.random() * images.length);

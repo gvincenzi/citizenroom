@@ -26,7 +26,7 @@ session_start();
 	<meta name="twitter:description" content="Informations about CitizenRoom (italian language)">
 	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
 
-    <link href="../assets/css/what.css" rel="stylesheet">
+    <link href="../assets/css/what.css?v=<?php print time()?>" rel="stylesheet">
 
 </head>
 

@@ -11,7 +11,7 @@ session_start();
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
-  <link href="../assets/css/what.css" rel="stylesheet">
+  <link href="../assets/css/what.css?v=<?php print time()?>" rel="stylesheet">
 
 </head>
 

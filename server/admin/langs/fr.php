@@ -7,7 +7,7 @@ Language: Francais
 
 $lang = array();
 $lang['LANG_CODE'] = "fr_FR";
-$lang['PAGE_TITLE'] = ("CitizenRoom - Un espace libre où l'on se sent chez soi");
+$lang['PAGE_TITLE'] = "CitizenRoom - Un espace libre où l'on se sent chez soi";
 $lang['CONFIRM'] = "Valider";
 $lang['WAIT'] = "Attendez...";
 $lang['SELECT_LANGUAGE']="Changer de langue";

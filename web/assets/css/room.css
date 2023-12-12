@@ -4,36 +4,40 @@
 	width: 60%;
 	margin-top: 60px;
 	padding : 40px;
-	background-color: white;
+	background-color: rgba(0,0,0,.7);
+  border: medium;
 	/* border-radius */
 	border-radius: 5px;
 	/* box-shadow */
 	box-shadow: rgba(0,0,0,0.8) 0 0 10px;
 	border-collapse: collapse;
 	/*font-size:15px;*/
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	text-align: center;
 }
 
 .container{
-    position: relative;
-    width: auto!important;
+  position: relative;
+  width: auto!important;
 	height: 60%;
 }
-.toolbox{
-	position: absolute;
-    left: 2%;
-    top: 15%;
-	color: #fff;
+.toolbox {
+  position: absolute;
+  left: 0%;
+  top: 15%;
+  color: #fff;
+  background-color: rgba(0,0,0,.7);
+  border: medium;
+  padding: 20px;
 }
 
 .toolbox button { 
   display: block;
-  width: 80%;
-  padding: .4rem;
-  border: none; 
-  margin: 1rem auto; 
-  /*font-size: 1.3rem;*/
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+  margin: 4px;
+  font-size: 10px;
   background: rgba(255,255,255,0.23);
   color: #fff;
   border-radius: 3px; 

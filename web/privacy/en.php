@@ -34,7 +34,7 @@ Di seguito si elencano i coockie utilizzati.
 </table>
 <br>
 In assenza di tali cookie, il sito web non potrebbe funzionare correttamente.
-
+<br><br><br>
 <h3>Cookie tecnico che memorizza la lingua in cui il sito è visualizzato dall'utente.</h3>
 <table class=\"table\">
     <thead>

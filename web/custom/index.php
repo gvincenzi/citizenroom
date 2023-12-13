@@ -20,15 +20,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		$_SESSION["join.error"] = $lang['JOIN_ERROR'];
 	}
 }
-
 ?>
 <html lang="en">
 <head>
     <meta charset="utf8">
     <title><?php print $lang['PAGE_TITLE']?></title>
     <meta name="author" content="InMediArt">
-    <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v4.css" rel="stylesheet">
 
     <script type="text/javascript">
 		$(document).ready(function() {
@@ -52,38 +49,63 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 
   <body>
   <?php include '../header.php';?>
-    <div class="container">
-      <form target="_blank" onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php" autocomplete="off">
-      	<div style="text-align: center;">
-      	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<h4><?php print $lang['CUSTOM_ROOM_DESCRIPTION']?></h4>
-      	<div id='callbackMessage'></div>
-		<div id='loginAlert'></div>
-      	</div>
-      	<hr>
-      	<?php
-            if(isset($_SESSION["login.error"])){
-            	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
-            }
-        ?>
-
-        <!-- HIDDEN PARAMETERS -->
-        <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
-        <input type="hidden" value="join" name="method" id="method">
-        <input type="hidden" value="custom" name="room_type" id="room_type">
-
-        <div class="form-group">
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
-			<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
-			<hr>
-			<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>">
-			<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
-        </div>
-		<br>
-		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
-
-      </form>
-    </div> <!-- /container -->
+  <div class="container">
+		<div class="col-md-5 ml-auto mr-auto">
+			<div class="card card-plain">
+				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/API.php" autocomplete="off">
+					<!-- HIDDEN PARAMETERS -->
+					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
+					<input type="hidden" value="join" name="method" id="method">
+					<input type="hidden" value="custom" name="room_type" id="room_type">
+				
+					<div class="card-header text-center">
+						<div class="logo" id="title">CitizenRoom</div>
+						<div id="primary-navigation-menu">
+							<nav>
+								<ul class="nav justify-content-center">
+									<nav classname="nav-item">
+										<ul>
+											<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
+											<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
+										</ul>
+									</nav>
+								</ul>
+							</nav>
+						</div>
+						<div id='callbackMessage'></div>
+						<div id='loginAlert'></div>
+						<?php
+							if(isset($_SESSION["login.error"])){
+								print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
+							}
+						?>
+					</div>
+					<div class="card-body">
+						<div class="input-group form-group-no-border input-lg">
+							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
+						</div>
+						<div class="input-group form-group-no-border input-lg">
+							<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+						</div>
+						<hr/>
+						<div class="input-group form-group-no-border input-lg">
+							<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>">
+						</div>
+						<div class="input-group form-group-no-border input-lg">
+							<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
+						</div>
+					</div>
+					
+					<div class="card-footer text-center">
+						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
+					</div>
+					<div class="card-footer text-right">
+						<h6><a href="../join" class="link footer-link">Home</a></h6>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div> <!-- /container -->
 
 </body>
 </html>

@@ -30,8 +30,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg" />
     <meta name="author" content="InMediArt">
-    <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v4.css" rel="stylesheet">
     
     <script type="text/javascript">
 		function validateJoinForm(){
@@ -75,17 +73,17 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 								print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
 							}
 						?>
-						<h3>
+					</div>
+					<div class="card-body invitation">
+						<h6>
 						<?php 
 						if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
-							print $lang['INVITATION'].$lang['CUSTOM_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+							print $lang['INVITATION'].$lang['CUSTOM_ROOM'].' <strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
 						} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
-							print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].'<br><strong>'.$_GET['room_id'].'</strong>';
+							print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].' <strong>'.$_GET['room_id'].'</strong>';
 						}
 						?>
-						</h3>
-					</div>
-					<div class="card-body">
+						</h6>
 						<div class="input-group form-group-no-border input-lg">
 							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 						</div>
@@ -95,8 +93,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 					<div class="card-footer text-right">
-						<h6><a href="../what" class="link footer-link"><?php print $lang['ABOUT']?></a></h6>
-						<h6><a href="../custom?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+						<h6><a href="../join" class="link footer-link">Home</a></h6>
 					</div>
 				</form>
 			</div>

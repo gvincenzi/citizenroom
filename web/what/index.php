@@ -42,6 +42,7 @@ session_start();
 							<ul class="nav justify-content-center">
 								<nav classname="nav-item">
 									<ul>
+										<li class="nav-link"><a href="../join" class="link menu-link"><?php print $lang['JOIN']?></a></li>
 										<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
 										<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
 									</ul>

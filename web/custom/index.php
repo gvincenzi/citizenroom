@@ -85,6 +85,5 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
       </form>
     </div> <!-- /container -->
 
-	<?php include '../footer.php';?>
 </body>
 </html>

@@ -56,6 +56,18 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				
 					<div class="card-header text-center">
 						<div class="logo" id="title">CitizenRoom</div>
+						<div id="primary-navigation-menu">
+							<nav>
+								<ul class="nav justify-content-center">
+									<nav classname="nav-item">
+										<ul>
+											<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
+											<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
+										</ul>
+									</nav>
+								</ul>
+							</nav>
+						</div>
 						<div id='callbackMessage'></div>
 						<div id='loginAlert'></div>
 						<?php

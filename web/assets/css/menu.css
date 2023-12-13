@@ -1,0 +1,36 @@
+#primary-navigation-menu {
+	font-size: 0.7em;
+	text-transform: uppercase;
+	color: #fff;
+	text-align: center;
+}
+
+#primary-navigation-menu a {
+	display: inline-block;
+	padding-bottom: 3px;
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 3px solid transparent;
+	transition: border .2s ease-in-out;
+}
+
+#primary-navigation-menu .current a, #primary-navigation-menu a:hover, .about #primary-navigation-menu .about a,
+	.contact #primary-navigation-menu .contact a, .folio #primary-navigation-menu .folio a,
+	.news #primary-navigation-menu .news a {
+	border-bottom: 3px solid #fff !important;
+}
+
+#primary-navigation-menu .home {
+	margin-bottom: -25px;
+}
+
+#primary-navigation-menu li {
+	display: inline-block;
+	margin: 0 1.0em;
+	padding: 0 2px;
+	vertical-align: middle;
+}
+
+#primary-navigation-menu .home img {
+	display: block;
+}

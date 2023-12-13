@@ -1,7 +1,7 @@
-﻿<?php
-/* 
+<?php
+/*
 ------------------
-Language: Francais
+Language: Italiano
 ------------------
 */
 

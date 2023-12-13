@@ -26,11 +26,14 @@ body {
 }
 
 #primary-navigation {
-	/*font-size: 0.5em;*/
+	font-size: 0.7em;
 	text-transform: uppercase;
 	color: #fff;
 	text-align: center;
 	padding-left: 1em;
+	position: absolute;
+	top: 10px;
+	right: 5px;
 }
 
 #primary-navigation a {
@@ -67,12 +70,6 @@ img {
 	border: none;
 }
 
-.logo {
-	opacity: 0.7;
-	font-family: 'Bangers', cursive;
-	font-size: 600%;
-}
-
 footer {
 	position: absolute;
     bottom: 20px;
@@ -93,7 +90,7 @@ footer  a#biz{
 }*/
 
 flickr{
-  top : 30px;
+  top : 10px;
   left : 5px;
   position : absolute;
   font-size: 0.6em;

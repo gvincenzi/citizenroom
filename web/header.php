@@ -8,9 +8,9 @@
 		<ul class="nav justify-content-end">
            	<nav classname="nav-item">
            		<ul>
-                    <li class="nav-link"><a href="#" onclick="changeLanguage('en')">English</a></li>
-           	    	<li class="nav-link"><a href="#" onclick="changeLanguage('it')">Italiano</a></li>
-                    <li class="nav-link"><a href="#" onclick="changeLanguage('fr')"><?php print ("Français")?></a></li>
+                    <li class="nav-link"><a href="#" onclick="changeLanguage('en_US')">English</a></li>
+           	    	<li class="nav-link"><a href="#" onclick="changeLanguage('it_IT')">Italiano</a></li>
+                    <li class="nav-link"><a href="#" onclick="changeLanguage('fr_FR')"><?php print ("Français")?></a></li>
            		</ul>
            	</nav>
         </ul>

@@ -1,7 +1,10 @@
 .container{
-    /*padding-top: 70px;*/
     color: #fff;
     max-width: none;
+}
+
+.card {
+    padding-top: 70px;
 }
 
 .card-plain {
@@ -154,4 +157,10 @@ a {
 
 a:hover,a:focus {
     color: #f96332
+}
+
+.logo {
+	opacity: 0.7;
+	font-family: 'Bangers', cursive;
+	font-size: 4em;
 }

@@ -12,7 +12,7 @@ $available_languages = array(
   $http_accept_language    a HTTP_ACCEPT_LANGUAGE string (read from $_SERVER['HTTP_ACCEPT_LANGUAGE'] if left out)
 */
 function prefered_language($available_languages,$http_accept_language="auto") {
-	if(empty($_COOKIE['citizenroom']['bestlang'])){
+	if(empty($_COOKIE['citizenroom']['bestlang']) or !in_array($_COOKIE['citizenroom']['bestlang'],$available_languages)){
 	    $bestlang = $available_languages[0];
 		
 		// Duration : 31 days (2678400 seconds)

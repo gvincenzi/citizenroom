@@ -55,22 +55,27 @@ function validateEmail(inputText) {
 function randomBackground() {
 	var images = [
 		'https://live.staticflickr.com/7897/46684372945_bdd3f29337_o_d.jpg',
-		'https://live.staticflickr.com/5033/14409397559_772e1bd5a5_o.jpg'
+		'https://live.staticflickr.com/8790/17878517048_bbfa43d136_o.jpg',
+		'https://live.staticflickr.com/7734/27686053920_9400a9e160_o.jpg'
+		
 	];
 
 	var image_links = [
 		'https://www.flickr.com/photos/147592390@N06/46684372945',
-		'https://www.flickr.com/photos/sweetdevil/14409397559'
+		'https://www.flickr.com/photos/image-catalog/17878517048',
+		'https://www.flickr.com/photos/we-the-people/27686053920'
 	];
 
 	var authors = [
 		'John Beans',
-		'Giulia Bucelli'
+		'Image Catalog',
+		'We The People'
 	];
 
 	var author_links = [
 		'https://www.flickr.com/photos/147592390@N06/',
-		'https://www.flickr.com/photos/sweetdevil/'
+		'https://www.flickr.com/photos/image-catalog/',
+		'https://www.flickr.com/photos/we-the-people/'
 	];
 
 	var index = Math.floor(Math.random() * images.length);

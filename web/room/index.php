@@ -1,4 +1,5 @@
 <?php
+include '../bootstrap.php';
 include_once '../actionInSession.php';
 ?>
 <head>
@@ -6,20 +7,11 @@ include_once '../actionInSession.php';
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
     <script src="https://citizenroom.ddns.net/libs/external_api.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.7/jquery.jgrowl.min.js"></script>
-	<script src="../assets/js/general_v1.js"></script>
 	<script src="../assets/js/jitsi.js?v=<?php print time()?>"></script>
-	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.v2.css" />
-	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.v3.css" />
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.v5.css" />
-	<meta name="viewport" content="width=device-width" />
-
+	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
@@ -43,13 +35,12 @@ include_once '../actionInSession.php';
 
   <div class="room">
 	<?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" style = "max-height:100px"></img>'?>
-	<?php if(isset($_SESSION['room_title'])) echo '<h3>'.$_SESSION['room_title'].'</h3>'?>
+	<?php if(isset($_SESSION['room_title'])) echo '<h4>'.$_SESSION['room_title'].'</h4>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>
 	</div>
 	<div id='toolbox' class='toolbox' style='display:none;'>
-		<h3>CitizenRoom #<?php echo $_SESSION['room_id']?></h3>
-		<hr>
+		<h6>CitizenRoom #<?php echo $_SESSION['room_id']?></h6>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>
@@ -68,7 +59,7 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
 	</div>
-	<h4 id='joinMsg'></h4>
+	<h6 id='joinMsg' style="color: #fff"></h6>
   </div>
 </body>
 </html>

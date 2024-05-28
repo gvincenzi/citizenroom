@@ -1,5 +1,5 @@
-﻿<?php
-/* 
+<?php
+/*
 ------------------
 Language: Italiano
 ------------------
@@ -7,7 +7,7 @@ Language: Italiano
 
 $lang = array();
 $lang['LANG_CODE'] = "it_IT";
-$lang['PAGE_TITLE'] = utf8_encode("CitizenRoom - Uno spazio libero dove sentirsi a casa");
+$lang['PAGE_TITLE'] = "CitizenRoom - Uno spazio libero dove sentirsi a casa";
 $lang['CONFIRM'] = "Conferma";
 $lang['WAIT'] = "Attendere prego...";
 $lang['SELECT_LANGUAGE']="Cambia la lingua";

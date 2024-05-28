@@ -101,6 +101,9 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         interfaceConfigOverwrite: {
             TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
         },
+		configOverwrite: {
+			prejoinPageEnabled: false
+        },
         onload: function () {
             $('#joinMsg').hide();
             $('#container').show();
@@ -114,6 +117,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 			options, 
 			{
 				configOverwrite: {
+					prejoinPageEnabled: false,
 					enableOpusRed: true,
 					audioQuality: {
 						stereo: true,

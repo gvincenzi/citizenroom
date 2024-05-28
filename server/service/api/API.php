@@ -20,9 +20,9 @@ if (isset($_REQUEST['method'] )){
 			$api->leftRoom($link);
 			break;
 	}
-}else {
-	$arr = array('success' => 'false', 'message' => 'Error in input parameters');
-	print $arr;
+} else {
+	$arr = array('health' => 'OK');
+	print json_encode($arr);
 }
 
 class API {
@@ -31,7 +31,13 @@ class API {
     	
 		$_SESSION['room_id'] = $room_id;
         $_SESSION['nickname'] = $nickname;
-        $_SESSION['room_type'] = $room_type;
+		$_SESSION['room_type'] = $room_type;
+		if(!isset($_SESSION['room_title'])){
+			$_SESSION['room_title'] = "";
+		}
+		if(!isset($_SESSION['room_logo'])){
+			$_SESSION['room_logo'] = "";
+		} 
         
         header('Location: ../../../web/room');
     }

@@ -1,4 +1,5 @@
 <?php
+include '../bootstrap.php';
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
 
@@ -19,20 +20,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		$_SESSION["join.error"] = $lang['JOIN_ERROR'];
 	}
 }
-
 ?>
 <html lang="en">
 <head>
     <meta charset="utf8">
     <title><?php print $lang['PAGE_TITLE']?></title>
     <meta name="author" content="InMediArt">
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
-		
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="../assets/css/form.css" rel="stylesheet">
-    <link href="../assets/css/header.v4.css" rel="stylesheet">
     
     <script type="text/javascript">  
 		$(document).ready(function() {
@@ -57,41 +50,54 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   <body>   
   <?php include '../header.php';?> 
     <div class="container">
-      <form onsubmit="return validateJoinForm()" class="form-signup" method="POST" action="../../server/service/api/API.php" autocomplete="off">
-      	<div style="text-align: center;">
-      	<img width="350px" src="../assets/img/logo_black.png"/>
-      	<div id='callbackMessage'></div>
-		<div id='loginAlert'></div>
-      	</div>
-      	<hr>
-      	<?php
-            if(isset($_SESSION["login.error"])){
-            	print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
-            }
-        ?>
-		
-        <!-- HIDDEN PARAMETERS -->
-        <input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
-        <input type="hidden" value="join" name="method" id="method">
-        <input type="hidden" value="public" name="room_type" id="room_type">
-        
-        <div class="form-group">
-	        <input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
-			<div style="display:flex">
-				<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+		<div class="col-md-5 ml-auto mr-auto">
+			<div class="card card-plain">
+				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/API.php" autocomplete="off">
+					<!-- HIDDEN PARAMETERS -->
+					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
+					<input type="hidden" value="join" name="method" id="method">
+					<input type="hidden" value="public" name="room_type" id="room_type">
+				
+					<div class="card-header text-center">
+						<div class="logo" id="title">CitizenRoom</div>
+						<div id="primary-navigation-menu">
+							<nav>
+								<ul class="nav justify-content-center">
+									<nav classname="nav-item">
+										<ul>
+											<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
+											<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
+										</ul>
+									</nav>
+								</ul>
+							</nav>
+						</div>
+						<div id='callbackMessage'></div>
+						<div id='loginAlert'></div>
+						<?php
+							if(isset($_SESSION["login.error"])){
+								print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
+							}
+						?>
+					</div>
+					<div class="card-body">
+						<div class="input-group form-group-no-border input-lg">
+							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
+						</div>
+						<div class="input-group form-group-no-border input-lg">
+							<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+						</div>
+					</div>
+					
+					<div class="card-footer text-center">
+						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
+					</div>
+					<div class="card-footer text-right">
+						<h6><a href="../custom?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+					</div>
+				</form>
 			</div>
-        </div>
-		<br>
-		
-		<button class="btn btn-success" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
-		<hr>
-		<p class="jitsiApp" style="text-align-last: center;">
-		<a href="https://apps.apple.com/us/app/jitsi-meet/id1165103905" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/app-store-badge.png" /></a>
-		<a href="https://play.google.com/store/apps/details?id=org.jitsi.meet&hl=en&gl=US" target="_blank"><img src="https://web-cdn.jitsi.net/meetjitsi_5852.2585/images/google-play-badge.png" /></a>
-		</p>
-      </form>      
-    </div> <!-- /container -->
-	
-	<?php include '../footer.php';?> 
+		</div>
+	</div> <!-- /container -->
 </body>
 </html>

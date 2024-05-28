@@ -1,6 +1,6 @@
 <?php
 
-	$hostname = 'localhost:3388';
+	$hostname = 'localhost';
 	$dbname   = 'my_citizenroom';
 	$username = 'citizenroom';
 	$password = '';

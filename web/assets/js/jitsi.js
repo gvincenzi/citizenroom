@@ -99,7 +99,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
             displayName: nickname
         },
         interfaceConfigOverwrite: {
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand']
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand', 'settings']
         },
 		configOverwrite: {
 			prejoinPageEnabled: false

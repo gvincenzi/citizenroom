@@ -26,7 +26,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <meta charset="utf8">
 	<title><?php print $lang['PAGE_TITLE']?></title>
 	<meta property="og:title" content="<?php print $lang['PAGE_TITLE']?>" />
-	<meta property="og:description" content="<?php if(isset($_GET['room_title'])) print $lang['INVITATION'].$_GET['room_id'].' '.$_GET['room_title']; else print $lang['INVITATION'].$_GET['room_id']?>" />
+	<meta property="og:description" content="
+	<?php if(isset($_GET['room_title']) && $_GET['room_type'] == 'custom'){print $lang['INVITATION'].$_GET['room_id'].' '.$_GET['room_title'];}
+		else if(isset($_GET['room_type']) && $_GET['room_type'] == 'french_national_assembly'){print $lang['INVITATION'].$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION'].' '.$_GET['room_title'];}
+		else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].' '.$_GET['room_id'];}?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg" />
     <meta name="author" content="InMediArt">

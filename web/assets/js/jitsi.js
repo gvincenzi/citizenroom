@@ -46,9 +46,9 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
 	});
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && (roomType == "custom" || roomType == "french_national_assembly")) {
-			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "&room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
 		} else if(roomType != null && roomType == "public"){
-			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"&room_id="+roomNumber+"&room_type="+roomType));
 		}
 		alert("Invitation link copied in clipboard");
     });

@@ -1,6 +1,6 @@
 <script type="text/javascript">
   	$(document).ready(function() {
-		randomBackground();
+		randomBackground(new URL(location.href).searchParams.get('room_type'));
 	});
 </script>
 <div id="primary-navigation">

@@ -42,7 +42,7 @@ class API {
 			$_SESSION['room_logo'] = "";
 		} 
         
-        header('Location: ../../../web/room');
+        header('Location: ../../../web/room?room_type='.$room_type);
     }
 	
     public function joinCustom($room_title,$room_logo,$nickname,$room_id,$room_type,$link){

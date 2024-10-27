@@ -1,7 +1,8 @@
 .room {
 	margin-right: auto; 
 	margin-left: auto; 
-	width: 60%;
+  width: 60%;
+  height: 100%;
 	margin-top: 10px;
 	padding : 40px;
 	background-color: rgba(0,0,0,.7);
@@ -23,7 +24,7 @@
 .container{
   position: relative;
   width: auto!important;
-	height: 60%;
+	height: 90%;
 }
 .toolbox {
   position: absolute;
@@ -70,4 +71,19 @@
 .toolbox button#btnLeave:hover { 
    background: rgba(255,0,0,0.5);
    color: #fff;
+}
+
+.room-title {
+	opacity: 0.7;
+	font-family: 'Bangers', cursive;
+    font-size: 4em;
+    color: white
+}
+
+.room-logo {
+    max-height: 100px;
+    border: medium;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 10px;
+    margin-bottom: 15px;
 }

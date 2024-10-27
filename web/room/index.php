@@ -34,12 +34,12 @@ include_once '../actionInSession.php';
   <?php include '../header.php';?> 
 
   <div class="room">
-	<?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" style = "max-height:100px"></img>'?>
-	<?php if(isset($_SESSION['room_title'])) echo '<h4>'.$_SESSION['room_title'].'</h4>'?>
+	<?php if(isset($_SESSION['room_title'])) echo '<div class="room-title">'.$_SESSION['room_title'].'</div>'?>
 	<div id='container' class='container' style='display:none;'>
 		<div id='jitsi-meet-conf-container' style='height:100%'></div>
 	</div>
 	<div id='toolbox' class='toolbox' style='display:none;'>
+	    <?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" class = "room-logo"></img>'?>
 		<h6>CitizenRoom #<?php echo $_SESSION['room_id']?></h6>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>

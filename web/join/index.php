@@ -94,6 +94,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					</div>
 					<div class="card-footer text-right">
 						<h6><a href="../custom?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+						<h6><a href="../joinFrenchNationalAssembly/?room_type=french_national_assembly" class="link footer-link"><?php print $lang['FRENCH_NATIONAL_ASSEMBLY']?></a></h6>
 					</div>
 				</form>
 			</div>

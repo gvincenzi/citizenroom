@@ -91,6 +91,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 								<ul class="nav justify-content-center">
 									<nav classname="nav-item">
 										<ul>
+											<li class="nav-link"><a href="../join" class="link menu-link"><?php print $lang['JOIN']?></a></li>
 											<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
 											<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
 										</ul>
@@ -117,9 +118,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					
 					<div class="card-footer text-center">
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
-					</div>
-					<div class="card-footer text-right">
-						<h6><a href="../custom?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
 					</div>
 				</form>
 			</div>

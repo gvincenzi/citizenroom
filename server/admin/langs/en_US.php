@@ -56,5 +56,6 @@ $lang['INVITATION']="You are entering the ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Custom Room";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Customize a room with a title and/or a logo.<br>Use the invitation link in your personal site, in a chat group, or in your social network page.";
-$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION']="Room of National Assembly of France attributed to";
+$lang['FRENCH_NATIONAL_ASSEMBLY']="National Assembly of France";
+$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION']="room of National Assembly of France attributed to";
 ?>

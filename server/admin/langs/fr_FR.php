@@ -56,5 +56,5 @@ $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Salle personnalisé";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personnalisez une salle avec un titre et/ou un logo.<br>Utilisez le lien d'invitation sur votre site personnel, dans un groupe de discussion ou sur vos réseaux sociaux.";
-
+$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION']="salle de l'Assemblée Nationale attribuée à";
 ?>

@@ -56,5 +56,5 @@ $lang['INVITATION']="Stai per entrare nella ";
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Stanza Personalizzata";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personalizza una stanza con un titolo e/o un logo.<br>Usa il link di invito nel tuo sito personale, in un gruppo di chat o sui tuoi social network";
-
+$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION']="Stanza dell'Assemblea Nazionale della Repubblica francese attribuita a";
 ?>

@@ -80,6 +80,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						<?php 
 						if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
 							print $lang['INVITATION'].$lang['CUSTOM_ROOM'].' <strong>'.$_GET['room_id'].'</strong><br><strong>'.$_GET['room_title'].'</strong>';
+						} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'french_national_assembly'){
+							print $lang['INVITATION'].$lang['FRENCH_NATIONAL_ASSEMBLY_INVITATION'].'<br><strong>'.$_GET['room_title'].'</strong>';
 						} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
 							print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].' <strong>'.$_GET['room_id'].'</strong>';
 						}

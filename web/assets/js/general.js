@@ -32,26 +32,6 @@ function getCookie(nameCookie) {
 	return c_value;
 }
 
-//cleanArray removes all duplicated elements
-function cleanArray(array) {
-	var i, j, len = array.length, out = [], obj = {};
-	for (i = 0; i < len; i++) {
-		obj[array[i].id] = array[i];
-	}
-	for (j in obj) {
-		out.push(obj[j]);
-	}
-	return out;
-}
-
-function validateEmail(inputText) {
-	var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-	if (inputText.match(mailformat)) {
-		return true;
-	}
-	return false;
-}
-
 function randomBackground() {
 	var images = [
 		'https://live.staticflickr.com/7897/46684372945_bdd3f29337_o_d.jpg',

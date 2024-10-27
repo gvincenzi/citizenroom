@@ -56,7 +56,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
-					<input type="hidden" value="custom" name="room_type" id="room_type">
+					<input type="hidden" value="<?php if(isset($_GET['room_type'])) print $_GET['room_type']?>" name="room_type" id="room_type">
 				
 					<div class="card-header text-center">
 						<div class="logo" id="title">CitizenRoom</div>

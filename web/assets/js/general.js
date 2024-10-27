@@ -83,9 +83,3 @@ function randomBackground(roomType) {
 	$('#imageLink').prop("href", image_links[index]);
 	$('#authorLink').prop("href", author_links[index]).text(authors[index]);
 }
-
-function setBackground(background_image_url,background_image_link,background_image_author_link,background_image_author_name) {
-	$('#full-screen-background-image').attr("src", background_image_url);
-	$('#imageLink').prop("href", background_image_link);
-	$('#authorLink').prop("href", background_image_author_link).text(background_image_author_name);
-}

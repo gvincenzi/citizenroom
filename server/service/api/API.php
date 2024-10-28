@@ -40,6 +40,9 @@ class API {
 		}
 		if(!isset($_SESSION['room_logo'])){
 			$_SESSION['room_logo'] = "";
+		}
+		if(!isset($_SESSION['room_custom_link'])){
+			$_SESSION['room_custom_link'] = "";
 		} 
         
         header('Location: ../../../web/room?room_type='.$room_type);
@@ -48,6 +51,7 @@ class API {
     public function joinCustom($room_title,$room_logo,$nickname,$room_id,$room_type,$link){
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_custom_link']);
 
 		$_SESSION['room_title'] = stripslashes($room_title);
 		$_SESSION['room_logo'] = $room_logo;
@@ -58,6 +62,7 @@ class API {
 	public function joinFrenchNationalAssembly($nickname,$room_id,$room_type,$link){
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_custom_link']);
 
 		//READ DATA
 		$file = fopen("../../data/liste_deputes_libre_office.csv","r");
@@ -74,6 +79,7 @@ class API {
 			{
 				$_SESSION['room_title'] = stripslashes($french_national_assembly_delegate['firstname'].' '.$french_national_assembly_delegate['lastname']);
 				$_SESSION['room_logo'] = "https://www2.assemblee-nationale.fr/static/tribun/17/photos/".$french_national_assembly_delegate['uid'].".jpg";
+				$_SESSION['room_custom_link'] = "https://www.assemblee-nationale.fr/dyn/deputes/PA".$french_national_assembly_delegate['uid'];
 				break;
 			}
 		}
@@ -104,6 +110,7 @@ class API {
 		unset($_SESSION['room_type']);
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
+		unset($_SESSION['room_custom_link']);
 
 		print json_encode($arr);
 	}

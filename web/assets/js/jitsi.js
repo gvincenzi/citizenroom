@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLink){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -61,7 +61,12 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
         apiObj.executeCommand('toggleLobby', false);
 		$("#btnLobbyOn").show();
 		$("#btnLobbyOff").hide();
-    });
+	});
+	$("#btnCustomLink").on('click', function () {
+		if(roomType != null && (roomType == "custom" || roomType == "french_national_assembly")) {
+			window.open(roomCustomLink, '_blank');
+		}
+	});
 	$("#btnWhiteboard").on('click', function () {
 		if(roomTitle != null && roomTitle != ""){
 			window.open("https://wbo.ophir.dev/boards/"+roomTitle+"_"+roomNumber+"_"+roomType, '_blank');

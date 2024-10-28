@@ -14,9 +14,9 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
 			$(function(){
-                    const urlParams = new URLSearchParams(window.location.search);
+					const urlParams = new URLSearchParams(window.location.search);
 					$('#joinMsg').text('<?php print $lang['JOINING']?>');
-					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_logo']?>");
+					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>','<?php echo $_SESSION['room_title']?>','<?php echo $_SESSION['room_type']?>','<?php echo $_SESSION['room_logo']?>','<?php echo $_SESSION['room_custom_link']?>');
 					StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
 			});
 			
@@ -58,6 +58,7 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOn' style="display: none;"><?php print $lang['btnLobbyOn']?></button>
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
+		<button id='btnCustomLink' <?php if(!isset($_SESSION['room_custom_link']) || $_SESSION['room_custom_link']==="") echo 'style="display: none;"'?>><?php print $_SESSION['room_title'].' '.$lang['btnCustomLink']?></button>
 	</div>
 	<h6 id='joinMsg' style="color: #fff"></h6>
   </div>

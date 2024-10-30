@@ -27,6 +27,10 @@ Citizenroom utilise un serveur Jitsi Meet auto-hébergé <a href='https://citize
 Chaque salle donne accès à un tableau blanc collaboratif, partagé avec tous les utilisateurs de la salle.
 Cette fonctionnalité est rendue possible grâce au projet Open Source<a href='https://wbo.ophir.dev/'>WBO</a> du développeur <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
 
+<h2>French National Assembly</h2>
+Dans cette sectioin de CitizenRoom chaque membre de l'Assemblée Nationale a une salle dediée, personalisée avec les open data officielles.<br>
+Source : <a href='https://data.assemblee-nationale.fr/acteurs/deputes-en-exercice'>data.assemblee-nationale.fr</a><br><br>
+
 <h2>UN PROTOTYPE OPEN SOURCE</h2>
 Citizenroom est un prototype de plateforme de conférence web, basé sur l'api public <a href='https://meet.jit.si/'>Jitsi Meet</a>, écrit en PHP/Javascript et complètement open source. Vous pouvez lire le code du prototype et, si vous le souhaitez, proposer de le modifier sur Github dans le <a href='https://github.com/gvincenzi/citizenroom'>repository dédié</a>.
 <br><br>

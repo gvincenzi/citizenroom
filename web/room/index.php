@@ -63,7 +63,7 @@ include_once '../actionInSession.php';
 	</div>
 	<div id='identity_card' class='identity_card' style='display:none;'>
 		<?php echo '<img src="'.$_SESSION['room_additional_data']['photo'].'" class = "room-logo"></img>'?>
-		<h4><?php echo '<a href=\''.$_SESSION['room_title'].'\' target="_blank">'.$_SESSION['room_title'].'</a>' ?></h4>
+		<h4><?php echo '<a href=\''.$_SESSION['room_custom_link'].'\' target="_blank">'.$_SESSION['room_title'].'</a>' ?></h4>
 		<h5><?php echo $_SESSION['room_additional_data']['group']?></h5>
 		<hr class="hr-flag"/>
 	    <h6><?php echo $_SESSION['room_additional_data']['departement'].' ('.$_SESSION['room_additional_data']['circonscription'].'<sup>e</sup> circonscription)'?></h6>

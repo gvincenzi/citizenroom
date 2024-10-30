@@ -12,6 +12,7 @@ include_once '../actionInSession.php';
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.identity_card.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
 			$(function(){
 					const urlParams = new URLSearchParams(window.location.search);
@@ -41,6 +42,7 @@ include_once '../actionInSession.php';
 	<div id='toolbox' class='toolbox' style='display:none;'>
 	    <?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" class = "room-logo"></img>'?>
 		<h6>CitizenRoom #<?php echo $_SESSION['room_id']?></h6>
+		<button id='btnCustomLink' <?php if(!isset($_SESSION['room_custom_link']) || $_SESSION['room_custom_link']==="") echo 'style="display: none;"'?>><?php print $_SESSION['room_title'].' '.$lang['btnCustomLink']?></button>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>
@@ -58,7 +60,13 @@ include_once '../actionInSession.php';
 		<button id='btnLobbyOn' style="display: none;"><?php print $lang['btnLobbyOn']?></button>
 		<button id='btnLobbyOff' style="display: none;"><?php print $lang['btnLobbyOff']?></button>
 		<button id='btnLeave' style="display: none;"><?php print $lang['btnLeave']?></button>
-		<button id='btnCustomLink' <?php if(!isset($_SESSION['room_custom_link']) || $_SESSION['room_custom_link']==="") echo 'style="display: none;"'?>><?php print $_SESSION['room_title'].' '.$lang['btnCustomLink']?></button>
+	</div>
+	<div id='identity_card' class='identity_card' style='display:none;'>
+		<?php echo '<img src="'.$_SESSION['room_additional_data']['photo'].'" class = "room-logo"></img>'?>
+		<h4><?php echo '<a href=\''.$_SESSION['room_title'].'\' target="_blank">'.$_SESSION['room_title'].'</a>' ?></h4>
+		<h5><?php echo $_SESSION['room_additional_data']['group']?></h5>
+		<hr class="hr-flag"/>
+	    <h6><?php echo $_SESSION['room_additional_data']['departement'].' ('.$_SESSION['room_additional_data']['circonscription'].'<sup>e</sup> circonscription)'?></h6>
 	</div>
 	<h6 id='joinMsg' style="color: #fff"></h6>
   </div>

@@ -52,6 +52,7 @@ class API {
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
+		unset($_SESSION['room_additional_data']);
 
 		$_SESSION['room_title'] = stripslashes($room_title);
 		$_SESSION['room_logo'] = $room_logo;
@@ -63,6 +64,7 @@ class API {
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
+		unset($_SESSION['room_additional_data']);
 
 		//READ DATA
 		$file = fopen("../../data/liste_deputes_libre_office.csv","r");
@@ -78,8 +80,10 @@ class API {
 			if($french_national_assembly_delegate['uid'] == $room_id)
 			{
 				$_SESSION['room_title'] = stripslashes($french_national_assembly_delegate['firstname'].' '.$french_national_assembly_delegate['lastname']);
-				$_SESSION['room_logo'] = "https://www2.assemblee-nationale.fr/static/tribun/17/photos/".$french_national_assembly_delegate['uid'].".jpg";
+				$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Logo_de_l%27Assembl%C3%A9e_nationale_fran%C3%A7aise.svg";
 				$_SESSION['room_custom_link'] = "https://www.assemblee-nationale.fr/dyn/deputes/PA".$french_national_assembly_delegate['uid'];
+				$_SESSION['room_additional_data'] = $french_national_assembly_delegate;
+				$_SESSION['room_additional_data']['photo']="https://www2.assemblee-nationale.fr/static/tribun/17/photos/".$french_national_assembly_delegate['uid'].".jpg";
 				break;
 			}
 		}
@@ -111,6 +115,7 @@ class API {
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
+		unset($_SESSION['room_additional_data']);
 
 		print json_encode($arr);
 	}

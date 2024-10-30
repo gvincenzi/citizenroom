@@ -111,8 +111,13 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
         },
         onload: function () {
             $('#joinMsg').hide();
-            $('#container').show();
-            $('#toolbox').show();
+    		$('#container').show();
+			$('#toolbox').show();
+			if(roomType==="french_national_assembly") 
+			{
+				$('#identity_card').show();
+			}
+
         }
 	};
 	

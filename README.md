@@ -25,7 +25,7 @@ Each room gives access to a collaborative whiteboard, shared with all users of t
 This functionality is possible thanks to the Open Source project <a href='https://wbo.ophir.dev/'>WBO</a> by <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
 
 ## French National Assembly
-In this section of CitizenRoom each member of French National Assembly have a personal room, custoomized using offical open data.<br>
+In this section of CitizenRoom each member of French National Assembly have a personal room, customized using offical open data.<br>
 Source : <a href='https://data.assemblee-nationale.fr/acteurs/deputes-en-exercice'>data.assemblee-nationale.fr</a>
 <br><br>
 

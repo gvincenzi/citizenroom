@@ -31,8 +31,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     
     <script type="text/javascript">
 		function validateJoinForm(){
+			if($(nickname).val()=='' || $(room_id).val()==''){
+				$(loginAlert).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
+				return false;
+			}
 			return true;
-		}		
+		}	
     </script>   
   </head>
 

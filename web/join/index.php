@@ -3,8 +3,6 @@ include '../bootstrap.php';
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
 
-// Inialize session
-session_start();
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }

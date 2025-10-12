@@ -2,9 +2,6 @@
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
 
-// Inialize session
-session_start();
-
 // Current action
 $dir = getcwd();
 $part = explode('/', $dir);

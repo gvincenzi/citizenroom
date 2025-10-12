@@ -1,4 +1,6 @@
 <?php
+// Inialize session
+session_start();
 include '../bootstrap.php';
 include_once '../actionInSession.php';
 ?>

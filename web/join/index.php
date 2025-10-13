@@ -3,8 +3,6 @@ include '../bootstrap.php';
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
 
-// Inialize session
-session_start();
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }
@@ -93,7 +91,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 					<div class="card-footer text-right">
-						<h6><a href="../custom?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+						<h6><a href="../custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
 					</div>
 				</form>
 			</div>

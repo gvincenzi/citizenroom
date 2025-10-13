@@ -4,7 +4,6 @@ include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/' . prefered_language ( $available_languages ) . '.php';
 include prefered_language ( $available_languages ) . '.php';
 
-session_start();
 ?>
 <head>
 	<meta charset="utf8">

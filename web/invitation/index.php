@@ -3,8 +3,6 @@ include '../bootstrap.php';
 include_once '../../server/admin/lang.php';
 include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
 
-// Inialize session
-session_start();
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
 }
@@ -33,8 +31,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     
     <script type="text/javascript">
 		function validateJoinForm(){
+			if($(nickname).val()=='' || $(room_id).val()==''){
+				$(loginAlert).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
+				return false;
+			}
 			return true;
-		}		
+		}	
     </script>   
   </head>
 

@@ -1,7 +1,6 @@
 <?php
 include_once '../../admin/lang.php';
 include '../../admin/langs/'. prefered_language($available_languages) .'.php';
-include_once '../../admin/config.php';
 
 session_start();
 $api = new API();

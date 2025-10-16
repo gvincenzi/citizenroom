@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLink){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -46,7 +46,7 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
 	});
 	$("#btnInvitation").on('click', function () {
 		if(roomType != null && roomType == "custom") {
-			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_type=" + roomType));
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_custom_link=" + roomCustomLink + "&room_type=" + roomType));
 		} else if(roomType != null && roomType == "public"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
 		}
@@ -69,8 +69,13 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
 			window.open("https://wbo.ophir.dev/boards/CitizenRoom_"+roomNumber+"_"+roomType);
 		}
 	});
+	$("#btnCustomLink").on('click', function () {
+		if(roomCustomLink != null && roomCustomLink != ""){
+			window.open(roomCustomLink, '_blank');
+		}
+	});
 	$("#btnLeave").on('click', function () {
-        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
+        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/service/left.php");
     	});
 }
 

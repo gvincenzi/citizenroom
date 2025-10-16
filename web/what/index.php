@@ -1,7 +1,7 @@
 <?php
 include '../bootstrap.php';
-include_once '../../server/admin/lang.php';
-include '../../server/admin/langs/' . prefered_language ( $available_languages ) . '.php';
+include_once '../../server/service/lang.php';
+include '../../server/service/langs/' . prefered_language ( $available_languages ) . '.php';
 include prefered_language ( $available_languages ) . '.php';
 
 ?>
@@ -35,7 +35,7 @@ include prefered_language ( $available_languages ) . '.php';
   <div class="col-md-5 ml-auto mr-auto">
 		<div class="card card-plain">
         	<div class="card-header text-center">
-				<div class="logo" id="title">CitizenRoom</div>
+				<div class="logo" id="title"><a href="../join">CitizenRoom</a></div>
 					<div id="primary-navigation-menu">
 						<nav>
 							<ul class="nav justify-content-center">
@@ -47,10 +47,11 @@ include prefered_language ( $available_languages ) . '.php';
 									</ul>
 								</nav>
 							</ul>
-					</nav>
-           		</div>
-        	</div>
-    	</div>
+						</nav>
+           			</div>
+        		</div>
+    		</div>
+		</div>
   </div>
   <div class="what">
     <?php print $cookieDisclaimer;?>

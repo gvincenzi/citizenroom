@@ -86,4 +86,5 @@ flickr{
 flickr img{
   opacity: 0.5;
   width: 70px;
+  margin-bottom: 5px;
 }

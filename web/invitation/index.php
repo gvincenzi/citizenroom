@@ -1,7 +1,7 @@
 <?php
 include '../bootstrap.php';
-include_once '../../server/admin/lang.php';
-include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
+include_once '../../server/service/lang.php';
+include '../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
@@ -12,6 +12,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
+	unset($_SESSION['room_custom_link']);
+	unset($_SESSION['room_additional_data']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -51,11 +53,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="join" name="method" id="method">
 					<input type="hidden" value="<?php if(isset($_GET['room_title'])) print $_GET['room_title']?>" name="room_title" id="room_title">
 					<input type="hidden" value="<?php if(isset($_GET['room_logo'])) print $_GET['room_logo']?>" name="room_logo" id="room_logo">
+					<input type="hidden" value="<?php if(isset($_GET['room_custom_link'])) print $_GET['room_custom_link']?>" name="room_custom_link" id="room_custom_link">
 					<input type="hidden" value="<?php if(isset($_GET['room_type'])) print $_GET['room_type']?>" name="room_type" id="room_type">
 					<input type="hidden" value="<?php if(isset($_GET['room_id'])) print $_GET['room_id']?>" name="room_id" id="room_id">
 				
 					<div class="card-header text-center">
-						<div class="logo" id="title">CitizenRoom</div>
+						<div class="logo" id="title"><a href="../join">CitizenRoom</a></div>
 						<div id="primary-navigation-menu">
 							<nav>
 								<ul class="nav justify-content-center">

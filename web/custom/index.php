@@ -12,6 +12,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_type']);
 	unset($_SESSION['room_title']);
 	unset($_SESSION['room_logo']);
+	unset($_SESSION['room_custom_link']);
+	unset($_SESSION['room_additional_data']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -92,6 +94,9 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						</div>
 						<div class="input-group form-group-no-border input-lg">
 							<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
+						</div>
+						<div class="input-group form-group-no-border input-lg">
+							<input id="room_custom_link" name="room_custom_link" type="url" class="form-control" placeholder="<?php print $lang['btnCustomLink']?>">
 						</div>
 					</div>
 					

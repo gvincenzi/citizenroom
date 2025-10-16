@@ -11,7 +11,7 @@
                     <li class="nav-link"><a href="#" onclick="changeLanguage('en_US')">English</a></li>
            	    	<li class="nav-link"><a href="#" onclick="changeLanguage('it_IT')">Italiano</a></li>
                     <li class="nav-link"><a href="#" onclick="changeLanguage('fr_FR')"><?php print ("Français")?></a></li>
-					<li class="nav-link"><a href="https://github.com/gvincenzi/citizenroom/releases/tag/7.0.0" target="_blank">v 6.2.2</a></li>
+					<li class="nav-link"><a href="https://github.com/gvincenzi/citizenroom/releases/tag/7.0.0" target="_blank">v 7.0.0</a></li>
            		</ul>
            	</nav>
         </ul>

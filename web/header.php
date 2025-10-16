@@ -20,6 +20,7 @@
 
 <img alt="full screen background image" src="" id="full-screen-background-image" />
 <flickr>
-  	<a href="" id="imageLink"><img id="flickrLogo" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flickr_logo.png"/><br></a>
-  	<author>Photo by <a href="" id="authorLink"></a></author>
+  	<a href="" id="imageLink" target="_blank"><img id="flickrLogo" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flickr_logo.png"/><br></a>
+  	<author>Photo by <a href="" id="authorLink" target="_blank"></a></author><br>
+	<license>License <a href="" id="licenseLink" target="_blank"></a></license>
 </flickr>

@@ -55,7 +55,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="<?php if(isset($_GET['room_id'])) print $_GET['room_id']?>" name="room_id" id="room_id">
 				
 					<div class="card-header text-center">
-						<div class="logo" id="title">CitizenRoom</div>
+						<div class="logo" id="title"><a href="../join">CitizenRoom</a></div>
 						<div id="primary-navigation-menu">
 							<nav>
 								<ul class="nav justify-content-center">

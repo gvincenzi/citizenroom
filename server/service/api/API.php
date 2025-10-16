@@ -8,7 +8,7 @@ $api = new API();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {
 		case 'join':
-			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='public' || $_REQUEST['room_type']=='custom'){
+			if(isset($_REQUEST['room_type']) && ($_REQUEST['room_type']=='public' || $_REQUEST['room_type']=='custom')){
 				$api->join($_REQUEST['room_type'],$_REQUEST['nickname'],$_REQUEST['room_id'],$_REQUEST['room_title'] ?? "",$_REQUEST['room_logo'] ?? "");
 			}
 			break;

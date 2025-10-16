@@ -1,6 +1,6 @@
 <?php
-include_once '../../server/admin/lang.php';
-include '../../server/admin/langs/'. prefered_language($available_languages) .'.php';
+include_once '../../server/service/lang.php';
+include '../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 // Current action
 $dir = getcwd();

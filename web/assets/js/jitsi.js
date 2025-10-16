@@ -70,7 +70,7 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo){
 		}
 	});
 	$("#btnLeave").on('click', function () {
-        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/admin/left.php");
+        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/service/left.php");
     	});
 }
 

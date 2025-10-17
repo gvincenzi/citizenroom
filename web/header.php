@@ -1,8 +1,3 @@
-<script type="text/javascript">
-  	$(document).ready(function() {
-		randomBackground();
-	});
-</script>
 <div id="primary-navigation">
 	<nav>
 		<ul class="nav justify-content-end">

@@ -4,10 +4,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<script src="../assets/js/general.js?v=<?php print time()?>"></script>
+<script src="/web/assets/js/general.js?v=<?php print time()?>"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-<link href="../assets/css/form.css?v=<?php print time()?>" rel="stylesheet">
-<link href="../assets/css/header.css?v=<?php print time()?>" rel="stylesheet">
-<link href="../assets/css/menu.css?v=<?php print time()?>" rel="stylesheet">
-<link href="../assets/css/subtitle.css?v=<?php print time()?>" rel="stylesheet">
+<link href="/web/assets/css/form.css?v=<?php print time()?>" rel="stylesheet">
+<link href="/web/assets/css/header.css?v=<?php print time()?>" rel="stylesheet">
+<link href="/web/assets/css/menu.css?v=<?php print time()?>" rel="stylesheet">
+<link href="/web/assets/css/subtitle.css?v=<?php print time()?>" rel="stylesheet">
+
+<script type="text/javascript">
+  	$(document).ready(function() {
+		randomBackground();
+	});
+</script>

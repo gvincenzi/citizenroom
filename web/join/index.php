@@ -48,7 +48,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   </head>
 
   <body>   
-  <?php include '../header.php';?> 
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
     <div class="container">
 		<div class="col-md-5 ml-auto mr-auto">
 			<div class="card card-plain">

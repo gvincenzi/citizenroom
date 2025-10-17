@@ -36,7 +36,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			    }
 		    }
 
-			topicBackground("parliament","italy");
+			topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'france'?>");
 			
             topicInit();
 	    });	
@@ -56,30 +56,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			$.ajax({
 			  type: "GET",
 			  url: "/server/service/api/TopicAPI.php",
-			  data: { method: "init", room_type: "topic", room_topic_name: "parliament", room_topic_domain: "italy"}
+			  data: { method: "init", room_type: "custom", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'france'?>"}
 			})
 			.done(function( msg ) {
-				//console.info( msg );
-				var delegates = JSON.parse(msg);
-					$.each(delegates, function(i, delegate) {
-						//console.info(name + ' ' + room_id);
-						$('#room_id').append('<option value="'+delegate.uid+'" data-tokens="'+capitalizeFirstLetters(delegate.firstname)+' '+capitalizeFirstLetters(delegate.lastname)+'">'+capitalizeFirstLetters(delegate.firstname)+' '+capitalizeFirstLetters(delegate.lastname)+' ('+delegate.group_short+')</option>');
-					});
-
-					//Two times to have a complete refresh
-					$('.selectpicker').selectpicker("refresh");
-					$('.selectpicker').selectpicker("refresh");
-
+				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'france'?>",msg);
 			});
 		}
 
-		function capitalizeFirstLetters(str) {
-			return str
-				.toLowerCase()
-				.split(' ')
-				.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-				.join(' ');
-		}
     </script>
   </head>
 
@@ -88,11 +71,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <div class="container">
 		<div class="col-md-5 ml-auto mr-auto">
 			<div class="card card-plain">
-				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/TopicAPI.php" autocomplete="off">
+				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../../../server/service/api/TopicAPI.php" autocomplete="off">
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
-					<input type="hidden" value="<?php isset($_GET['room_type']) ? print $_GET['room_type'] : print 'public'?>" name="room_type" id="room_type">
+					<input type="hidden" value="custom" name="room_type" id="room_type">
+					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
+					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'france'?>" name="room_topic_domain" id="room_topic_domain">
 				
 					<div class="card-header text-center">
 						<div class="logo" id="title"><a href="/web/join">CitizenRoom</a></div>

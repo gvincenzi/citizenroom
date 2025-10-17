@@ -1,4 +1,4 @@
-function topicBackground($topicName,$topicDomain) {
+function topicBackground(topicName,topicDomain) {
 	var topic_name_domain = [
 		"parliament/france",
 		"parliament/italy"
@@ -35,9 +35,32 @@ function topicBackground($topicName,$topicDomain) {
 		'https://creativecommons.org/publicdomain/zero/1.0/deed.'
 	];
 
-	var index = topic_name_domain.indexOf($topicName+'/'+$topicDomain);
+	var index = topic_name_domain.indexOf(topicName+'/'+topicDomain);
 	$('#full-screen-background-image').attr("src", images[index]);
 	$('#imageLink').prop("href", image_links[index]);
 	$('#authorLink').prop("href", author_links[index]).text(authors[index]);
 	$('#licenseLink').prop("href", license_links[index]+getCookie('bestlang').substring(0,2)).text(licenses[index]);
+}
+
+
+function topicComboboxInit(topicName,topicDomain,msg) {
+	var delegates = JSON.parse(msg);
+	$.each(delegates, function(i, delegate) {
+		switch(topicName+'/'+topicDomain){
+			case "parliament/france" : $('#room_id').append('<option value="'+delegate.uid+'" data-tokens="'+delegate.firstname+' '+delegate.lastname+'">'+delegate.firstname+' '+delegate.lastname+' ('+delegate.group+')</option>'); break;
+			case "parliament/italy" : $('#room_id').append('<option value="'+delegate.uid+'" data-tokens="'+capitalizeFirstLetters(delegate.firstname)+' '+capitalizeFirstLetters(delegate.lastname)+'">'+capitalizeFirstLetters(delegate.firstname)+' '+capitalizeFirstLetters(delegate.lastname)+' ('+delegate.group_short+')</option>'); break;
+		}
+	});
+	
+	//Two times to have a complete refresh
+	$('.selectpicker').selectpicker("refresh");
+	$('.selectpicker').selectpicker("refresh");
+}
+
+function capitalizeFirstLetters(str) {
+	return str
+		.toLowerCase()
+		.split(' ')
+		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
 }

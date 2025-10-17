@@ -43,7 +43,7 @@ include_once '../actionInSession.php';
 	<div id='toolbox' class='toolbox' style='display:none;'>
 	    <?php if(isset($_SESSION['room_logo'])) echo '<img src="'.$_SESSION['room_logo'].'" class = "room-logo"></img>'?>
 		<h6>CitizenRoom #<?php echo $_SESSION['room_id']?></h6>
-		<button id='btnCustomLink' <?php if(!isset($_SESSION['room_custom_link']) || $_SESSION['room_custom_link']==="") echo 'style="display: none;"'?>><?php print $_SESSION['room_title'].' '.$lang['btnCustomLink']?></button>
+		<button id='btnCustomLink' <?php if(!isset($_SESSION['room_custom_link']) || $_SESSION['room_custom_link']==="") echo 'style="display: none;"'?>><?php print $lang['btnCustomLink']?></button>
 		<button id='btnRaiseHandOn'><?php print $lang['btnRaiseHandOn']?></button>
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>

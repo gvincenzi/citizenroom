@@ -27,12 +27,6 @@ if (isset($_REQUEST['method'] )){
 }
 
 class TopicAPI {
-	protected $api;
-        
-    public function __construct($baseApi){
-        $this->api = $baseApi;
-    }
-
 	public function init($topicName,$topicDomain){
 		//READ DATA
 		$file = fopen("../../data/topic/$topicName/$topicDomain.csv","r");
@@ -70,9 +64,9 @@ class TopicAPI {
 					foreach($topic_data as $french_national_assembly_delegate){
 						if($french_national_assembly_delegate['uid'] == $room_id)
 						{
-							$room_title = stripslashes($french_national_assembly_delegate['firstname'].' '.$french_national_assembly_delegate['lastname']);
-							$room_logo = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Logo_de_l%27Assembl%C3%A9e_nationale_fran%C3%A7aise.svg";
-							$room_custom_link = "https://www.assemblee-nationale.fr/dyn/deputes/PA".$french_national_assembly_delegate['uid'];
+							$_SESSION['room_title'] = stripslashes($french_national_assembly_delegate['firstname'].' '.$french_national_assembly_delegate['lastname']);
+							$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Logo_de_l%27Assembl%C3%A9e_nationale_fran%C3%A7aise.svg";
+							$_SESSION['room_custom_link'] = "https://www.assemblee-nationale.fr/dyn/deputes/PA".$french_national_assembly_delegate['uid'];
 
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $french_national_assembly_delegate;
@@ -85,9 +79,9 @@ class TopicAPI {
 					foreach($topic_data as $italian_deputy){
 						if($italian_deputy['uid'] == $room_id)
 						{
-							$room_title = stripslashes($italian_deputy['firstname'].' '.$italian_deputy['lastname']);
-							$room_logo = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Logo_della_Camera_dei_deputati.svg";
-							$room_custom_link = "https://www.camera.it/leg19/29?tipoAttivita=&tipoVisAtt=&tipoPersona=&idLegislatura=19&shadow_deputato=".$italian_deputy['uid'];
+							$_SESSION['room_title'] = stripslashes($italian_deputy['firstname'].' '.$italian_deputy['lastname']);
+							$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Logo_della_Camera_dei_deputati.svg";
+							$_SESSION['room_custom_link'] = "https://www.camera.it/leg19/29?tipoAttivita=&tipoVisAtt=&tipoPersona=&idLegislatura=19&shadow_deputato=".$italian_deputy['uid'];
 
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $italian_deputy;
@@ -100,7 +94,7 @@ class TopicAPI {
 			
 		}
 
-		$this->api->join($room_type,$nickname,$room_id,$room_title,$room_logo,$room_custom_link);
+		header("Location: ../../../web/topic/$topicName/room");
 	}
 }
 ?>

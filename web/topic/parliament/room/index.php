@@ -1,8 +1,8 @@
 <?php
 // Inialize session
 session_start();
-include_once '../actionInSession.php';
-include '../bootstrap.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/web/actionInSession.php';
+include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 ?>
 <head>
 	<meta charset="utf8">
@@ -10,11 +10,16 @@ include '../bootstrap.php';
 	<meta name="description" content="CitizenRoom">
 	<meta name="author" content="InMediArt">
     <script src="https://citizenroom.ddns.net/libs/external_api.min.js"></script>
-	<script src="../assets/js/jitsi.js?v=<?php print time()?>"></script>
-	<link rel="stylesheet" media="all and (max-width: 500px)" href="../assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
-	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
-	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
+	<script src="/web/assets/js/jitsi.js?v=<?php print time()?>"></script>
+	<link rel="stylesheet" media="all and (max-width: 500px)" href="/web/assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="/web/assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="/web/assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
+
+			$(document).ready(function() {
+				topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'france'?>");
+	   		});	
+
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
 					$('#joinMsg').text('<?php print $lang['JOINING']?>');
@@ -25,7 +30,7 @@ include '../bootstrap.php';
 			$(window).on("beforeunload", function() { 
 				$.ajax({
 				  type: "POST",
-				  url: "../../server/service/api/API.php",
+				  url: "/server/service/api/TopicAPI.php",
 				  data: { method: "left" }
 				})
 			});

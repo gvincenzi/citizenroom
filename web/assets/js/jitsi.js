@@ -193,11 +193,11 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 
 			$.ajax({
 			  type: "POST",
-			  url: "../../server/service/api/API.php",
+			  url: "/server/service/api/API.php",
 			  data: { method: "left" }
 			}).done(function( msg ) {
 				var left = JSON.parse(msg);
-				window.location.href = window.location.href.replaceAll("/web/room/", "/web/join/");
+				window.location.href = window.location.href.replaceAll("/room/", "/");
 			});
         },
 		raiseHandUpdated: function(data){

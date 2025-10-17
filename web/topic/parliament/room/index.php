@@ -14,10 +14,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 	<link rel="stylesheet" media="all and (max-width: 500px)" href="/web/assets/css/room.mobile.css?v=<?php print time()?>" rel="stylesheet"/>
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="/web/assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="/web/assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
+	<link rel="stylesheet" media="all and (min-width: 1100px)" href="/web/assets/css/topic/parliament.<?php print $_SESSION['room_additional_data']['country'] ?? 'france'?>.css?v=<?php print time()?>" rel="stylesheet"/>
+	
 		<script>
 
 			$(document).ready(function() {
-				topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'france'?>");
+				topicBackground("parliament","<?php print $_SESSION['room_additional_data']['country'] ?? 'france'?>");
 	   		});	
 
 			$(function(){
@@ -39,5 +41,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 
 <body style="background-color: #f5f5f5">   
   <?php include $_SERVER['DOCUMENT_ROOT'].'/web/room/base_room.php';?> 
+
+  <div id='identity_card' class='identity_card'>
+	<?php echo '<img src="'.$_SESSION['room_additional_data']['photo'].'" class = "room-logo"></img>'?>
+	<h4><?php echo '<a href=\''.$_SESSION['room_custom_link'].'\' target="_blank">'.$_SESSION['room_title'].'</a>' ?></h4>
+	<h5><?php echo $_SESSION['room_additional_data']['group']?></h5>
+	<hr class="hr-flag"/>
+	<h6><?php echo $_SESSION['room_additional_data']['departement'].' ('.$_SESSION['room_additional_data']['circonscription']?><?php echo $_SESSION['room_additional_data']['country']=='france' ? '<sup>e</sup> circonscription)' : ')'?></h6>
+  </div>
 </body>
 </html>

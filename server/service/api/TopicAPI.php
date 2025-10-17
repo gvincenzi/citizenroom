@@ -71,6 +71,7 @@ class TopicAPI {
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $french_national_assembly_delegate;
 							$_SESSION['room_additional_data']['photo']="https://www2.assemblee-nationale.fr/static/tribun/17/photos/".$french_national_assembly_delegate['uid'].".jpg";
+							$_SESSION['room_additional_data']['country'] = $topicDomain;
 							break;
 						}
 					}
@@ -80,12 +81,13 @@ class TopicAPI {
 						if($italian_deputy['uid'] == $room_id)
 						{
 							$_SESSION['room_title'] = stripslashes($italian_deputy['firstname'].' '.$italian_deputy['lastname']);
-							$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Logo_della_Camera_dei_deputati.svg";
+							$_SESSION['room_logo'] = "https://www.camera.it/application/xmanager/projects/leg19/img/header/logo_camera.jpg";
 							$_SESSION['room_custom_link'] = "https://www.camera.it/leg19/29?tipoAttivita=&tipoVisAtt=&tipoPersona=&idLegislatura=19&shadow_deputato=".$italian_deputy['uid'];
 
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $italian_deputy;
 							$_SESSION['room_additional_data']['photo']="https://documenti.camera.it/_dati/leg19/schededeputatinuovosito/fotoDefinitivo/big/d".$italian_deputy['uid'].".jpg";
+							$_SESSION['room_additional_data']['country'] = $topicDomain;
 							break;
 						}
 					}

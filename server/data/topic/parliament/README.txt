@@ -1,9 +1,7 @@
 Request for https://dati.camera.it/sparql
 
-#### tutti i deputati in carica nella XIX Legislatura con info e numero totale di mandati
-
 SELECT DISTINCT ?persona as ?uid ?nome as ?firstname ?cognome as ?lastname
-?lista as ?region ?tipoElezione as ?departement ?collegio as ?circonscription ?info as ?profession ?nomeGruppo as ?group ?sigla as ?group_short
+?lista as ?region ?collegio as ?departement ?tipoElezione as ?circonscription ?info as ?profession ?lista as ?group ?sigla as ?group_short
 WHERE {
 ?persona ocd:rif_mandatoCamera ?mandato; a foaf:Person.
 

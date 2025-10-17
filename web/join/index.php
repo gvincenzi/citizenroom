@@ -56,7 +56,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
-					<input type="hidden" value="public" name="room_type" id="room_type">
+					<input type="hidden" value="<?php isset($_GET['room_type']) ? print $_GET['room_type'] : print 'public'?>" name="room_type" id="room_type">
 				
 					<div class="card-header text-center">
 						<div class="logo" id="title"><a href="../join">CitizenRoom</a></div>
@@ -65,6 +65,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 								<ul class="nav justify-content-center">
 									<nav classname="nav-item">
 										<ul>
+											<li class="nav-link"><a href="../join" class="link menu-link"><?php print $lang['JOIN']?></a></li>
 											<li class="nav-link"><a href="../what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
 											<li class="nav-link"><a href="../privacy" class="link menu-link">Privacy (italian language)</a></li>
 										</ul>
@@ -87,13 +88,26 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						<div class="input-group form-group-no-border input-lg">
 							<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
 						</div>
+						<span style="display: <?php isset($_GET['room_type']) && $_GET['room_type']==='custom' ? print 'block' : print 'none'?>">
+							<hr/>
+							<div class="input-group form-group-no-border input-lg">
+								<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>">
+							</div>
+							<div class="input-group form-group-no-border input-lg">
+								<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
+							</div>
+							<div class="input-group form-group-no-border input-lg">
+								<input id="room_custom_link" name="room_custom_link" type="url" class="form-control" placeholder="<?php print $lang['btnCustomLink']?>">
+							</div>
+						</span>
 					</div>
 					
 					<div class="card-footer text-center">
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 					<div class="card-footer text-right">
-						<h6><a href="../custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+						<h6 style="display: <?php !isset($_GET['room_type']) ? print 'block' : print 'none'?>"><a href="./?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
+						<h6 style="display: <?php isset($_GET['room_type']) && $_GET['room_type']==='custom' ? print 'block' : print 'none'?>"><a href="./" class="link footer-link"><?php print $lang['JOIN']?></a></h6>
 					</div>
 				</form>
 			</div>

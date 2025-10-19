@@ -13,7 +13,7 @@ $lang['WAIT'] = "Attendez...";
 $lang['SELECT_LANGUAGE']="Changer de langue";
 
 /* MENU */
-$lang['JOIN']="Rejoindre une salle";
+$lang['JOIN']="Rejoindre la salle";
 $lang['LEFT']="Quitter la salle";
 $lang['ABOUT']="Qui sommes-nous";
 
@@ -53,6 +53,9 @@ $lang['btnCustomLink']="Page web";
 
 /* INVITE */
 $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
+
+/* PUBLIC ROOM */
+$lang['PUBLIC_ROOM']="Salle publique";
 
 /* CUSTOM ROOM */
 $lang['CUSTOM_ROOM']="Salle personnalisé";

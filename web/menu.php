@@ -5,24 +5,20 @@
 								<ul class="nav justify-content-center">
 									<nav classname="nav-item">
 										<ul>
-											<li class="nav-link"><a href="/web/join" class="link menu-link"><?php print $lang['JOIN']?></a></li>
-											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
-											<li class="nav-link"><a href="/web/privacy" class="link menu-link">Privacy (italian language)</a></li>
+											<li class="nav-link"><a href="/web/join" class="link menu-link"><?php print $lang['PUBLIC_ROOM']?></a></li>
+											<li class="nav-link"><a href="/web/join/?room_type=custom" class="link menu-link"><?php print $lang['CUSTOM_ROOM']?></a></li>
 											<li class="nav-item dropdown">
-												<a class="link menu-link dropdown-toggle" href="#" id="dropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-												<?php print $lang['TOPIC_ROOM']?>
-												</a>
-												<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown1">
-													<li class="dropdown-submenu">
-														<a class="dropdown-item dropdown-toggle" href="#"><?php print $lang['TOPIC_ROOM_PARLIAMENT']?></a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="/web/topic/parliament"><?php print $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']?></a></li>
-															<li><a class="dropdown-item" href="/web/topic/parliament?country=france"><?php print $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']?></a></li>
-															<li><a class="dropdown-item" href="/web/topic/parliament?country=italy"><?php print $lang['TOPIC_ROOM_PARLIAMENT_ITALY']?></a></li>
-														</ul>
-													</li>
+												<a class="link menu-link dropdown-toggle" href="#" id="dropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php print $lang['TOPIC_ROOM']?></a>
+												<ul class="dropdown-menu dropdown-menu-dark">
+													<li><a class="dropdown-item" href="#"><b><?php print $lang['TOPIC_ROOM_PARLIAMENT']?></b></a></li>
+													<li><hr class="dropdown-divider"></li>
+													<li><a class="dropdown-item" href="/web/topic/parliament"><?php print $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']?></a></li>
+													<li><a class="dropdown-item" href="/web/topic/parliament?country=france"><?php print $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']?></a></li>
+													<li><a class="dropdown-item" href="/web/topic/parliament?country=italy"><?php print $lang['TOPIC_ROOM_PARLIAMENT_ITALY']?></a></li>
 												</ul>
 											</li>
+											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
+											<li class="nav-link"><a href="/web/privacy" class="link menu-link">Privacy (italian language)</a></li>
 										</ul>
 									</nav>
 								</ul>

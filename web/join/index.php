@@ -85,8 +85,6 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 					<div class="card-footer text-right">
-						<h6 style="display: <?php !isset($_GET['room_type']) ? print 'block' : print 'none'?>"><a href="./?room_type=custom" class="link footer-link"><?php print $lang['CUSTOM_ROOM']?></a></h6>
-						<h6 style="display: <?php isset($_GET['room_type']) && $_GET['room_type']==='custom' ? print 'block' : print 'none'?>"><a href="./" class="link footer-link"><?php print $lang['JOIN']?></a></h6>
 					</div>
 				</form>
 			</div>

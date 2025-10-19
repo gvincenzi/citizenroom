@@ -1,7 +1,7 @@
 <?php
 /*
 ------------------
-Language: Italiano
+Language: English
 ------------------
 */
 
@@ -58,4 +58,10 @@ $lang['INVITATION']="You are entering the ";
 $lang['CUSTOM_ROOM']="Custom Room";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Customize a room with a title and/or a logo.<br>Use the invitation link in your personal site, in a chat group, or in your social network page.";
 
+/* TOPIC ROOM */
+$lang['TOPIC_ROOM']="Topic Room";
+$lang['TOPIC_ROOM_PARLIAMENT']="Parliament Room";
+$lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="European deputies";
+$lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Italian deputies";
+$lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="French deputies";
 ?>

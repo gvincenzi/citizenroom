@@ -69,7 +69,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   <body>   
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
     <div class="container">
-		<div class="col-md-5 ml-auto mr-auto">
+		<div class="container-sm">
 			<div class="card card-plain">
 				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../../../server/service/api/TopicAPI.php" autocomplete="off">
 					<!-- HIDDEN PARAMETERS -->
@@ -79,29 +79,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
 					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'europe'?>" name="room_topic_domain" id="room_topic_domain">
 				
-					<div class="card-header text-center">
-						<div class="logo" id="title"><a href="/web/join">CitizenRoom</a></div>
-						<div id="primary-navigation-menu">
-							<nav>
-								<ul class="nav justify-content-center">
-									<nav classname="nav-item">
-										<ul>
-											<li class="nav-link"><a href="/web/join" class="link menu-link"><?php print $lang['JOIN']?></a></li>
-											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
-											<li class="nav-link"><a href="/web/privacy" class="link menu-link">Privacy (italian language)</a></li>
-										</ul>
-									</nav>
-								</ul>
-							</nav>
-						</div>
-						<div id='callbackMessage'></div>
-						<div id='loginAlert'></div>
-						<?php
-							if(isset($_SESSION["login.error"])){
-								print '<div class="alert alert-danger">'.$_SESSION["login.error"].'</div>';
-							}
-						?>
-					</div>
+					<?php include $_SERVER['DOCUMENT_ROOT'].'/web/menu.php';?>
+					
 					<div class="card-body">
 						<div class="input-group form-group-no-border input-lg">
 							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">

@@ -70,7 +70,8 @@
   -webkit-box-shadow: var(--box-shadow-small);
   box-shadow: var(--box-shadow-small);
   display: block;
-  height: 4px;
+  height: 4px !important;
+  opacity: 1;
   margin: 10px auto 25px;
   position: relative;
   width: 132px;
@@ -85,12 +86,14 @@
 .hr-flag:after,.hr-flag:before {
   content: "";
   display: block;
-  height: 4px;
+  height: 4px !important;
+  opacity: 1;
   position: relative;
   width: 44px
 }
 
 .hr-flag:after {
   background-color: red;
-  float: right
+  float: right;
+  opacity: 1;
 }

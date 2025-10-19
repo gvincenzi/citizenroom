@@ -34,3 +34,15 @@
 #primary-navigation-menu .home img {
 	display: block;
 }
+
+#primary-navigation-menu .dropdown-menu {
+    background-color: rgba(0,0,0,.5);
+    border-color: transparent;
+    border-radius: 30px;
+    color: #ddd;
+	font-size: 1em;
+}
+
+#primary-navigation-menu .dropdown-item {
+    color: #ddd;
+}

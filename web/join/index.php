@@ -50,7 +50,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   </head>
 
   <body>   
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
+  <?php include '../header.php';?> 
     <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
@@ -60,7 +60,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="join" name="method" id="method">
 					<input type="hidden" value="<?php isset($_GET['room_type']) ? print $_GET['room_type'] : print 'public'?>" name="room_type" id="room_type">
 				
-					<?php include $_SERVER['DOCUMENT_ROOT'].'/web/menu.php';?> 
+					<?php include '../menu.php';?> 
 					
 					<div class="card-body">
 						<div class="input-group form-group-no-border input-lg">

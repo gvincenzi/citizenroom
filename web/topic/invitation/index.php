@@ -1,7 +1,7 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/server/service/lang.php';
-include $_SERVER['DOCUMENT_ROOT'].'/server/service/langs/'. prefered_language($available_languages) .'.php';
+include '../bootstrap.php';
+include_once '../../../server/service/lang.php';
+include '../../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
@@ -49,7 +49,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   </head>
 
   <body>   
-  	<?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
+  	<?php include '../../../web/header.php';?> 
     <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
@@ -65,7 +65,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="<?php if(isset($_GET['room_topic_name'])) print $_GET['room_topic_name']?>" name="room_topic_name" id="room_topic_name">
 					<input type="hidden" value="<?php if(isset($_GET['room_topic_domain'])) print $_GET['room_topic_domain']?>" name="room_topic_domain" id="room_topic_domain">
 				
-					<?php include $_SERVER['DOCUMENT_ROOT'].'/web/menu.php';?> 
+					<?php include '../../../web/menu.php';?> 
 					
 					<div class="card-body text-center">
 						<h6>

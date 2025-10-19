@@ -1,6 +1,6 @@
 <?php
-include_once '../../server/service/lang.php';
-include '../../server/service/langs/'. prefered_language($available_languages) .'.php';
+include_once '../../../../server/service/lang.php';
+include '../../../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 // Current action
 $dir = getcwd();
@@ -22,7 +22,7 @@ $_SESSION['action'] = $action;
 	
 // Check, if user has already joined a room, then jump to secured page
 if((!isset($_SESSION['nickname']) || !isset($_SESSION['room_id'])) && $_SESSION['action'] == "room") {
-	$url = "../join";
+	$url = "../../join";
 	header("Location: $url");
 }
 ?>

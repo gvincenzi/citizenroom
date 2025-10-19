@@ -36,7 +36,8 @@ include '../bootstrap.php';
         </script>
 </head>
 
-<body style="background-color: #f5f5f5">   
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/web/room/base_room.php';?> 
+<body style="background-color: #f5f5f5"> 
+	<?php include '../header.php';?>   
+  	<?php include 'base_room.php';?> 
 </body>
 </html>

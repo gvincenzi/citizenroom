@@ -1,5 +1,3 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
-
   <div class="room">
 	<?php if(isset($_SESSION['room_title'])) echo '<div class="room-title">'.$_SESSION['room_title'].'</div>'?>
 	<div id='container' class='container' style='display:none;'>

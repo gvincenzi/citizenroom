@@ -31,7 +31,7 @@ include prefered_language ( $available_languages ) . '.php';
 
 <body style="background-color: #f5f5f5">   
   <?php include '../header.php';?> 
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/web/menu.php';?> 
+  <?php include '../menu.php';?> 
   <div class="what">
     <?php print $cookieDisclaimer;?>
   </div>

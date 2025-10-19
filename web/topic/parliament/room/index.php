@@ -1,8 +1,8 @@
 <?php
 // Inialize session
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'].'/web/actionInSession.php';
-include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
+include '../../actionInSession.php';
+include '../../bootstrap.php';
 ?>
 <head>
 	<meta charset="utf8">
@@ -41,7 +41,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 </head>
 
 <body style="background-color: #f5f5f5">   
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/web/room/base_room.php';?> 
+	<?php include '../../../header.php';?>   
+ 	<?php include '../../../room/base_room.php';?> 
 
   <div id='identity_card' class='identity_card'>
 	<?php echo '<img src="'.$_SESSION['room_additional_data']['photo'].'" class = "room-logo"></img>'?>

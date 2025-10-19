@@ -14,6 +14,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_custom_link']);
 	unset($_SESSION['room_additional_data']);
+	unset($_SESSION['room_topic_name']);
+	unset($_SESSION['room_topic_domain']);
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -49,7 +51,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 
   <body>   
   <?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
-    <div class="container">
+    <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
 				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/API.php" autocomplete="off">

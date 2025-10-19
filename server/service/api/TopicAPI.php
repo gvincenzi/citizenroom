@@ -7,13 +7,13 @@ $topicApi = new TopicAPI();
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {
 		case 'init':
-			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='custom' && isset($_REQUEST['room_topic_name']) && isset($_REQUEST['room_topic_domain'])){
+			if(isset($_REQUEST['room_type']) && $_REQUEST['room_type']=='topic' && isset($_REQUEST['room_topic_name']) && isset($_REQUEST['room_topic_domain'])){
 				$topicApi->init($_REQUEST['room_topic_name'],$_REQUEST['room_topic_domain']);
 			}
 			break;
 		case 'join':
-			if(isset($_REQUEST['room_type']) && ($_REQUEST['room_type']=='custom')){
-				$topicApi->join($_REQUEST['room_topic_name'],$_REQUEST['room_topic_domain'],$_REQUEST['room_type'],$_REQUEST['nickname'],$_REQUEST['room_id'],$_REQUEST['room_title'] ?? "",$_REQUEST['room_logo'] ?? "",$_REQUEST['room_custom_link'] ?? "");
+			if(isset($_REQUEST['room_type']) && ($_REQUEST['room_type']=='topic')){
+				$topicApi->join($_REQUEST['room_topic_name'],$_REQUEST['room_topic_domain'],$_REQUEST['room_type'],$_REQUEST['nickname'],$_REQUEST['room_id'],$_REQUEST['room_title'] ?? "",$_REQUEST['room_logo'] ?? "",$_REQUEST['room_custom_link'] ?? "", $_REQUEST['room_topic_name'], $_REQUEST['room_topic_domain']);
 			}
 			break;
 		case 'left':
@@ -41,15 +41,19 @@ class TopicAPI {
 		print $tojson;
 	}
 
-	public function join($topicName,$topicDomain,$room_type,$nickname,$room_id,$room_title,$room_logo,$room_custom_link){
+	public function join($topicName,$topicDomain,$room_type,$nickname,$room_id,$room_title,$room_logo,$room_custom_link,$room_topic_name,$room_topic_domain){
 		unset($_SESSION['room_title']);
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
 		unset($_SESSION['room_additional_data']);
+		unset($_SESSION['room_topic_name']);
+		unset($_SESSION['room_topic_domain']);
 
 		$_SESSION['room_id'] = $room_id;
         $_SESSION['nickname'] = $nickname;
 		$_SESSION['room_type'] = $room_type;
+		$_SESSION['room_topic_name'] = $room_topic_name;
+		$_SESSION['room_topic_domain'] = $room_topic_domain;
 		
 		//READ DATA
 		$file = fopen("../../data/topic/$topicName/$topicDomain.csv","r");

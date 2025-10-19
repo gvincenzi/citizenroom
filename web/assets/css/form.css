@@ -3,6 +3,10 @@
     max-width: none;
 }
 
+.container-join{
+    max-width: 800px;
+}
+
 .card {
     padding-top: 70px;
 }
@@ -12,15 +16,6 @@
     -webkit-box-shadow: none;
     box-shadow: none;
     border: none;
-}
-
-.invitation{
-    display: inline-flex;
-    align-items: center;
-}
-
-.invitation>h6{
-    padding: 5px 40px;
 }
 
 .card-plain .card-body,.card-plain .card-header {

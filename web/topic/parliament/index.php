@@ -14,6 +14,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_logo']);
 	unset($_SESSION['room_custom_link']);
 	unset($_SESSION['room_additional_data']);
+	unset($_SESSION['room_topic_name']);
+	unset($_SESSION['room_topic_domain']);	
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -56,7 +58,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			$.ajax({
 			  type: "GET",
 			  url: "/server/service/api/TopicAPI.php",
-			  data: { method: "init", room_type: "custom", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'europe'?>"}
+			  data: { method: "init", room_type: "topic", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'europe'?>"}
 			})
 			.done(function( msg ) {
 				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>",msg);
@@ -68,14 +70,14 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 
   <body>   
 	<?php include $_SERVER['DOCUMENT_ROOT'].'/web/header.php';?> 
-    <div class="container">
+    <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
 				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../../../server/service/api/TopicAPI.php" autocomplete="off">
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
-					<input type="hidden" value="custom" name="room_type" id="room_type">
+					<input type="hidden" value="topic" name="room_type" id="room_type">
 					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
 					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'europe'?>" name="room_topic_domain" id="room_topic_domain">
 				

@@ -26,7 +26,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
 					$('#joinMsg').text('<?php print $lang['JOINING']?>');
-					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_logo']?>","<?php echo $_SESSION['room_custom_link']?>");
+					BindEvent('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>","<?php echo $_SESSION['room_logo']?>","<?php echo $_SESSION['room_custom_link']?>","<?php echo $_SESSION['room_topic_name']?>","<?php echo $_SESSION['room_topic_domain']?>");
 					StartMeeting('<?php echo $_SESSION['room_id']?>','<?php echo $_SESSION['nickname']?>',"<?php echo $_SESSION['room_title']?>","<?php echo $_SESSION['room_type']?>");
 			});
 			

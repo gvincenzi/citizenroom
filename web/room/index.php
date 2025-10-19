@@ -15,6 +15,10 @@ include '../bootstrap.php';
 	<link rel="stylesheet" media="all and (min-width: 500px) and (max-width: 1100px)" href="../assets/css/room.tablet.css?v=<?php print time()?>" rel="stylesheet"/>
 	<link rel="stylesheet" media="all and (min-width: 1100px)" href="../assets/css/room.css?v=<?php print time()?>" rel="stylesheet"/>
 		<script>
+			$(document).ready(function() {
+				$("#primary-navigation").hide();
+	   		});	
+
 			$(function(){
                     const urlParams = new URLSearchParams(window.location.search);
 					$('#joinMsg').text('<?php print $lang['JOINING']?>');

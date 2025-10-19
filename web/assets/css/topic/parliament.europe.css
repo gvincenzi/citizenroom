@@ -1,0 +1,96 @@
+
+.identity_card {
+  text-align: center;
+  position: absolute;
+  right: 0%;
+  top: 15%;
+  color: #fff;
+  background-color: rgba(0,0,0,.7);
+  border: medium;
+  padding: 20px;
+  width: auto;
+  max-width: 250px;
+}
+
+.identity_card button { 
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+  margin: 4px;
+  font-size: 10px;
+  background: rgba(255,255,255,0.23);
+  color: #fff;
+  border-radius: 3px; 
+  cursor: pointer;
+  transition: .3s background;
+}
+.identity_card button:hover { 
+   background: rgba(0,0,0,0.5);
+   color: #fff;
+}
+
+.identity_card button#btnCustomLink { 
+  display: block;
+  width: 80%;
+  padding: .4rem;
+  border: none; 
+  margin: 1rem auto; 
+  /*font-size: 1.3rem;*/
+  background: rgba(0, 102, 14, 0.23);
+  color: #fff;
+  border-radius: 3px; 
+  cursor: pointer;
+  transition: .3s background;
+}
+
+.identity_card button#btnCustomLink:hover { 
+  background: rgba(0, 102, 14, 0.23);
+   color: #fff;
+}
+
+.room-title {
+	opacity: 0.7;
+	font-family: 'Bangers', cursive;
+    font-size: 4em;
+    color: white
+}
+
+.room-logo {
+    max-height: 100px;
+    border: medium;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 10px;
+    margin-bottom: 15px;
+}
+
+.hr-flag {
+  background-color: blue;
+  border: none!important;
+  -webkit-box-shadow: var(--box-shadow-small);
+  box-shadow: var(--box-shadow-small);
+  display: block;
+  height: 4px;
+  margin: 10px auto 25px;
+  position: relative;
+  width: 132px;
+}
+
+
+.hr-flag:before {
+  background-color: blue;
+  float: left
+}
+
+.hr-flag:after,.hr-flag:before {
+  content: "";
+  display: block;
+  height: 4px;
+  position: relative;
+  width: 44px
+}
+
+.hr-flag:after {
+  background-color: blue;
+  float: right
+}

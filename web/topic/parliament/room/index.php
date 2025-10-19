@@ -19,6 +19,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
 		<script>
 
 			$(document).ready(function() {
+				$("#primary-navigation").hide();
 				topicBackground("parliament","<?php print $_SESSION['room_additional_data']['country'] ?? 'france'?>");
 	   		});	
 
@@ -45,9 +46,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/web/topic/bootstrap.php';
   <div id='identity_card' class='identity_card'>
 	<?php echo '<img src="'.$_SESSION['room_additional_data']['photo'].'" class = "room-logo"></img>'?>
 	<h4><?php echo '<a href=\''.$_SESSION['room_custom_link'].'\' target="_blank">'.$_SESSION['room_title'].'</a>' ?></h4>
-	<h5><?php echo $_SESSION['room_additional_data']['group']?></h5>
+	<h5><?php echo $_SESSION['room_additional_data']['h5']?></h5>
 	<hr class="hr-flag"/>
-	<h6><?php echo $_SESSION['room_additional_data']['departement'].' ('.$_SESSION['room_additional_data']['circonscription']?><?php echo $_SESSION['room_additional_data']['country']=='france' ? '<sup>e</sup> circonscription)' : ')'?></h6>
+	<h6><?php echo $_SESSION['room_additional_data']['h6']?></h6>
   </div>
 </body>
 </html>

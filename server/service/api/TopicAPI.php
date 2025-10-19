@@ -1,8 +1,8 @@
 <?php
-include_once 'API.php';
+require_once 'API.php';
 
 $api = new API();
-$topicApi = new TopicAPI($api);
+$topicApi = new TopicAPI();
 
 if (isset($_REQUEST['method'] )){
 	switch ($_REQUEST['method']) {
@@ -46,6 +46,10 @@ class TopicAPI {
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
 		unset($_SESSION['room_additional_data']);
+
+		$_SESSION['room_id'] = $room_id;
+        $_SESSION['nickname'] = $nickname;
+		$_SESSION['room_type'] = $room_type;
 		
 		//READ DATA
 		$file = fopen("../../data/topic/$topicName/$topicDomain.csv","r");
@@ -70,6 +74,8 @@ class TopicAPI {
 
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $french_national_assembly_delegate;
+							$_SESSION['room_additional_data']['h5'] = $french_national_assembly_delegate['group'];
+							$_SESSION['room_additional_data']['h6'] = $french_national_assembly_delegate['departement'].' ('.$french_national_assembly_delegate['circonscription'].'<sup>e</sup> circonscription)';
 							$_SESSION['room_additional_data']['photo']="https://www2.assemblee-nationale.fr/static/tribun/17/photos/".$french_national_assembly_delegate['uid'].".jpg";
 							$_SESSION['room_additional_data']['country'] = $topicDomain;
 							break;
@@ -86,7 +92,27 @@ class TopicAPI {
 
 							//ADDITIONAL TOPIC DATA
 							$_SESSION['room_additional_data'] = $italian_deputy;
+							$_SESSION['room_additional_data']['h5'] = $italian_deputy['group'];
+							$_SESSION['room_additional_data']['h6'] = $italian_deputy['departement'].' ('.$italian_deputy['circonscription'].')';
 							$_SESSION['room_additional_data']['photo']="https://documenti.camera.it/_dati/leg19/schededeputatinuovosito/fotoDefinitivo/big/d".$italian_deputy['uid'].".jpg";
+							$_SESSION['room_additional_data']['country'] = $topicDomain;
+							break;
+						}
+					}
+					break;
+				case 'europe';
+					foreach($topic_data as $european_deputy){
+						if($european_deputy['mep_identifier'] == $room_id)
+						{
+							$_SESSION['room_title'] = stripslashes($european_deputy['mep_given_name'].' '.$european_deputy['mep_family_name']);
+							$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/1/1e/European_Parliament_logo.svg";
+							$_SESSION['room_custom_link'] = "https://www.europarl.europa.eu/meps/". substr($_COOKIE['citizenroom']['bestlang'],0,2)."/".$european_deputy['mep_identifier'];
+
+							//ADDITIONAL TOPIC DATA
+							$_SESSION['room_additional_data'] = $european_deputy;
+							$_SESSION['room_additional_data']['h5'] = $european_deputy['mep_country_of_representation'];
+							$_SESSION['room_additional_data']['h6'] = $european_deputy['mep_political_group'];
+							$_SESSION['room_additional_data']['photo']=$european_deputy['mep_image'];
 							$_SESSION['room_additional_data']['country'] = $topicDomain;
 							break;
 						}

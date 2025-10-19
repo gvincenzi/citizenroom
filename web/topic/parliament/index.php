@@ -36,7 +36,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			    }
 		    }
 
-			topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'france'?>");
+			topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>");
 			
             topicInit();
 	    });	
@@ -56,10 +56,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			$.ajax({
 			  type: "GET",
 			  url: "/server/service/api/TopicAPI.php",
-			  data: { method: "init", room_type: "custom", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'france'?>"}
+			  data: { method: "init", room_type: "custom", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'europe'?>"}
 			})
 			.done(function( msg ) {
-				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'france'?>",msg);
+				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>",msg);
 			});
 		}
 
@@ -77,7 +77,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="join" name="method" id="method">
 					<input type="hidden" value="custom" name="room_type" id="room_type">
 					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
-					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'france'?>" name="room_topic_domain" id="room_topic_domain">
+					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'europe'?>" name="room_topic_domain" id="room_topic_domain">
 				
 					<div class="card-header text-center">
 						<div class="logo" id="title"><a href="/web/join">CitizenRoom</a></div>

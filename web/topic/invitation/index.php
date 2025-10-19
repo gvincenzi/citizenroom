@@ -49,7 +49,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   </head>
 
   <body>   
-  	<?php include '../../../web/header.php';?> 
+  	<?php include '../../header.php';?> 
     <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
@@ -83,7 +83,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					</div>
 					
 					<div class="card-footer text-center">
-						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 20%"><?php print $lang['JOIN']?></button>
+						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 				</form>
 			</div>

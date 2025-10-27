@@ -1,22 +1,23 @@
-<script type="text/javascript">
-  	$(document).ready(function() {
-		randomBackground();
-	});
-</script>
 <div id="primary-navigation">
-	<nav>
-		<ul class="nav justify-content-end">
-           	<nav classname="nav-item">
-           		<ul>
-                    <li class="nav-link"><a href="#" onclick="changeLanguage('en_US')">English</a></li>
-           	    	<li class="nav-link"><a href="#" onclick="changeLanguage('it_IT')">Italiano</a></li>
-                    <li class="nav-link"><a href="#" onclick="changeLanguage('fr_FR')"><?php print ("Français")?></a></li>
-					<li class="nav-link"><a href="https://github.com/gvincenzi/citizenroom/releases/tag/7.0.0" target="_blank">v 7.0.0</a></li>
-           		</ul>
-           	</nav>
-        </ul>
-    </nav>
+  <nav>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="link menu-link" href="#" onclick="changeLanguage('en_US')">English</a>
+      </li>
+      <li class="nav-item">
+        <a class="link menu-link" href="#" onclick="changeLanguage('it_IT')">Italiano</a>
+      </li>
+      <li class="nav-item">
+        <a class="link menu-link" href="#" onclick="changeLanguage('fr_FR')"><?php print("Français"); ?></a>
+      </li>
+
+	  <li class="nav-item">
+        <a class="link menu-link" href="https://github.com/gvincenzi/citizenroom/releases/tag/8.0.0" target="_blank">v 8.0.0</a>
+      </li>
+    </ul>
+  </nav>
 </div>
+
 
 <img alt="full screen background image" src="" id="full-screen-background-image" />
 <flickr>

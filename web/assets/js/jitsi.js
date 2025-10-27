@@ -1,5 +1,5 @@
 var apiObj = null;
-function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLink){
+function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLink,roomTopicName='', roomTopicDomain=''){
 	$("#btnRaiseHandOn").on('click', function () {
         apiObj.executeCommand('toggleRaiseHand');
 		$("#btnRaiseHandOn").hide();
@@ -49,6 +49,8 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_custom_link=" + roomCustomLink + "&room_type=" + roomType));
 		} else if(roomType != null && roomType == "public"){
 			copyToClipboard(encodeURI(window.location.href.replaceAll("/room/", "/invitation/")+"?room_id="+roomNumber+"&room_type="+roomType));
+		} else if(roomType != null && roomType == "topic"){
+			copyToClipboard(encodeURI(window.location.href.replaceAll("/"+roomTopicName+"/room/", "/invitation/") + "?room_id=" + roomNumber + "&room_title=" + roomTitle + "&room_logo=" + roomLogo + "&room_custom_link=" + roomCustomLink + "&room_type=" + roomType+ "&room_topic_name=" + roomTopicName + "&room_topic_domain=" + roomTopicDomain));
 		}
 		alert("Invitation link copied in clipboard");
     });
@@ -75,7 +77,7 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 		}
 	});
 	$("#btnLeave").on('click', function () {
-        	window.location.href = window.location.href.replaceAll("/web/room/", "/server/service/left.php");
+        	window.location.href = "https://citizenroom.altervista.org/server/service/left.php";
     	});
 }
 
@@ -193,11 +195,11 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 
 			$.ajax({
 			  type: "POST",
-			  url: "../../server/service/api/API.php",
+			  url: "/server/service/api/API.php",
 			  data: { method: "left" }
 			}).done(function( msg ) {
 				var left = JSON.parse(msg);
-				window.location.href = window.location.href.replaceAll("/web/room/", "/web/join/");
+				window.location.href = window.location.href.replaceAll("/room/", "/");
 			});
         },
 		raiseHandUpdated: function(data){

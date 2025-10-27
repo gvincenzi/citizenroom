@@ -1,7 +1,7 @@
 <?php
 include '../bootstrap.php';
-include_once '../../server/service/lang.php';
-include '../../server/service/langs/'. prefered_language($available_languages) .'.php';
+include_once '../../../server/service/lang.php';
+include '../../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
@@ -15,7 +15,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	unset($_SESSION['room_custom_link']);
 	unset($_SESSION['room_additional_data']);
 	unset($_SESSION['room_topic_name']);
-	unset($_SESSION['room_topic_domain']);
+	unset($_SESSION['room_topic_domain']);	
 }else{
 	if(isset($_SESSION["join.error"])){
 		// If th user change the language after a bad login it must reload the right string
@@ -37,6 +37,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 				    $(callbackMessage).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_ERROR'] ?>');
 			    }
 		    }
+
+			topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>");
+			
+            topicInit();
 	    });	
 		
 		function validateJoinForm(){
@@ -46,47 +50,50 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			}
 			return true;
 		}	
+
+        function topicInit(){	
+			$('select').selectpicker();	
+			$("#room_id").empty();
+			$("#room_id").selectpicker("refresh");
+			$.ajax({
+			  type: "GET",
+			  url: "/server/service/api/TopicAPI.php",
+			  data: { method: "init", room_type: "topic", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'europe'?>"}
+			})
+			.done(function( msg ) {
+				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>",msg);
+			});
+		}
+
     </script>
   </head>
 
   <body>   
-  <?php include '../header.php';?> 
+	<?php include '../../../web/header.php';?> 
     <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
-				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/API.php" autocomplete="off">
+				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../../../server/service/api/TopicAPI.php" autocomplete="off">
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
-					<input type="hidden" value="<?php isset($_GET['room_type']) ? print $_GET['room_type'] : print 'public'?>" name="room_type" id="room_type">
+					<input type="hidden" value="topic" name="room_type" id="room_type">
+					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
+					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'europe'?>" name="room_topic_domain" id="room_topic_domain">
 				
-					<?php include '../menu.php';?> 
+					<?php include '../../../web/menu.php';?>
 					
 					<div class="card-body">
 						<div class="input-group form-group-no-border input-lg">
 							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 						</div>
 						<div class="input-group form-group-no-border input-lg">
-							<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['ROOM']?>">
+						<select data-width="100%" id="room_id" name="room_id" type="number" class="selectpicker" data-live-search="true" data-none-selected-text="<?php print $lang['WAIT']?>"></select>
 						</div>
-						<span style="display: <?php isset($_GET['room_type']) && $_GET['room_type']==='custom' ? print 'block' : print 'none'?>">
-							<hr/>
-							<div class="input-group form-group-no-border input-lg">
-								<input id="room_title" name="room_title" type="text" class="form-control" placeholder="<?php print $lang['ROOM_TITLE']?>">
-							</div>
-							<div class="input-group form-group-no-border input-lg">
-								<input id="room_logo" name="room_logo" type="url" class="form-control" placeholder="<?php print $lang['ROOM_LOGO']?>">
-							</div>
-							<div class="input-group form-group-no-border input-lg">
-								<input id="room_custom_link" name="room_custom_link" type="url" class="form-control" placeholder="<?php print $lang['btnCustomLink']?>">
-							</div>
-						</span>
 					</div>
-					
+
 					<div class="card-footer text-center">
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
-					</div>
-					<div class="card-footer text-right">
 					</div>
 				</form>
 			</div>

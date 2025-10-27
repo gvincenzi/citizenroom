@@ -24,7 +24,23 @@ The Citizenroom uses a Jitsi Meet Server self hosted <a href='https://citizenroo
 <h2>Collaborative whiteboard</h2>
 Each room gives access to a collaborative whiteboard, shared with all users of the room.
 This functionality is possible thanks to the Open Source project<a href='https://wbo.ophir.dev/'>WBO</a> by <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
+<br>
+<hr>
+<br>
+<h2>Topic Rooms</h2>
+Topic rooms are CitizenRooms that build the interface using open data available on the web (through live calls to public APIs or with CSV files downloaded from websites that provide them).<br><br>
 
+<h3>Parliamentary Rooms</h3>
+Parliamentary rooms are thetopicmed rooms dedicated to parliamentarians: each room is built around public data of a member of parliament.<br/>
+CitizenRoom offers parliamentary rooms for 3 parliaments:
+<ul>
+<li><b>European Parliament</b>, data source: <a href='https://data.europarl.europa.eu/fr/datasets/deputes-au-parlement-europeen-legislature10/58'>data.europarl.europa.eu</a></li>
+<li><b>Italian Parliament (Camera dei deputati)</b>, data source: <a href='https://dati.camera.it/'>dati.camera.it</a></li>
+<li><b>French Parliament (Assemblée Nationale)</b>, data source: <a href='https://data.assemblee-nationale.fr/acteurs/deputes-en-exercice'>data.assemblee-nationale.fr</a></li>
+</ul>
+<br>
+<hr>
+<br>
 <h2>AN OPEN SOURCE PROTOTYPE</h2>
 Citizenroom is a prototype web conference platform, based on jitsi meet public api, written in php/javascript and completely open source.<br>
 You can read the prototype code and, if you believe it is necessary, propose to modify it on Github in the <a href='https://github.com/gvincenzi/citizenroom'>dedicated repository</a>.

@@ -1,7 +1,7 @@
 <?php
 include '../bootstrap.php';
-include_once '../../server/service/lang.php';
-include '../../server/service/langs/'. prefered_language($available_languages) .'.php';
+include_once '../../../server/service/lang.php';
+include '../../../server/service/langs/'. prefered_language($available_languages) .'.php';
 
 if(!isset($_SESSION['action'])){
 	$_SESSION['action']='room';
@@ -34,6 +34,10 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
     <meta name="author" content="InMediArt">
     
     <script type="text/javascript">
+		$(document).ready(function() {
+			topicBackground("<?php print $_REQUEST['room_topic_name']?>","<?php print $_REQUEST['room_topic_domain']?>");
+	    });
+
 		function validateJoinForm(){
 			if($(nickname).val()=='' || $(room_id).val()==''){
 				$(loginAlert).removeClass('alert-warning').addClass('alert').addClass('alert-danger').text('<?php print $lang['JOIN_MANDATORY_ERROR'] ?>');
@@ -45,11 +49,11 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
   </head>
 
   <body>   
-  <?php include '../header.php';?> 
+  	<?php include '../../header.php';?> 
     <div class="container container-join">
 		<div class="container-sm">
 			<div class="card card-plain">
-				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../server/service/api/API.php" autocomplete="off">
+				<form class="form" onsubmit="return validateJoinForm()" method="POST" action="../../../../server/service/api/TopicAPI.php" autocomplete="off">
 					<!-- HIDDEN PARAMETERS -->
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
@@ -58,14 +62,16 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="<?php if(isset($_GET['room_custom_link'])) print $_GET['room_custom_link']?>" name="room_custom_link" id="room_custom_link">
 					<input type="hidden" value="<?php if(isset($_GET['room_type'])) print $_GET['room_type']?>" name="room_type" id="room_type">
 					<input type="hidden" value="<?php if(isset($_GET['room_id'])) print $_GET['room_id']?>" name="room_id" id="room_id">
+					<input type="hidden" value="<?php if(isset($_GET['room_topic_name'])) print $_GET['room_topic_name']?>" name="room_topic_name" id="room_topic_name">
+					<input type="hidden" value="<?php if(isset($_GET['room_topic_domain'])) print $_GET['room_topic_domain']?>" name="room_topic_domain" id="room_topic_domain">
 				
-					<?php include '../menu.php';?> 
+					<?php include '../../../web/menu.php';?> 
 					
 					<div class="card-body text-center">
 						<h6>
 						<?php 
-						if(isset($_GET['room_type']) && $_GET['room_type'] == 'custom'){
-							print $lang['INVITATION'].$lang['CUSTOM_ROOM'].' <strong>'.$_GET['room_id'].'</strong><br><h5><strong>'.$_GET['room_title'].'</strong></h5>';
+						if(isset($_GET['room_type']) && $_GET['room_type'] == 'topic'){
+							print $lang['INVITATION'].$lang['TOPIC_ROOM'].' > '.$lang['TOPIC_ROOM_'.strtoupper($_GET['room_topic_name']).'_'.strtoupper($_GET['room_topic_domain'])].' <strong>'.$_GET['room_id'].'</strong><br><h5><strong>'.$_GET['room_title'].'</strong></h5>';
 						} else if(isset($_GET['room_type']) && $_GET['room_type'] == 'public'){
 							print $lang['INVITATION'].$lang['ROOM_CHECK_ROOM'].' <strong>'.$_GET['room_id'].'</strong>';
 						}

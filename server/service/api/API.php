@@ -43,6 +43,8 @@ class API {
 		unset($_SESSION['room_logo']);
 		unset($_SESSION['room_custom_link']);
 		unset($_SESSION['room_additional_data']);
+		unset($_SESSION['room_topic_name']);
+		unset($_SESSION['room_topic_domain']);
 
 		print json_encode($arr);
 	}

@@ -97,3 +97,17 @@
   float: right;
   opacity: 1;
 }
+
+.info_card {
+  text-align: center;
+  position: relative;
+  color: #fff;
+  background-color: rgba(0,0,0,.7);
+  border: medium;
+  padding: 20px;
+  width: auto;
+  min-width: 200px;
+  height: 250px;
+  max-width: 250px;
+  max-height: 400px;
+}

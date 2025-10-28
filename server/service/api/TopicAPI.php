@@ -23,7 +23,7 @@ if (isset($_REQUEST['method'] )){
 	
 } else {
 	$arr = array('health' => 'OK');
-	print json_encode($arr);
+			print json_encode($arr);
 }
 
 class TopicAPI {
@@ -55,15 +55,19 @@ class TopicAPI {
 		$_SESSION['room_topic_name'] = $room_topic_name;
 		$_SESSION['room_topic_domain'] = $room_topic_domain;
 		
-		//READ DATA
-		$file = fopen("../../data/topic/$topicName/$topicDomain.csv","r");
-		$keys = fgetcsv($file, escape: "\\");
-		$topic_data = [];
-		while ($line = fgetcsv($file, escape: "\\")) {
-			$data = array_combine($keys, $line);
-			$topic_data[] = $data;
+		$filename = "../../data/topic/$topicName/$topicDomain.csv";
+
+		if (file_exists($filename)) {
+			//READ DATA
+			$file = fopen($filename,"r");
+			$keys = fgetcsv($file, escape: "\\");
+			$topic_data = [];
+			while ($line = fgetcsv($file, escape: "\\")) {
+				$data = array_combine($keys, $line);
+				$topic_data[] = $data;
+			}
+			fclose($file);
 		}
-		fclose($file);
 
 		if($topicName == "parliament"){
 			switch($topicDomain)
@@ -124,6 +128,28 @@ class TopicAPI {
 					break;
 			}
 			
+		} else if($topicName == "municipality"){
+			switch($topicDomain)
+			{
+				case 'france';
+					$url = "https://geo.api.gouv.fr/communes?codePostal=$room_id&fields=code,nom,centre,region,departement";
+					$response = @file_get_contents($url);
+					$topic_data = json_decode($response, true);
+					foreach($topic_data as $french_municipality){
+						$_SESSION['room_title'] = stripslashes($french_municipality['nom']);
+						$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/fr/thumb/2/22/Republique-francaise-logo.svg/768px-Republique-francaise-logo.svg.png";
+						$_SESSION['room_custom_link'] = "https://".substr($_COOKIE['citizenroom']['bestlang'],0,2).".wikipedia.org/wiki/".$french_municipality['nom'];
+
+						//ADDITIONAL TOPIC DATA
+						$_SESSION['room_additional_data'] = $french_municipality;
+						$_SESSION['room_additional_data']['h5'] = $french_municipality['departement']['nom'].' ('.$french_municipality['departement']['code'].')';
+						$_SESSION['room_additional_data']['h6'] = $french_municipality['region']['nom'];
+						$_SESSION['room_additional_data']['photo'] = "";
+						$_SESSION['room_additional_data']['country'] = $topicDomain;
+						break;
+					}
+					break;
+			}
 		}
 
 		header("Location: ../../../web/topic/$topicName/room");

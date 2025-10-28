@@ -67,4 +67,8 @@ $lang['TOPIC_ROOM_PARLIAMENT']="Stanza Parlamentare";
 $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="Parlamentari europei";
 $lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Deputati italiani";
 $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="Deputati francesi";
+
+$lang['TOPIC_ROOM_MUNICIPALITY']="Sala municipale";
+$lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="Comuni francesi";
+$lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Codice postale";
 ?>

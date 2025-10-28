@@ -11,10 +11,12 @@
 												<a class="link menu-link dropdown-toggle" href="#" id="dropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php print $lang['TOPIC_ROOM']?></a>
 												<ul class="dropdown-menu dropdown-menu-dark">
 													<li><a class="dropdown-item" href="#"><b><?php print $lang['TOPIC_ROOM_PARLIAMENT']?></b></a></li>
-													<li><hr class="dropdown-divider"></li>
 													<li><a class="dropdown-item" href="/web/topic/parliament"><?php print $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']?></a></li>
 													<li><a class="dropdown-item" href="/web/topic/parliament?country=france"><?php print $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']?></a></li>
 													<li><a class="dropdown-item" href="/web/topic/parliament?country=italy"><?php print $lang['TOPIC_ROOM_PARLIAMENT_ITALY']?></a></li>
+													<li><hr class="dropdown-divider"></li>
+													<li><a class="dropdown-item" href="#"><b><?php print $lang['TOPIC_ROOM_MUNICIPALITY']?></b></a></li>
+													<li><a class="dropdown-item" href="/web/topic/municipality?country=france"><?php print $lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']?></a></li>
 												</ul>
 											</li>
 											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>

@@ -67,4 +67,8 @@ $lang['TOPIC_ROOM_PARLIAMENT']="Parliament Room";
 $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="European deputies";
 $lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Italian deputies";
 $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="French deputies";
+
+$lang['TOPIC_ROOM_MUNICIPALITY']="Municipality";
+$lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="French municipalities";
+$lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Postal code";
 ?>

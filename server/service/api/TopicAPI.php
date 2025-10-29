@@ -132,6 +132,25 @@ class TopicAPI {
 			switch($topicDomain)
 			{
 				case 'france';
+				    $filenameMajors = "https://www.data.gouv.fr/api/1/datasets/r/2876a346-d50c-4911-934e-19ee07b0e503";
+					$arrContextOptions = [
+						"ssl" => [
+							"verify_peer"      => false,
+							"verify_peer_name" => false,
+						],
+					];
+
+					$fileMajors = fopen($filenameMajors,"r", false, stream_context_create($arrContextOptions));
+					$keys = fgetcsv($fileMajors, escape: "\\", separator: ";");
+
+					$topic_data_municipality_majors = [];
+					while ($line = fgetcsv($fileMajors, escape: "\\", separator: ";")) {
+						if (empty(array_filter($line))) continue;
+						$data = array_combine($keys, $line);
+						$topic_data_municipality_majors[] = $data;
+					}
+					fclose($fileMajors);
+
 					$url = "https://geo.api.gouv.fr/communes?code=$room_id&fields=code,nom,mairie,region,departement";
 					$response = @file_get_contents($url);
 					$topic_data = json_decode($response, true);
@@ -148,10 +167,42 @@ class TopicAPI {
 						$_SESSION['room_additional_data']['lat'] = $french_municipality['mairie']['coordinates'][1];
 						$_SESSION['room_additional_data']['lng'] = $french_municipality['mairie']['coordinates'][0];
 						$_SESSION['room_additional_data']['country'] = $topicDomain;
+
+						foreach($topic_data_municipality_majors as $topic_data_municipality_major){
+							if(
+								strtoupper(trim($french_municipality['code'])) === $topic_data_municipality_major['Code de la commune']) {
+									$_SESSION['room_additional_data']['major'] = ucwords(strtolower($topic_data_municipality_major["Prénom de l'élu"]." ".$topic_data_municipality_major["Nom de l'élu"]));
+								}
+						}
 						break;
 					}
 					break;
 				case 'italy';
+					$filenameMajors = "https://dait.interno.gov.it/documenti/sindaciincarica.csv";
+					$arrContextOptions = [
+						"ssl" => [
+							"verify_peer"      => false,
+							"verify_peer_name" => false,
+						],
+					];
+					$fileMajors = fopen($filenameMajors,"r", false, stream_context_create($arrContextOptions));
+					// Ignorer la première ligne
+					fgetcsv($fileMajors, escape: "\\");
+
+					// Ignorer la deuxième ligne
+					fgetcsv($fileMajors, escape: "\\");
+
+					// Utiliser la troisième ligne comme clés
+					$keys = fgetcsv($fileMajors, escape: "\\", separator: ";");
+
+					$topic_data_municipality_majors = [];
+					while ($line = fgetcsv($fileMajors, escape: "\\", separator: ";")) {
+						if (empty(array_filter($line))) continue;
+						$data = array_combine($keys, $line);
+						$topic_data_municipality_majors[] = $data;
+					}
+					fclose($fileMajors);
+
 					$url = "https://axqvoqvbfjpaamphztgd.functions.supabase.co/comuni?codice=$room_id";
 					$options = [
 						"http" => [
@@ -179,6 +230,14 @@ class TopicAPI {
 						$_SESSION['room_additional_data']['lat'] = $italian_municipality['coordinate']['lat'];
 						$_SESSION['room_additional_data']['lng'] = $italian_municipality['coordinate']['lng'];
 						$_SESSION['room_additional_data']['country'] = $topicDomain;
+
+						foreach($topic_data_municipality_majors as $topic_data_municipality_major){
+							if(
+								strtoupper(trim($italian_municipality['nome'])) === $topic_data_municipality_major['denominazione_comune'] && 
+								strtoupper(trim($italian_municipality['provincia']['sigla'])) === $topic_data_municipality_major['sigla_provincia']) {
+									$_SESSION['room_additional_data']['major'] = ucwords(strtolower($topic_data_municipality_major['nome']." ".$topic_data_municipality_major['cognome']));
+								}
+						}
 						break;
 					}
 					break;

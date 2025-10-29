@@ -44,8 +44,8 @@ CitizenRoom offers parliamentary rooms for 3 parliaments:
 Municipal rooms are themed rooms dedicated to municipalities: each room is built around public data from a municipality.<br/>
 CitizenRoom offers municipal rooms for 2 countries:
 <ul>
-<li><b>Italian municipalities</b>, data source: <a href='https://github.com/Samurai016/Comuni-ITA'>Comuni ITA API</a></li>
-<li><b>French municipalities</b>, data source: <a href='https://geo.api.gouv.fr/'>geo.api.gouv.fr</a></li>
+<li><b>Italian municipalities</b>, data source: <a href='https://github.com/Samurai016/Comuni-ITA'>Comuni ITA API</a>, <a href='https://dait.interno.gov.it/elezioni/open-data/amministratori-locali-e-regionali-in-carica'>dait.interno.gov.it - Amministratori locali</a></li>
+<li><b>French municipalities</b>, data source: <a href='https://geo.api.gouv.fr/'>geo.api.gouv.fr</a>, <a href='https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1/'>data.gouv.fr - Répertoire national des élus</a></li>
 </ul>
 <br>
 <hr>

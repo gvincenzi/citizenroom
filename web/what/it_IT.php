@@ -47,8 +47,8 @@ CitizenRoom espone le stanze parlamentari per 3 parlamenti:
 Le stanze municipali sono stanze a tema dedicate alle municipalità: ogni stanza si costruisce attorno a dati pubblici di un comune.<br/>
 CitizenRoom espone le stanze municipali per 2 paesi:
 <ul>
-<li><b>Comuni italiani</b>, sorgente dei dati : <a href='https://github.com/Samurai016/Comuni-ITA'>Comuni ITA API</a></li>
-<li><b>Comuni francesi</b>, sorgente dei dati : <a href='https://geo.api.gouv.fr/'>geo.api.gouv.fr</a></li>
+<li><b>Comuni italiani</b>, sorgente dei dati : <a href='https://github.com/Samurai016/Comuni-ITA'>Comuni ITA API</a>, <a href='https://dait.interno.gov.it/elezioni/open-data/amministratori-locali-e-regionali-in-carica'>dait.interno.gov.it - Amministratori locali</a></li>
+<li><b>Comuni francesi</b>, sorgente dei dati : <a href='https://geo.api.gouv.fr/'>geo.api.gouv.fr</a>, <a href='https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1/'>data.gouv.fr - Répertoire national des élus</a></li>
 </ul>
 <br>
 <hr>

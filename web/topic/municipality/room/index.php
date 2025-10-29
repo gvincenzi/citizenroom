@@ -72,6 +72,8 @@ include '../../bootstrap.php';
 	<h5><?php echo $_SESSION['room_additional_data']['h5']?></h5>
 	<h6><?php echo $_SESSION['room_additional_data']['h6']?></h6>
 	<hr class="hr-flag"/>
+	<h5><?php echo $_SESSION['room_additional_data']['major']?></h5>
+	<hr>
 	<div id='info_card' class='info_card'></div>
   </div>
 

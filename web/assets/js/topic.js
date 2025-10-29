@@ -3,49 +3,56 @@ function topicBackground(topicName,topicDomain) {
 		"parliament/france",
 		"parliament/italy",
 		"parliament/europe",
-		"municipality/france"
+		"municipality/france",
+		"municipality/italy"
 	];
 
 	var images = [
 		'https://live.staticflickr.com/1555/23302903174_c80937186b_o.jpg',
 		'https://live.staticflickr.com/5549/11631580435_1d124729fa_o.jpg',
 		'https://live.staticflickr.com/65535/54844780861_13a71e3b75_o.jpg',
-		'https://live.staticflickr.com/4254/35004594794_c9f37d8282_o.jpg'
+		'https://live.staticflickr.com/4254/35004594794_c9f37d8282_o.jpg',
+		'https://live.staticflickr.com/65535/49413244126_0ea8504f9c_o.jpg'
 	];
 
 	var image_links = [
 		'https://www.flickr.com/photos/emilio11/23302903174',
 		'https://www.flickr.com/photos/simone_tagliaferri/11631580435/',
 		'https://www.flickr.com/photos/european_parliament/54844780861',
-		'https://www.flickr.com/photos/10332960@N03/35004594794/'
+		'https://www.flickr.com/photos/10332960@N03/35004594794/',
+		'https://www.flickr.com/photos/ralf-steinberger/49413244126'
 	];
 
 	var authors = [
 		'Emile Lombard',
 		'Simone Tagliaferri',
 		'European Parliament',
-		'John Blower'
+		'John Blower',
+		'Ralf Steinberger'
 	];
 
 	var author_links = [
 		'https://www.flickr.com/photos/emilio11',
 		'https://www.flickr.com/photos/simone_tagliaferri/',
 		'https://www.flickr.com/photos/european_parliament/',
-		'https://www.flickr.com/photos/10332960@N03/'
+		'https://www.flickr.com/photos/10332960@N03/',
+		'https://www.flickr.com/photos/ralf-steinberger/'
 	];
 
 	var licenses = [
 		'CC BY-NC-SA 2.0',
 		'CC BY 2.0',
 		'CC BY 4.0',
-		'CC BY-NC-ND 2.0'
+		'CC BY-NC-ND 2.0',
+		'CC BY 2.0'
 	];
 
 	var license_links = [
 		'https://creativecommons.org/licenses/by-nc-sa/2.0/deed.',
 		'https://creativecommons.org/licenses/by/2.0/deed.',
 		'https://creativecommons.org/licenses/by/4.0/deed.',
-		'https://creativecommons.org/licenses/by-nc-nd/2.0/deed.'
+		'https://creativecommons.org/licenses/by-nc-nd/2.0/deed.',
+		'https://creativecommons.org/licenses/by/2.0/deed.'
 	];
 
 	var index = topic_name_domain.indexOf(topicName+'/'+topicDomain);

@@ -70,6 +70,7 @@ $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="Deputati francesi";
 
 $lang['TOPIC_ROOM_MUNICIPALITY']="Sala municipale";
 $lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="Comuni francesi";
+$lang['TOPIC_ROOM_MUNICIPALITY_ITALY']="Comuni italiani";
 $lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Codice postale";
 $lang['TOPIC_ROOM_MUNICIPALITY_FILTER']="Cerca una municipalità…";
 ?>

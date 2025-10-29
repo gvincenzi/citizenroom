@@ -199,7 +199,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 			  data: { method: "left" }
 			}).done(function( msg ) {
 				var left = JSON.parse(msg);
-				window.location.href = window.location.href.replaceAll("/room/", "/");
+				window.location.href = '/';
 			});
         },
 		raiseHandUpdated: function(data){

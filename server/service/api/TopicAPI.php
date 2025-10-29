@@ -151,6 +151,37 @@ class TopicAPI {
 						break;
 					}
 					break;
+				case 'italy';
+					$url = "https://axqvoqvbfjpaamphztgd.functions.supabase.co/comuni?codice=$room_id";
+					$options = [
+						"http" => [
+							"header" => "accept: application/json\r\n"
+						],
+						"ssl" => [
+							"verify_peer" => false,
+							"verify_peer_name" => false,
+						]
+					];
+
+					$context =@stream_context_create($options);
+					$response = @file_get_contents($url, false, $context);
+					$topic_data = json_decode($response, true);
+					foreach($topic_data as $italian_municipality){
+						$_SESSION['room_title'] = stripslashes($italian_municipality['nome']);
+						$_SESSION['room_logo'] = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Emblem_of_Italy.svg/800px-Emblem_of_Italy.svg.png";
+						$_SESSION['room_custom_link'] = "https://".substr($_COOKIE['citizenroom']['bestlang'],0,2).".wikipedia.org/wiki/".$italian_municipality['nome'];
+
+						//ADDITIONAL TOPIC DATA
+						$_SESSION['room_additional_data'] = $italian_municipality;
+						$_SESSION['room_additional_data']['h5'] = $italian_municipality['provincia']['nome'].' ('.$italian_municipality['provincia']['sigla'].')';
+						$_SESSION['room_additional_data']['h6'] = $italian_municipality['provincia']['regione'];
+						$_SESSION['room_additional_data']['photo'] = "";
+						$_SESSION['room_additional_data']['lat'] = $italian_municipality['coordinate']['lat'];
+						$_SESSION['room_additional_data']['lng'] = $italian_municipality['coordinate']['lng'];
+						$_SESSION['room_additional_data']['country'] = $topicDomain;
+						break;
+					}
+					break;
 			}
 		}
 

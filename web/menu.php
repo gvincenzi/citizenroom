@@ -17,6 +17,7 @@
 													<li><hr class="dropdown-divider"></li>
 													<li><a class="dropdown-item dropdown-item-topic" href="#"><b><?php print $lang['TOPIC_ROOM_MUNICIPALITY']?></b></a></li>
 													<li><a class="dropdown-item" href="/web/topic/municipality?country=france"><?php print $lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']?></a></li>
+													<li><a class="dropdown-item" href="/web/topic/municipality?country=italy"><?php print $lang['TOPIC_ROOM_MUNICIPALITY_ITALY']?></a></li>
 												</ul>
 											</li>
 											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>

@@ -39,7 +39,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		    }
 
 			topicBackground("municipality","<?php print $_REQUEST['country'] ?? 'france'?>");
-			topicInit();
+			topicInit("<?php print $_REQUEST['country'] ?? 'france'?>");
 	    });	
 		
 		function validateJoinForm(){
@@ -50,7 +50,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			return true;
 		}	
 
-        function topicInit(){	
+        function topicInit(topicDomain){	
 			let lastQuery = "";
 			let timer = null;
 
@@ -65,31 +65,59 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 
 					// Debounce per evitare troppe chiamate
 					timer = setTimeout(function() {
-						$.ajax({
-							url: 'https://geo.api.gouv.fr/communes',
-							data: {
-								nom: query,
-								fields: 'departement',
-								limit: 5
-							},
-							success: function(data) {
-								// Svuota la select
-								$('#room_id').empty();
+						if(topicDomain==="france"){
+							$.ajax({
+								url: 'https://geo.api.gouv.fr/communes',
+								data: {
+									nom: query,
+									fields: 'departement',
+									limit: 5
+								},
+								success: function(data) {
+									// Svuota la select
+									$('#room_id').empty();
 
-								// Popola con i risultati
-								data.forEach(function(item){
-									$('#room_id').append(
-										$('<option>', {
-											value: item.code,
-											text: item.nom + (item.departement ? ' (' + item.departement.code + ')' : '')
-										})
-									);
-								});
+									// Popola con i risultati
+									data.forEach(function(item){
+										$('#room_id').append(
+											$('<option>', {
+												value: item.code,
+												text: item.nom + (item.departement ? ' (' + item.departement.code + ')' : '')
+											})
+										);
+									});
 
-								// Aggiorna la selectpicker
-								$('#room_id').selectpicker('refresh');
-							}
-						});
+									// Aggiorna la selectpicker
+									$('#room_id').selectpicker('refresh');
+								}
+							});
+						} else if(topicDomain==="italy"){
+							$.ajax({
+								url: 'https://axqvoqvbfjpaamphztgd.functions.supabase.co/comuni',
+								data: {
+									nome: query,
+									limit: 5
+								},
+								success: function(data) {
+									// Svuota la select
+									$('#room_id').empty();
+
+									// Popola con i risultati
+									data.forEach(function(item){
+										$('#room_id').append(
+											$('<option>', {
+												value: item.codice,
+												text: item.nome + (item.provincia ? ' (' + item.provincia.sigla + ')' : '')
+											})
+										);
+									});
+
+									// Aggiorna la selectpicker
+									$('#room_id').selectpicker('refresh');
+								}
+							});
+						}
+						
 					}, 300); // 300ms debounce
 				}
 			});

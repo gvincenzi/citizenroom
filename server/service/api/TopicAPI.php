@@ -132,7 +132,7 @@ class TopicAPI {
 			switch($topicDomain)
 			{
 				case 'france';
-					$url = "https://geo.api.gouv.fr/communes?codePostal=$room_id&fields=code,nom,centre,region,departement";
+					$url = "https://geo.api.gouv.fr/communes?code=$room_id&fields=code,nom,mairie,region,departement";
 					$response = @file_get_contents($url);
 					$topic_data = json_decode($response, true);
 					foreach($topic_data as $french_municipality){
@@ -145,8 +145,8 @@ class TopicAPI {
 						$_SESSION['room_additional_data']['h5'] = $french_municipality['departement']['nom'].' ('.$french_municipality['departement']['code'].')';
 						$_SESSION['room_additional_data']['h6'] = $french_municipality['region']['nom'];
 						$_SESSION['room_additional_data']['photo'] = "";
-						$_SESSION['room_additional_data']['lat'] = $french_municipality['centre']['coordinates'][1];
-						$_SESSION['room_additional_data']['lng'] = $french_municipality['centre']['coordinates'][0];
+						$_SESSION['room_additional_data']['lat'] = $french_municipality['mairie']['coordinates'][1];
+						$_SESSION['room_additional_data']['lng'] = $french_municipality['mairie']['coordinates'][0];
 						$_SESSION['room_additional_data']['country'] = $topicDomain;
 						break;
 					}

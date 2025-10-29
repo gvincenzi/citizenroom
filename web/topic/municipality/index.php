@@ -39,6 +39,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		    }
 
 			topicBackground("municipality","<?php print $_REQUEST['country'] ?? 'france'?>");
+			topicInit();
 	    });	
 		
 		function validateJoinForm(){
@@ -50,16 +51,47 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 		}	
 
         function topicInit(){	
-			$('select').selectpicker();	
-			$("#room_id").empty();
-			$("#room_id").selectpicker("refresh");
-			$.ajax({
-			  type: "GET",
-			  url: "/server/service/api/TopicAPI.php",
-			  data: { method: "init", room_type: "topic", room_topic_name: "municipality", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'france'?>"}
-			})
-			.done(function( msg ) {
-				topicComboboxInit("municipality","<?php print $_REQUEST['country'] ?? 'france'?>",msg);
+			let lastQuery = "";
+			let timer = null;
+
+			// Quando l'utente digita nel box di ricerca della selectpicker
+			$('.selectpicker').parent().find('.bs-searchbox input').on('input', function() {
+				let query = $(this).val();
+
+				// Solo se almeno 3 lettere e query diversa dall'ultima richiesta
+				if(query.length >= 3 && query !== lastQuery){
+					lastQuery = query;
+					clearTimeout(timer);
+
+					// Debounce per evitare troppe chiamate
+					timer = setTimeout(function() {
+						$.ajax({
+							url: 'https://geo.api.gouv.fr/communes',
+							data: {
+								nom: query,
+								fields: 'departement',
+								limit: 5
+							},
+							success: function(data) {
+								// Svuota la select
+								$('#room_id').empty();
+
+								// Popola con i risultati
+								data.forEach(function(item){
+									$('#room_id').append(
+										$('<option>', {
+											value: item.code,
+											text: item.nom + (item.departement ? ' (' + item.departement.code + ')' : '')
+										})
+									);
+								});
+
+								// Aggiorna la selectpicker
+								$('#room_id').selectpicker('refresh');
+							}
+						});
+					}, 300); // 300ms debounce
+				}
 			});
 		}
 
@@ -86,7 +118,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 						</div>
 						<div class="input-group form-group-no-border input-lg">
-							<input id="room_id" name="room_id" type="number" class="form-control" placeholder="<?php print $lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']?>">
+						<select data-width="100%" id="room_id" name="room_id" type="number" class="selectpicker" data-live-search="true" data-none-selected-text="<?php print $lang['TOPIC_ROOM_MUNICIPALITY_FILTER']?>"></select>
 						</div>
 					</div>
 

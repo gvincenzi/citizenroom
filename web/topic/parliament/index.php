@@ -93,6 +93,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					</div>
 
 					<div class="card-footer text-center">
+						<h6 class="disclaimer"><?php print $lang['TOPIC_ROOM_PARLIAMENT_DISCLAIMER']?></h6>
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 				</form>

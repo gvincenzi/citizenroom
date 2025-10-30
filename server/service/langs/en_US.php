@@ -67,10 +67,14 @@ $lang['TOPIC_ROOM_PARLIAMENT']="Parliament Room";
 $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="European deputies";
 $lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Italian deputies";
 $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="French deputies";
+$lang['TOPIC_ROOM_PARLIAMENT_DISCLAIMER']="This room is an independent civic space, not officially managed or recognized by the mentioned parliamentarian/entity.
+<br>For information or reports, please write to <strong>citizenroom@altervista.org</strong>";
 
 $lang['TOPIC_ROOM_MUNICIPALITY']="Municipality";
 $lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="French municipalities";
 $lang['TOPIC_ROOM_MUNICIPALITY_ITALY']="Italian municipalities";
 $lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Postal code";
 $lang['TOPIC_ROOM_MUNICIPALITY_FILTER']="Search for a municipality…";
+$lang['TOPIC_ROOM_MUNICIPALITY_DISCLAIMER']="This room is an independent civic space, not officially managed or recognized by the mentioned municipality.
+<br>For information or reports, please write to <strong>citizenroom@altervista.org</strong>";
 ?>

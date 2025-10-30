@@ -14,12 +14,13 @@ include prefered_language ( $available_languages ) . '.php';
 
 </head>
 
-<body style="background-color: #f5f5f5">   
+<body>   
   <?php include '../header.php';?> 
-  <?php include '../menu.php';?> 
-  <div class="what">
-    <?php print $cookieDisclaimer;?>
+  <div class="container container-join">
+        <?php include '../menu.php';?> 
+        <div class="what">
+          <?php print $cookieDisclaimer;?>
+        </div>
   </div>
-        
 </body>
 </html>

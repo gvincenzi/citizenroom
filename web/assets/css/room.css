@@ -92,6 +92,25 @@
    color: #fff;
 }
 
+.toolbox button#btnDisclaimer { 
+  display: block;
+  width: 80%;
+  padding: .4rem;
+  border: none; 
+  margin: 1rem auto; 
+  /*font-size: 1.3rem;*/
+  background: rgba(255, 230, 0, 0.23);
+  color: #fff;
+  border-radius: 3px; 
+  cursor: pointer;
+  transition: .3s background;
+}
+
+.toolbox button#btnDisclaimer:hover { 
+  background: rgba(255, 230, 0, 0.23);
+   color: #fff;
+}
+
 .room-title {
 	opacity: 0.7;
 	font-family: 'Bangers', cursive;

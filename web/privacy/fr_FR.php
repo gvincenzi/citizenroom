@@ -71,15 +71,5 @@ L’interessato potrà far valere in ogni momento, rivolgendosi al titolare del 
 <b>4.</b> L’interessato ha diritto di opporsi, in tutto o in parte:<br>
 &nbsp;&nbsp;<b>a)</b> per motivi legittimi al trattamento dei dati personali che lo riguardano, ancorché pertinenti allo scopo della raccolta;<br>
 &nbsp;&nbsp;<b>b)</b> al trattamento di dati personali che lo riguardano a fini di invio di materiale pubblicitario o di vendita diretta o per il compimento di ricerche di mercato o di comunicazione commerciale.<br>
-<br>
-<br>
-<h2>Disclaimer Stanze Tematiche Parlamentari e Municipali</h2>
-Le stanze tematiche dedicate a parlamentari e municipalità sono spazi indipendenti creati da CitizenRoom per favorire il dialogo e la partecipazione civica.
-Questi spazi non sono gestiti né ufficialmente riconosciuti dai parlamentari, dagli enti o dalle istituzioni cui fanno riferimento, salvo diversa indicazione specifica.
-<br>
-I nomi e i dati utilizzati per identificare le stanze provengono da fonti Open Data pubbliche e sono impiegati esclusivamente a fini informativi e di promozione della cittadinanza digitale.
-<br>
-CitizenRoom invita gli utenti al rispetto reciproco e all’utilizzo corretto delle stanze, nel rispetto della normativa vigente e della privacy.
-Per segnalazioni, richieste di modifica o rimozione di contenuti, è possibile contattarci a <strong>citizenroom@altervista.org</strong>
 ");
 ?>

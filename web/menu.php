@@ -20,8 +20,9 @@
 													<li><a class="dropdown-item" href="/web/topic/municipality?country=italy"><?php print $lang['TOPIC_ROOM_MUNICIPALITY_ITALY']?></a></li>
 												</ul>
 											</li>
+											<li class="nav-link"><a href="/web/disclaimer" class="link menu-link">Disclaimer</a></li>
 											<li class="nav-link"><a href="/web/what" class="link menu-link"><?php print $lang['ABOUT']?></a></li>
-											<li class="nav-link"><a href="/web/privacy" class="link menu-link">Privacy (italian language)</a></li>
+											<li class="nav-link"><a href="/web/privacy" class="link menu-link">Data Privacy (italian language)</a></li>
 										</ul>
 									</nav>
 								</ul>

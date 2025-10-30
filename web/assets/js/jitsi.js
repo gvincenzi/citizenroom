@@ -76,6 +76,9 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 			window.open(roomCustomLink, '_blank');
 		}
 	});
+	$("#btnDisclaimer").on('click', function () {
+		window.open('https://citizenroom.altervista.org/web/disclaimer', '_blank');
+	});
 	$("#btnLeave").on('click', function () {
         	window.location.href = "https://citizenroom.altervista.org/server/service/left.php";
     	});

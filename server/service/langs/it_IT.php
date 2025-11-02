@@ -67,4 +67,14 @@ $lang['TOPIC_ROOM_PARLIAMENT']="Stanza Parlamentare";
 $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="Parlamentari europei";
 $lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Deputati italiani";
 $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="Deputati francesi";
+$lang['TOPIC_ROOM_PARLIAMENT_DISCLAIMER']="Questa stanza è uno spazio civico indipendente, non ufficialmente gestito o riconosciuto dal parlamentare/ente indicato.
+<br>Per informazioni o segnalazioni scrivi a <strong>citizenroom@altervista.org</strong>";
+
+$lang['TOPIC_ROOM_MUNICIPALITY']="Sala municipale";
+$lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="Comuni francesi";
+$lang['TOPIC_ROOM_MUNICIPALITY_ITALY']="Comuni italiani";
+$lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Codice postale";
+$lang['TOPIC_ROOM_MUNICIPALITY_FILTER']="Cerca una municipalità…";
+$lang['TOPIC_ROOM_MUNICIPALITY_DISCLAIMER']="Questa stanza è uno spazio civico indipendente, non ufficialmente gestito o riconosciuto dall'ente indicato.
+<br>Per informazioni o segnalazioni scrivi a <strong>citizenroom@altervista.org</strong>";
 ?>

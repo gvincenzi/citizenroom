@@ -38,9 +38,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			    }
 		    }
 
-			topicBackground("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>");
-			
-            topicInit();
+			topicBackground("municipality","<?php print $_REQUEST['country'] ?? 'france'?>");
+			topicInit("<?php print $_REQUEST['country'] ?? 'france'?>");
 	    });	
 		
 		function validateJoinForm(){
@@ -51,17 +50,76 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 			return true;
 		}	
 
-        function topicInit(){	
-			$('select').selectpicker();	
-			$("#room_id").empty();
-			$("#room_id").selectpicker("refresh");
-			$.ajax({
-			  type: "GET",
-			  url: "/server/service/api/TopicAPI.php",
-			  data: { method: "init", room_type: "topic", room_topic_name: "parliament", room_topic_domain: "<?php print $_REQUEST['country'] ?? 'europe'?>"}
-			})
-			.done(function( msg ) {
-				topicComboboxInit("parliament","<?php print $_REQUEST['country'] ?? 'europe'?>",msg);
+        function topicInit(topicDomain){	
+			let lastQuery = "";
+			let timer = null;
+
+			// Quando l'utente digita nel box di ricerca della selectpicker
+			$('.selectpicker').parent().find('.bs-searchbox input').on('input', function() {
+				let query = $(this).val();
+
+				// Solo se almeno 3 lettere e query diversa dall'ultima richiesta
+				if(query.length >= 3 && query !== lastQuery){
+					lastQuery = query;
+					clearTimeout(timer);
+
+					// Debounce per evitare troppe chiamate
+					timer = setTimeout(function() {
+						if(topicDomain==="france"){
+							$.ajax({
+								url: 'https://geo.api.gouv.fr/communes',
+								data: {
+									nom: query,
+									fields: 'departement',
+									limit: 5
+								},
+								success: function(data) {
+									// Svuota la select
+									$('#room_id').empty();
+
+									// Popola con i risultati
+									data.forEach(function(item){
+										$('#room_id').append(
+											$('<option>', {
+												value: item.code,
+												text: item.nom + (item.departement ? ' (' + item.departement.code + ')' : '')
+											})
+										);
+									});
+
+									// Aggiorna la selectpicker
+									$('#room_id').selectpicker('refresh');
+								}
+							});
+						} else if(topicDomain==="italy"){
+							$.ajax({
+								url: 'https://axqvoqvbfjpaamphztgd.functions.supabase.co/comuni',
+								data: {
+									nome: query,
+									limit: 5
+								},
+								success: function(data) {
+									// Svuota la select
+									$('#room_id').empty();
+
+									// Popola con i risultati
+									data.forEach(function(item){
+										$('#room_id').append(
+											$('<option>', {
+												value: item.codice,
+												text: item.nome + (item.provincia ? ' (' + item.provincia.sigla + ')' : '')
+											})
+										);
+									});
+
+									// Aggiorna la selectpicker
+									$('#room_id').selectpicker('refresh');
+								}
+							});
+						}
+						
+					}, 300); // 300ms debounce
+				}
 			});
 		}
 
@@ -78,8 +136,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 					<input type="hidden" value="<?php print $_SESSION['action']?>" name="path" id="path">
 					<input type="hidden" value="join" name="method" id="method">
 					<input type="hidden" value="topic" name="room_type" id="room_type">
-					<input type="hidden" value="parliament" name="room_topic_name" id="room_topic_name">
-					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'europe'?>" name="room_topic_domain" id="room_topic_domain">
+					<input type="hidden" value="municipality" name="room_topic_name" id="room_topic_name">
+					<input type="hidden" value="<?php print $_REQUEST['country'] ?? 'france'?>" name="room_topic_domain" id="room_topic_domain">
 				
 					<?php include '../../../web/menu.php';?>
 					
@@ -88,12 +146,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 							<input id="nickname" name="nickname" type="text" class="form-control" placeholder="<?php print $lang['NICKNAME']?>">
 						</div>
 						<div class="input-group form-group-no-border input-lg">
-						<select data-width="100%" id="room_id" name="room_id" type="number" class="selectpicker" data-live-search="true" data-none-selected-text="<?php print $lang['WAIT']?>"></select>
+						<select data-width="100%" id="room_id" name="room_id" type="number" class="selectpicker" data-live-search="true" data-none-selected-text="<?php print $lang['TOPIC_ROOM_MUNICIPALITY_FILTER']?>"></select>
 						</div>
 					</div>
 
 					<div class="card-footer text-center">
-						<h6 class="disclaimer"><?php print $lang['TOPIC_ROOM_PARLIAMENT_DISCLAIMER']?></h6>
+						<h6 class="disclaimer"><?php print $lang['TOPIC_ROOM_MUNICIPALITY_DISCLAIMER']?></h6>
 						<button class="btn btn-primary btn-round btn-block" type="submit" style="width: 100%"><?php print $lang['JOIN']?></button>
 					</div>
 				</form>

@@ -58,7 +58,7 @@ $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";
 $lang['PUBLIC_ROOM']="Salle publique";
 
 /* CUSTOM ROOM */
-$lang['CUSTOM_ROOM']="Salle personnalisé";
+$lang['CUSTOM_ROOM']="Salle personnalisée";
 $lang['CUSTOM_ROOM_DESCRIPTION']="Personnalisez une salle avec un titre et/ou un logo.<br>Utilisez le lien d'invitation sur votre site personnel, dans un groupe de discussion ou sur vos réseaux sociaux.";
 
 /* TOPIC ROOM */
@@ -67,4 +67,14 @@ $lang['TOPIC_ROOM_PARLIAMENT']="Salle Parlementaire";
 $lang['TOPIC_ROOM_PARLIAMENT_EUROPE']="Députés européens";
 $lang['TOPIC_ROOM_PARLIAMENT_ITALY']="Députés italiens";
 $lang['TOPIC_ROOM_PARLIAMENT_FRANCE']="Députés français";
+$lang['TOPIC_ROOM_PARLIAMENT_DISCLAIMER']="Cet espace est un lieu civique indépendant, non géré ni officiellement reconnu par le parlementaire/collectivité indiqué(e).
+<br>Pour toute information ou signalement, écrivez à <strong>citizenroom@altervista.org</strong>";
+
+$lang['TOPIC_ROOM_MUNICIPALITY']="Salle municipale";
+$lang['TOPIC_ROOM_MUNICIPALITY_FRANCE']="Communes français";
+$lang['TOPIC_ROOM_MUNICIPALITY_ITALY']="Communes italiennes";
+$lang['TOPIC_ROOM_MUNICIPALITY_POSTAL_CODE']="Code postale";
+$lang['TOPIC_ROOM_MUNICIPALITY_FILTER']="Recherchez une commune…";
+$lang['TOPIC_ROOM_MUNICIPALITY_DISCLAIMER']="Cet espace est un lieu civique indépendant, non géré ni officiellement reconnu par la collectivité indiquée.
+<br>Pour toute information ou signalement, écrivez à <strong>citizenroom@altervista.org</strong>";
 ?>

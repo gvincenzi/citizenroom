@@ -41,6 +41,15 @@ CitizenRoom propose des salles parlementaires pour 3 parlements :
 <li><b>Parlement Français (Assemblée Nationale)</b>, source des données : <a href='https://data.assemblee-nationale.fr/acteurs/deputes-en-exercice'>data.assemblee-nationale.fr</a></li>
 </ul>
 <br>
+
+<h3>Salles municipales</h3>
+Les salles municipales sont des salles à thème dédiées aux municipalités : chaque salle est construite autour des données publiques d'une commune.<br/>
+CitizenRoom propose des salles municipales pour 2 pays :
+<ul>
+<li><b>Communes italiennes</b>, source des données : <a href='https://github.com/Samurai016/Comuni-ITA'>Comuni ITA API</a>, <a href='https://dait.interno.gov.it/elezioni/open-data/amministratori-locali-e-regionali-in-carica'>dait.interno.gov.it - Amministratori locali</a></li>
+<li><b>Communes françaises</b>, source des données : <a href='https://geo.api.gouv.fr/'>geo.api.gouv.fr</a>, <a href='https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1/'>data.gouv.fr - Répertoire national des élus</a></li>
+</ul>
+<br>
 <hr>
 <br>
 <h2>UN PROTOTYPE OPEN SOURCE</h2>

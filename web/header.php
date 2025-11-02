@@ -12,7 +12,7 @@
       </li>
 
 	  <li class="nav-item">
-        <a class="link menu-link" href="https://github.com/gvincenzi/citizenroom/releases/tag/8.1.0" target="_blank">v 8.1.0beta</a>
+        <a class="link menu-link" href="https://github.com/gvincenzi/citizenroom/releases/tag/8.1.0" target="_blank">v 8.1.0</a>
       </li>
     </ul>
   </nav>

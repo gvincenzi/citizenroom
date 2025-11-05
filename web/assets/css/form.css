@@ -123,7 +123,7 @@
 
 .btn >a {
     border-width: 2px;
-    font-weight: 400;
+    font-weight: 200;
     font-size: .8571em;
     line-height: 1.35em;
     margin: 5px 1px;
@@ -167,11 +167,19 @@ a:hover,a:focus {
 
 .logo {
 	opacity: 0.7;
-	font-family: 'Bangers', cursive;
+	font-family: "Montserrat", sans-serif;
+    text-shadow: 1px 2px 4px black;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
 	font-size: 4em;
 }
 
 .logo a{
     text-decoration: none;
     color: #ddd;
+}
+
+.montserrat-100 {
+  
 }

@@ -216,7 +216,7 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 }
 
 	function notifyMe(text) {
-		var img = "https://citizenroom.altervista.org/web/assets/img/icon.jpg";
+		var img = "https://citizenroom.altervista.org/web/assets/img/icon-192x192.png";
 		
 	  // Let's check if the browser supports notifications
 	  if (!("Notification" in window)) {

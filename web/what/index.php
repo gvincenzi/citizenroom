@@ -15,7 +15,7 @@ include prefered_language ( $available_languages ) . '.php';
 	<meta property="og:url" content="https://citizenroom.altervista.org/web/what/">
 	<meta property="og:type" content="website">
 	<meta name="description" property="og:description" content="Cos'è e perché CitizenRoom - What and why CitizenRoom (italian language) - Qu'est-ce que et pourquoi CitizenRoom (en italien)">
-	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
+	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon-192x192.png">
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image">
@@ -23,9 +23,9 @@ include prefered_language ( $available_languages ) . '.php';
 	<meta property="twitter:url" content="https://citizenroom.altervista.org/web/what/">
 	<meta name="twitter:title" content="CitizenRoom - A free space where you can feel at home">
 	<meta name="twitter:description" content="Informations about CitizenRoom (italian language)">
-	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg">
+	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon-192x192.png">
 
-    <link href="../assets/css/what.css?v=<?php print time()?>" rel="stylesheet">
+    <link href="../assets/css/page.css?v=<?php print time()?>" rel="stylesheet">
 
 </head>
 

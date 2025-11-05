@@ -113,9 +113,10 @@
 
 .room-title {
 	opacity: 0.7;
-	font-family: 'Bangers', cursive;
-    font-size: 4em;
-    color: white
+	font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 4em;
+  color: white
 }
 
 .room-logo {

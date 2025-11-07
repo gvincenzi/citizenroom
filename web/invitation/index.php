@@ -30,7 +30,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['room_id'])) {
 	<meta property="og:title" content="<?php print $lang['PAGE_TITLE']?>" />
 	<meta property="og:description" content="<?php if(isset($_GET['room_title'])) print $lang['INVITATION'].$_GET['room_id'].' '.$_GET['room_title']; else print $lang['INVITATION'].$_GET['room_id']?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon.jpg" />
+	<meta property="og:image" content="https://citizenroom.altervista.org/web/assets/img/icon-192x192.png" />
     <meta name="author" content="InMediArt">
     
     <script type="text/javascript">

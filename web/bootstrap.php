@@ -6,7 +6,9 @@
 
 <script src="/web/assets/js/general.js?v=<?php print time()?>"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link href="/web/assets/css/form.css?v=<?php print time()?>" rel="stylesheet">
 <link href="/web/assets/css/header.css?v=<?php print time()?>" rel="stylesheet">
 <link href="/web/assets/css/menu.css?v=<?php print time()?>" rel="stylesheet">

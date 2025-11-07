@@ -1,4 +1,4 @@
-<img src="web/assets/img/logo_black.png">
+<img src="web/assets/img/CitizenRoom (black).svg">
 
 ## Why CitizenRoom?
 

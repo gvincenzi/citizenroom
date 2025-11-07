@@ -12,6 +12,14 @@
   max-width: 250px;
 }
 
+.identity_card h4,h5 {
+  font-weight: 300;
+}
+
+.identity_card h6 {
+  font-weight: 100;
+}
+
 .identity_card button { 
   display: block;
   width: 100%;
@@ -47,13 +55,6 @@
 .identity_card button#btnCustomLink:hover { 
   background: rgba(0, 102, 14, 0.23);
    color: #fff;
-}
-
-.room-title {
-	opacity: 0.7;
-	font-family: 'Bangers', cursive;
-    font-size: 4em;
-    color: white
 }
 
 .room-logo {

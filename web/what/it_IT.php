@@ -1,4 +1,4 @@
-<?php 
+<?php
 $cookieDisclaimer = ("
 <h2>Che cos'è e perché CitizenRoom?</h2>
 Nel 1945 negli Stati Uniti nacque la <strong>Citizens' Band, la banda cittadina</strong>.<br>
@@ -7,11 +7,14 @@ CB era uno dei vari servizi radio regolamentati dalla Federal Communications Com
 
 CitizenRoom nasce con l'idea di riutilizzare lo stesso schema e proporre l'utilizzo di una parte del web in modo libero da qualsiasi rapporto con un intermediario pubblico o privato(a pagamento o gratuito ma in cambio di informazioni personali), sviluppando un servizio di comunicazione audio e video da dedicare alla comunicazione personale tra i cittadini.<br><br>
 
-CitizenRoom è una piattaforma per la creazione di stanze in cui poter poter organizzare delle riunioni (audio e video) con un numero teoricamente illimitato di partecipanti: il prototipo che è attualmente a vostra disposizione permette di invitare fino a <strong>20 persone</strong> per un corretto funzionamento.<br><br>
+CitizenRoom è una piattaforma per la creazione di stanze in cui poter poter organizzare delle riunioni (<strong>solo audio</strong>) con un numero teoricamente illimitato di partecipanti: il prototipo che è attualmente a vostra disposizione permette di invitare fino a <strong>20 persone</strong> per un corretto funzionamento.<br><br>
 
-CitizenRoom è <strong>gratuito, open source e non necessita né della creazione di un conto</strong>, né dell'installazione di applicaziioni (desktop o mobile): potete creare delle stanze liberamente e senza limiti e, utilizzando un tasto che vi genera un link di invito, potrete far partecipare chiunque senza obbligarlo a crearsi un conto o installare un software sul suo dispositivo.<br>
+CitizenRoom è <strong>gratuito, open source e non necessita né della creazione di un conto</strong>, né dell'installazione di applicaziioni (desktop o mobile): potete creare delle stanze liberamente e senza limiti e, utilizzando un tasto che vi genera un link di invito, potrete far partecipare chiunque senza obbligarlo a crearsi un conto o installare un software sul suo dispositivo.
 
 Abbiamo sentito l'esigenza di creare e testare una piattaforma che puntasse piuttosto sulla <strong>semplicità</strong> che sulla personalizzazione del servizio.<br><br>
+
+<strong>Audioconferenze per un futuro sostenibile</strong><br>
+CitizenRoom si distingue per la sua flessibilità, offrendo la possibilità di condurre conferenze esclusivamente audio. Questa funzionalità è stata pensata per rispondere a diverse esigenze, tra cui quelle di ottimizzare la larghezza di banda e garantire un accesso più inclusivo alle comunicazioni. Un motivo particolarmente importante e simbolico dietro questa scelta è il <strong>risparmio energetico</strong>. In un'epoca in cui la sostenibilità ambientale è cruciale, scegliere di comunicare solo tramite audio riduce significativamente il consumo di energia associato alla trasmissione e alla gestione dei flussi video. Questo non solo contribuisce a un minore impatto ecologico, ma rende anche CitizenRoom una scelta consapevole per chi desidera unire efficacia comunicativa e responsabilità ambientale.<br><br>
 
 <h2>Gestione dei dati</h2>
 CitizenRoom non salva <strong>nessun dato degli utenti, dei dispositivi, della conversazione</strong>. Questo non significa che CitizenRoom sia un'applicazione in cui poter godere di un totale anonimato, al contrario: CitizenRoom è una piattaforma <strong>libera ma non cifrata</strong>, quindi in ogni momento, in caso di scambio di informazioni scorretto e/o illegale, <strong>ogni conversazione potrà essere monitorata da un'autorità competente</strong>.<br>
@@ -31,7 +34,7 @@ Questa funzionalità è resa possibile grazie al progetto Open Source <a href='h
 <hr>
 <br>
 <h2>Stanze a tema</h2>
-Le stanze a tema sono CitizenRoom che costruiscono l'interfaccia grazie a open data disponibili nella rete (con chiamate live a API pubbliche o con CSV scaricati da siti che li espongono).<br><br>
+Le stanze a tema sono CitizenRoom che costruiscono l'interfaccia grazie a open data disponibili nella rete (con chiamate live a API pubbliche o con CSV scaricati da siti che li espongono.<br><br>
 
 <h3>Stanze parlamentari</h3>
 Le stanze parlamentari sono stanze a tema dedicate ai parlamentari: ogni stanza si costruisce attorno a dati pubblici di un deputato.<br/>

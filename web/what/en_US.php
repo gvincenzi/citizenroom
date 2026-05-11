@@ -1,4 +1,4 @@
-<?php 
+<?php
 $cookieDisclaimer = ("
 <h2>Why CitizenRoom?</h2>
 The <strong>Citizens’Band</strong> was born for collective private use and saw the day in 1945 in the USA. CB was one of the several radio services regulated by the federal communications commission (FCC) with the goal to allow citizens to use a band of radio frequencies for <strong>personal communication</strong> (e.g. radio-controlled models, chats within family and friends, undersized businesses) <strong><a href='https://en.wikipedia.org/wiki/Citizens_band_radio'> >> source Wikipedia</a></strong>.
@@ -6,10 +6,13 @@ The <strong>Citizens’Band</strong> was born for collective private use and saw
 
 Citizenroom is born with the idea to disrupt the way we use part of the web today, proposing an open-source service, free from any engagement with a public or private intermediary, applying the same CB model. This means that, as opposed to what happens today within the web (whatever you’re using paying or free interfaces), none of your personal information is given or stolen. This results in developing a service of audio and video communication to be dedicated to personal interactions between citizens.<br><br>
 
-Citizenroom is a platform where you can create virtual rooms in which you have the possibility to set-up meetings (audio and video) with a theoretical unlimited number of participants: however, it is strongly recommended to limit the use of the today available prototype to a maximum of <strong>20 people simultaneously</strong> to make it work properly.<br><br>
+Citizenroom is a platform where you can create virtual rooms in which you have the possibility to set-up meetings (<strong>audio only</strong>) with a theoretical unlimited number of participants: however, it is strongly recommended to limit the use of the today available prototype to a maximum of <strong>20 people simultaneously</strong> to make it work properly.<br><br>
 
 Citizenroom is completely <strong>free, open source and you can use it without any personal account creation</strong> or applications download (desktop or mobile): you can easily create an unlimited number of rooms and, just in a click, you can generate an invitation link ready to be shared with anyone you want to invite in the room. On the other side, the people you invite to join will have access to the room just clicking on your link and they won’t be forced to create an account or install any software on their device.<br>
 We strongly felt the need to create and test a platform that focused rather on <strong>simplicity</strong> than on the personalization of the service.<br><br>
+
+<strong>Audio conferences for a sustainable future</strong><br>
+CitizenRoom stands out for its flexibility, offering the possibility to conduct conferences exclusively in audio. This feature was designed to meet various needs, including optimizing bandwidth and ensuring more inclusive access to communication. A particularly important and symbolic reason behind this choice is <strong>energy saving</strong>. In an era where environmental sustainability is crucial, choosing to communicate only via audio significantly reduces the energy consumption associated with transmitting and managing video streams. This not only contributes to a lower ecological impact but also makes CitizenRoom a conscious choice for those who wish to combine communicative effectiveness with environmental responsibility.<br><br>
 
 <h2>DATA MANAGEMENT</h2>
 <strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>

@@ -33,7 +33,6 @@ $lang['ROOM_LOGO']="URL Logo";
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
 $lang['btnCustomMicOn']="Attivare mic";
-$lang['btnCustomCameraOn']="Attivare camera";
 $lang['btnChatOn']="Attivare/Disattivare chat";
 $lang['btnCustomTileView']="Vista partecipanti";
 $lang['btnScreenShareCustomOn']="Attivare condivisione schermo";
@@ -43,7 +42,6 @@ $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
 $lang['btnMuteEveryone']="Disattivare mic a tutti";
 $lang['btnCustomMicOff']="Disattivare mic";
-$lang['btnCustomCameraOff']="Disattivare camera";
 $lang['btnChatOff']="Attivare/Disattivare chat";
 $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";

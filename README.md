@@ -2,28 +2,117 @@
 
 ## Why CitizenRoom?
 
-The <strong>Citizens'Band</strong> was born for collective private use and saw the day in 1945 in the USA. CB was one of the several radio services regulated by the federal communications commission (FCC) with the goal to allow citizens to use a band of radio frequencies for <strong>personal communication</strong> (e.g. radio-controlled models, chats within family and friends, undersized businesses) <strong><a href='https://en.wikipedia.org/wiki/Citizens_band_radio'> >> source Wikipedia</a></strong>.
+In 1945, the **Citizens' Band** was created in the United States. CB was one of the various radio services regulated by the Federal Communications Commission (FCC), allowing citizens to use a radio frequency band for **personal communication** (for example radio-controlled models, conversations between relatives and friends, and small businesses) [>> Wikipedia source](https://it.wikipedia.org/wiki/Banda_cittadina).
 <br><br>
 
-Citizenroom is born with the idea to disrupt the way we use part of the web today, proposing an open-source service, free from any engagement with a public or private intermediary, applying the same CB model. This means that, as opposed to what happens today within the web (whatever you’re using paying or free interfaces), none of your personal information is given or stolen. This results in developing a service of audio and video communication to be dedicated to personal interactions between citizens.<br><br>
+CitizenRoom was created with the idea of reusing the same model and proposing the use of a part of the web in a way that is free from any relationship with a public or private intermediary (whether paid or free in exchange for personal information), by developing an audio communication service dedicated to personal communication among citizens.
+<br><br>
 
-Citizenroom is a platform where you can create virtual rooms in which you have the possibility to set-up meetings (audio and video) with a theoretical unlimited number of participants: however, it is strongly recommended to limit the use of the today available prototype to a maximum of <strong>30 people simultaneously</strong> to make it work properly.<br><br>
+CitizenRoom is a platform for creating rooms in which it is possible to organize **audio-only** meetings with a theoretically unlimited number of participants: the prototype currently available to you allows inviting up to **10 people** per room, for an indicative total of 100 users simultaneously connected to the platform in order to ensure proper operation.
+<br><br>
 
-Citizenroom is completely <strong>free, open source and you can use it without any personal account creation</strong> or applications download (desktop or mobile): you can easily create an unlimited number of rooms and, just in a click, you can generate an invitation link ready to be shared with anyone you want to invite in the room. On the other side, the people you invite to join will have access to the room just clicking on your link and they won’t be forced to create an account or install any software on their device.<br>
-We strongly felt the need to create and test a platform that focused rather on <strong>simplicity</strong> than on the personalization of the service.<br><br>
+CitizenRoom is **free, open source and does not require either the creation of an account** or the installation of applications (desktop or mobile): you can create rooms freely and without limits and, by using a button that generates an invitation link, you can allow anyone to join without forcing them to create an account or install software on their device.
+
+We felt the need to create and test a platform that would focus more on **simplicity** than on service customization.
+<br><br>
+
+**Audio conferencing for a sustainable future**<br>
+CitizenRoom stands out for its flexibility, offering the possibility of holding audio-only conferences. This feature was designed to meet several needs, including optimizing bandwidth and ensuring more inclusive access to communication. A particularly important and symbolic reason behind this choice is **energy saving**. At a time when environmental sustainability is crucial, choosing to communicate through audio only significantly reduces the energy consumption associated with the transmission and management of video streams. This not only helps reduce ecological impact, but also makes CitizenRoom a conscious choice for those who wish to combine effective communication with environmental responsibility.
+<br><br>
 
 ## Data management
-<strong>Citizenroom doesn’t keep or store any user, device, or conversation data</strong>. This doesn’t mean that Citizenroom is a platform where total anonymity can be enjoyed, and despite the fact that the platform is free, it is completely <strong>unencrypted</strong>. At all times, in the event of an incorrect and/or illegal exchange of information, <strong>any conversation may be monitored by a competent authority</strong>. Citizenroom aims to be a simple and immediate communication tool, but not a way to mask or fake your identity for illicit purposes or against the law of the Country where the platform is located or where people are connected from.<br><br>
 
-## Self hosted Jitsi Meet
-The Citizenroom uses a Jitsi Meet Server self hosted <a href='https://citizenroom.ddns.net'>here</a> : 
-- TLS Certificate has been delivered by <a href='https://letsencrypt.org/'>Let's Encrypt</a>, signed by InMediArt Association.
-- DNS has been managed via <a href='https://www.noip.com/'>NO-IP</a> with the ResponsabItaly Association account.
+CitizenRoom does not store **any user data, device data or conversation data**. This does not mean that CitizenRoom is an application in which one can enjoy total anonymity; on the contrary: CitizenRoom is a **free but unencrypted** platform, therefore at any time, in the event of improper and/or illegal exchange of information, **any conversation may be monitored by a competent authority**.
+CitizenRoom aims to be a simple and immediate means of communication, but not a tool for concealing one's identity for unlawful purposes contrary to the laws of the State in which the platform is located and from which users connect.
+<br><br>
+
+## Self-hosted Jitsi Meet
+
+CitizenRoom uses an infrastructure separated between the public interface and the audio conferencing service, in order to make the platform easier to manage, more transparent and more reliable.
+<br><br>
+
+The **front-end**, that is, the part visible to and directly used by users to create, configure and access rooms, is developed in **PHP/Javascript** and is published on an **Altervista** server.
+The **back-end**, that is, the service that actually manages the audio rooms, is based on the official documentation and implementation of [Jitsi Meet](https://jitsi.github.io/handbook/) and is hosted on a **dedicated privately owned server**.
+<br><br>
+
+This separation offers an important advantage even for non-technical users: on the one hand, the public interface can remain lightweight, accessible and easy to update; on the other, the audio conferencing engine runs on a machine dedicated exclusively to this task, allowing greater control over performance, service continuity and infrastructure management.
+<br><br>
+
+The dedicated server on which the back-end runs has about **8 GB of RAM** and a **4-core ARM CPU**, a configuration designed to efficiently support the current prototype and the use of audio rooms within the limits indicated by the platform. The use of a dedicated server also makes it possible to avoid complete dependence on centralized external services and to experiment with a more autonomous, controllable form of infrastructure consistent with the spirit of the project.
+<br><br>
+
+From the point of view of security and technical reliability, the server uses a modern architecture and is not directly exposed to many of the main known hardware vulnerabilities that have affected other systems in recent years. This also helps provide a more solid foundation for the service.
+<br><br>
+
+*   The TLS certificate was issued by [Let's Encrypt](https://letsencrypt.org/), on behalf of the cultural association InMediArt.
+*   DNS is managed through [NO-IP](https://www.noip.com/) via the account of the association ResponsabItaly.
+<br><br>
+
+<hr>
+
+## Room Types
+
+### Public rooms
+
+Public rooms represent the freest and most immediate form of access to CitizenRoom. To enter, there is no need to create an account, provide personal data or install applications: it is enough to choose a **room number** and a **nickname**. In this way, anyone can quickly open an audio conversation space and invite other participants simply by sharing an **access link**. It is the most essential form of CitizenRoom: an open, lightweight, ready-to-use room designed to encourage direct communication between people.
+<br><br>
+
+### Custom rooms
+
+Custom rooms were created to offer a meeting space that can be recognized, presented and shared even outside the platform. In these rooms it is possible to define a **title**, associate a **logo** and add a **link to a personal, associative or institutional website**. In this way, the room is not only a place to access the conversation, but can become an integral part of the communication of an event, an association or a project, through an invitation link that can be freely published and shared on one's own web channels.
+<br><br>
+
+### Topic rooms
+
+Topic rooms are CitizenRoom spaces that build their interface using open data available on the web, through live calls to public APIs or CSV files downloaded from websites that make them available.
+<br><br>
+
+#### Parliament rooms
+
+Parliament rooms are themed rooms dedicated to members of parliament: each room is built around public data concerning a representative.
+CitizenRoom provides parliamentary rooms for 3 parliaments:
+*   **European Parliament**, data source: [data.europarl.europa.eu](https://data.europarl.europa.eu/fr/datasets/deputes-au-parlement-europeen-legislature10/58)
+*   **Italian Parliament (Chamber of Deputies)**, data source: [dati.camera.it](https://dati.camera.it/)
+*   **French Parliament (Assemblée Nationale)**, data source: [data.assemblee-nationale.fr](https://data.assemblee-nationale.fr/acteurs/deputes-en-exercice)
+<br>
+
+#### Municipality rooms
+
+Municipality rooms are themed rooms dedicated to municipalities: each room is built around public data concerning a municipality.
+CitizenRoom provides municipal rooms for 2 countries:
+*   **Italian municipalities**, data source: [Comuni ITA API](https://github.com/Samurai016/Comuni-ITA), [dait.interno.gov.it - Local administrators](https://dait.interno.gov.it/elezioni/open-data/amministratori-locali-e-regionali-in-carica)
+*   **French municipalities**, data source: [geo.api.gouv.fr](https://geo.api.gouv.fr/), [data.gouv.fr - National register of elected officials](https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1/)
+<br>
+<hr>
+<br>
 
 ## Collaborative whiteboard
-Each room gives access to a collaborative whiteboard, shared with all users of the room.
-This functionality is possible thanks to the Open Source project <a href='https://wbo.ophir.dev/'>WBO</a> by <a href='https://ophir.dev/'>Ophir LOJKINE</a>.<br><br>
 
-## An open source project
-Citizenroom is a prototype web conference platform, based on jitsi meet public api, written in php/javascript and completely open source.<br>
-You can read the prototype code and, if you believe it is necessary, propose to modify it on Github in the <a href='https://github.com/gvincenzi/citizenroom'>dedicated repository</a>.
+Each room gives access to a collaborative whiteboard shared with all users in the room.
+This feature is made possible thanks to the Open Source project [WBO](https://wbo.ophir.dev/) by developer [Ophir LOJKINE](https://ophir.dev/).
+<br><br>
+<br>
+<hr>
+<br>
+
+## An Open Source prototype
+
+CitizenRoom is a prototype web conferencing platform based on the public API of [Jitsi Meet](https://meet.jit.si/), written in PHP/Javascript and completely Open Source.
+The prototype code can be read and, if desired, proposals for modification can be made on GitHub in the dedicated [repository](https://github.com/gvincenzi/citizenroom).
+<br><br>
+<br>
+<hr>
+<br>
+
+## Project funding
+
+CitizenRoom was also created as an experiment in digital autonomy: to show that a communication tool can be simple, public in spirit, open in its code, and not based on the collection of personal data, even outside the logic of large commercial platforms.
+<br><br>
+
+The platform is financially supported by the cultural associations **[ResponsabItaly](https://www.responsabitaly.org)**, **[InMediArt](https://www.inmediart.ovh)** and **[AssoEtica](https://www.assoetica.it)**, which share its cultural vision and its goal of building communication tools that are freer, more sober and more accessible.
+<br><br>
+
+For the years **2025** and **2026**, the total costs incurred for CitizenRoom amounted to **300 euros VAT included**.
+<br><br>
+
+This deliberately limited amount expresses a principle even before it defines a technical model: it is possible to build and maintain an essential communication infrastructure with limited resources, without relying on advertising, user profiling or dependence on proprietary ecosystems. In this sense, CitizenRoom is not only a technological prototype, but also a small political and cultural proposal: to give citizens back a direct, lightweight and governable space for communication.

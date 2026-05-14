@@ -33,7 +33,6 @@ $lang['ROOM_LOGO']="URL Logo";
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";
 $lang['btnCustomMicOn']="Activer mic";
-$lang['btnCustomCameraOn']="Activer camera";
 $lang['btnChatOn']="Activer/Désactiver chat";
 $lang['btnCustomTileView']="Vue participants";
 $lang['btnScreenShareCustomOn']="Activer partage écran";
@@ -43,7 +42,6 @@ $lang['btnInvitation']="Copier le lien d'invitation";
 $lang['btnLeave']="Quitter la salle";
 $lang['btnMuteEveryone']="Désactiver mic pour tous";
 $lang['btnCustomMicOff']="Désactiver mic";
-$lang['btnCustomCameraOff']="Désactiver camera";
 $lang['btnChatOff']="Activer/Désactiver chat";
 $lang['btnScreenShareCustomOff']="Désactiver partage écran";
 $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";

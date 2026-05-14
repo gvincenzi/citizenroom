@@ -25,7 +25,7 @@ include prefered_language ( $available_languages ) . '.php';
 	<meta name="twitter:description" content="Informations about CitizenRoom (italian language)">
 	<meta name="twitter:image" content="https://citizenroom.altervista.org/web/assets/img/icon-192x192.png">
 
-    <link href="../assets/css/page.css?v=<?php print time()?>" rel="stylesheet">
+    <link href="/web/assets/css/page.css?v=<?php print time()?>" rel="stylesheet">
 
 </head>
 

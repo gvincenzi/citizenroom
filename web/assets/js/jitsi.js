@@ -19,12 +19,6 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 	$("#btnMuteEveryone").on('click', function () {
         apiObj.executeCommand('muteEveryone');
     });
-    $("#btnCustomCameraOn").on('click', function () {
-        apiObj.executeCommand('toggleVideo');
-    });
-	$("#btnCustomCameraOff").on('click', function () {
-        apiObj.executeCommand('toggleVideo');
-    });
     $("#btnCustomTileView").on('click', function () {
         apiObj.executeCommand('toggleTileView');
     });
@@ -109,10 +103,14 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
             displayName: nickname
         },
         interfaceConfigOverwrite: {
-            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand', 'settings']
+            TOOLBAR_BUTTONS: ['fullscreen','chat','microphone','hangup','tileview','raisehand', 'settings'],
+			SHOW_VIDEO_PREVIEW_SETTINGS: false,
+			DISABLE_VIDEO_BACKGROUND: true
         },
 		configOverwrite: {
-			prejoinPageEnabled: false
+			prejoinPageEnabled: false,
+			disableAPIVideo: true,
+			startWithVideoMuted: true
         },
         onload: function () {
             $('#joinMsg').hide();
@@ -151,15 +149,6 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 				$("#btnCustomMicOff").show();
 			}
         },
-        videoMuteStatusChanged: function (data) {
-            if(data.muted){
-				$("#btnCustomCameraOn").show();
-				$("#btnCustomCameraOff").hide();
-            } else {
-                $("#btnCustomCameraOn").hide();
-				$("#btnCustomCameraOff").show();
-			}
-        },
         tileViewChanged: function (data) {
             
         },
@@ -175,15 +164,6 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 		incomingMessage: function (data) {
 			
 		},
-        screenSharingStatusChanged: function (data) {
-            if(data.on){
-				$("#btnScreenShareCustomOn").hide();
-				$("#btnScreenShareCustomOff").show();
-            } else {
-                $("#btnScreenShareCustomOn").show();
-				$("#btnScreenShareCustomOff").hide();
-			}
-        },
         participantJoined: function(data){
 			notifyMe(data.displayName + ' joined the room');
 			// TODO ALL MODERATORS ? apiObj.executeCommand('grantModerator', data.id);

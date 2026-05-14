@@ -12,8 +12,6 @@
 		<button id='btnRaiseHandOff' style="display: none;"><?php print $lang['btnRaiseHandOff']?></button>
 		<button id='btnCustomMicOn'><?php print $lang['btnCustomMicOn']?></button>
 		<button id='btnCustomMicOff' style="display: none;"><?php print $lang['btnCustomMicOff']?></button>
-		<button id='btnCustomCameraOn'><?php print $lang['btnCustomCameraOn']?></button>
-		<button id='btnCustomCameraOff' style="display: none;"><?php print $lang['btnCustomCameraOff']?></button>
 		<button id='btnChatOn'><?php print $lang['btnChatOn']?></button>
 		<button id='btnChatOff' style="display: none;"><?php print $lang['btnChatOff']?></button>
 		<button id='btnCustomTileView'><?php print $lang['btnCustomTileView']?></button>

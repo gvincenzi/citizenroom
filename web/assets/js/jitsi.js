@@ -103,8 +103,9 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
             displayName: nickname
         },
         interfaceConfigOverwrite: {
-            TOOLBAR_BUTTONS: ['fullscreen','chat','microphone','hangup','tileview','videobackgroundblur','raisehand', 'settings'],
-			SHOW_VIDEO_PREVIEW_SETTINGS: false
+            TOOLBAR_BUTTONS: ['fullscreen','chat','microphone','hangup','tileview','raisehand', 'settings'],
+			SHOW_VIDEO_PREVIEW_SETTINGS: false,
+			DISABLE_VIDEO_BACKGROUND: true
         },
 		configOverwrite: {
 			prejoinPageEnabled: false,

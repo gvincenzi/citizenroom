@@ -33,6 +33,7 @@ $lang['ROOM_LOGO']="URL Logo";
 /* ROOM */
 $lang['JOINING']="Vous rejoignez la salle...";
 $lang['btnCustomMicOn']="Activer mic";
+$lang['btnCustomCameraOn']="Activer camera";
 $lang['btnChatOn']="Activer/Désactiver chat";
 $lang['btnCustomTileView']="Vue participants";
 $lang['btnScreenShareCustomOn']="Activer partage écran";
@@ -42,12 +43,15 @@ $lang['btnInvitation']="Copier le lien d'invitation";
 $lang['btnLeave']="Quitter la salle";
 $lang['btnMuteEveryone']="Désactiver mic pour tous";
 $lang['btnCustomMicOff']="Désactiver mic";
+$lang['btnCustomCameraOff']="Désactiver camera";
 $lang['btnChatOff']="Activer/Désactiver chat";
 $lang['btnScreenShareCustomOff']="Désactiver partage écran";
 $lang['btnLobbyOff']="Désactiver le contrôle d'entrée";
 $lang['btnRaiseHandOff']="Lever/Baisser la main";
 $lang['btnWhiteboard']="Accéder au tableau partagé";
 $lang['btnCustomLink']="Page web";
+$lang['VIDEO_MSG_TITLE']="Utilisation responsable de la vidéo";
+$lang['VIDEO_MSG_BODY']="L’utilisation de la vidéo augmente la consommation d’énergie et le trafic de données. Si elle n’est pas nécessaire, envisagez de la désactiver afin de réduire votre empreinte carbone.";
 
 /* INVITE */
 $lang['INVITATION']="Vous êtes sur le point d'entrer dans la ";

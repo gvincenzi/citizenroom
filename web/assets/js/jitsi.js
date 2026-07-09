@@ -19,6 +19,12 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 	$("#btnMuteEveryone").on('click', function () {
         apiObj.executeCommand('muteEveryone');
     });
+	$("#btnCustomCameraOn").on('click', function () {
+        apiObj.executeCommand('toggleVideo');
+    });
+	$("#btnCustomCameraOff").on('click', function () {
+        apiObj.executeCommand('toggleVideo');
+    });
     $("#btnCustomTileView").on('click', function () {
         apiObj.executeCommand('toggleTileView');
     });
@@ -75,7 +81,11 @@ function BindEvent(roomNumber,nickname,roomTitle,roomType,roomLogo,roomCustomLin
 	});
 	$("#btnLeave").on('click', function () {
         	window.location.href = "https://citizenroom.altervista.org/server/service/left.php";
-    	});
+    });
+	$("#closeCarbonVideoNotice").on('click', function () {
+		hideCarbonVideoBanner();
+	});
+
 }
 
 function copyToClipboard(text) {
@@ -103,14 +113,12 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
             displayName: nickname
         },
         interfaceConfigOverwrite: {
-            TOOLBAR_BUTTONS: ['fullscreen','chat','microphone','hangup','tileview','raisehand', 'settings'],
-			SHOW_VIDEO_PREVIEW_SETTINGS: false,
-			DISABLE_VIDEO_BACKGROUND: true
+            TOOLBAR_BUTTONS: ['sharedvideo','fullscreen','chat','microphone','camera','hangup','tileview','videobackgroundblur','raisehand', 'settings'],
+			SHOW_VIDEO_PREVIEW_SETTINGS: true,
+			DISABLE_VIDEO_BACKGROUND: false
         },
 		configOverwrite: {
-			prejoinPageEnabled: false,
-			disableAPIVideo: true,
-			startWithVideoMuted: true
+			prejoinPageEnabled: false
         },
         onload: function () {
             $('#joinMsg').hide();
@@ -149,6 +157,16 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 				$("#btnCustomMicOff").show();
 			}
         },
+        videoMuteStatusChanged: function (data) {
+            if(data.muted){
+				$("#btnCustomCameraOn").show();
+				$("#btnCustomCameraOff").hide();
+            } else {
+                $("#btnCustomCameraOn").hide();
+				$("#btnCustomCameraOff").show();
+				showCarbonVideoBanner();
+			}
+        },
         tileViewChanged: function (data) {
             
         },
@@ -164,6 +182,15 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 		incomingMessage: function (data) {
 			
 		},
+		screenSharingStatusChanged: function (data) {
+            if(data.on){
+				$("#btnScreenShareCustomOn").hide();
+				$("#btnScreenShareCustomOff").show();
+            } else {
+                $("#btnScreenShareCustomOn").show();
+				$("#btnScreenShareCustomOff").hide();
+			}
+        },
         participantJoined: function(data){
 			notifyMe(data.displayName + ' joined the room');
 			// TODO ALL MODERATORS ? apiObj.executeCommand('grantModerator', data.id);
@@ -229,3 +256,25 @@ function StartMeeting(roomNumber,nickname,roomTitle,roomType){
 	  // At last, if the user has denied notifications, and you
 	  // want to be respectful there is no need to bother them any more.
 	}
+
+	var carbonVideoNoticeTimeout = null;
+
+	function showCarbonVideoBanner() {
+		$("#carbonVideoNotice")
+			.css("display", "flex")
+			.hide()
+			.fadeIn(300);
+
+		if (carbonVideoNoticeTimeout) {
+			clearTimeout(carbonVideoNoticeTimeout);
+		}
+
+		carbonVideoNoticeTimeout = setTimeout(function () {
+			hideCarbonVideoBanner();
+		}, 6000);
+	}
+
+	function hideCarbonVideoBanner() {
+		$("#carbonVideoNotice").fadeOut(300);
+	}
+

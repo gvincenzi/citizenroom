@@ -33,6 +33,7 @@ $lang['ROOM_LOGO']="URL Logo";
 /* ROOM */
 $lang['JOINING']="Stai entrando nella stanza...";
 $lang['btnCustomMicOn']="Attivare mic";
+$lang['btnCustomCameraOn']="Attivare camera";
 $lang['btnChatOn']="Attivare/Disattivare chat";
 $lang['btnCustomTileView']="Vista partecipanti";
 $lang['btnScreenShareCustomOn']="Attivare condivisione schermo";
@@ -42,12 +43,16 @@ $lang['btnInvitation']="Copia il link dell'invito";
 $lang['btnLeave']="Esci dalla stanza";
 $lang['btnMuteEveryone']="Disattivare mic a tutti";
 $lang['btnCustomMicOff']="Disattivare mic";
+$lang['btnCustomCameraOff']="Disattivare camera";
 $lang['btnChatOff']="Attivare/Disattivare chat";
 $lang['btnScreenShareCustomOff']="Disattivare condivisione schermo";
 $lang['btnLobbyOff']="Disattivare ingresso su richiesta";
 $lang['btnRaiseHandOff']="Alzare/Bassare la mano";
 $lang['btnWhiteboard']="Accedi alla lavagna condivisa";
 $lang['btnCustomLink']="Pagina web";
+$lang['VIDEO_MSG_TITLE']="Uso responsabile del video";
+$lang['VIDEO_MSG_BODY']="L'uso del video aumenta il consumo di energia e il traffico dati. Se non è necessario, valuta di disattivarlo per ridurre l'impronta carbonica.";
+
 
 /* INVITE */
 $lang['INVITATION']="Stai per entrare nella ";
